@@ -1,0 +1,21 @@
+{
+  "flutterVersion": "3.47.6",
+  "source": "Flutter SDK bin/cache/artifacts/material_fonts",
+  "notices": [
+    {
+      "notice": "MaterialIcons_LICENSE.txt",
+      "sha256": "be698262aecd042c0de6f886cc0af622f8def446462026992cc530275d8a9e74",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "notice": "RobotoCondensed_LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "license": "Apache-2.0"
+    },
+    {
+      "notice": "Roboto_LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "license": "Apache-2.0"
+    }
+  ]
+}

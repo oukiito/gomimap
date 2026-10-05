@@ -1,0 +1,256 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Spanish Castilian (`es`).
+class AppLocalizationsEs extends AppLocalizations {
+  AppLocalizationsEs([String locale = 'es']) : super(locale);
+
+  @override
+  String get appTitle => 'Gomimap';
+
+  @override
+  String get language => 'Idioma / Language';
+
+  @override
+  String get languageSaveError =>
+      'No se pudo guardar el idioma. Vuelve a seleccionarlo la próxima vez.';
+
+  @override
+  String get about => 'Acerca de este prototipo';
+
+  @override
+  String get sampleBanner => 'Datos de prueba · No usar para tirar basura real';
+
+  @override
+  String get today => 'Hoy';
+
+  @override
+  String get tomorrow => 'Mañana';
+
+  @override
+  String get searchTab => 'Separación';
+
+  @override
+  String get placesTab => 'Puntos de reciclaje';
+
+  @override
+  String get chooseArea => 'Seleccionar zona';
+
+  @override
+  String get fictionalAreas => 'Zonas ficticias para pruebas.';
+
+  @override
+  String areaName(String area) {
+    return 'Toshima · Zona de ejemplo $area';
+  }
+
+  @override
+  String get areaSaveError =>
+      'No se pudo guardar la zona. Vuelve a seleccionarla la próxima vez.';
+
+  @override
+  String sourceOpenError(String url) {
+    return 'No se pudo abrir la página oficial.\n$url';
+  }
+
+  @override
+  String demoDate(String date) {
+    return 'Ejemplo del $date';
+  }
+
+  @override
+  String get upcoming => 'Próximas recogidas';
+
+  @override
+  String get officialToshima => 'Información oficial de Toshima (japonés)';
+
+  @override
+  String get official => 'Información oficial (japonés)';
+
+  @override
+  String get checkTime => 'Consulta las instrucciones y los horarios oficiales';
+
+  @override
+  String get noCollection => 'Sin recogida';
+
+  @override
+  String get uncertain => 'Es necesario confirmar el calendario de recogida';
+
+  @override
+  String get burnable => 'Basura combustible';
+
+  @override
+  String get recyclables => 'Reciclables';
+
+  @override
+  String get metals => 'Metal, cerámica y vidrio';
+
+  @override
+  String get searchTitle => '¿Cómo se desecha esto?';
+
+  @override
+  String get searchSubtitle => 'Busca por el nombre del objeto.';
+
+  @override
+  String get itemName => 'Nombre del objeto';
+
+  @override
+  String get searchHint => 'Ej.: pila, botella de plástico';
+
+  @override
+  String get noResults =>
+      'No se encontraron resultados. Prueba otro nombre o consulta la información oficial.';
+
+  @override
+  String get disposal => 'Instrucciones de eliminación';
+
+  @override
+  String get disposalAndPlaces => 'Eliminación y puntos de recogida';
+
+  @override
+  String get sampleSorting => 'Instrucciones de separación de ejemplo';
+
+  @override
+  String get findPlaces => 'Buscar puntos de recogida';
+
+  @override
+  String get officialDisposal =>
+      'Instrucciones oficiales de eliminación (japonés)';
+
+  @override
+  String get placesSubtitle =>
+      'Puntos para pilas, aparatos pequeños y tubos fluorescentes.\nPara la basura habitual, consulta Hoy.';
+
+  @override
+  String get damageQuestion => '¿Está hinchada o dañada?';
+
+  @override
+  String get noDamage => 'No';
+
+  @override
+  String get damagedOrUnknown => 'Sí / No lo sé';
+
+  @override
+  String get damageWarning =>
+      'No la deposites en una caja de recogida normal. Comprueba su estado y consulta la guía oficial del distrito para encontrar el contacto adecuado.';
+
+  @override
+  String get officialBattery =>
+      'Guía y contactos oficiales para pilas y baterías (japonés)';
+
+  @override
+  String placesCount(int count) {
+    return 'Puntos de ejemplo ($count)';
+  }
+
+  @override
+  String get fictionalPoints =>
+      'Estos lugares son ficticios. No acudas a ellos.';
+
+  @override
+  String get noPoints =>
+      'Aún no hay puntos verificados para este objeto. Consulta la guía oficial del distrito.';
+
+  @override
+  String get conditions => 'Ver condiciones de recepción';
+
+  @override
+  String samplePoint(String point) {
+    return 'Punto de recogida de ejemplo $point';
+  }
+
+  @override
+  String get samplePointDetail => 'Lugar de recogida ficticio para pruebas';
+
+  @override
+  String acceptedItems(String items) {
+    return 'Ejemplos de objetos aceptados: $items';
+  }
+
+  @override
+  String get pointConditions =>
+      'Horarios y condiciones: sin registrar.\nNo es un punto de entrega real. No se ofrecen rutas.';
+
+  @override
+  String get mapTitle => 'Mapa de recogida';
+
+  @override
+  String get mapUnavailable =>
+      'El mapa aún no está conectado.\nPuedes probar el prototipo con la lista de abajo.';
+
+  @override
+  String get aboutBody =>
+      'Los calendarios, zonas y lugares son ficticios y se basan en el 5 de octubre de 2026. No los uses para tirar basura real.\n\nLas notificaciones, widgets y ajustes de ubicación aún no están implementados. Este prototipo no envía notificaciones.\n\nSolo se guardan la zona de ejemplo y el idioma elegidos. No se recopilan fotos ni datos de ubicación.';
+
+  @override
+  String get dryBattery => 'Pilas secas';
+
+  @override
+  String get rechargeable => 'Baterías recargables';
+
+  @override
+  String get appliance => 'Aparatos pequeños';
+
+  @override
+  String get lamp => 'Tubos fluorescentes';
+
+  @override
+  String get dryBatteryHint =>
+      'Comprueba el tipo y el estado de la pila o batería antes de elegir un lugar.';
+
+  @override
+  String get rechargeableHint =>
+      'No las pongas en cajas de pilas secas. Comprueba el método adecuado para su tipo y estado.';
+
+  @override
+  String get applianceHint =>
+      'Comprueba los objetos aceptados, el tamaño de la abertura y las normas para baterías integradas.';
+
+  @override
+  String get lampHint =>
+      'Los tubos rotos y las bombillas LED tienen normas diferentes. Consulta la guía oficial.';
+
+  @override
+  String get food => 'Restos de comida';
+
+  @override
+  String get pet => 'Botellas PET';
+
+  @override
+  String get cans => 'Latas y botellas de vidrio';
+
+  @override
+  String get bulky => 'Muebles y basura voluminosa';
+
+  @override
+  String get foodGuidance =>
+      'Ejemplo para basura combustible: escurre los líquidos antes de desecharla.';
+
+  @override
+  String get recyclingGuidance =>
+      'Ejemplo para reciclables: comprueba los días de recogida y la preparación necesaria.';
+
+  @override
+  String get dryBatteryGuidance =>
+      'Comprueba el método de recogida para el tipo de pila o batería.';
+
+  @override
+  String get rechargeableGuidance =>
+      'Las normas varían según el tipo y si está hinchada o dañada.';
+
+  @override
+  String get applianceGuidance =>
+      'Comprueba los límites de tamaño y las normas para baterías integradas.';
+
+  @override
+  String get lampGuidance =>
+      'Consulta por separado las normas para tubos fluorescentes y bombillas LED.';
+
+  @override
+  String get bulkyGuidance =>
+      'Las normas para basura voluminosa dependen del tamaño y del objeto. Consulta el catálogo y la información de reserva del distrito.';
+}

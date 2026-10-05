@@ -1,0 +1,9 @@
+* text=auto
+*.dart text eol=lf
+*.arb text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Preserve upstream license text bytes and their recorded SHA-256 hashes.
+third_party/**/*.txt -text -whitespace

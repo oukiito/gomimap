@@ -1,0 +1,22 @@
+# Local tools and generated files
+.tooling/
+.DS_Store
+.dart_tool/
+build/
+coverage/
+
+# Credentials and private source snapshots
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
+private/
+
+# Editors
+.idea/
+*.iml
+app/ios/Flutter/Maps.local.xcconfig
+app/untranslated_messages.json

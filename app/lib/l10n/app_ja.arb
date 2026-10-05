@@ -1,0 +1,115 @@
+{
+  "@@locale": "ja",
+  "appTitle": "ごみまっぷ",
+  "language": "言語 / Language",
+  "languageSaveError": "言語を保存できませんでした。次回もう一度選んでください。",
+  "about": "この試作について",
+  "sampleBanner": "開発用サンプル · 実際のごみ出しには使えません",
+  "today": "今日",
+  "tomorrow": "明日",
+  "searchTab": "分別を調べる",
+  "placesTab": "資源回収場所",
+  "chooseArea": "地域を選ぶ",
+  "fictionalAreas": "操作確認用の架空の地域です。",
+  "areaName": "豊島区・サンプル地域{area}",
+  "@areaName": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "areaSaveError": "地域を保存できませんでした。次回もう一度選んでください。",
+  "sourceOpenError": "公式ページを開けませんでした。\n{url}",
+  "@sourceOpenError": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "demoDate": "{date}の表示例",
+  "@demoDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "upcoming": "この先の予定",
+  "officialToshima": "豊島区の公式情報を確認",
+  "official": "公式情報を確認",
+  "checkTime": "出し方・時間は公式情報で確認",
+  "noCollection": "収集はありません",
+  "uncertain": "収集予定の確認が必要",
+  "burnable": "燃やすごみ",
+  "recyclables": "資源",
+  "metals": "金属・陶器・ガラス",
+  "searchTitle": "これは、何ごみ？",
+  "searchSubtitle": "品物の名前から出し方を調べます。",
+  "itemName": "品物の名前",
+  "searchHint": "例：電池、ペットボトル",
+  "noResults": "見つかりませんでした。別の名前で試すか、公式情報で確認してください。",
+  "disposal": "出し方を確認",
+  "disposalAndPlaces": "出し方・専用の回収場所",
+  "sampleSorting": "開発用サンプルの分別案内",
+  "findPlaces": "専用の回収場所を探す",
+  "officialDisposal": "公式の出し方を確認",
+  "placesSubtitle": "電池・小型家電・蛍光灯などの持ち込み先。\n普段のごみは「今日」で確認できます。",
+  "damageQuestion": "膨らみ・破損がありますか？",
+  "noDamage": "ない",
+  "damagedOrUnknown": "ある・わからない",
+  "damageWarning": "通常の回収箱へは案内しません。状態を確かめ、区の公式情報から相談先を確認してください。",
+  "officialBattery": "公式の回収方法・相談先を確認",
+  "placesCount": "回収場所の一覧（サンプル {count}件）",
+  "@placesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fictionalPoints": "架空の拠点です。訪問先として利用できません。",
+  "noPoints": "この品目の確認済み回収場所はまだありません。区の公式案内を確認してください。",
+  "conditions": "受付条件を確認する",
+  "samplePoint": "サンプル回収拠点{point}",
+  "@samplePoint": {
+    "placeholders": {
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "samplePointDetail": "開発用の架空の回収場所",
+  "acceptedItems": "対象品目の例：{items}",
+  "@acceptedItems": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "pointConditions": "受付時間・利用条件：未登録\n実際の持ち込み先ではありません。経路案内は提供していません。",
+  "mapTitle": "ここに回収場所の地図を表示",
+  "mapUnavailable": "地図はまだ接続していません。\n下の一覧で画面の動きを試せます。",
+  "aboutBody": "2026年10月5日を基準にした架空の日程・地域・回収場所です。実際のごみ出しには使えません。\n\n通知・ウィジェット・位置情報の設定は、今後追加します。この試作から通知は届きません。\n\n保存するのは選んだサンプル地域と言語のみ。写真や位置情報は取得しません。",
+  "dryBattery": "乾電池",
+  "rechargeable": "充電池",
+  "appliance": "小型家電",
+  "lamp": "蛍光灯",
+  "dryBatteryHint": "電池の種類と状態を確かめてから、回収場所を選びます。",
+  "rechargeableHint": "乾電池の回収箱には入れず、種類・状態に合う方法を確認します。",
+  "applianceHint": "対象品目や投入口の大きさ、取り外せない電池の扱いを確認します。",
+  "lampHint": "割れているものやLED電球は扱いが異なるため、公式案内で確認します。",
+  "food": "生ごみ",
+  "pet": "ペットボトル",
+  "cans": "缶・びん",
+  "bulky": "家具・大きなごみ",
+  "foodGuidance": "燃やすごみの表示例です。水を切って出します。",
+  "recyclingGuidance": "資源の表示例です。通常の収集日と出し方を確認します。",
+  "dryBatteryGuidance": "電池の種類に応じて回収方法を確認します。",
+  "rechargeableGuidance": "種類や膨張・破損の有無によって扱いが異なります。",
+  "applianceGuidance": "大きさや内蔵電池の扱いを確認します。",
+  "lampGuidance": "蛍光灯とLED電球は分けて確認します。",
+  "bulkyGuidance": "寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。"
+}

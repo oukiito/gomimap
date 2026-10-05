@@ -1,0 +1,115 @@
+{
+  "@@locale": "vi",
+  "appTitle": "Gomimap",
+  "language": "Ngôn ngữ / Language",
+  "languageSaveError": "Không lưu được ngôn ngữ. Vui lòng chọn lại vào lần sau.",
+  "about": "Về bản thử nghiệm",
+  "sampleBanner": "Dữ liệu mẫu · Không dùng để đổ rác thực tế",
+  "today": "Hôm nay",
+  "tomorrow": "Ngày mai",
+  "searchTab": "Phân loại rác",
+  "placesTab": "Điểm tái chế",
+  "chooseArea": "Chọn khu vực",
+  "fictionalAreas": "Các khu vực giả định để thử nghiệm.",
+  "areaName": "Toshima · Khu vực mẫu {area}",
+  "@areaName": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "areaSaveError": "Không lưu được khu vực. Vui lòng chọn lại vào lần sau.",
+  "sourceOpenError": "Không mở được trang chính thức.\n{url}",
+  "@sourceOpenError": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "demoDate": "Ví dụ cho ngày {date}",
+  "@demoDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "upcoming": "Lịch thu gom sắp tới",
+  "officialToshima": "Thông tin chính thức của Toshima (tiếng Nhật)",
+  "official": "Thông tin chính thức (tiếng Nhật)",
+  "checkTime": "Xem hướng dẫn và giờ đổ rác chính thức",
+  "noCollection": "Không thu gom",
+  "uncertain": "Cần xác nhận lịch thu gom",
+  "burnable": "Rác cháy được",
+  "recyclables": "Tài nguyên tái chế",
+  "metals": "Kim loại, gốm sứ và thủy tinh",
+  "searchTitle": "Bỏ món này thế nào?",
+  "searchSubtitle": "Tìm theo tên đồ vật.",
+  "itemName": "Tên đồ vật",
+  "searchHint": "Ví dụ: pin, chai nhựa",
+  "noResults": "Không tìm thấy. Hãy thử tên khác hoặc xem thông tin chính thức.",
+  "disposal": "Hướng dẫn bỏ rác",
+  "disposalAndPlaces": "Cách bỏ và điểm thu gom",
+  "sampleSorting": "Hướng dẫn phân loại mẫu",
+  "findPlaces": "Tìm điểm thu gom",
+  "officialDisposal": "Hướng dẫn bỏ rác chính thức (tiếng Nhật)",
+  "placesSubtitle": "Nơi nhận pin, thiết bị điện nhỏ và đèn huỳnh quang.\nVới rác thông thường, xem Hôm nay.",
+  "damageQuestion": "Có bị phồng hoặc hỏng không?",
+  "noDamage": "Không",
+  "damagedOrUnknown": "Có / Không rõ",
+  "damageWarning": "Không bỏ vào hộp thu gom thông thường. Kiểm tra tình trạng và xem hướng dẫn chính thức của quận để tìm nơi liên hệ.",
+  "officialBattery": "Hướng dẫn thu gom pin và liên hệ (tiếng Nhật)",
+  "placesCount": "Điểm thu gom mẫu ({count})",
+  "@placesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fictionalPoints": "Đây là địa điểm giả định. Không đến các địa điểm này.",
+  "noPoints": "Chưa có điểm thu gom đã xác minh cho đồ vật này. Hãy xem hướng dẫn chính thức của quận.",
+  "conditions": "Xem điều kiện tiếp nhận",
+  "samplePoint": "Điểm thu gom mẫu {point}",
+  "@samplePoint": {
+    "placeholders": {
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "samplePointDetail": "Điểm thu gom giả định để thử nghiệm",
+  "acceptedItems": "Ví dụ về đồ vật tiếp nhận: {items}",
+  "@acceptedItems": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "pointConditions": "Giờ và điều kiện tiếp nhận: chưa đăng ký.\nĐây không phải nơi tiếp nhận thực tế. Không cung cấp chỉ đường.",
+  "mapTitle": "Bản đồ thu gom",
+  "mapUnavailable": "Chưa kết nối bản đồ.\nBạn có thể dùng thử danh sách bên dưới.",
+  "aboutBody": "Lịch, khu vực và điểm thu gom là giả định, lấy ngày 5 tháng 10 năm 2026 làm mốc. Không dùng để đổ rác thực tế.\n\nChưa có thông báo, tiện ích và cài đặt vị trí. Bản thử nghiệm này không gửi thông báo.\n\nChỉ lưu khu vực mẫu và ngôn ngữ đã chọn. Không thu thập ảnh hay vị trí.",
+  "dryBattery": "Pin khô",
+  "rechargeable": "Pin sạc",
+  "appliance": "Thiết bị điện nhỏ",
+  "lamp": "Đèn huỳnh quang",
+  "dryBatteryHint": "Kiểm tra loại và tình trạng pin trước khi chọn điểm thu gom.",
+  "rechargeableHint": "Không bỏ vào hộp thu gom pin khô. Kiểm tra cách xử lý phù hợp với loại và tình trạng pin.",
+  "applianceHint": "Kiểm tra đồ vật được nhận, kích thước khe bỏ và quy định về pin gắn trong.",
+  "lampHint": "Đèn bị vỡ và bóng LED có cách xử lý khác. Hãy xem hướng dẫn chính thức.",
+  "food": "Rác thực phẩm",
+  "pet": "Chai PET",
+  "cans": "Lon và chai thủy tinh",
+  "bulky": "Đồ nội thất và rác cồng kềnh",
+  "foodGuidance": "Ví dụ về rác cháy được: để ráo nước trước khi bỏ.",
+  "recyclingGuidance": "Ví dụ về tái chế: kiểm tra ngày thu gom định kỳ và cách chuẩn bị.",
+  "dryBatteryGuidance": "Kiểm tra cách thu gom theo loại pin.",
+  "rechargeableGuidance": "Cách xử lý khác nhau tùy loại pin và tình trạng phồng hoặc hỏng.",
+  "applianceGuidance": "Kiểm tra giới hạn kích thước và quy định về pin gắn trong.",
+  "lampGuidance": "Kiểm tra riêng quy định về đèn huỳnh quang và bóng LED.",
+  "bulkyGuidance": "Quy định về rác cồng kềnh tùy kích thước và loại đồ vật. Xem danh mục và thông tin đăng ký của quận."
+}

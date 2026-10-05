@@ -1,0 +1,700 @@
+{
+  "scope": "Resolved Dart packages including development and platform alternatives; not a shipped-binary bill of materials",
+  "flutterVersion": "3.47.6",
+  "lockfileSha256": "87dbe6fd41a216d8c2edfdd632d2c27d13f6f21fd98572bf89e17dc1a1dadd56",
+  "unresolved": [
+    "Native SDKs and Gradle/SPM/CocoaPods dependencies",
+    "Release-specific Flutter engine, fonts and asset notices",
+    "Map services, municipal data and distribution contracts"
+  ],
+  "packages": [
+    {
+      "package": "archive",
+      "version": "4.3.0",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/archive.txt",
+      "sha256": "32f97d332eae7453ec4079858e6f1d74be85beeb6d3881068b47d02a379cccea",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "args",
+      "version": "2.7.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/args.txt",
+      "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "async",
+      "version": "2.13.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/async.txt",
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "boolean_selector",
+      "version": "2.1.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/boolean_selector.txt",
+      "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "characters",
+      "version": "1.4.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/characters.txt",
+      "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "clock",
+      "version": "1.1.3",
+      "licenseAssessment": "Apache-2.0",
+      "notice": "licenses/clock.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "code_assets",
+      "version": "1.2.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/code_assets.txt",
+      "sha256": "21ae23b0b9ff67a2dc75ab085d1e8db8ac548c5faf370af17f28dd2ef3b52b7b",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "collection",
+      "version": "1.19.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/collection.txt",
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "crypto",
+      "version": "3.0.7",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/crypto.txt",
+      "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "cupertino_icons",
+      "version": "1.0.9",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/cupertino_icons.txt",
+      "sha256": "310d6ab6483280280c9db122bded0a63c09558bc5743720f61dbcbb494db370a",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "dart_earcut",
+      "version": "1.2.0",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/dart_earcut.txt",
+      "sha256": "d35e19b2acb17cf18613e0e2b7dbaf311ac2e22898d192996ff8be7114230864",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "dart_polylabel2",
+      "version": "1.0.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/dart_polylabel2.txt",
+      "sha256": "ca96bfaf8837b86f5b96b0e7eb3373162f54cca7a7b63c122c004af220c9f07f",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "fake_async",
+      "version": "1.3.3",
+      "licenseAssessment": "Apache-2.0",
+      "notice": "licenses/fake_async.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "ffi",
+      "version": "2.2.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/ffi.txt",
+      "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "file",
+      "version": "7.0.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/file.txt",
+      "sha256": "f6df86b1412172537273e8e80ee2fb8a66aa7307ce0b39ea5ddab47ca41b8c49",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "fixnum",
+      "version": "1.1.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/fixnum.txt",
+      "sha256": "ff0b91d4f3c32b25cb6ec84985e8da89b0ba2a2b2f7eef353cda5e5423a20390",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "flutter",
+      "version": "SDK 3.47.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/flutter.txt",
+      "sha256": "a598db94b6290ffbe10b5ecf911057b6a943351c727fdda9e5f2891d68700a20",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "flutter_lints",
+      "version": "6.0.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/flutter_lints.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "flutter_localizations",
+      "version": "SDK 3.47.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/flutter_localizations.txt",
+      "sha256": "a598db94b6290ffbe10b5ecf911057b6a943351c727fdda9e5f2891d68700a20",
+      "inheritedFlutterLicense": true
+    },
+    {
+      "package": "flutter_map",
+      "version": "8.3.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/flutter_map.txt",
+      "sha256": "5dfae2ff3b0b9812f74271b21b04d3cdd97d07f727115f4c174c803a7ff74903",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "flutter_test",
+      "version": "SDK 3.47.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/flutter_test.txt",
+      "sha256": "a598db94b6290ffbe10b5ecf911057b6a943351c727fdda9e5f2891d68700a20",
+      "inheritedFlutterLicense": true
+    },
+    {
+      "package": "flutter_web_plugins",
+      "version": "SDK 3.47.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/flutter_web_plugins.txt",
+      "sha256": "a598db94b6290ffbe10b5ecf911057b6a943351c727fdda9e5f2891d68700a20",
+      "inheritedFlutterLicense": true
+    },
+    {
+      "package": "hooks",
+      "version": "2.0.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/hooks.txt",
+      "sha256": "21ae23b0b9ff67a2dc75ab085d1e8db8ac548c5faf370af17f28dd2ef3b52b7b",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "http",
+      "version": "1.6.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/http.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "http_parser",
+      "version": "4.1.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/http_parser.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "intl",
+      "version": "0.20.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/intl.txt",
+      "sha256": "7e124af6a556f045cb3a20cafbdaa31602ac2c82cbcb3c3b15faaaf514b06028",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "jni",
+      "version": "1.1.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/jni.txt",
+      "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "jni_flutter",
+      "version": "1.0.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/jni_flutter.txt",
+      "sha256": "b1fcb475d67817411f335ac92872507011e574c4cb29cfdaaf7707b75641932c",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "jni_util",
+      "version": "1.0.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/jni_util.txt",
+      "sha256": "b1fcb475d67817411f335ac92872507011e574c4cb29cfdaaf7707b75641932c",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "latlong2",
+      "version": "0.9.1",
+      "licenseAssessment": "Apache-2.0",
+      "notice": "licenses/latlong2.txt",
+      "sha256": "c2b50389479ffb8aa257d67f8bfcd2beb38097ac697a4241c040433bf86ea275",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "leak_tracker",
+      "version": "11.0.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/leak_tracker.txt",
+      "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "leak_tracker_flutter_testing",
+      "version": "3.0.10",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/leak_tracker_flutter_testing.txt",
+      "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "leak_tracker_testing",
+      "version": "3.0.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/leak_tracker_testing.txt",
+      "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "lints",
+      "version": "6.1.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/lints.txt",
+      "sha256": "421fe78c3b5df297f8b4ab2c74f2450a274ee6d245a113091f6b9f90570af193",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "logging",
+      "version": "1.3.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/logging.txt",
+      "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "matcher",
+      "version": "0.12.20",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/matcher.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "material_color_utilities",
+      "version": "0.13.0",
+      "licenseAssessment": "Apache-2.0",
+      "notice": "licenses/material_color_utilities.txt",
+      "sha256": "d103f246ef4c18dab8af0c1dcf6a8af884e5cff554da7261a48ac43c17d98f2e",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "meta",
+      "version": "1.18.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/meta.txt",
+      "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "mgrs_dart",
+      "version": "3.0.0",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/mgrs_dart.txt",
+      "sha256": "038000859fdcdabc1f459ddd014b7caddbff9b2326a2e57d5cedc29a309f0896",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "objective_c",
+      "version": "9.5.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/objective_c.txt",
+      "sha256": "1cda25a8de6880c5338de0b4a06ee89e8537c213eb1379c16a4c035bfd198b5c",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "package_config",
+      "version": "3.0.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/package_config.txt",
+      "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path",
+      "version": "1.9.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path_provider",
+      "version": "2.1.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path_provider.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path_provider_android",
+      "version": "2.3.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path_provider_android.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path_provider_foundation",
+      "version": "2.6.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path_provider_foundation.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path_provider_linux",
+      "version": "2.2.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path_provider_linux.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path_provider_platform_interface",
+      "version": "2.1.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path_provider_platform_interface.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "path_provider_windows",
+      "version": "2.3.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/path_provider_windows.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "platform",
+      "version": "3.2.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/platform.txt",
+      "sha256": "143839f62c9b7f88143ea9f688361c27050888acde7696b34e04414bd254fafc",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "plugin_platform_interface",
+      "version": "2.1.8",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/plugin_platform_interface.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "posix",
+      "version": "6.5.2",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/posix.txt",
+      "sha256": "aaf6271abd048deb3125828613f1797b7556472de6c7acd7103bd43e9cb6a84b",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "proj4dart",
+      "version": "3.0.0",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/proj4dart.txt",
+      "sha256": "202d620b6a44e6a20a175636a081c6c4a453e54a916d856912a911940750ee7a",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "pub_semver",
+      "version": "2.2.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/pub_semver.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "record_use",
+      "version": "0.6.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/record_use.txt",
+      "sha256": "1cda25a8de6880c5338de0b4a06ee89e8537c213eb1379c16a4c035bfd198b5c",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences",
+      "version": "2.5.5",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences_android",
+      "version": "2.4.28",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences_android.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences_foundation",
+      "version": "2.5.7",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences_foundation.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences_linux",
+      "version": "2.4.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences_linux.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences_platform_interface",
+      "version": "2.4.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences_platform_interface.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences_web",
+      "version": "2.4.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences_web.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "shared_preferences_windows",
+      "version": "2.4.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/shared_preferences_windows.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "simple_sparse_list",
+      "version": "0.1.4",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/simple_sparse_list.txt",
+      "sha256": "308653902e00a73a49f2b9356ed24e736952d2b9d61ed5960b8abcc2d779e6fc",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "sky_engine",
+      "version": "SDK 3.47.6",
+      "licenseAssessment": "Multiple licenses; aggregated engine notices — review per release",
+      "notice": "licenses/sky_engine.txt",
+      "sha256": "3c0040023a5789bf56d6bf41fd44f08b21758523d41f128fb7dd6beb398d1191",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "source_span",
+      "version": "1.10.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/source_span.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "stack_trace",
+      "version": "1.12.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/stack_trace.txt",
+      "sha256": "ff0b91d4f3c32b25cb6ec84985e8da89b0ba2a2b2f7eef353cda5e5423a20390",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "stream_channel",
+      "version": "2.1.4",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/stream_channel.txt",
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "string_scanner",
+      "version": "1.4.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/string_scanner.txt",
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "term_glyph",
+      "version": "1.2.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/term_glyph.txt",
+      "sha256": "ea97a7558a7bd7cee4e2355f7529e3cbebb0dcbb546ddb9a90f10c9eb6b08da5",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "test_api",
+      "version": "0.7.12",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/test_api.txt",
+      "sha256": "ff1b9f0df9036c04be424b1e3ce12789bea880ad5ffc3a48e069ae2d40a087a4",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "typed_data",
+      "version": "1.4.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/typed_data.txt",
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "unicode",
+      "version": "1.1.9",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/unicode.txt",
+      "sha256": "d449f7017176ab183441747e1f72a5451580bc7a943cc9adfe4ffd8be7578dcf",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher",
+      "version": "6.3.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_android",
+      "version": "6.3.33",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_android.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_ios",
+      "version": "6.4.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_ios.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_linux",
+      "version": "3.2.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_linux.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_macos",
+      "version": "3.2.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_macos.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_platform_interface",
+      "version": "2.3.2",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_platform_interface.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_web",
+      "version": "2.4.3",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_web.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "url_launcher_windows",
+      "version": "3.1.6",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/url_launcher_windows.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "uuid",
+      "version": "4.6.0",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/uuid.txt",
+      "sha256": "ad3e5523e51004e94ba9ce728805b1b4242dbccdb65e62b523800e35a8a7cfdc",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "vector_math",
+      "version": "2.4.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/vector_math.txt",
+      "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "vm_service",
+      "version": "15.3.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/vm_service.txt",
+      "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "web",
+      "version": "1.1.1",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/web.txt",
+      "sha256": "aa913ff50d7542eb8cc35b9f48a80928ac6819ba9057f85d424655e3e8dc271c",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "wkt_parser",
+      "version": "2.0.0",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/wkt_parser.txt",
+      "sha256": "9398bfd7c8d915bb66a3f04f0f2621fea1ed3c1c45728154001596854bd7dc84",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "xdg_directories",
+      "version": "1.1.0",
+      "licenseAssessment": "BSD-3-Clause",
+      "notice": "licenses/xdg_directories.txt",
+      "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9",
+      "inheritedFlutterLicense": false
+    },
+    {
+      "package": "yaml",
+      "version": "3.1.4",
+      "licenseAssessment": "MIT",
+      "notice": "licenses/yaml.txt",
+      "sha256": "d47b93335401b052d79a2f5a3710e4cf7b5aed782faedf84d40fbdd6eb934ec7",
+      "inheritedFlutterLicense": false
+    }
+  ]
+}

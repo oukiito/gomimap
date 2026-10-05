@@ -1,0 +1,115 @@
+{
+  "@@locale": "en",
+  "appTitle": "Gomimap",
+  "language": "Language / 言語",
+  "languageSaveError": "Could not save your language. Please select it again next time.",
+  "about": "About this prototype",
+  "sampleBanner": "Demo data · Do not use for actual waste disposal",
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "searchTab": "Sorting",
+  "placesTab": "Recycling locations",
+  "chooseArea": "Select area",
+  "fictionalAreas": "Fictional areas for testing.",
+  "areaName": "Toshima · Sample area {area}",
+  "@areaName": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "areaSaveError": "Could not save your area. Please select it again next time.",
+  "sourceOpenError": "Could not open the official page.\n{url}",
+  "@sourceOpenError": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "demoDate": "Sample for {date}",
+  "@demoDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "upcoming": "Upcoming collections",
+  "officialToshima": "Toshima official information (Japanese)",
+  "official": "Official information (Japanese)",
+  "checkTime": "Check official disposal instructions and times",
+  "noCollection": "No collection",
+  "uncertain": "Collection schedule needs confirmation",
+  "burnable": "Burnable waste",
+  "recyclables": "Recyclables",
+  "metals": "Metal, ceramics and glass",
+  "searchTitle": "How do I dispose of this?",
+  "searchSubtitle": "Search by item name.",
+  "itemName": "Item name",
+  "searchHint": "e.g. battery, plastic bottle",
+  "noResults": "No results. Try another name or check the official information.",
+  "disposal": "Disposal instructions",
+  "disposalAndPlaces": "Disposal and collection locations",
+  "sampleSorting": "Sample sorting instructions",
+  "findPlaces": "Find collection locations",
+  "officialDisposal": "Official disposal instructions (Japanese)",
+  "placesSubtitle": "Drop-off locations for batteries, small electronics and fluorescent tubes.\nFor regular waste, see Today.",
+  "damageQuestion": "Is it swollen or damaged?",
+  "noDamage": "No",
+  "damagedOrUnknown": "Yes / Not sure",
+  "damageWarning": "Do not use a regular collection box. Check the condition and contact the ward using its official guidance.",
+  "officialBattery": "Official battery guidance and contacts (Japanese)",
+  "placesCount": "Sample locations ({count})",
+  "@placesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fictionalPoints": "These locations are fictional. Do not visit them.",
+  "noPoints": "No verified locations for this item yet. Check the ward’s official guidance.",
+  "conditions": "Check acceptance conditions",
+  "samplePoint": "Sample collection point {point}",
+  "@samplePoint": {
+    "placeholders": {
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "samplePointDetail": "Fictional collection location for testing",
+  "acceptedItems": "Example accepted items: {items}",
+  "@acceptedItems": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "pointConditions": "Hours and conditions: not registered.\nThis is not a real drop-off location. Directions are unavailable.",
+  "mapTitle": "Collection map",
+  "mapUnavailable": "The map is not connected yet.\nUse the list below to try the prototype.",
+  "aboutBody": "Schedules, areas and locations are fictional, based on October 5, 2026. Do not use them for actual waste disposal.\n\nNotifications, widgets and location settings are not implemented. This prototype sends no notifications.\n\nOnly your sample area and language are saved. Photos and location data are not collected.",
+  "dryBattery": "Dry-cell batteries",
+  "rechargeable": "Rechargeable batteries",
+  "appliance": "Small electronics",
+  "lamp": "Fluorescent tubes",
+  "dryBatteryHint": "Check the battery type and condition before choosing a location.",
+  "rechargeableHint": "Do not put these in dry-cell battery boxes. Check the method for their type and condition.",
+  "applianceHint": "Check accepted items, slot size and rules for built-in batteries.",
+  "lampHint": "Broken tubes and LED bulbs have different rules. Check official guidance.",
+  "food": "Food waste",
+  "pet": "PET bottles",
+  "cans": "Cans and glass bottles",
+  "bulky": "Furniture and bulky waste",
+  "foodGuidance": "Sample burnable-waste guidance: drain liquids before disposal.",
+  "recyclingGuidance": "Sample recyclable guidance: check regular collection days and preparation rules.",
+  "dryBatteryGuidance": "Check collection methods for the battery type.",
+  "rechargeableGuidance": "Rules vary by type and whether the battery is swollen or damaged.",
+  "applianceGuidance": "Check size limits and rules for built-in batteries.",
+  "lampGuidance": "Check fluorescent tubes and LED bulbs separately.",
+  "bulkyGuidance": "Bulky-waste rules depend on dimensions and item type. Check the ward’s item guide and booking information."
+}

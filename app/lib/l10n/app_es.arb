@@ -1,0 +1,115 @@
+{
+  "@@locale": "es",
+  "appTitle": "Gomimap",
+  "language": "Idioma / Language",
+  "languageSaveError": "No se pudo guardar el idioma. Vuelve a seleccionarlo la próxima vez.",
+  "about": "Acerca de este prototipo",
+  "sampleBanner": "Datos de prueba · No usar para tirar basura real",
+  "today": "Hoy",
+  "tomorrow": "Mañana",
+  "searchTab": "Separación",
+  "placesTab": "Puntos de reciclaje",
+  "chooseArea": "Seleccionar zona",
+  "fictionalAreas": "Zonas ficticias para pruebas.",
+  "areaName": "Toshima · Zona de ejemplo {area}",
+  "@areaName": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "areaSaveError": "No se pudo guardar la zona. Vuelve a seleccionarla la próxima vez.",
+  "sourceOpenError": "No se pudo abrir la página oficial.\n{url}",
+  "@sourceOpenError": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "demoDate": "Ejemplo del {date}",
+  "@demoDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "upcoming": "Próximas recogidas",
+  "officialToshima": "Información oficial de Toshima (japonés)",
+  "official": "Información oficial (japonés)",
+  "checkTime": "Consulta las instrucciones y los horarios oficiales",
+  "noCollection": "Sin recogida",
+  "uncertain": "Es necesario confirmar el calendario de recogida",
+  "burnable": "Basura combustible",
+  "recyclables": "Reciclables",
+  "metals": "Metal, cerámica y vidrio",
+  "searchTitle": "¿Cómo se desecha esto?",
+  "searchSubtitle": "Busca por el nombre del objeto.",
+  "itemName": "Nombre del objeto",
+  "searchHint": "Ej.: pila, botella de plástico",
+  "noResults": "No se encontraron resultados. Prueba otro nombre o consulta la información oficial.",
+  "disposal": "Instrucciones de eliminación",
+  "disposalAndPlaces": "Eliminación y puntos de recogida",
+  "sampleSorting": "Instrucciones de separación de ejemplo",
+  "findPlaces": "Buscar puntos de recogida",
+  "officialDisposal": "Instrucciones oficiales de eliminación (japonés)",
+  "placesSubtitle": "Puntos para pilas, aparatos pequeños y tubos fluorescentes.\nPara la basura habitual, consulta Hoy.",
+  "damageQuestion": "¿Está hinchada o dañada?",
+  "noDamage": "No",
+  "damagedOrUnknown": "Sí / No lo sé",
+  "damageWarning": "No la deposites en una caja de recogida normal. Comprueba su estado y consulta la guía oficial del distrito para encontrar el contacto adecuado.",
+  "officialBattery": "Guía y contactos oficiales para pilas y baterías (japonés)",
+  "placesCount": "Puntos de ejemplo ({count})",
+  "@placesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fictionalPoints": "Estos lugares son ficticios. No acudas a ellos.",
+  "noPoints": "Aún no hay puntos verificados para este objeto. Consulta la guía oficial del distrito.",
+  "conditions": "Ver condiciones de recepción",
+  "samplePoint": "Punto de recogida de ejemplo {point}",
+  "@samplePoint": {
+    "placeholders": {
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "samplePointDetail": "Lugar de recogida ficticio para pruebas",
+  "acceptedItems": "Ejemplos de objetos aceptados: {items}",
+  "@acceptedItems": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "pointConditions": "Horarios y condiciones: sin registrar.\nNo es un punto de entrega real. No se ofrecen rutas.",
+  "mapTitle": "Mapa de recogida",
+  "mapUnavailable": "El mapa aún no está conectado.\nPuedes probar el prototipo con la lista de abajo.",
+  "aboutBody": "Los calendarios, zonas y lugares son ficticios y se basan en el 5 de octubre de 2026. No los uses para tirar basura real.\n\nLas notificaciones, widgets y ajustes de ubicación aún no están implementados. Este prototipo no envía notificaciones.\n\nSolo se guardan la zona de ejemplo y el idioma elegidos. No se recopilan fotos ni datos de ubicación.",
+  "dryBattery": "Pilas secas",
+  "rechargeable": "Baterías recargables",
+  "appliance": "Aparatos pequeños",
+  "lamp": "Tubos fluorescentes",
+  "dryBatteryHint": "Comprueba el tipo y el estado de la pila o batería antes de elegir un lugar.",
+  "rechargeableHint": "No las pongas en cajas de pilas secas. Comprueba el método adecuado para su tipo y estado.",
+  "applianceHint": "Comprueba los objetos aceptados, el tamaño de la abertura y las normas para baterías integradas.",
+  "lampHint": "Los tubos rotos y las bombillas LED tienen normas diferentes. Consulta la guía oficial.",
+  "food": "Restos de comida",
+  "pet": "Botellas PET",
+  "cans": "Latas y botellas de vidrio",
+  "bulky": "Muebles y basura voluminosa",
+  "foodGuidance": "Ejemplo para basura combustible: escurre los líquidos antes de desecharla.",
+  "recyclingGuidance": "Ejemplo para reciclables: comprueba los días de recogida y la preparación necesaria.",
+  "dryBatteryGuidance": "Comprueba el método de recogida para el tipo de pila o batería.",
+  "rechargeableGuidance": "Las normas varían según el tipo y si está hinchada o dañada.",
+  "applianceGuidance": "Comprueba los límites de tamaño y las normas para baterías integradas.",
+  "lampGuidance": "Consulta por separado las normas para tubos fluorescentes y bombillas LED.",
+  "bulkyGuidance": "Las normas para basura voluminosa dependen del tamaño y del objeto. Consulta el catálogo y la información de reserva del distrito."
+}

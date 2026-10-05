@@ -1,0 +1,607 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fil.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
+import 'app_localizations_ne.dart';
+import 'app_localizations_pt.dart';
+import 'app_localizations_vi.dart';
+import 'app_localizations_zh.dart';
+
+// ignore_for_file: type=lint
+
+/// Callers can lookup localized strings with an instance of AppLocalizations
+/// returned by `AppLocalizations.of(context)`.
+///
+/// Applications need to include `AppLocalizations.delegate()` in their app's
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
+///
+/// ```dart
+/// import 'generated/app_localizations.dart';
+///
+/// return MaterialApp(
+///   localizationsDelegates: AppLocalizations.localizationsDelegates,
+///   supportedLocales: AppLocalizations.supportedLocales,
+///   home: MyApplicationHome(),
+/// );
+/// ```
+///
+/// ## Update pubspec.yaml
+///
+/// Please make sure to update your pubspec.yaml to include the following
+/// packages:
+///
+/// ```yaml
+/// dependencies:
+///   # Internationalization support.
+///   flutter_localizations:
+///     sdk: flutter
+///   intl: any # Use the pinned version from flutter_localizations
+///
+///   # Rest of dependencies
+/// ```
+///
+/// ## iOS Applications
+///
+/// iOS applications define key application metadata, including supported
+/// locales, in an Info.plist file that is built into the application bundle.
+/// To configure the locales supported by your app, you’ll need to edit this
+/// file.
+///
+/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
+/// Then, in the Project Navigator, open the Info.plist file under the Runner
+/// project’s Runner folder.
+///
+/// Next, select the Information Property List item, select Add Item from the
+/// Editor menu, then select Localizations from the pop-up menu.
+///
+/// Select and expand the newly-created Localizations item then, for each
+/// locale your application supports, add a new item and select the locale
+/// you wish to add from the pop-up menu in the Value field. This list should
+/// be consistent with the languages listed in the AppLocalizations.supportedLocales
+/// property.
+abstract class AppLocalizations {
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+
+  final String localeName;
+
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
+  }
+
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
+
+  /// A list of this localizations delegate along with the default localizations
+  /// delegates.
+  ///
+  /// Returns a list of localizations delegates containing this delegate along with
+  /// GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate,
+  /// and GlobalWidgetsLocalizations.delegate.
+  ///
+  /// Additional delegates can be added by appending to this list in
+  /// MaterialApp. This list does not have to be used at all if a custom list
+  /// of delegates is preferred or required.
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
+
+  /// A list of this localizations delegate's supported locales.
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('es'),
+    Locale('fil'),
+    Locale('ja'),
+    Locale('ko'),
+    Locale('ne'),
+    Locale('pt'),
+    Locale('vi'),
+    Locale('zh'),
+    Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+    Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
+  ];
+
+  /// No description provided for @appTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'ごみまっぷ'**
+  String get appTitle;
+
+  /// No description provided for @language.
+  ///
+  /// In ja, this message translates to:
+  /// **'言語 / Language'**
+  String get language;
+
+  /// No description provided for @languageSaveError.
+  ///
+  /// In ja, this message translates to:
+  /// **'言語を保存できませんでした。次回もう一度選んでください。'**
+  String get languageSaveError;
+
+  /// No description provided for @about.
+  ///
+  /// In ja, this message translates to:
+  /// **'この試作について'**
+  String get about;
+
+  /// No description provided for @sampleBanner.
+  ///
+  /// In ja, this message translates to:
+  /// **'開発用サンプル · 実際のごみ出しには使えません'**
+  String get sampleBanner;
+
+  /// No description provided for @today.
+  ///
+  /// In ja, this message translates to:
+  /// **'今日'**
+  String get today;
+
+  /// No description provided for @tomorrow.
+  ///
+  /// In ja, this message translates to:
+  /// **'明日'**
+  String get tomorrow;
+
+  /// No description provided for @searchTab.
+  ///
+  /// In ja, this message translates to:
+  /// **'分別を調べる'**
+  String get searchTab;
+
+  /// No description provided for @placesTab.
+  ///
+  /// In ja, this message translates to:
+  /// **'資源回収場所'**
+  String get placesTab;
+
+  /// No description provided for @chooseArea.
+  ///
+  /// In ja, this message translates to:
+  /// **'地域を選ぶ'**
+  String get chooseArea;
+
+  /// No description provided for @fictionalAreas.
+  ///
+  /// In ja, this message translates to:
+  /// **'操作確認用の架空の地域です。'**
+  String get fictionalAreas;
+
+  /// No description provided for @areaName.
+  ///
+  /// In ja, this message translates to:
+  /// **'豊島区・サンプル地域{area}'**
+  String areaName(String area);
+
+  /// No description provided for @areaSaveError.
+  ///
+  /// In ja, this message translates to:
+  /// **'地域を保存できませんでした。次回もう一度選んでください。'**
+  String get areaSaveError;
+
+  /// No description provided for @sourceOpenError.
+  ///
+  /// In ja, this message translates to:
+  /// **'公式ページを開けませんでした。\n{url}'**
+  String sourceOpenError(String url);
+
+  /// No description provided for @demoDate.
+  ///
+  /// In ja, this message translates to:
+  /// **'{date}の表示例'**
+  String demoDate(String date);
+
+  /// No description provided for @upcoming.
+  ///
+  /// In ja, this message translates to:
+  /// **'この先の予定'**
+  String get upcoming;
+
+  /// No description provided for @officialToshima.
+  ///
+  /// In ja, this message translates to:
+  /// **'豊島区の公式情報を確認'**
+  String get officialToshima;
+
+  /// No description provided for @official.
+  ///
+  /// In ja, this message translates to:
+  /// **'公式情報を確認'**
+  String get official;
+
+  /// No description provided for @checkTime.
+  ///
+  /// In ja, this message translates to:
+  /// **'出し方・時間は公式情報で確認'**
+  String get checkTime;
+
+  /// No description provided for @noCollection.
+  ///
+  /// In ja, this message translates to:
+  /// **'収集はありません'**
+  String get noCollection;
+
+  /// No description provided for @uncertain.
+  ///
+  /// In ja, this message translates to:
+  /// **'収集予定の確認が必要'**
+  String get uncertain;
+
+  /// No description provided for @burnable.
+  ///
+  /// In ja, this message translates to:
+  /// **'燃やすごみ'**
+  String get burnable;
+
+  /// No description provided for @recyclables.
+  ///
+  /// In ja, this message translates to:
+  /// **'資源'**
+  String get recyclables;
+
+  /// No description provided for @metals.
+  ///
+  /// In ja, this message translates to:
+  /// **'金属・陶器・ガラス'**
+  String get metals;
+
+  /// No description provided for @searchTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'これは、何ごみ？'**
+  String get searchTitle;
+
+  /// No description provided for @searchSubtitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'品物の名前から出し方を調べます。'**
+  String get searchSubtitle;
+
+  /// No description provided for @itemName.
+  ///
+  /// In ja, this message translates to:
+  /// **'品物の名前'**
+  String get itemName;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'例：電池、ペットボトル'**
+  String get searchHint;
+
+  /// No description provided for @noResults.
+  ///
+  /// In ja, this message translates to:
+  /// **'見つかりませんでした。別の名前で試すか、公式情報で確認してください。'**
+  String get noResults;
+
+  /// No description provided for @disposal.
+  ///
+  /// In ja, this message translates to:
+  /// **'出し方を確認'**
+  String get disposal;
+
+  /// No description provided for @disposalAndPlaces.
+  ///
+  /// In ja, this message translates to:
+  /// **'出し方・専用の回収場所'**
+  String get disposalAndPlaces;
+
+  /// No description provided for @sampleSorting.
+  ///
+  /// In ja, this message translates to:
+  /// **'開発用サンプルの分別案内'**
+  String get sampleSorting;
+
+  /// No description provided for @findPlaces.
+  ///
+  /// In ja, this message translates to:
+  /// **'専用の回収場所を探す'**
+  String get findPlaces;
+
+  /// No description provided for @officialDisposal.
+  ///
+  /// In ja, this message translates to:
+  /// **'公式の出し方を確認'**
+  String get officialDisposal;
+
+  /// No description provided for @placesSubtitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'電池・小型家電・蛍光灯などの持ち込み先。\n普段のごみは「今日」で確認できます。'**
+  String get placesSubtitle;
+
+  /// No description provided for @damageQuestion.
+  ///
+  /// In ja, this message translates to:
+  /// **'膨らみ・破損がありますか？'**
+  String get damageQuestion;
+
+  /// No description provided for @noDamage.
+  ///
+  /// In ja, this message translates to:
+  /// **'ない'**
+  String get noDamage;
+
+  /// No description provided for @damagedOrUnknown.
+  ///
+  /// In ja, this message translates to:
+  /// **'ある・わからない'**
+  String get damagedOrUnknown;
+
+  /// No description provided for @damageWarning.
+  ///
+  /// In ja, this message translates to:
+  /// **'通常の回収箱へは案内しません。状態を確かめ、区の公式情報から相談先を確認してください。'**
+  String get damageWarning;
+
+  /// No description provided for @officialBattery.
+  ///
+  /// In ja, this message translates to:
+  /// **'公式の回収方法・相談先を確認'**
+  String get officialBattery;
+
+  /// No description provided for @placesCount.
+  ///
+  /// In ja, this message translates to:
+  /// **'回収場所の一覧（サンプル {count}件）'**
+  String placesCount(int count);
+
+  /// No description provided for @fictionalPoints.
+  ///
+  /// In ja, this message translates to:
+  /// **'架空の拠点です。訪問先として利用できません。'**
+  String get fictionalPoints;
+
+  /// No description provided for @noPoints.
+  ///
+  /// In ja, this message translates to:
+  /// **'この品目の確認済み回収場所はまだありません。区の公式案内を確認してください。'**
+  String get noPoints;
+
+  /// No description provided for @conditions.
+  ///
+  /// In ja, this message translates to:
+  /// **'受付条件を確認する'**
+  String get conditions;
+
+  /// No description provided for @samplePoint.
+  ///
+  /// In ja, this message translates to:
+  /// **'サンプル回収拠点{point}'**
+  String samplePoint(String point);
+
+  /// No description provided for @samplePointDetail.
+  ///
+  /// In ja, this message translates to:
+  /// **'開発用の架空の回収場所'**
+  String get samplePointDetail;
+
+  /// No description provided for @acceptedItems.
+  ///
+  /// In ja, this message translates to:
+  /// **'対象品目の例：{items}'**
+  String acceptedItems(String items);
+
+  /// No description provided for @pointConditions.
+  ///
+  /// In ja, this message translates to:
+  /// **'受付時間・利用条件：未登録\n実際の持ち込み先ではありません。経路案内は提供していません。'**
+  String get pointConditions;
+
+  /// No description provided for @mapTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'ここに回収場所の地図を表示'**
+  String get mapTitle;
+
+  /// No description provided for @mapUnavailable.
+  ///
+  /// In ja, this message translates to:
+  /// **'地図はまだ接続していません。\n下の一覧で画面の動きを試せます。'**
+  String get mapUnavailable;
+
+  /// No description provided for @aboutBody.
+  ///
+  /// In ja, this message translates to:
+  /// **'2026年10月5日を基準にした架空の日程・地域・回収場所です。実際のごみ出しには使えません。\n\n通知・ウィジェット・位置情報の設定は、今後追加します。この試作から通知は届きません。\n\n保存するのは選んだサンプル地域と言語のみ。写真や位置情報は取得しません。'**
+  String get aboutBody;
+
+  /// No description provided for @dryBattery.
+  ///
+  /// In ja, this message translates to:
+  /// **'乾電池'**
+  String get dryBattery;
+
+  /// No description provided for @rechargeable.
+  ///
+  /// In ja, this message translates to:
+  /// **'充電池'**
+  String get rechargeable;
+
+  /// No description provided for @appliance.
+  ///
+  /// In ja, this message translates to:
+  /// **'小型家電'**
+  String get appliance;
+
+  /// No description provided for @lamp.
+  ///
+  /// In ja, this message translates to:
+  /// **'蛍光灯'**
+  String get lamp;
+
+  /// No description provided for @dryBatteryHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'電池の種類と状態を確かめてから、回収場所を選びます。'**
+  String get dryBatteryHint;
+
+  /// No description provided for @rechargeableHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'乾電池の回収箱には入れず、種類・状態に合う方法を確認します。'**
+  String get rechargeableHint;
+
+  /// No description provided for @applianceHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'対象品目や投入口の大きさ、取り外せない電池の扱いを確認します。'**
+  String get applianceHint;
+
+  /// No description provided for @lampHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'割れているものやLED電球は扱いが異なるため、公式案内で確認します。'**
+  String get lampHint;
+
+  /// No description provided for @food.
+  ///
+  /// In ja, this message translates to:
+  /// **'生ごみ'**
+  String get food;
+
+  /// No description provided for @pet.
+  ///
+  /// In ja, this message translates to:
+  /// **'ペットボトル'**
+  String get pet;
+
+  /// No description provided for @cans.
+  ///
+  /// In ja, this message translates to:
+  /// **'缶・びん'**
+  String get cans;
+
+  /// No description provided for @bulky.
+  ///
+  /// In ja, this message translates to:
+  /// **'家具・大きなごみ'**
+  String get bulky;
+
+  /// No description provided for @foodGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'燃やすごみの表示例です。水を切って出します。'**
+  String get foodGuidance;
+
+  /// No description provided for @recyclingGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'資源の表示例です。通常の収集日と出し方を確認します。'**
+  String get recyclingGuidance;
+
+  /// No description provided for @dryBatteryGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'電池の種類に応じて回収方法を確認します。'**
+  String get dryBatteryGuidance;
+
+  /// No description provided for @rechargeableGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'種類や膨張・破損の有無によって扱いが異なります。'**
+  String get rechargeableGuidance;
+
+  /// No description provided for @applianceGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'大きさや内蔵電池の扱いを確認します。'**
+  String get applianceGuidance;
+
+  /// No description provided for @lampGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'蛍光灯とLED電球は分けて確認します。'**
+  String get lampGuidance;
+
+  /// No description provided for @bulkyGuidance.
+  ///
+  /// In ja, this message translates to:
+  /// **'寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。'**
+  String get bulkyGuidance;
+}
+
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
+  const _AppLocalizationsDelegate();
+
+  @override
+  Future<AppLocalizations> load(Locale locale) {
+    return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
+  }
+
+  @override
+  bool isSupported(Locale locale) => <String>[
+    'en',
+    'es',
+    'fil',
+    'ja',
+    'ko',
+    'ne',
+    'pt',
+    'vi',
+    'zh',
+  ].contains(locale.languageCode);
+
+  @override
+  bool shouldReload(_AppLocalizationsDelegate old) => false;
+}
+
+AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+script codes are specified.
+  switch (locale.languageCode) {
+    case 'zh':
+      {
+        switch (locale.scriptCode) {
+          case 'Hans':
+            return AppLocalizationsZhHans();
+          case 'Hant':
+            return AppLocalizationsZhHant();
+        }
+        break;
+      }
+  }
+
+  // Lookup logic when only language code is specified.
+  switch (locale.languageCode) {
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fil':
+      return AppLocalizationsFil();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
+    case 'ne':
+      return AppLocalizationsNe();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'vi':
+      return AppLocalizationsVi();
+    case 'zh':
+      return AppLocalizationsZh();
+  }
+
+  throw FlutterError(
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
+}

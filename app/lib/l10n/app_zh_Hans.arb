@@ -1,0 +1,115 @@
+{
+  "@@locale": "zh_Hans",
+  "appTitle": "Gomimap",
+  "language": "语言 / Language",
+  "languageSaveError": "无法保存语言。下次请重新选择。",
+  "about": "关于此原型",
+  "sampleBanner": "测试数据 · 请勿用于实际投放垃圾",
+  "today": "今天",
+  "tomorrow": "明天",
+  "searchTab": "垃圾分类",
+  "placesTab": "资源回收点",
+  "chooseArea": "选择地区",
+  "fictionalAreas": "这些是用于测试的虚构地区。",
+  "areaName": "丰岛区 · 示例地区{area}",
+  "@areaName": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "areaSaveError": "无法保存地区。下次请重新选择。",
+  "sourceOpenError": "无法打开官方网站。\n{url}",
+  "@sourceOpenError": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "demoDate": "{date}的显示示例",
+  "@demoDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "upcoming": "接下来的收集安排",
+  "officialToshima": "查看丰岛区官方信息（日语）",
+  "official": "查看官方信息（日语）",
+  "checkTime": "请查看官方投放方法和时间",
+  "noCollection": "当天不收集",
+  "uncertain": "需要确认垃圾收集安排",
+  "burnable": "可燃垃圾",
+  "recyclables": "可回收资源",
+  "metals": "金属、陶瓷和玻璃",
+  "searchTitle": "这是什么垃圾？",
+  "searchSubtitle": "输入物品名称查询。",
+  "itemName": "物品名称",
+  "searchHint": "例如：电池、塑料瓶",
+  "noResults": "未找到。请尝试其他名称，或查看官方信息。",
+  "disposal": "查看投放方法",
+  "disposalAndPlaces": "投放方法与专用回收点",
+  "sampleSorting": "垃圾分类示例",
+  "findPlaces": "查找专用回收点",
+  "officialDisposal": "查看官方投放方法（日语）",
+  "placesSubtitle": "电池、小型家电和荧光灯等的回收点。\n普通垃圾请查看“今天”。",
+  "damageQuestion": "是否鼓包或破损？",
+  "noDamage": "没有",
+  "damagedOrUnknown": "有／不确定",
+  "damageWarning": "请勿放入普通回收箱。请确认物品状况，并通过区政府官方信息查找咨询方式。",
+  "officialBattery": "查看官方电池回收方法与咨询方式（日语）",
+  "placesCount": "示例回收点（{count}处）",
+  "@placesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fictionalPoints": "这些地点是虚构的。请勿前往。",
+  "noPoints": "尚无此物品的已确认回收点。请查看区政府官方说明。",
+  "conditions": "查看接收条件",
+  "samplePoint": "示例回收点{point}",
+  "@samplePoint": {
+    "placeholders": {
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "samplePointDetail": "用于测试的虚构回收点",
+  "acceptedItems": "接收物品示例：{items}",
+  "@acceptedItems": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "pointConditions": "接收时间和条件：未登记。\n此处并非实际回收点，不提供路线导航。",
+  "mapTitle": "回收点地图",
+  "mapUnavailable": "地图尚未连接。\n可通过下方列表试用。",
+  "aboutBody": "本原型使用以2026年10月5日为基准的虚构日程、地区和回收点。请勿用于实际投放垃圾。\n\n通知、小组件和位置设置尚未实现。本原型不会发送通知。\n\n仅保存所选示例地区和语言。不收集照片或位置信息。",
+  "dryBattery": "干电池",
+  "rechargeable": "充电电池",
+  "appliance": "小型家电",
+  "lamp": "荧光灯",
+  "dryBatteryHint": "请先确认电池类型和状况，再选择回收点。",
+  "rechargeableHint": "请勿放入干电池回收箱。请确认适合其类型和状况的回收方法。",
+  "applianceHint": "请确认接收品目、投入口大小及内置电池的处理规定。",
+  "lampHint": "破损灯管与LED灯泡的处理方法不同，请查看官方说明。",
+  "food": "厨余垃圾",
+  "pet": "PET塑料瓶",
+  "cans": "罐和玻璃瓶",
+  "bulky": "家具及大件垃圾",
+  "foodGuidance": "可燃垃圾投放示例：投放前请沥干水分。",
+  "recyclingGuidance": "资源回收示例：请确认定期收集日期和投放方法。",
+  "dryBatteryGuidance": "请根据电池类型确认回收方法。",
+  "rechargeableGuidance": "处理方法因类型及是否鼓包、破损而异。",
+  "applianceGuidance": "请确认尺寸限制及内置电池的处理规定。",
+  "lampGuidance": "请分别确认荧光灯与LED灯泡的规定。",
+  "bulkyGuidance": "大件垃圾的处理规定因尺寸和品目而异。请查看区政府的品目说明及预约信息。"
+}

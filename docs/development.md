@@ -1,0 +1,84 @@
+# ローカル開発
+
+ストア登録より先に画面・ルールを開発する。現在は開発用サンプルを使うPoCであり、利用者へ配布する版ではない。2026年10月5日の固定日付、架空の区域・日程・回収拠点を使う。
+
+## 構成
+
+- `app/`：Flutterアプリ。iOS／Androidが製品対象、Webは画面確認用。
+- `app/lib/domain/`：UIから独立した日程判定。
+- `app/lib/data/demo_data.dart`：実データと取り違えないための専用サンプル。
+- `app/lib/ui/collection_map.dart`：地図の描画と未接続時の代替表示。
+- `app/test/`：日程・画面操作の回帰テスト。
+- `.github/workflows/flutter.yml`：PR／mainで整形・解析・テスト・Webビルド。GitHubでの実行は未確認。
+
+Flutter **3.47.6**、Dart **3.13.5**を使用。Flutterコミットは`5fc346839b5d0eef006ed8404392afb4dfae428d`。依存バージョンは`app/pubspec.lock`を共有する。既存環境がない場合は、プロジェクトルートで以下を実行する（今回のMacでは配置済み）。
+
+```sh
+git clone --depth 1 --branch 3.47.6 https://github.com/flutter/flutter.git .tooling/flutter
+cd app
+../.tooling/flutter/bin/flutter pub get --enforce-lockfile
+../.tooling/flutter/bin/flutter run -d chrome
+```
+
+通常のFlutterインストールがある場合は`flutter`コマンドでよい。`.tooling/`はGit対象外。次のチェックはリポジトリ直下から実行する。すでに`app/`にいる場合は先頭の`cd app`を省く。
+
+```sh
+cd app
+../.tooling/flutter/bin/dart format --output=none --set-exit-if-changed lib test
+../.tooling/flutter/bin/flutter analyze
+../.tooling/flutter/bin/flutter test
+../.tooling/flutter/bin/flutter build web
+```
+
+## ネイティブ環境
+
+2026-10-05のローカル確認環境にはXcode本体とAndroid SDKがなかった。iOS／Androidのビルド成功、実機動作は未検証。PoCの設定下限はiOS 15／Android API 24。最終サポート範囲は実機試験で決める。アプリ識別子`dev.gomimap.gomimap`は仮で、ストア登録前に確定する。署名も開発用のテンプレート段階。
+
+iOSはXcode、AndroidはAndroid SDKとJDK等を用意し、`flutter doctor`の必要項目を解消してから`flutter run`で確認する。iOSの無料Personal Teamには有効期間等の制限があり、継続配布・TestFlightの代わりにはしない。[Apple公式](https://developer.apple.com/support/compare-memberships/)
+
+## ローカル設定ファイル
+
+リポジトリ直下の`.env.local`は`.gitignore`で除外され、Flutter起動時に読み込める。`.env.local`はリポジトリ直下に置き、`app/`から相対指定する。
+
+```sh
+# リポジトリ直下で作成（既存の.env.localがある場合は実行不要）
+cp .env.example .env.local
+
+# app/ディレクトリへ移動して起動（タイル設定が空なら未接続表示）
+cd app
+../.tooling/flutter/bin/flutter run -d chrome --dart-define-from-file=../.env.local
+```
+
+Flutterは`--dart-define-from-file`で`.env`形式の設定を読み込む。[Flutter 3.13で追加](https://docs.flutter.dev/release/release-notes/release-notes-3.13.0)。値はビルドしたアプリから取り出せるため、秘密のLLM/APIキーは入れない。地図配信のクライアント識別子を使う場合も、許可するアプリやドメインを配信元で制限する。Gitへの追加前に`git check-ignore -v .env.local`で除外を確認する。`.env.example`にはキーや実在の契約情報を書かない。
+
+## 地図の接続
+
+2026-10-06にGoogle Mapsの依存と両OSのAPIキー設定を除去し、`flutter_map`へ移行した。Webでも同じ描画を使う。デフォルトでは外部タイルを取得せず、未接続表示を維持する。
+
+利用条件を確認した配信元を、次の3つの`--dart-define`で設定する。3つが揃い、URLがHTTPSで、タイルURLに`{z}`・`{x}`・`{y}`が含まれる場合に描画する。
+
+- `MAP_TILE_URL`：XYZタイルURL
+- `MAP_ATTRIBUTION`：配信元が指定する帰属表示（地図上に常時表示）
+- `MAP_ATTRIBUTION_URL`：帰属表示から開くHTTPSの権利情報ページ
+
+秘密のサーバーキーをクライアントへ埋め込まない。製品版の配信元・契約は未確定。タイル設定を有効にしても拠点は架空のままであり、実際の訪問案内には使わない。未接続表示・ピン選択・帰属表示をテスト済み。実配信との接続、通信失敗時の案内、両OS実機試験は未完了。
+
+OSM標準タイルサーバーを無条件で製品の配信元にしない。[公式利用条件](https://operations.osmfoundation.org/policies/tiles/)に従い、帰属表示、アプリ識別、HTTPキャッシュ、Web Refererなどを配信元ごとに確認する。先読み・一括ダウンロードは実装していない。
+
+## このPoCにない機能
+
+位置候補、実住所からの区域判定、通知予約、OSウィジェット、自治体データの取得・配信、定期更新・監視、写真AIは未実装。分別案内は動線確認用で、粗大ごみの寸法判定・申込先への直接リンクも未実装。通知の設定をしたように見せるスイッチは置かない。ウィジェットも初回版の計画から外していない。
+
+公式リンクは豊島区のごみ・リサイクル総合ページ。個別日付の根拠ページや品目別の直接リンクは、公開可能な公式データ導入時に持たせる。
+
+## GitHubでの開発
+
+貢献者向けのIssue・PR手順は[CONTRIBUTING](../CONTRIBUTING.md)、メンテナーのアカウント設定と公開状況は[GitHub運用](github-workflow.md)を参照する。過去の確認結果は[作業記録](work/README.md)に残す。
+
+## 多言語対応
+
+画面文言は`app/lib/l10n/app_*.arb`で管理する。日本語・英語・中国語（簡体字／繁体字）・韓国語・ベトナム語・ネパール語・ポルトガル語・スペイン語・フィリピノ語（タガログ語）を提供する。Flutterの`gen-l10n`で`lib/l10n/generated/`へ型付きクラスを生成し、生成コードは直接編集しない。`flutter pub get`／ビルド時にも再生成する。言語追加時はARB、`lib/l10n/languages.dart`の母語表記・ロケール、iOSの`CFBundleLocalizations`、テストを更新する。中国語の基底`app_zh.arb`は簡体字のフォールバックで、選択肢には簡体字・繁体字だけを表示する。追加の宣伝・説明文は不要。
+
+`intl`で日付をロケール別に表示。自治体の日程判定は表示言語に影響されない。サンプルの品目・日程は安定IDから翻訳へ変換し、検索用の各言語の別名は表示言語と独立させている。公式の施設名など、確認済み翻訳がない実データの名称は将来も原文を保持する。
+
+言語設定は`app.language`にBCP 47タグ（例：`ja`、`zh-Hant`）を保存。台湾・香港・マカオの中国語は繁体字、それ以外は簡体字を選ぶ。明示的なHans／Hant設定がある場合は地域より優先する。端末の`tl`は`fil`へ対応付ける。初回は端末の対応言語、非対応なら日本語。翻訳は実装用の初稿で、公開前に各言語話者による分別・電池注意事項の内容確認を行う。変更は即時反映し、保存失敗は通知する。保存対象はサンプル地域と言語のみ。Web、Flutterの画面テストで検証し、ネイティブ実機での言語切り替えは未検証。

@@ -1,0 +1,115 @@
+{
+  "@@locale": "fil",
+  "appTitle": "Gomimap",
+  "language": "Wika / Language",
+  "languageSaveError": "Hindi na-save ang wika. Piliin itong muli sa susunod.",
+  "about": "Tungkol sa prototype",
+  "sampleBanner": "Halimbawang datos · Huwag gamitin sa aktuwal na pagtatapon",
+  "today": "Ngayon",
+  "tomorrow": "Bukas",
+  "searchTab": "Pagbukod",
+  "placesTab": "Lugar ng pag-recycle",
+  "chooseArea": "Pumili ng lugar",
+  "fictionalAreas": "Kathang-isip na mga lugar para sa pagsubok.",
+  "areaName": "Toshima · Halimbawang lugar {area}",
+  "@areaName": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "areaSaveError": "Hindi na-save ang lugar. Piliin itong muli sa susunod.",
+  "sourceOpenError": "Hindi mabuksan ang opisyal na pahina.\n{url}",
+  "@sourceOpenError": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "demoDate": "Halimbawa para sa {date}",
+  "@demoDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "upcoming": "Mga susunod na koleksyon",
+  "officialToshima": "Opisyal na impormasyon ng Toshima (Japanese)",
+  "official": "Opisyal na impormasyon (Japanese)",
+  "checkTime": "Tingnan ang opisyal na paraan at oras ng pagtatapon",
+  "noCollection": "Walang koleksyon",
+  "uncertain": "Kailangang kumpirmahin ang iskedyul ng koleksyon",
+  "burnable": "Nasusunog na basura",
+  "recyclables": "Mga nare-recycle",
+  "metals": "Metal, seramika at salamin",
+  "searchTitle": "Paano ito itatapon?",
+  "searchSubtitle": "Hanapin gamit ang pangalan ng bagay.",
+  "itemName": "Pangalan ng bagay",
+  "searchHint": "Hal.: baterya, plastik na bote",
+  "noResults": "Walang nahanap. Subukan ang ibang pangalan o tingnan ang opisyal na impormasyon.",
+  "disposal": "Paraan ng pagtatapon",
+  "disposalAndPlaces": "Paraan at lugar ng koleksyon",
+  "sampleSorting": "Halimbawang gabay sa pagbukod",
+  "findPlaces": "Maghanap ng lugar ng koleksyon",
+  "officialDisposal": "Opisyal na paraan ng pagtatapon (Japanese)",
+  "placesSubtitle": "Mga lugar para sa baterya, maliliit na elektroniko at fluorescent na tubo.\nPara sa karaniwang basura, tingnan ang Ngayon.",
+  "damageQuestion": "Namamaga o sira ba ito?",
+  "noDamage": "Hindi",
+  "damagedOrUnknown": "Oo / Hindi sigurado",
+  "damageWarning": "Huwag ilagay sa karaniwang kahon ng koleksyon. Suriin ang kondisyon at tingnan ang opisyal na gabay ng ward para malaman kung sino ang kokontakin.",
+  "officialBattery": "Opisyal na gabay at kontak para sa baterya (Japanese)",
+  "placesCount": "Mga halimbawang lugar ({count})",
+  "@placesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fictionalPoints": "Kathang-isip ang mga lugar na ito. Huwag puntahan.",
+  "noPoints": "Wala pang kumpirmadong lugar para sa bagay na ito. Tingnan ang opisyal na gabay ng ward.",
+  "conditions": "Tingnan ang mga kondisyon",
+  "samplePoint": "Halimbawang lugar ng koleksyon {point}",
+  "@samplePoint": {
+    "placeholders": {
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "samplePointDetail": "Kathang-isip na lugar para sa pagsubok",
+  "acceptedItems": "Halimbawa ng mga tinatanggap: {items}",
+  "@acceptedItems": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "pointConditions": "Oras at kondisyon: hindi pa nakarehistro.\nHindi ito aktuwal na lugar ng pagtanggap. Walang direksyon papunta rito.",
+  "mapTitle": "Mapa ng koleksyon",
+  "mapUnavailable": "Hindi pa nakakonekta ang mapa.\nSubukan ang listahan sa ibaba.",
+  "aboutBody": "Kathang-isip ang mga iskedyul, lugar at koleksyon, batay sa Oktubre 5, 2026. Huwag gamitin sa aktuwal na pagtatapon.\n\nHindi pa gumagana ang mga abiso, widget at setting ng lokasyon. Hindi nagpapadala ng abiso ang prototype na ito.\n\nAng napiling halimbawang lugar at wika lang ang sine-save. Hindi kinokolekta ang mga larawan o lokasyon.",
+  "dryBattery": "Mga dry-cell na baterya",
+  "rechargeable": "Mga rechargeable na baterya",
+  "appliance": "Maliliit na elektroniko",
+  "lamp": "Mga fluorescent na tubo",
+  "dryBatteryHint": "Suriin ang uri at kondisyon ng baterya bago pumili ng lugar.",
+  "rechargeableHint": "Huwag ilagay sa kahon para sa dry-cell na baterya. Tingnan ang paraang angkop sa uri at kondisyon nito.",
+  "applianceHint": "Suriin ang mga tinatanggap, laki ng butas at patakaran para sa built-in na baterya.",
+  "lampHint": "Magkaiba ang patakaran para sa basag na tubo at LED na bombilya. Tingnan ang opisyal na gabay.",
+  "food": "Basurang pagkain",
+  "pet": "Mga boteng PET",
+  "cans": "Mga lata at boteng salamin",
+  "bulky": "Muwebles at malalaking basura",
+  "foodGuidance": "Halimbawa para sa nasusunog na basura: patuluin muna ang likido bago itapon.",
+  "recyclingGuidance": "Halimbawa para sa nare-recycle: tingnan ang araw ng koleksyon at paraan ng paghahanda.",
+  "dryBatteryGuidance": "Tingnan ang paraan ng koleksyon para sa uri ng baterya.",
+  "rechargeableGuidance": "Nag-iiba ang patakaran ayon sa uri at kung namamaga o sira ang baterya.",
+  "applianceGuidance": "Suriin ang limitasyon sa laki at patakaran para sa built-in na baterya.",
+  "lampGuidance": "Tingnan nang magkahiwalay ang patakaran para sa fluorescent na tubo at LED na bombilya.",
+  "bulkyGuidance": "Nakadepende sa sukat at uri ang patakaran para sa malalaking basura. Tingnan ang gabay sa mga bagay at pagpapareserba ng ward."
+}
