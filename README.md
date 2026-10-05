@@ -35,7 +35,7 @@ Webは画面確認用です。Flutterの導入方法、プロジェクト内SDK�
 - [セキュリティポリシー](SECURITY.md)：脆弱性の報告方法
 - [変更履歴](CHANGELOG.md)：リリースに向けた変更
 
-不具合・改善・自治体情報の訂正は、GitHub公開後にIssueテンプレートから報告してください。自宅の詳細住所、位置履歴、写真、APIキーは公開Issueへ記載しないでください。
+ソースは[oukiito/gomimap](https://github.com/oukiito/gomimap)で公開しています。不具合・改善・自治体情報の訂正は[Issueテンプレート](https://github.com/oukiito/gomimap/issues/new/choose)から報告してください。開発計画は[Issue一覧](https://github.com/oukiito/gomimap/issues)と[マイルストーン](https://github.com/oukiito/gomimap/milestones)で管理します。自宅の詳細住所、位置履歴、写真、APIキーは公開Issueへ記載しないでください。
 
 ## ライセンス
 
