@@ -18,6 +18,11 @@ jobs:
         working-directory: app
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validate source registry and permission gate
+        working-directory: .
+        run: |
+          python3 scripts/validate_sources.py
+          python3 -m unittest discover -s scripts/tests -v
       - name: Install pinned Flutter 3.47.6
         working-directory: .
         run: |

@@ -15,6 +15,7 @@
 | Issue・PR・CI・GitHubアカウント | [GitHub運用](github-workflow.md) |
 | 決定の理由・以前の案からの変更 | [設計上の決定](decisions.md) |
 | 自治体・サービスの一次情報 | [調査資料](research.md) |
+| 豊島区の取得先・再利用条件・確認状態 | [出典登録簿](sources/toshima.md) |
 | ライセンス・依存関係の確認状況 | [ライセンス調査](licenses.md) |
 | 過去の実装・確認結果・画面証跡 | [作業記録](work/README.md) |
 

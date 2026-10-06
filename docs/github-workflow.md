@@ -66,7 +66,7 @@ GH_CONFIG_DIR=~/.config/gh-gomimap gh auth status
 
 ## CIと追加予定の検証
 
-現行の[Flutter checks](../.github/workflows/flutter.yml)はDartの整形・静的解析・Flutterテスト・Webビルドを実行し、初回`main`で全項目の成功を確認した。PRと`main`へのpushで実行する。文書変更はローカルリンクと公開物の内容も確認する。取得処理導入後はPythonの取得／スキーマテスト、ビルド環境準備後は両OSのビルド確認を追加する。通知・ウィジェット・位置情報の実機試験はCIだけで代替しない。
+現行の[Flutter checks](../.github/workflows/flutter.yml)は出典登録簿・利用条件の検査とPythonの回帰テスト、Dartの整形・静的解析・Flutterテスト・Webビルドを実行する。初回`main`でFlutterの全項目の成功を確認し、出典検証はG02で追加した。PRと`main`へのpushで実行する。文書変更はローカルリンクと公開物の内容も確認する。取得処理導入後はPythonの取得／製品データのスキーマテスト、ビルド環境準備後は両OSのビルド確認を追加する。通知・ウィジェット・位置情報の実機試験はCIだけで代替しない。
 
 データCIでは区域例外、月内曜日、有効期間、参照整合、受入条件、休止・移転、利用条件の確認状態を検証する。基準データをコピーしただけの無意味なテストにしない。
 

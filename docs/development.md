@@ -1,4 +1,4 @@
-# ローカル開発
+# 開発環境・実行手順
 
 ストア登録より先に画面・ルールを開発する。現在は開発用サンプルを使うPoCであり、利用者へ配布する版ではない。2026年10月5日の固定日付、架空の区域・日程・回収拠点を使う。
 
@@ -9,9 +9,11 @@
 - `app/lib/data/demo_data.dart`：実データと取り違えないための専用サンプル。
 - `app/lib/ui/collection_map.dart`：地図の描画と未接続時の代替表示。
 - `app/test/`：日程・画面操作の回帰テスト。
-- `.github/workflows/flutter.yml`：PR／mainで整形・解析・テスト・Webビルド。GitHubでの実行は未確認。
+- `data/sources/`：自治体の出典・利用条件のメタデータ。製品の収集予定とは別。
+- `scripts/validate_sources.py`／`scripts/tests/`：出典登録簿と再配布条件の検証。
+- `.github/workflows/flutter.yml`：PR／mainで出典検証・Pythonテスト・Flutter整形・解析・テスト・Webビルド。
 
-Flutter **3.47.6**、Dart **3.13.5**を使用。Flutterコミットは`5fc346839b5d0eef006ed8404392afb4dfae428d`。依存バージョンは`app/pubspec.lock`を共有する。既存環境がない場合は、プロジェクトルートで以下を実行する（今回のMacでは配置済み）。
+Flutter **3.47.6**、Dart **3.13.5**を使用。Flutterコミットは`5fc346839b5d0eef006ed8404392afb4dfae428d`。依存バージョンは`app/pubspec.lock`を共有する。既存環境がない場合は、プロジェクトルートで以下を実行する。
 
 ```sh
 git clone --depth 1 --branch 3.47.6 https://github.com/flutter/flutter.git .tooling/flutter
@@ -74,6 +76,13 @@ OSM標準タイルサーバーを無条件で製品の配信元にしない。[�
 ## GitHubでの開発
 
 貢献者向けのIssue・PR手順は[CONTRIBUTING](../CONTRIBUTING.md)、メンテナーのアカウント設定と公開状況は[GitHub運用](github-workflow.md)を参照する。過去の確認結果は[作業記録](work/README.md)に残す。
+
+出典登録簿を変更する場合は、リポジトリ直下で以下も実行する。Python 3の標準ライブラリのみで動作する。利用条件の検査と日程・座標の正確性の検証は別で、詳しくは[豊島区の出典登録簿](sources/toshima.md)を参照する。
+
+```sh
+python3 scripts/validate_sources.py
+python3 -m unittest discover -s scripts/tests -v
+```
 
 ## 多言語対応
 

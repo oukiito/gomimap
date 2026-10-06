@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "municipality_id": "jp-tokyo-toshima",
+  "checked_on": "2026-10-06",
+  "scope": "出典のメタデータ登録簿。アプリの収集予定・回収拠点データではない。",
+  "policies": [
+    {
+      "id": "toshima-site",
+      "url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html",
+      "checked_on": "2026-10-06",
+      "updated_on": "2023-06-01",
+      "license": null,
+      "covered_urls": [],
+      "notes": "一般サイト方針では文書・画像等の無断複製・転用に制限がある。公式ページへのリンクは条件付きで案内されている。個別の保管・データ加工・配布の許諾は未確認。"
+    },
+    {
+      "id": "toshima-open-data",
+      "url": "https://www.city.toshima.lg.jp/020/kuse/electronic/open-data/1511041608.html",
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-08-18",
+      "license": "CC-BY-2.1-JP",
+      "covered_urls": [
+        "https://www.city.toshima.lg.jp/documents/11459/r5_public_facility.csv",
+        "https://www.city.toshima.lg.jp/documents/11459/r5_open_data_list.csv"
+      ],
+      "notes": "対象データのみCC BY 2.1 JP。ここにはリンク元で対象と確認した2ファイルだけを列挙する。他のHTML・PDFや同じドメイン全体へ適用しない。"
+    }
+  ],
+  "sources": [
+    {
+      "id": "toshima-weekdays",
+      "title": "資源回収・ごみ収集曜日一覧",
+      "url": "https://www.city.toshima.lg.jp/documents/1056/syuusyuyoubiitiran.pdf",
+      "publisher": "豊島区",
+      "kind": "pdf",
+      "topics": [
+        "schedule",
+        "area_exceptions",
+        "deadline"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": null,
+      "review_method": "visual_pdf",
+      "reviewed_by": "Codex",
+      "locator": "1ページ：左側の一般区域表、右側の繁華街区域表、右下の月内曜日説明",
+      "validity": "current_reference",
+      "notes": "現在の資源案内がリンクする1ページPDF。番地・通り沿い条件と締切の異なる区域がある。PDF内の適用終了日は未確認。HTTP Last-Modifiedを制度の適用日と扱わない。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      },
+      "discovered_from": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/009426.html",
+      "retrieval_metadata": {
+        "sha256": "225c52e1fd33a46680f982d2e0ecc8e1624c3eb0d2698103a8bd038bddd6df5d",
+        "bytes": 396645,
+        "last_modified": "Wed, 04 Oct 2023 07:05:06 GMT"
+      }
+    },
+    {
+      "id": "toshima-resources",
+      "title": "資源の分け方、出し方",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/009426.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "sorting",
+        "schedule",
+        "deadline"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-07-11",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "資源の分け方／収集曜日／乾電池・蛍光灯等の回収",
+      "validity": "current_reference",
+      "notes": "資源区分と通常収集の根拠。持込回収については品目別ページを別の根拠として参照する。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-household",
+      "title": "燃やすごみ・金属・陶器・ガラスごみ",
+      "url": "https://www.city.toshima.lg.jp/151/kurashi/gomi/shigen/009329.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "sorting",
+        "schedule",
+        "deadline"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-05-13",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "ごみの分けかた／ごみの出しかた／収集曜日",
+      "validity": "current_reference",
+      "notes": "通常ごみの分別、収集締切、収集できない品目へのリンクを確認する。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-year-end",
+      "title": "年末年始の資源回収・ごみ収集について",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/2211020850.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "calendar_exceptions"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2025-12-26",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "年末年始の資源回収・ごみ収集",
+      "validity": "historical",
+      "notes": "本文は2025–2026年の案内。2026–2027年の予定を確定する根拠には使わない。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-rechargeable",
+      "title": "小型充電式電池の集積所収集",
+      "url": "https://www.city.toshima.lg.jp/151/2601221355.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "sorting",
+        "acceptance",
+        "facilities"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-05-13",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "収集できる小型充電式電池／集積所に出せないもの",
+      "validity": "current_reference",
+      "notes": "2026年4月開始の制度。取り外せない電池と膨張品は別経路。持参先の対象者・時間・除外条件も必要。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-batteries",
+      "title": "乾電池・ボタン電池",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/2509251342.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "facilities",
+        "acceptance",
+        "service_suspension"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-09-02",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "本文冒頭の電池条件／回収施設の表",
+      "validity": "current_reference",
+      "notes": "一次電池の箱と充電池の経路を混ぜない。施設の工事・休止と民間店舗も記載される。本文に施設座標はない。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-small-electronics",
+      "title": "小型家電",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/034106.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "facilities",
+        "acceptance",
+        "service_suspension"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-08-10",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "回収方法／回収場所",
+      "validity": "current_reference",
+      "notes": "投入口の寸法、内蔵電池、家庭由来であること、休止施設を別々の条件として扱う。蛍光灯の受入条件をこのページで代用しない。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-fluorescent",
+      "title": "蛍光灯",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/026267.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "facilities",
+        "acceptance",
+        "service_suspension"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-08-10",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "回収できないもの／蛍光管回収ボックス設置場所",
+      "validity": "current_reference",
+      "notes": "破損品、LED等、事業由来のものは箱回収の対象外。開館時間と施設ごとの特記を確認する。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-bulky",
+      "title": "粗大ごみの出し方",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/009383.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "sorting",
+        "bulky_waste",
+        "acceptance"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-09-29",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "本文冒頭の寸法・除外品／粗大ごみとして出すときの手順",
+      "validity": "current_reference",
+      "notes": "寸法条件だけで確定せず、家電等の除外条件と事前申込先を扱う。申込代行は対象外。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-notices",
+      "title": "家庭ごみのお知らせ一覧",
+      "url": "https://www.city.toshima.lg.jp/kurashi/gomi/katei/oshirase/index.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "notices",
+        "calendar_exceptions"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": null,
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "お知らせのリンク一覧",
+      "validity": "current_reference",
+      "notes": "臨時案内と次年度の年末年始案内を発見する入口。更新日表記は確認できない。リンク先本文も別に確認する。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-weather",
+      "title": "台風・大雪等荒天時の資源回収・ごみ収集について",
+      "url": "https://www.city.toshima.lg.jp/151/2010101045.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "notices",
+        "calendar_exceptions",
+        "deadline"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2026-06-03",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "中止基準／お知らせ方法／注意事項",
+      "validity": "current_reference",
+      "notes": "中止や時刻変更は日ごとの判断。一般基準だけで当日の収集中止を推測しない。現在のお知らせ一覧から取得先を確認した。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    },
+    {
+      "id": "toshima-facilities",
+      "title": "公共施設一覧",
+      "url": "https://www.city.toshima.lg.jp/documents/11459/r5_public_facility.csv",
+      "publisher": "豊島区",
+      "kind": "csv",
+      "topics": [
+        "facility_coordinates",
+        "facility_hours"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": null,
+      "review_method": "csv_headers",
+      "reviewed_by": "Codex",
+      "locator": "オープンデータページの企画課：公共施設一覧",
+      "validity": "current_reference",
+      "notes": "緯度・経度・住所・利用可能曜日等の列を確認。558行は回収拠点数ではない。施設の営業情報や2023年のHTTP日時から最新状態を保証しない。回収受付は品目別資料との照合が必要。",
+      "rights": {
+        "archive": "allowed",
+        "redistribution": "allowed",
+        "policy_id": "toshima-open-data",
+        "license": "CC-BY-2.1-JP",
+        "attribution": "出典：豊島区『公共施設一覧』（CC BY 2.1 JP）。加工した場合は加工内容を併記。",
+        "basis_url": "https://www.city.toshima.lg.jp/020/kuse/electronic/open-data/1511041608.html"
+      },
+      "discovered_from": "https://www.city.toshima.lg.jp/020/kuse/electronic/open-data/1511041608.html",
+      "retrieval_metadata": {
+        "sha256": "191b8e278c7a9839d5ef7a090beeef42c9b8b45e45ced066cd6e981b15cf2e34",
+        "bytes": 81198,
+        "last_modified": "Tue, 07 Nov 2023 08:05:25 GMT",
+        "rows": 558,
+        "columns": [
+          "都道府県コード又は市区町村コード",
+          "NO",
+          "都道府県名",
+          "市区町村名",
+          "名称",
+          "名称_カナ",
+          "名称_通称",
+          "POIコード",
+          "住所",
+          "方書",
+          "緯度",
+          "経度",
+          "電話番号",
+          "内線番号",
+          "法人番号",
+          "団体名",
+          "利用可能曜日",
+          "開始時間",
+          "終了時間",
+          "利用可能時間特記事項",
+          "説明",
+          "バリアフリー情報",
+          "URL",
+          "備考"
+        ]
+      }
+    },
+    {
+      "id": "toshima-open-data-list",
+      "title": "オープンデータ一覧",
+      "url": "https://www.city.toshima.lg.jp/documents/11459/r5_open_data_list.csv",
+      "publisher": "豊島区",
+      "kind": "csv",
+      "topics": [
+        "source_discovery"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": null,
+      "review_method": "csv_headers",
+      "reviewed_by": "Codex",
+      "locator": "オープンデータページの情報政策課：オープンデータ一覧",
+      "validity": "current_reference",
+      "notes": "データ名・URL・ライセンス・最終更新日・API対応有無等の列を確認。カタログのAPI欄だけで収集日APIの存在を推定しない。",
+      "rights": {
+        "archive": "allowed",
+        "redistribution": "allowed",
+        "policy_id": "toshima-open-data",
+        "license": "CC-BY-2.1-JP",
+        "attribution": "出典：豊島区『オープンデータ一覧』（CC BY 2.1 JP）。加工した場合は加工内容を併記。",
+        "basis_url": "https://www.city.toshima.lg.jp/020/kuse/electronic/open-data/1511041608.html"
+      },
+      "discovered_from": "https://www.city.toshima.lg.jp/020/kuse/electronic/open-data/1511041608.html",
+      "retrieval_metadata": {
+        "sha256": "7f859788813f243147795f939e7ff0416b3e5bc603ab5bf66fd656d9b7841334",
+        "bytes": 1485,
+        "last_modified": "Tue, 07 Nov 2023 08:05:25 GMT",
+        "rows": 13,
+        "columns": [
+          "都道府県コード又は市区町村コード",
+          "NO",
+          "都道府県名",
+          "市区町村名",
+          "データ名称",
+          "データ概要",
+          "データ形式",
+          "分類",
+          "更新頻度",
+          "URL",
+          "API対応有無",
+          "ライセンス",
+          "登録日",
+          "最終更新日",
+          "備考"
+        ]
+      }
+    },
+    {
+      "id": "toshima-calendar-link",
+      "title": "資源回収・ごみ収集カレンダー",
+      "url": "https://www.city.toshima.lg.jp/150/kurashi/gomi/shigen/2303021832.html",
+      "publisher": "豊島区",
+      "kind": "html",
+      "topics": [
+        "official_fallback"
+      ],
+      "checked_on": "2026-10-06",
+      "updated_on": "2025-01-06",
+      "review_method": "official_page",
+      "reviewed_by": "Codex",
+      "locator": "本文冒頭のWEB版さんあ～るへのリンク",
+      "validity": "reference_only",
+      "notes": "公式情報の確認導線として利用。外部サービスをスクレイピング対象や公開APIとして扱わない。",
+      "rights": {
+        "archive": "needs_review",
+        "redistribution": "needs_review",
+        "policy_id": "toshima-site",
+        "license": null,
+        "attribution": null,
+        "basis_url": "https://www.city.toshima.lg.jp/012/kuse/koho/homepage/sitepolicy.html"
+      }
+    }
+  ]
+}
