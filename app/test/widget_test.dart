@@ -30,6 +30,71 @@ Future<void> tab(WidgetTester tester, String label) async {
 }
 
 void main() {
+  testWidgets('collection area stays visible while scrolling every main tab', (
+    tester,
+  ) async {
+    await start(tester);
+    final area = find.byKey(const ValueKey('collection-area-context'));
+    for (final label in ['今日', '分別を調べる', '資源回収場所']) {
+      await tab(tester, label);
+      final position = tester.getTopLeft(area);
+      await tester.drag(find.byType(ListView), const Offset(0, -600));
+      await tester.pumpAndSettle();
+      expect(area.hitTestable(), findsOneWidget);
+      expect(tester.getTopLeft(area), position);
+      expect(find.text('収集地区：豊島区・サンプル地域A'), findsOneWidget);
+    }
+  });
+  testWidgets('area can be corrected from search without losing the query', (
+    tester,
+  ) async {
+    final prefs = await start(tester);
+    await tab(tester, '分別を調べる');
+    await tester.enterText(find.byType(TextField), 'ペット');
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('collection-area-context')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('豊島区・サンプル地域B'));
+    await tester.pumpAndSettle();
+    expect(prefs.getString('demo.area'), 'b');
+    expect(find.text('収集地区：豊島区・サンプル地域B'), findsOneWidget);
+    expect(
+      tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
+      1,
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      'ペット',
+    );
+    await tester.tap(find.text('ペットボトル'));
+    await tester.pumpAndSettle();
+    expect(
+      find.descendant(
+        of: find.byType(BottomSheet),
+        matching: find.text('収集地区：豊島区・サンプル地域B'),
+      ),
+      findsOneWidget,
+    );
+  });
+  testWidgets(
+    'settings allows correction and cancellation keeps the old area',
+    (tester) async {
+      final prefs = await start(tester);
+      await tester.tap(find.byTooltip('この試作について'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(OutlinedButton, '地域を選ぶ'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('豊島区・サンプル地域B'));
+      await tester.pumpAndSettle();
+      expect(prefs.getString('demo.area'), 'b');
+      await tester.tap(find.byKey(const ValueKey('collection-area-context')));
+      await tester.pumpAndSettle();
+      await tester.tapAt(const Offset(10, 100));
+      await tester.pumpAndSettle();
+      expect(prefs.getString('demo.area'), 'b');
+      expect(find.text('収集地区：豊島区・サンプル地域B'), findsOneWidget);
+    },
+  );
   testWidgets('home labels sample data and retains selected area on restart', (
     tester,
   ) async {

@@ -251,4 +251,9 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       'ठूला फोहोरका नियम आकार र वस्तुको प्रकारअनुसार फरक हुन्छन्। वडाको वस्तु सूची र बुकिङ जानकारी हेर्नुहोस्।';
+
+  @override
+  String collectionArea(String area) {
+    return 'फोहोर सङ्कलन क्षेत्र: $area';
+  }
 }

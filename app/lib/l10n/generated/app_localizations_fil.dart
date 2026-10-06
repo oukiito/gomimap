@@ -253,4 +253,9 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       'Nakadepende sa sukat at uri ang patakaran para sa malalaking basura. Tingnan ang gabay sa mga bagay at pagpapareserba ng ward.';
+
+  @override
+  String collectionArea(String area) {
+    return 'Lugar ng koleksyon: $area';
+  }
 }

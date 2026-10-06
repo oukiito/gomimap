@@ -252,4 +252,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       'Bulky-waste rules depend on dimensions and item type. Check the ward’s item guide and booking information.';
+
+  @override
+  String collectionArea(String area) {
+    return 'Collection area: $area';
+  }
 }

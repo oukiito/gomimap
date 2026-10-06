@@ -253,4 +253,9 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       'Las normas para basura voluminosa dependen del tamaño y del objeto. Consulta el catálogo y la información de reserva del distrito.';
+
+  @override
+  String collectionArea(String area) {
+    return 'Zona de recogida: $area';
+  }
 }

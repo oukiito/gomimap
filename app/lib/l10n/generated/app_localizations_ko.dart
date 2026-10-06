@@ -234,4 +234,9 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       '대형 쓰레기 규정은 크기와 품목에 따라 다릅니다. 구청의 품목 안내와 신청 정보를 확인하세요.';
+
+  @override
+  String collectionArea(String area) {
+    return '쓰레기 수거 지역: $area';
+  }
 }

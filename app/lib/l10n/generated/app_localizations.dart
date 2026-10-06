@@ -533,6 +533,12 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。'**
   String get bulkyGuidance;
+
+  /// No description provided for @collectionArea.
+  ///
+  /// In ja, this message translates to:
+  /// **'収集地区：{area}'**
+  String collectionArea(String area);
 }
 
 class _AppLocalizationsDelegate

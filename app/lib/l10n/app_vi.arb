@@ -111,5 +111,13 @@
   "rechargeableGuidance": "Cách xử lý khác nhau tùy loại pin và tình trạng phồng hoặc hỏng.",
   "applianceGuidance": "Kiểm tra giới hạn kích thước và quy định về pin gắn trong.",
   "lampGuidance": "Kiểm tra riêng quy định về đèn huỳnh quang và bóng LED.",
-  "bulkyGuidance": "Quy định về rác cồng kềnh tùy kích thước và loại đồ vật. Xem danh mục và thông tin đăng ký của quận."
+  "bulkyGuidance": "Quy định về rác cồng kềnh tùy kích thước và loại đồ vật. Xem danh mục và thông tin đăng ký của quận.",
+  "collectionArea": "Khu vực thu gom rác: {area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

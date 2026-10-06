@@ -111,5 +111,13 @@
   "rechargeableGuidance": "As regras variam conforme o tipo e a presença de inchaço ou danos.",
   "applianceGuidance": "Confira os limites de tamanho e as regras para baterias embutidas.",
   "lampGuidance": "Confira separadamente as regras para fluorescentes e lâmpadas LED.",
-  "bulkyGuidance": "As regras de lixo volumoso dependem das dimensões e do tipo de item. Consulte o guia e as informações de agendamento do distrito."
+  "bulkyGuidance": "As regras de lixo volumoso dependem das dimensões e do tipo de item. Consulte o guia e as informações de agendamento do distrito.",
+  "collectionArea": "Área de coleta: {area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

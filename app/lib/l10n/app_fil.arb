@@ -111,5 +111,13 @@
   "rechargeableGuidance": "Nag-iiba ang patakaran ayon sa uri at kung namamaga o sira ang baterya.",
   "applianceGuidance": "Suriin ang limitasyon sa laki at patakaran para sa built-in na baterya.",
   "lampGuidance": "Tingnan nang magkahiwalay ang patakaran para sa fluorescent na tubo at LED na bombilya.",
-  "bulkyGuidance": "Nakadepende sa sukat at uri ang patakaran para sa malalaking basura. Tingnan ang gabay sa mga bagay at pagpapareserba ng ward."
+  "bulkyGuidance": "Nakadepende sa sukat at uri ang patakaran para sa malalaking basura. Tingnan ang gabay sa mga bagay at pagpapareserba ng ward.",
+  "collectionArea": "Lugar ng koleksyon: {area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

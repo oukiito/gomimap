@@ -111,5 +111,13 @@
   "rechargeableGuidance": "处理方法因类型及是否鼓包、破损而异。",
   "applianceGuidance": "请确认尺寸限制及内置电池的处理规定。",
   "lampGuidance": "请分别确认荧光灯与LED灯泡的规定。",
-  "bulkyGuidance": "大件垃圾的处理规定因尺寸和品目而异。请查看区政府的品目说明及预约信息。"
+  "bulkyGuidance": "大件垃圾的处理规定因尺寸和品目而异。请查看区政府的品目说明及预约信息。",
+  "collectionArea": "垃圾收集区域：{area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -250,4 +250,9 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       'Quy định về rác cồng kềnh tùy kích thước và loại đồ vật. Xem danh mục và thông tin đăng ký của quận.';
+
+  @override
+  String collectionArea(String area) {
+    return 'Khu vực thu gom rác: $area';
+  }
 }

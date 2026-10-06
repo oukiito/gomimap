@@ -231,4 +231,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bulkyGuidance => '寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。';
+
+  @override
+  String collectionArea(String area) {
+    return '収集地区：$area';
+  }
 }
