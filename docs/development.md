@@ -7,8 +7,8 @@
 ## 構成
 
 - `app/`：Flutterアプリ。iOS／Androidが製品対象、Webは画面確認用。
-- `app/lib/domain/`：UIから独立した日程判定。
-- `app/lib/data/demo_data.dart`：実データと取り違えないための専用サンプル。
+- `data/datasets/fixtures/`：自作の架空JSON。`app/assets/generated/`へコピーして同梱する。`demo_data.dart`の分別・地図の架空データとは用途を分ける。
+- `app/lib/domain/`：スキーマ1、日程・住所条件・受入条件・公開根拠の検証。
 - `app/lib/data/demo_setup_store.dart`／`app/lib/ui/demo_area_setup.dart`：初回・変更の地区確認と保存状態。
 - `app/lib/ui/collection_map.dart`：地図の描画と未接続時の代替表示。
 - `app/test/`：日程・画面操作の回帰テスト。
@@ -20,6 +20,7 @@ Flutter **3.47.6**、Dart **3.13.5**を使用。Flutterコミットは`5fc346839
 
 ```sh
 git clone --depth 1 --branch 3.47.6 https://github.com/flutter/flutter.git .tooling/flutter
+python3 scripts/prepare_demo_data.py
 cd app
 ../.tooling/flutter/bin/flutter pub get --enforce-lockfile
 ../.tooling/flutter/bin/flutter run -d chrome
@@ -29,11 +30,15 @@ cd app
 
 ```sh
 cd app
-../.tooling/flutter/bin/dart format --output=none --set-exit-if-changed lib test
+../.tooling/flutter/bin/dart format --output=none --set-exit-if-changed lib test tool
 ../.tooling/flutter/bin/flutter analyze
 ../.tooling/flutter/bin/flutter test
 ../.tooling/flutter/bin/flutter build web
 ```
+
+## 同梱データと検証
+
+日程の元データを変更した場合、リポジトリ直下で`python3 scripts/prepare_demo_data.py`を再実行してからテスト・ビルドする。生成した同梱JSONはGitに追加せず、`data/datasets/fixtures/toshima-demo-v1.json`のみを編集する。スキーマ・公開検査は[データ仕様](data-schema-v1.md)、保存先とCloudflareの推奨構成は[保存・配信](data-storage.md)を参照する。HTTP更新・端末DB・配信ジョブは未実装。
 
 ## ネイティブ環境
 

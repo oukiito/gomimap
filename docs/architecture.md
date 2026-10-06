@@ -2,6 +2,8 @@
 
 状態：2026-10-05調査に基づく推奨案。製品要件の合意とは別に、実機PoC、契約・利用条件、価格・アクセス可否の再確認を経て採用する。Flutterのローカル環境と画面・ルールPoCを構築済み。有料API呼出・契約・実機検証は未実施。
 
+2026-10-07に、自治体別の版付きJSON・区域／日程／受入判定と同梱fixtureを実装。メモリ内の更新候補検証までで、端末DB・HTTP更新は未実装。利用者の希望に基づきCloudflare配信＋端末保存を推奨し、R2 Standard＋独自ドメインを第一候補にする。[実装したスキーマ](data-schema-v1.md)、[保存・配信と料金の確認](data-storage.md)を参照する。Cloudflareの契約・公開設定はまだ行っていない。
+
 ## 推奨する構成
 
 | 部分 | 推奨案 | 理由・検証する点 |
@@ -13,7 +15,7 @@
 | 地図 | flutter_mapへ移行済み | GPL指定によりGoogle製SDKを保留。タイル配信は別契約。2026-10-06にGoogle依存とキー設定を除去。配信元は未設定 |
 | 通知 | flutter_local_notifications＋timezone | サーバーから全利用者へ毎朝配信せず、取得済み予定を端末で予約 |
 | 自治体取得・検証 | Pythonの小さなバッチ | HTML／CSV／PDFの扱い、差分、スキーマ検証をまとめる。取得元ごとのアダプター |
-| 配信 | 版付きデータをHTTPSで静的配信 | アカウントや個人別サーバーDBを不要にする。配信事業者はG03で決定 |
+| 配信 | Cloudflare R2 Standard＋独自ドメインを第一候補に、版付きJSONをHTTPSで静的配信 | GitHubで承認・履歴、Cloudflareで配信、端末でオフライン利用。契約・配信設定・利用量別費用は未確定 |
 | CI・取得ジョブ | GitHub Actionsを候補 | PR検証・履歴管理。独立した外部監視が必要 |
 
 Flutterは[公式のマルチプラットフォーム資料](https://docs.flutter.dev/platform-integration)でiOS／Android対応を確認した。既存のReact／TypeScript資産はないため、React Nativeへ合わせる利点は現状確認できない。Swift＋Kotlinで全体を別開発する案は保守対象が増える。FlutterでもウィジェットやOS権限の作業は残る。

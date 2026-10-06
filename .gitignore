@@ -4,6 +4,7 @@
 .dart_tool/
 build/
 coverage/
+app/assets/generated/
 __pycache__/
 *.pyc
 

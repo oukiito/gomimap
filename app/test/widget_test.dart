@@ -1,14 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import 'package:flutter/material.dart';
+
+import 'support/dataset_fixture.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gomimap/main.dart';
 import 'package:gomimap/ui/collection_map.dart';
 import 'package:gomimap/data/demo_data.dart';
 import 'package:gomimap/data/demo_setup_store.dart';
+import 'package:gomimap/domain/municipal_dataset.dart';
 
-Future<SharedPreferences> start(WidgetTester tester, {double scale = 1}) async {
+Future<SharedPreferences> start(
+  WidgetTester tester, {
+  double scale = 1,
+  bool missingData = false,
+  MunicipalDataset? dataset,
+}) async {
   SharedPreferences.setMockInitialValues({
     'app.language': 'ja',
     PreferencesDemoSetupStore.key: const DemoSetupSnapshot.saved(DemoArea.a)
@@ -21,7 +30,12 @@ Future<SharedPreferences> start(WidgetTester tester, {double scale = 1}) async {
   addTearDown(tester.view.resetPhysicalSize);
   addTearDown(tester.view.resetDevicePixelRatio);
   addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
-  await tester.pumpWidget(GomimapApp(preferences: prefs));
+  await tester.pumpWidget(
+    GomimapApp(
+      preferences: prefs,
+      dataset: missingData ? null : dataset ?? fixtureDataset(),
+    ),
+  );
   await tester.pumpAndSettle();
   return prefs;
 }
@@ -36,6 +50,61 @@ Future<void> tab(WidgetTester tester, String label) async {
 }
 
 void main() {
+  testWidgets(
+    'category without a verified common translation preserves its source name',
+    (tester) async {
+      final data = fixtureDataset((json) {
+        json['categories'][0].remove('displayKey');
+        json['categories'][0]['name'] = '試験用の独自区分';
+      });
+      await start(tester, dataset: data);
+      final today = find.byKey(const ValueKey('today-schedule'));
+      expect(
+        find.descendant(of: today, matching: find.text('試験用の独自区分')),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(of: today, matching: find.text('燃やすごみ')),
+        findsNothing,
+      );
+    },
+  );
+  testWidgets(
+    'missing dataset displays confirmation instead of a default schedule',
+    (tester) async {
+      await start(tester, missingData: true);
+      final today = find.byKey(const ValueKey('today-schedule'));
+      expect(
+        find.descendant(of: today, matching: find.text('収集予定の確認が必要')),
+        findsOneWidget,
+      );
+      expect(find.text('燃やすごみ'), findsNothing);
+      expect(find.text('収集はありません'), findsNothing);
+      expect(
+        find.descendant(of: today, matching: find.text('公式情報を確認')),
+        findsOneWidget,
+      );
+    },
+  );
+  testWidgets(
+    'home uses the validated JSON schedule rather than the former hardcoded weekdays',
+    (tester) async {
+      final data = fixtureDataset((json) {
+        json['baselines'][0]['recurrences'][0]['weekdays'] = [2, 5];
+        json['baselines'][1]['recurrences'][0]['weekdays'] = [1];
+      });
+      await start(tester, dataset: data);
+      final today = find.byKey(const ValueKey('today-schedule'));
+      expect(
+        find.descendant(of: today, matching: find.text('資源')),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(of: today, matching: find.text('燃やすごみ')),
+        findsNothing,
+      );
+    },
+  );
   testWidgets('collection area stays visible while scrolling every main tab', (
     tester,
   ) async {
@@ -119,7 +188,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(PreferencesDemoSetupStore(prefs).read().area, DemoArea.b);
     await tester.pumpWidget(const SizedBox());
-    await tester.pumpWidget(GomimapApp(preferences: prefs));
+    await tester.pumpWidget(
+      GomimapApp(preferences: prefs, dataset: fixtureDataset()),
+    );
     await tester.pumpAndSettle();
     expect(find.textContaining('サンプル地域B'), findsOneWidget);
   });

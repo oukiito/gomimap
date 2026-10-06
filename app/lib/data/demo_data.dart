@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import '../domain/schedule.dart';
+import '../domain/municipal_dataset.dart';
 
 const officialWasteUrl =
     'https://www.city.toshima.lg.jp/kurashi/gomi/index.html';
@@ -8,15 +9,16 @@ final demoToday = DateTime(2026, 10, 5);
 
 enum DemoArea { a, b }
 
-ScheduleCalendar demoCalendar(DemoArea area) => ScheduleCalendar(
-  validFrom: DateTime(2026, 10),
-  validUntil: DateTime(2026, 10, 31),
-  rules: [
-    CollectionRule('burnable', area == DemoArea.a ? {1, 4} : {2, 5}),
-    const CollectionRule('recyclables', {3}),
-    const CollectionRule('metals', {5}, monthWeeks: {1, 3}),
-  ],
-  uncertainDates: {DateTime(2026, 10, 8)},
+ScheduleCalendar demoCalendar(
+  DemoArea area, {
+  required MunicipalDataset? dataset,
+}) => ScheduleCalendar(
+  dataset:
+      dataset?.municipality.id == 'demo-toshima' &&
+          dataset?.kind == DatasetKind.fixture
+      ? dataset
+      : null,
+  areaId: area.name,
 );
 
 enum SpecialItem { dryBattery, rechargeable, appliance, lamp }

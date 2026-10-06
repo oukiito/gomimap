@@ -11,5 +11,6 @@
 | 2026-10-06 | ペルソナ、全画面・遷移の理由、UI変更の運用 | [UI設計記録](2026-10-06-user-first-ux.md) | [#16](https://github.com/oukiito/gomimap/issues/16)、G05〜G09・G12 |
 | 2026-10-06 | 地区の常時表示・変更、初回ウィジェット追加の設計 | [地区表示の記録](2026-10-06-district-context.md) | [#18](https://github.com/oukiito/gomimap/issues/18)、G05・G07 |
 | 2026-10-06 | 初回の地区確認・保存復旧、AGENTSの共通ルール | [初回設定の記録](2026-10-06-first-run-area.md) | [#20](https://github.com/oukiito/gomimap/issues/20)、G05・G07 |
+| 2026-10-07 | 自治体JSON・日程／住所／受入判定、Cloudflareと端末の保存設計 | [データ基盤の記録](2026-10-07-municipal-data.md) | [G04／#4](https://github.com/oukiito/gomimap/issues/4)、G05〜G11 |
 
 画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

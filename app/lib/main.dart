@@ -12,6 +12,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'data/demo_data.dart';
 import 'data/demo_setup_store.dart';
+import 'data/bundled_dataset.dart';
+import 'domain/municipal_dataset.dart';
 import 'domain/schedule.dart';
 import 'ui/collection_map.dart';
 import 'ui/demo_area_setup.dart';
@@ -20,13 +22,20 @@ import 'ui/language_button.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
-  runApp(GomimapApp(preferences: preferences));
+  final dataset = await loadBundledDemoDataset();
+  runApp(GomimapApp(preferences: preferences, dataset: dataset));
 }
 
 class GomimapApp extends StatefulWidget {
-  const GomimapApp({super.key, required this.preferences, this.setupStore});
+  const GomimapApp({
+    super.key,
+    required this.preferences,
+    this.setupStore,
+    this.dataset,
+  });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
+  final MunicipalDataset? dataset;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
@@ -86,11 +95,13 @@ class _GomimapAppState extends State<GomimapApp> {
     home: setup.phase == DemoSetupPhase.districtSaved
         ? HomeShell(
             area: setup.area!,
+            dataset: widget.dataset,
             setupStore: setupStore,
             onLanguageChanged: changeLanguage,
           )
         : DemoAreaSetup(
             store: setupStore,
+            dataset: widget.dataset,
             initial: setup,
             onLanguageChanged: changeLanguage,
             onSaved: (area) =>
@@ -103,10 +114,12 @@ class HomeShell extends StatefulWidget {
   const HomeShell({
     super.key,
     required this.area,
+    required this.dataset,
     required this.setupStore,
     required this.onLanguageChanged,
   });
   final DemoArea area;
+  final MunicipalDataset? dataset;
   final DemoSetupStore setupStore;
   final Future<bool> Function(String) onLanguageChanged;
   @override
@@ -162,6 +175,7 @@ class _HomeShellState extends State<HomeShell> {
         fullscreenDialog: true,
         builder: (context) => DemoAreaSetup(
           store: widget.setupStore,
+          dataset: widget.dataset,
           initial: const DemoSetupSnapshot.choose(),
           currentArea: area,
           onLanguageChanged: widget.onLanguageChanged,
@@ -326,7 +340,7 @@ class _HomeShellState extends State<HomeShell> {
   );
 
   List<Widget> todayPage() {
-    final calendar = demoCalendar(area);
+    final calendar = demoCalendar(area, dataset: widget.dataset);
     return [
       Padding(
         padding: const EdgeInsets.only(bottom: 12),
@@ -363,6 +377,7 @@ class _HomeShellState extends State<HomeShell> {
     DaySchedule schedule, {
     bool prominent = false,
   }) => Container(
+    key: prominent ? const ValueKey('today-schedule') : null,
     padding: const EdgeInsets.all(24),
     decoration: BoxDecoration(
       color: prominent ? const Color(0xFF24684F) : const Color(0xFFEAF1E8),

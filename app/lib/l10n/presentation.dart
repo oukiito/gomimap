@@ -9,14 +9,14 @@ extension SchedulePresentation on DaySchedule {
     ScheduleStatus.none => l10n.noCollection,
     ScheduleStatus.needsConfirmation => l10n.uncertain,
     ScheduleStatus.collection =>
-      labels
+      collections
           .map(
-            (id) => switch (id) {
+            (entry) => switch (entry.category.displayKey) {
               'burnable' => l10n.burnable,
               'recyclables' => l10n.recyclables,
               'metals' => l10n.metals,
               // Preserve source names when no verified translation is available.
-              _ => id,
+              _ => entry.category.name,
             },
           )
           .join(l10n.localeName == 'ja' ? '・' : ', '),

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../data/demo_data.dart';
 import '../data/demo_setup_store.dart';
+import '../domain/municipal_dataset.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../l10n/presentation.dart';
 import 'language_button.dart';
@@ -15,6 +16,7 @@ class DemoAreaSetup extends StatefulWidget {
   const DemoAreaSetup({
     super.key,
     required this.store,
+    required this.dataset,
     required this.initial,
     required this.onLanguageChanged,
     required this.onSaved,
@@ -22,6 +24,7 @@ class DemoAreaSetup extends StatefulWidget {
   });
 
   final DemoSetupStore store;
+  final MunicipalDataset? dataset;
   final DemoSetupSnapshot initial;
   final DemoArea? currentArea;
   final Future<bool> Function(String) onLanguageChanged;
@@ -60,14 +63,17 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
       }
     }
     if (!mounted) return;
+    if (saved && next.phase == DemoSetupPhase.districtSaved) {
+      // Keep confirmation and its busy state during the outgoing animation;
+      // rebuilding as a picker would flash an unrelated step after success.
+      widget.onSaved(next.area!);
+      return;
+    }
     setState(() {
       saving = false;
       failed = !saved;
       if (saved) snapshot = next;
     });
-    if (saved && next.phase == DemoSetupPhase.districtSaved) {
-      widget.onSaved(next.area!);
-    }
   }
 
   @override
@@ -182,9 +188,10 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  demoCalendar(candidate)
-                                      .on(demoToday)
-                                      .localizedDescription(l10n),
+                                  demoCalendar(
+                                    candidate,
+                                    dataset: widget.dataset,
+                                  ).on(demoToday).localizedDescription(l10n),
                                   style: const TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,

@@ -3,6 +3,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'support/dataset_fixture.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gomimap/data/demo_data.dart';
 import 'package:gomimap/data/demo_setup_store.dart';
@@ -44,7 +47,13 @@ Future<SharedPreferences> launchSetup(
   addTearDown(tester.view.resetPhysicalSize);
   addTearDown(tester.view.resetDevicePixelRatio);
   addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
-  await tester.pumpWidget(GomimapApp(preferences: prefs, setupStore: store));
+  await tester.pumpWidget(
+    GomimapApp(
+      preferences: prefs,
+      setupStore: store,
+      dataset: fixtureDataset(),
+    ),
+  );
   await tester.pumpAndSettle();
   return prefs;
 }
@@ -66,6 +75,25 @@ Future<void> save(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets(
+    'successful correction does not flash the picker during the outgoing animation',
+    (tester) async {
+      final store = ControlledSetupStore(
+        const DemoSetupSnapshot.saved(DemoArea.a),
+      );
+      await launchSetup(tester, store: store);
+      await tester.tap(find.byKey(const ValueKey('collection-area-context')));
+      await tester.pumpAndSettle();
+      await choose(tester, 'b');
+      await tester.tap(find.byKey(const ValueKey('confirm-area-save')));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 20));
+      expect(find.text('サンプル地区を設定'), findsNothing);
+      await tester.pumpAndSettle();
+      expect(find.text('収集地区：豊島区・サンプル地域B'), findsOneWidget);
+      expect(store.calls, 1);
+    },
+  );
   testWidgets('first launch requires explicit district confirmation', (
     tester,
   ) async {
@@ -95,14 +123,18 @@ void main() {
       await choose(tester, 'b');
       await tester.pumpWidget(const SizedBox());
       await prefs.reload();
-      await tester.pumpWidget(GomimapApp(preferences: prefs));
+      await tester.pumpWidget(
+        GomimapApp(preferences: prefs, dataset: fixtureDataset()),
+      );
       await tester.pumpAndSettle();
       expect(find.text('設定する地区：豊島区・サンプル地域B'), findsOneWidget);
       expect(find.byType(HomeShell), findsNothing);
       await save(tester);
       await tester.pumpWidget(const SizedBox());
       await prefs.reload();
-      await tester.pumpWidget(GomimapApp(preferences: prefs));
+      await tester.pumpWidget(
+        GomimapApp(preferences: prefs, dataset: fixtureDataset()),
+      );
       await tester.pumpAndSettle();
       expect(find.byType(HomeShell), findsOneWidget);
       expect(find.byType(DemoAreaSetup), findsNothing);
