@@ -29,6 +29,8 @@ flowchart TD
 
 ## Issueと受け入れ条件
 
+UI・UXの共通基準は[Issue #16](https://github.com/oukiito/gomimap/issues/16)、[ペルソナ](personas.md)、[画面・遷移の設計](ux-design.md)で管理する。G05〜G09の実装では画面・遷移の理由を更新し、G12では同書の利用者試験を実施する。設計書の完成をUI実装や利用者検証の完了とは扱わない。
+
 | ID／タイトル | 内容・受け入れ条件 | 検証 |
 | --- | --- | --- |
 | [G01 公開リポジトリと開発基盤 #1](https://github.com/oukiito/gomimap/issues/1) | owner/name・権利者を確認。Git／リモート、GPL-3.0-or-later、貢献案内、秘密情報対策、テンプレート、基本CI、PRルールを整備 | テストPRでCIとルールの実動作を確認。文書リンクと公開対象を点検 |

@@ -8,5 +8,6 @@
 | 2026-10-06 | Google Mapsからflutter_mapへの移行 | [地図移行](2026-10-06-map-migration.md) | G03・G09 |
 | 2026-10-06 | GitHub初回公開・Issue・CI・保護設定 | [公開記録](2026-10-06-github-bootstrap.md) | [G01／#1](https://github.com/oukiito/gomimap/issues/1) |
 | 2026-10-06 | 豊島区の出典・再利用条件・公開検査 | [出典調査](2026-10-06-toshima-sources.md) | [G02／#2](https://github.com/oukiito/gomimap/issues/2) |
+| 2026-10-06 | ペルソナ、全画面・遷移の理由、UI変更の運用 | [UI設計記録](2026-10-06-user-first-ux.md) | [#16](https://github.com/oukiito/gomimap/issues/16)、G05〜G09・G12 |
 
 画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
