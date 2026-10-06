@@ -4,6 +4,8 @@
 .dart_tool/
 build/
 coverage/
+__pycache__/
+*.pyc
 
 # Credentials and private source snapshots
 .env
