@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
+import 'support/dataset_fixture.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gomimap/main.dart';
 import 'package:gomimap/l10n/languages.dart';
@@ -33,7 +36,9 @@ Future<SharedPreferences> launch(
   addTearDown(tester.view.resetDevicePixelRatio);
   addTearDown(tester.platformDispatcher.clearLocalesTestValue);
   addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
-  await tester.pumpWidget(GomimapApp(preferences: preferences));
+  await tester.pumpWidget(
+    GomimapApp(preferences: preferences, dataset: fixtureDataset()),
+  );
   await tester.pumpAndSettle();
   return preferences;
 }
@@ -206,7 +211,9 @@ void main() {
       expect(preferences.getString('app.language'), 'zh-Hant');
       expect(find.text('可燃垃圾'), findsOneWidget);
       await tester.pumpWidget(const SizedBox());
-      await tester.pumpWidget(GomimapApp(preferences: preferences));
+      await tester.pumpWidget(
+        GomimapApp(preferences: preferences, dataset: fixtureDataset()),
+      );
       await tester.pumpAndSettle();
       expect(
         Localizations.localeOf(tester.element(find.byType(HomeShell)))
@@ -239,7 +246,9 @@ void main() {
       expect(find.textContaining('Toshima · Sample area A'), findsOneWidget);
       expect(preferences.getString('app.language'), 'en');
       await tester.pumpWidget(const SizedBox());
-      await tester.pumpWidget(GomimapApp(preferences: preferences));
+      await tester.pumpWidget(
+        GomimapApp(preferences: preferences, dataset: fixtureDataset()),
+      );
       await tester.pumpAndSettle();
       expect(find.text('Burnable waste'), findsOneWidget);
       await chooseLanguage(tester, '日本語');

@@ -64,6 +64,8 @@ flutter:
   # the material Icons class.
   generate: true
   uses-material-design: true
+  assets:
+    - assets/generated/toshima-demo-v1.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

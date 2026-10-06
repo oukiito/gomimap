@@ -142,6 +142,7 @@ flowchart TD
 | #20でサンプルの初回手動選択・確認・保存・途中復帰、変更の確認・取消・保存失敗復旧を追加 | 実住所・位置で自宅の予定を設定する機能とS14・S03は未実装。詳細の理由は[初回設計B22〜33](ux-initial-setup.md) | [#20](https://github.com/oukiito/gomimap/issues/20)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | 地区表示は#18で3タブの固定表示・変更導線、品物／拠点詳細・設定の対象地区を試作に追加。#20で未設定・候補・保存済みを区別 | 本物の区域解決は未実装。小さい文字でも読めるか実機・利用者検証が必要 | [#18](https://github.com/oukiito/gomimap/issues/18)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | 今日の締切・準備は公式情報への案内中心。日詳細・先のカレンダーは未実装 | P1の毎朝の手間が残る。検証済みデータで主要情報を直接示し、詳細へ進める | [#4](https://github.com/oukiito/gomimap/issues/4)・[#5](https://github.com/oukiito/gomimap/issues/5) |
+| G04で今日・地区確認の予定例を同じ版付きJSONへ接続。欠落・期限切れ・未確認は収集なしにせず公式確認へ | P1・P2が確認と通常利用で異なる予定を見ない。理由と検証は[初回設計B34〜36](ux-initial-setup.md)。実地区・通知・ウィジェット接続は後続 | [#4](https://github.com/oukiito/gomimap/issues/4)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | 全ての公式ボタンが同じ総合ページを開く | P2が目的の情報を再度探す。対象のルール・品目・施設へリンクする | [#5](https://github.com/oukiito/gomimap/issues/5)・[#8](https://github.com/oukiito/gomimap/issues/8)・[#9](https://github.com/oukiito/gomimap/issues/9) |
 | 多言語UIはあるが検索対象はサンプル品物。ルール翻訳の確認未完了 | 翻訳された画面だけではP2の分別を解決できない。別名・具体例・出し方を言語別に確認 | [#8](https://github.com/oukiito/gomimap/issues/8)・[#12](https://github.com/oukiito/gomimap/issues/12) |
 | 回収地図の初期品目は乾電池。条件は充電池の膨張・破損確認のみ | 乾電池を無意識に選んだまま他の電池を持ち込むおそれ。初回は未選択の概観から品目を選び、必要条件を確認する | [#9](https://github.com/oukiito/gomimap/issues/9) |

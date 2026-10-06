@@ -3,7 +3,8 @@
 SPDX-License-Identifier: GPL-3.0-or-later
 
 The original gomimap application source code, tests, translations, and project
-documentation are free software: you can redistribute them and/or modify them
+documentation and self-authored fictional test datasets are free software:
+you can redistribute them and/or modify them
 under the terms of the GNU General Public License as published by the Free
 Software Foundation, either version 3 of the License, or (at your option) any
 later version.

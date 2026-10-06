@@ -14,6 +14,8 @@
 
 環境構築と実行コマンドは[開発手順](docs/development.md)にまとめています。
 
+JSONの試験データは`data/datasets/fixtures/`を編集し、リポジトリ直下で`python3 scripts/prepare_demo_data.py`を実行してからアプリを確認します。生成した同梱データを手で変更しません。形式と公開検証は[スキーマ1](docs/data-schema-v1.md)を参照してください。
+
 1. リポジトリをforkし、作業ブランチを作ります。メンテナーはリポジトリ内のブランチを使えます。
 2. 原則1つの目的につき1つのPRにします。ブランチ名は`codex/<issue番号>-<説明>`、`feat/<issue番号>-<説明>`、`fix/<issue番号>-<説明>`などにします。存在しないIssue番号は付けません。
 3. 文言は`app/lib/l10n/app_*.arb`で管理し、生成コードを直接編集しません。言語追加・生成の手順は開発手順を参照してください。
@@ -22,7 +24,7 @@
 `app/`で次を実行します。文書だけの変更はリンク・記載内容を確認し、無関係なアプリテストは不要です。
 
 ```sh
-dart format --output=none --set-exit-if-changed lib test
+dart format --output=none --set-exit-if-changed lib test tool
 flutter analyze
 flutter test
 flutter build web --no-pub

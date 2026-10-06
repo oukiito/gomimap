@@ -1,0 +1,823 @@
+{
+  "schemaVersion": 1,
+  "version": "toshima-demo-v1",
+  "kind": "fixture",
+  "publishedAt": "2026-10-06T12:20:00Z",
+  "validPeriod": {
+    "start": "2026-01-01",
+    "end": "2027-02-01"
+  },
+  "municipality": {
+    "id": "demo-toshima",
+    "name": "豊島区（試験データ）",
+    "officialUrl": "https://www.city.toshima.lg.jp/kurashi/gomi/index.html",
+    "timezone": "Asia/Tokyo"
+  },
+  "sources": [
+    {
+      "id": "areas",
+      "url": "https://github.com/oukiito/gomimap/blob/main/data/datasets/fixtures/toshima-demo-v1.json",
+      "publisher": "gomimap・自作の架空試験データ",
+      "locator": "areas・架空住所条件",
+      "license": "GPL-3.0-or-later",
+      "review": "reviewed",
+      "reuse": "allowed",
+      "fixture": true,
+      "reviewer": "fixture-test",
+      "retrievedAt": "2026-10-06T12:00:00Z",
+      "reviewedAt": "2026-10-06T12:10:00Z",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      }
+    },
+    {
+      "id": "schedule",
+      "url": "https://github.com/oukiito/gomimap/blob/main/data/datasets/fixtures/toshima-demo-v1.json",
+      "publisher": "gomimap・自作の架空試験データ",
+      "locator": "baselines / exceptions・架空日程",
+      "license": "GPL-3.0-or-later",
+      "review": "reviewed",
+      "reuse": "allowed",
+      "fixture": true,
+      "reviewer": "fixture-test",
+      "retrievedAt": "2026-10-06T12:00:00Z",
+      "reviewedAt": "2026-10-06T12:10:00Z",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      }
+    },
+    {
+      "id": "places",
+      "url": "https://github.com/oukiito/gomimap/blob/main/data/datasets/fixtures/toshima-demo-v1.json",
+      "publisher": "gomimap・自作の架空試験データ",
+      "locator": "facilities・架空施設",
+      "license": "GPL-3.0-or-later",
+      "review": "reviewed",
+      "reuse": "allowed",
+      "fixture": true,
+      "reviewer": "fixture-test",
+      "retrievedAt": "2026-10-06T12:00:00Z",
+      "reviewedAt": "2026-10-06T12:10:00Z",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      }
+    },
+    {
+      "id": "acceptance",
+      "url": "https://github.com/oukiito/gomimap/blob/main/data/datasets/fixtures/toshima-demo-v1.json",
+      "publisher": "gomimap・自作の架空試験データ",
+      "locator": "services / acceptanceRules・架空受入条件",
+      "license": "GPL-3.0-or-later",
+      "review": "reviewed",
+      "reuse": "allowed",
+      "fixture": true,
+      "reviewer": "fixture-test",
+      "retrievedAt": "2026-10-06T12:00:00Z",
+      "reviewedAt": "2026-10-06T12:10:00Z",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      }
+    }
+  ],
+  "areas": [
+    {
+      "id": "a",
+      "name": "豊島区・サンプル地域A",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "areas"
+      ],
+      "addressSelectors": [
+        [
+          {
+            "field": "address.town",
+            "operator": "isValue",
+            "values": [
+              "架空町"
+            ],
+            "question": "町名はどちらですか？"
+          },
+          {
+            "field": "address.chome",
+            "operator": "isValue",
+            "values": [
+              1
+            ],
+            "question": "何丁目ですか？"
+          },
+          {
+            "field": "address.block",
+            "operator": "range",
+            "minimum": 1,
+            "maximum": 20,
+            "question": "何番地ですか？"
+          },
+          {
+            "field": "address.streetSide",
+            "operator": "isValue",
+            "values": [
+              "away"
+            ],
+            "question": "架空通り沿いですか？"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "name": "豊島区・サンプル地域B",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "areas"
+      ],
+      "addressSelectors": [
+        [
+          {
+            "field": "address.town",
+            "operator": "isValue",
+            "values": [
+              "架空町"
+            ],
+            "question": "町名はどちらですか？"
+          },
+          {
+            "field": "address.chome",
+            "operator": "isValue",
+            "values": [
+              1
+            ],
+            "question": "何丁目ですか？"
+          },
+          {
+            "field": "address.block",
+            "operator": "range",
+            "minimum": 1,
+            "maximum": 20,
+            "question": "何番地ですか？"
+          },
+          {
+            "field": "address.streetSide",
+            "operator": "isValue",
+            "values": [
+              "along"
+            ],
+            "question": "架空通り沿いですか？"
+          }
+        ]
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "burnable",
+      "name": "燃やすごみ",
+      "displayKey": "burnable",
+      "scheduled": true
+    },
+    {
+      "id": "recyclables",
+      "name": "資源",
+      "displayKey": "recyclables",
+      "scheduled": true
+    },
+    {
+      "id": "metals",
+      "name": "金属・陶器・ガラス",
+      "displayKey": "metals",
+      "scheduled": true
+    }
+  ],
+  "items": [
+    {
+      "id": "food",
+      "name": "生ごみ",
+      "mapEligible": false
+    },
+    {
+      "id": "pet",
+      "name": "ペットボトル",
+      "mapEligible": false
+    },
+    {
+      "id": "cans",
+      "name": "缶・びん",
+      "mapEligible": false
+    },
+    {
+      "id": "dryBattery",
+      "name": "乾電池",
+      "mapEligible": true
+    },
+    {
+      "id": "rechargeable",
+      "name": "充電池",
+      "mapEligible": true
+    },
+    {
+      "id": "appliance",
+      "name": "小型家電",
+      "mapEligible": true
+    },
+    {
+      "id": "lamp",
+      "name": "蛍光灯",
+      "mapEligible": true
+    },
+    {
+      "id": "bulky",
+      "name": "家具・大きなごみ",
+      "mapEligible": false
+    }
+  ],
+  "baselines": [
+    {
+      "id": "a-burnable",
+      "areaId": "a",
+      "categoryId": "burnable",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "schedule"
+      ],
+      "recurrences": [
+        {
+          "weekdays": [
+            1,
+            4
+          ],
+          "monthOccurrences": [],
+          "deadline": "08:00"
+        }
+      ]
+    },
+    {
+      "id": "a-recyclables",
+      "areaId": "a",
+      "categoryId": "recyclables",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "schedule"
+      ],
+      "recurrences": [
+        {
+          "weekdays": [
+            3
+          ],
+          "monthOccurrences": [],
+          "deadline": "08:00"
+        }
+      ]
+    },
+    {
+      "id": "a-metals",
+      "areaId": "a",
+      "categoryId": "metals",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "schedule"
+      ],
+      "recurrences": [
+        {
+          "weekdays": [
+            5
+          ],
+          "monthOccurrences": [
+            1,
+            3
+          ],
+          "deadline": "08:00"
+        }
+      ]
+    },
+    {
+      "id": "b-burnable",
+      "areaId": "b",
+      "categoryId": "burnable",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "schedule"
+      ],
+      "recurrences": [
+        {
+          "weekdays": [
+            2,
+            5
+          ],
+          "monthOccurrences": [],
+          "deadline": "08:00"
+        }
+      ]
+    },
+    {
+      "id": "b-recyclables",
+      "areaId": "b",
+      "categoryId": "recyclables",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "schedule"
+      ],
+      "recurrences": [
+        {
+          "weekdays": [
+            3
+          ],
+          "monthOccurrences": [],
+          "deadline": "08:00"
+        }
+      ]
+    },
+    {
+      "id": "b-metals",
+      "areaId": "b",
+      "categoryId": "metals",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "schedule"
+      ],
+      "recurrences": [
+        {
+          "weekdays": [
+            5
+          ],
+          "monthOccurrences": [
+            1,
+            3
+          ],
+          "deadline": "08:00"
+        }
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "uncertain-a",
+      "areaId": "a",
+      "date": "2026-10-08",
+      "action": "needsConfirmation",
+      "sourceIds": [
+        "schedule"
+      ]
+    },
+    {
+      "id": "uncertain-b",
+      "areaId": "b",
+      "date": "2026-10-08",
+      "action": "needsConfirmation",
+      "sourceIds": [
+        "schedule"
+      ]
+    },
+    {
+      "id": "year-move",
+      "areaId": "a",
+      "categoryId": "burnable",
+      "date": "2026-12-31",
+      "action": "move",
+      "targetDate": "2027-01-02",
+      "deadline": "08:00",
+      "sourceIds": [
+        "schedule"
+      ]
+    },
+    {
+      "id": "year-cancel",
+      "areaId": "a",
+      "categoryId": "metals",
+      "date": "2027-01-01",
+      "action": "cancel",
+      "sourceIds": [
+        "schedule"
+      ]
+    },
+    {
+      "id": "year-add",
+      "areaId": "a",
+      "categoryId": "recyclables",
+      "date": "2027-01-02",
+      "action": "add",
+      "deadline": "08:00",
+      "sourceIds": [
+        "schedule"
+      ]
+    }
+  ],
+  "facilities": [
+    {
+      "id": "a",
+      "name": "架空の回収拠点a",
+      "address": "架空町・拠点a",
+      "access": "publicDropOff",
+      "sourceIds": [
+        "places"
+      ],
+      "coordinates": {
+        "latitude": 35.7295,
+        "longitude": 139.7109,
+        "accuracyMeters": 20,
+        "sourceIds": [
+          "places"
+        ]
+      }
+    },
+    {
+      "id": "b",
+      "name": "架空の回収拠点b",
+      "address": "架空町・拠点b",
+      "access": "publicDropOff",
+      "sourceIds": [
+        "places"
+      ],
+      "coordinates": {
+        "latitude": 35.724,
+        "longitude": 139.718,
+        "accuracyMeters": 20,
+        "sourceIds": [
+          "places"
+        ]
+      }
+    },
+    {
+      "id": "home-only",
+      "name": "架空の回収拠点home-only",
+      "address": "架空町・拠点home-only",
+      "access": "householdCollection",
+      "sourceIds": [
+        "places"
+      ],
+      "coordinates": {
+        "latitude": 35.721,
+        "longitude": 139.717,
+        "accuracyMeters": 20,
+        "sourceIds": [
+          "places"
+        ]
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": "a-battery",
+      "facilityId": "a",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "active",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b-battery",
+      "facilityId": "b",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "active",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-appliance",
+      "facilityId": "a",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "active",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b-lamp",
+      "facilityId": "b",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "active",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b-rechargeable",
+      "facilityId": "b",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "paused",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ordinary-pet",
+      "facilityId": "a",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "active",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "private-battery",
+      "facilityId": "home-only",
+      "location": "架空の受付窓口",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "state": "active",
+      "sourceIds": [
+        "acceptance"
+      ],
+      "hours": [
+        {
+          "weekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "opens": "09:00",
+          "closes": "17:00",
+          "sourceIds": [
+            "acceptance"
+          ]
+        }
+      ]
+    }
+  ],
+  "acceptanceRules": [
+    {
+      "id": "accept-a-battery",
+      "serviceId": "a-battery",
+      "itemId": "dryBattery",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": []
+    },
+    {
+      "id": "accept-b-battery",
+      "serviceId": "b-battery",
+      "itemId": "dryBattery",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": []
+    },
+    {
+      "id": "accept-a-appliance",
+      "serviceId": "a-appliance",
+      "itemId": "appliance",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": [
+        {
+          "field": "item.widthMm",
+          "operator": "range",
+          "minimum": 0,
+          "maximum": 300,
+          "question": "幅は何mmですか？"
+        },
+        {
+          "field": "item.heightMm",
+          "operator": "range",
+          "minimum": 0,
+          "maximum": 150,
+          "question": "高さは何mmですか？"
+        },
+        {
+          "field": "item.batteryRemoved",
+          "operator": "isValue",
+          "values": [
+            true
+          ],
+          "question": "電池を取り外しましたか？"
+        }
+      ]
+    },
+    {
+      "id": "accept-b-lamp",
+      "serviceId": "b-lamp",
+      "itemId": "lamp",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": [
+        {
+          "field": "item.broken",
+          "operator": "isValue",
+          "values": [
+            false
+          ],
+          "question": "割れていますか？"
+        }
+      ]
+    },
+    {
+      "id": "accept-b-rechargeable",
+      "serviceId": "b-rechargeable",
+      "itemId": "rechargeable",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": [
+        {
+          "field": "item.damaged",
+          "operator": "isValue",
+          "values": [
+            false
+          ],
+          "question": "膨らみ・破損がありますか？"
+        }
+      ]
+    },
+    {
+      "id": "accept-ordinary-pet",
+      "serviceId": "ordinary-pet",
+      "itemId": "pet",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": []
+    },
+    {
+      "id": "accept-private-battery",
+      "serviceId": "private-battery",
+      "itemId": "dryBattery",
+      "validPeriod": {
+        "start": "2026-01-01",
+        "end": "2027-02-01"
+      },
+      "sourceIds": [
+        "acceptance"
+      ],
+      "conditions": []
+    }
+  ]
+}

@@ -30,7 +30,11 @@ jobs:
           test "$(git -C "$RUNNER_TEMP/flutter" rev-parse HEAD)" = "5fc346839b5d0eef006ed8404392afb4dfae428d"
           echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
       - run: flutter pub get --enforce-lockfile
-      - run: dart format --output=none --set-exit-if-changed lib test
+      - name: Prepare and validate owned demo dataset
+        run: |
+          python3 ../scripts/prepare_demo_data.py
+          dart run tool/validate_dataset.dart --allow-fixtures ../data/datasets/fixtures/toshima-demo-v1.json
+      - run: dart format --output=none --set-exit-if-changed lib test tool
       - run: flutter analyze
       - run: flutter test
       - run: flutter build web --no-pub
