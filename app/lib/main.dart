@@ -225,39 +225,54 @@ class _HomeShellState extends State<HomeShell> {
       ],
     ),
     body: SafeArea(
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 660),
-          child: ListView(
-            key: ValueKey(tab),
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFEEC9),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  l10n.sampleBanner,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: Color(0xFF654B16),
-                  ),
+      child: Column(
+        children: [
+          Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 660),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: areaContext(canChange: true),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 660),
+                child: ListView(
+                  key: ValueKey(tab),
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFEEC9),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        l10n.sampleBanner,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          color: Color(0xFF654B16),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    ...switch (tab) {
+                      0 => todayPage(),
+                      1 => searchPage(),
+                      _ => placesPage(),
+                    },
+                  ],
                 ),
               ),
-              const SizedBox(height: 18),
-              ...switch (tab) {
-                0 => todayPage(),
-                1 => searchPage(),
-                _ => placesPage(),
-              },
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     ),
     bottomNavigationBar: NavigationBar(
@@ -281,6 +296,45 @@ class _HomeShellState extends State<HomeShell> {
       ],
     ),
   );
+
+  Widget areaContext({bool canChange = false}) {
+    final content = Row(
+      children: [
+        const Icon(Icons.place_outlined, size: 18, color: Color(0xFF24684F)),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            l10n.collectionArea(l10n.areaName(area.name.toUpperCase())),
+            style: const TextStyle(
+              fontSize: 14,
+              height: 1.4,
+              color: Color(0xFF24684F),
+            ),
+          ),
+        ),
+        if (canChange) const Icon(Icons.expand_more, size: 20),
+      ],
+    );
+    if (!canChange) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: content,
+      );
+    }
+    return Tooltip(
+      message: l10n.chooseArea,
+      child: TextButton(
+        key: const ValueKey('collection-area-context'),
+        onPressed: changeArea,
+        style: TextButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          alignment: Alignment.centerLeft,
+        ),
+        child: content,
+      ),
+    );
+  }
 
   Widget heading(String title, String subtitle) => Padding(
     padding: const EdgeInsets.only(bottom: 20),
@@ -307,14 +361,6 @@ class _HomeShellState extends State<HomeShell> {
   List<Widget> todayPage() {
     final calendar = demoCalendar(area);
     return [
-      Align(
-        alignment: Alignment.centerLeft,
-        child: TextButton.icon(
-          onPressed: changeArea,
-          icon: const Icon(Icons.place_outlined, size: 20),
-          label: Text('${l10n.areaName(area.name.toUpperCase())}  ▾'),
-        ),
-      ),
       Padding(
         padding: const EdgeInsets.only(bottom: 12),
         child: Text(
@@ -475,6 +521,7 @@ class _HomeShellState extends State<HomeShell> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              areaContext(),
               heading(item.localizedName(l10n), l10n.sampleSorting),
               Text(
                 item.localizedGuidance(l10n),
@@ -599,6 +646,7 @@ class _HomeShellState extends State<HomeShell> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            areaContext(),
             heading(
               l10n.samplePoint(point.id.toUpperCase()),
               l10n.samplePointDetail,
@@ -629,6 +677,16 @@ class _HomeShellState extends State<HomeShell> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            areaContext(),
+            OutlinedButton.icon(
+              onPressed: () {
+                Navigator.pop(context);
+                changeArea();
+              },
+              icon: const Icon(Icons.edit_location_alt_outlined),
+              label: Text(l10n.chooseArea),
+            ),
+            const SizedBox(height: 16),
             Text(
               l10n.about,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

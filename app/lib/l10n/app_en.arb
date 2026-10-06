@@ -111,5 +111,13 @@
   "rechargeableGuidance": "Rules vary by type and whether the battery is swollen or damaged.",
   "applianceGuidance": "Check size limits and rules for built-in batteries.",
   "lampGuidance": "Check fluorescent tubes and LED bulbs separately.",
-  "bulkyGuidance": "Bulky-waste rules depend on dimensions and item type. Check the ward’s item guide and booking information."
+  "bulkyGuidance": "Bulky-waste rules depend on dimensions and item type. Check the ward’s item guide and booking information.",
+  "collectionArea": "Collection area: {area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

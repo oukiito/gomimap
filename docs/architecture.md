@@ -44,6 +44,8 @@ iOSのTimeline、Androidの更新処理はいずれもOSの制御を受ける。
 
 資料：[Appleの更新仕様](https://developer.apple.com/documentation/widgetkit/keeping-a-widget-up-to-date)、[Android App Widget](https://developer.android.com/develop/ui/views/appwidgets/advanced)、[home_widget](https://github.com/ABausG/home_widget)。home_widgetの採用でネイティブ側のUI実装が不要になるわけではない。
 
+初回だけ追加を提案し、地区・言語を引き継ぐ。Androidは対応ランチャーを確認してOSの追加要求へ渡し、iPhoneは短い追加手順を示す。要求の受理と配置成功は別状態とし、スキップ・取消・未確認でも本体を使える。[初回設定の設計図](ux-initial-setup.md)にOS公式根拠と例外を記録する。両OSのネイティブ実装は未完了。
+
 ## LLMの役割と候補
 
 役割は(1)変更箇所の抽出補助、(2)月次の抜け・矛盾確認、(3)将来の写真からの品物候補提示。利用者へ表示する収集日や回収可否は検証済みルールから決める。画像生成モデルは今回の写真認識用途とは異なる。

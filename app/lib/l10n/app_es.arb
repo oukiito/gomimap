@@ -111,5 +111,13 @@
   "rechargeableGuidance": "Las normas varían según el tipo y si está hinchada o dañada.",
   "applianceGuidance": "Comprueba los límites de tamaño y las normas para baterías integradas.",
   "lampGuidance": "Consulta por separado las normas para tubos fluorescentes y bombillas LED.",
-  "bulkyGuidance": "Las normas para basura voluminosa dependen del tamaño y del objeto. Consulta el catálogo y la información de reserva del distrito."
+  "bulkyGuidance": "Las normas para basura voluminosa dependen del tamaño y del objeto. Consulta el catálogo y la información de reserva del distrito.",
+  "collectionArea": "Zona de recogida: {area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -231,6 +231,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bulkyGuidance => '大件垃圾的处理规定因尺寸和品目而异。请查看区政府的品目说明及预约信息。';
+
+  @override
+  String collectionArea(String area) {
+    return '垃圾收集区域：$area';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -459,6 +464,11 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get bulkyGuidance => '大件垃圾的处理规定因尺寸和品目而异。请查看区政府的品目说明及预约信息。';
+
+  @override
+  String collectionArea(String area) {
+    return '垃圾收集区域：$area';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -687,4 +697,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get bulkyGuidance => '大型垃圾的處理規定因尺寸及品目而異。請查看區政府的品目說明及預約資訊。';
+
+  @override
+  String collectionArea(String area) {
+    return '垃圾收集地區：$area';
+  }
 }

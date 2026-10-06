@@ -31,6 +31,8 @@ flowchart TD
 
 UI・UXの共通基準は[Issue #16](https://github.com/oukiito/gomimap/issues/16)、[ペルソナ](personas.md)、[画面・遷移の設計](ux-design.md)で管理する。G05〜G09の実装では画面・遷移の理由を更新し、G12では同書の利用者試験を実施する。設計書の完成をUI実装や利用者検証の完了とは扱わない。
 
+[Issue #18](https://github.com/oukiito/gomimap/issues/18)で地区の常時表示・変更導線を試作に追加し、[初回設定の設計図](ux-initial-setup.md)でGPS候補確認・初回のみのウィジェット追加／スキップを具体化。GPS・住所解決はG05、ネイティブウィジェットと初回追加はG07で実装する。
+
 | ID／タイトル | 内容・受け入れ条件 | 検証 |
 | --- | --- | --- |
 | [G01 公開リポジトリと開発基盤 #1](https://github.com/oukiito/gomimap/issues/1) | owner/name・権利者を確認。Git／リモート、GPL-3.0-or-later、貢献案内、秘密情報対策、テンプレート、基本CI、PRルールを整備 | テストPRでCIとルールの実動作を確認。文書リンクと公開対象を点検 |

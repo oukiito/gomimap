@@ -253,4 +253,9 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get bulkyGuidance =>
       'As regras de lixo volumoso dependem das dimensões e do tipo de item. Consulte o guia e as informações de agendamento do distrito.';
+
+  @override
+  String collectionArea(String area) {
+    return 'Área de coleta: $area';
+  }
 }

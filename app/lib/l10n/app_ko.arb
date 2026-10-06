@@ -111,5 +111,13 @@
   "rechargeableGuidance": "종류와 부풀음·파손 여부에 따라 처리 방법이 다릅니다.",
   "applianceGuidance": "크기 제한과 내장 전지 처리 규정을 확인하세요.",
   "lampGuidance": "형광등과 LED 전구의 규정을 각각 확인하세요.",
-  "bulkyGuidance": "대형 쓰레기 규정은 크기와 품목에 따라 다릅니다. 구청의 품목 안내와 신청 정보를 확인하세요."
+  "bulkyGuidance": "대형 쓰레기 규정은 크기와 품목에 따라 다릅니다. 구청의 품목 안내와 신청 정보를 확인하세요.",
+  "collectionArea": "쓰레기 수거 지역: {area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }

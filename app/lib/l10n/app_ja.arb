@@ -111,5 +111,13 @@
   "rechargeableGuidance": "種類や膨張・破損の有無によって扱いが異なります。",
   "applianceGuidance": "大きさや内蔵電池の扱いを確認します。",
   "lampGuidance": "蛍光灯とLED電球は分けて確認します。",
-  "bulkyGuidance": "寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。"
+  "bulkyGuidance": "寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。",
+  "collectionArea": "収集地区：{area}",
+  "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  }
 }
