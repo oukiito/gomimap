@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "無法儲存地區。下次請重新選擇。",
+  "areaSaveError": "無法儲存。設定未變更。請再試一次。",
   "sourceOpenError": "無法開啟官方網站。\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "大型垃圾的處理規定因尺寸及品目而異。請查看區政府的品目說明及預約資訊。",
   "collectionArea": "垃圾收集地區：{area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "設定範例地區",
+  "confirmAreaTitle": "使用這個地區嗎？",
+  "candidateArea": "將設定的地區：{area}",
+  "currentArea": "目前設定：{area}",
+  "confirmAreaAction": "儲存這個地區",
+  "chooseAgain": "重新選擇",
+  "savingArea": "正在儲存…",
+  "setupRecovery": "無法讀取地區設定。請重新選擇。",
+  "cancel": "取消",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

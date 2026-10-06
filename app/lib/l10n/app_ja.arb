@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "地域を保存できませんでした。次回もう一度選んでください。",
+  "areaSaveError": "保存できませんでした。設定は変更されていません。もう一度試してください。",
   "sourceOpenError": "公式ページを開けませんでした。\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "寸法や品目によって粗大ごみの扱いが変わります。区の品目案内・申込先を確認してください。",
   "collectionArea": "収集地区：{area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "サンプル地区を設定",
+  "confirmAreaTitle": "この地区でよいですか？",
+  "candidateArea": "設定する地区：{area}",
+  "currentArea": "現在の設定：{area}",
+  "confirmAreaAction": "この地区で設定",
+  "chooseAgain": "選び直す",
+  "savingArea": "保存しています…",
+  "setupRecovery": "地区の設定を読み込めませんでした。地区を選び直してください。",
+  "cancel": "キャンセル",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

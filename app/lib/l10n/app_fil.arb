@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "Hindi na-save ang lugar. Piliin itong muli sa susunod.",
+  "areaSaveError": "Hindi ma-save. Hindi nagbago ang setting. Mangyaring subukan muli.",
   "sourceOpenError": "Hindi mabuksan ang opisyal na pahina.\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "Nakadepende sa sukat at uri ang patakaran para sa malalaking basura. Tingnan ang gabay sa mga bagay at pagpapareserba ng ward.",
   "collectionArea": "Lugar ng koleksyon: {area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "Magtakda ng halimbawang lugar",
+  "confirmAreaTitle": "Gamitin ang lugar na ito?",
+  "candidateArea": "Lugar na ise-save: {area}",
+  "currentArea": "Kasalukuyang setting: {area}",
+  "confirmAreaAction": "I-save ang lugar na ito",
+  "chooseAgain": "Pumili muli",
+  "savingArea": "Sine-save…",
+  "setupRecovery": "Hindi mabasa ang setting ng lugar. Mangyaring pumili muli.",
+  "cancel": "Kanselahin",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

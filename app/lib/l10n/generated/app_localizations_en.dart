@@ -50,7 +50,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get areaSaveError =>
-      'Could not save your area. Please select it again next time.';
+      'Could not save. Your setting has not changed. Please try again.';
 
   @override
   String sourceOpenError(String url) {
@@ -257,4 +257,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String collectionArea(String area) {
     return 'Collection area: $area';
   }
+
+  @override
+  String get setupAreaTitle => 'Set a demo district';
+
+  @override
+  String get confirmAreaTitle => 'Use this district?';
+
+  @override
+  String candidateArea(String area) {
+    return 'District to save: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return 'Current setting: $area';
+  }
+
+  @override
+  String get confirmAreaAction => 'Save this district';
+
+  @override
+  String get chooseAgain => 'Choose again';
+
+  @override
+  String get savingArea => 'Saving…';
+
+  @override
+  String get setupRecovery =>
+      'Your district setting could not be read. Please choose it again.';
+
+  @override
+  String get cancel => 'Cancel';
 }

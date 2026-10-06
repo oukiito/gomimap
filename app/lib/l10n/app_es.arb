@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "No se pudo guardar la zona. Vuelve a seleccionarla la próxima vez.",
+  "areaSaveError": "No se pudo guardar. La configuración no cambió. Inténtalo de nuevo.",
   "sourceOpenError": "No se pudo abrir la página oficial.\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "Las normas para basura voluminosa dependen del tamaño y del objeto. Consulta el catálogo y la información de reserva del distrito.",
   "collectionArea": "Zona de recogida: {area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "Configurar una zona de ejemplo",
+  "confirmAreaTitle": "¿Usar esta zona?",
+  "candidateArea": "Zona que se guardará: {area}",
+  "currentArea": "Configuración actual: {area}",
+  "confirmAreaAction": "Guardar esta zona",
+  "chooseAgain": "Elegir de nuevo",
+  "savingArea": "Guardando…",
+  "setupRecovery": "No se pudo leer la zona configurada. Elígela de nuevo.",
+  "cancel": "Cancelar",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

@@ -51,7 +51,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get areaSaveError =>
-      'Hindi na-save ang lugar. Piliin itong muli sa susunod.';
+      'Hindi ma-save. Hindi nagbago ang setting. Mangyaring subukan muli.';
 
   @override
   String sourceOpenError(String url) {
@@ -258,4 +258,36 @@ class AppLocalizationsFil extends AppLocalizations {
   String collectionArea(String area) {
     return 'Lugar ng koleksyon: $area';
   }
+
+  @override
+  String get setupAreaTitle => 'Magtakda ng halimbawang lugar';
+
+  @override
+  String get confirmAreaTitle => 'Gamitin ang lugar na ito?';
+
+  @override
+  String candidateArea(String area) {
+    return 'Lugar na ise-save: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return 'Kasalukuyang setting: $area';
+  }
+
+  @override
+  String get confirmAreaAction => 'I-save ang lugar na ito';
+
+  @override
+  String get chooseAgain => 'Pumili muli';
+
+  @override
+  String get savingArea => 'Sine-save…';
+
+  @override
+  String get setupRecovery =>
+      'Hindi mabasa ang setting ng lugar. Mangyaring pumili muli.';
+
+  @override
+  String get cancel => 'Kanselahin';
 }

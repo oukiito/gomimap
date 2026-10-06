@@ -5,9 +5,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gomimap/main.dart';
 import 'package:gomimap/ui/collection_map.dart';
+import 'package:gomimap/data/demo_data.dart';
+import 'package:gomimap/data/demo_setup_store.dart';
 
 Future<SharedPreferences> start(WidgetTester tester, {double scale = 1}) async {
-  SharedPreferences.setMockInitialValues({'app.language': 'ja'});
+  SharedPreferences.setMockInitialValues({
+    'app.language': 'ja',
+    PreferencesDemoSetupStore.key: const DemoSetupSnapshot.saved(DemoArea.a)
+        .encode(),
+  });
   final prefs = await SharedPreferences.getInstance();
   tester.view.physicalSize = const Size(390, 844);
   tester.view.devicePixelRatio = 1;
@@ -56,7 +62,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('豊島区・サンプル地域B'));
     await tester.pumpAndSettle();
-    expect(prefs.getString('demo.area'), 'b');
+    await tester.tap(find.byKey(const ValueKey('confirm-area-save')));
+    await tester.pumpAndSettle();
+    expect(PreferencesDemoSetupStore(prefs).read().area, DemoArea.b);
     expect(find.text('収集地区：豊島区・サンプル地域B'), findsOneWidget);
     expect(
       tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
@@ -86,12 +94,14 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('豊島区・サンプル地域B'));
       await tester.pumpAndSettle();
-      expect(prefs.getString('demo.area'), 'b');
+      await tester.tap(find.byKey(const ValueKey('confirm-area-save')));
+      await tester.pumpAndSettle();
+      expect(PreferencesDemoSetupStore(prefs).read().area, DemoArea.b);
       await tester.tap(find.byKey(const ValueKey('collection-area-context')));
       await tester.pumpAndSettle();
-      await tester.tapAt(const Offset(10, 100));
+      await tester.tap(find.text('キャンセル'));
       await tester.pumpAndSettle();
-      expect(prefs.getString('demo.area'), 'b');
+      expect(PreferencesDemoSetupStore(prefs).read().area, DemoArea.b);
       expect(find.text('収集地区：豊島区・サンプル地域B'), findsOneWidget);
     },
   );
@@ -105,7 +115,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('豊島区・サンプル地域B'));
     await tester.pumpAndSettle();
-    expect(prefs.getString('demo.area'), 'b');
+    await tester.tap(find.byKey(const ValueKey('confirm-area-save')));
+    await tester.pumpAndSettle();
+    expect(PreferencesDemoSetupStore(prefs).read().area, DemoArea.b);
     await tester.pumpWidget(const SizedBox());
     await tester.pumpWidget(GomimapApp(preferences: prefs));
     await tester.pumpAndSettle();

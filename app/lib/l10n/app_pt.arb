@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "Não foi possível salvar a área. Selecione novamente na próxima vez.",
+  "areaSaveError": "Não foi possível guardar. A definição não mudou. Tente novamente.",
   "sourceOpenError": "Não foi possível abrir a página oficial.\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "As regras de lixo volumoso dependem das dimensões e do tipo de item. Consulte o guia e as informações de agendamento do distrito.",
   "collectionArea": "Área de coleta: {area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "Definir uma área de exemplo",
+  "confirmAreaTitle": "Usar esta área?",
+  "candidateArea": "Área a guardar: {area}",
+  "currentArea": "Definição atual: {area}",
+  "confirmAreaAction": "Guardar esta área",
+  "chooseAgain": "Escolher novamente",
+  "savingArea": "A guardar…",
+  "setupRecovery": "Não foi possível ler a área definida. Escolha-a novamente.",
+  "cancel": "Cancelar",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

@@ -16,6 +16,7 @@
 | データ取得・検証・更新・障害対応 | [運用設計](operations.md) |
 | 開発する作業と完了条件 | [ロードマップ](roadmap.md) |
 | Issue・PR・CI・GitHubアカウント | [GitHub運用](github-workflow.md) |
+| 開発エージェントが守る利用者優先・設計理由・認証・検証のルール | [AGENTS.md](../AGENTS.md) |
 | 決定の理由・以前の案からの変更 | [設計上の決定](decisions.md) |
 | 自治体・サービスの一次情報 | [調査資料](research.md) |
 | 豊島区の取得先・再利用条件・確認状態 | [出典登録簿](sources/toshima.md) |

@@ -50,7 +50,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get areaSaveError =>
-      'Không lưu được khu vực. Vui lòng chọn lại vào lần sau.';
+      'Không lưu được. Thiết lập chưa thay đổi. Vui lòng thử lại.';
 
   @override
   String sourceOpenError(String url) {
@@ -255,4 +255,36 @@ class AppLocalizationsVi extends AppLocalizations {
   String collectionArea(String area) {
     return 'Khu vực thu gom rác: $area';
   }
+
+  @override
+  String get setupAreaTitle => 'Chọn khu vực mẫu';
+
+  @override
+  String get confirmAreaTitle => 'Dùng khu vực này?';
+
+  @override
+  String candidateArea(String area) {
+    return 'Khu vực sẽ lưu: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return 'Thiết lập hiện tại: $area';
+  }
+
+  @override
+  String get confirmAreaAction => 'Lưu khu vực này';
+
+  @override
+  String get chooseAgain => 'Chọn lại';
+
+  @override
+  String get savingArea => 'Đang lưu…';
+
+  @override
+  String get setupRecovery =>
+      'Không đọc được thiết lập khu vực. Vui lòng chọn lại.';
+
+  @override
+  String get cancel => 'Hủy';
 }

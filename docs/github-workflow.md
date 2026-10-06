@@ -13,13 +13,15 @@
 このプロジェクトでGitHubへアクセスするときは`oukiito`を使います。アカウントごとに`GH_CONFIG_DIR`を分け、複数セッションで共有の`gh auth switch`に依存しない方針です。次は初回認証と確認のコマンドです。このプロファイルで`oukiito`としてOSの資格情報ストアへ保存された認証を確認済みです。
 
 ```sh
-GH_CONFIG_DIR=~/.config/gh-gomimap gh auth login
-GH_CONFIG_DIR=~/.config/gh-gomimap gh auth status
+env -u GH_TOKEN -u GITHUB_TOKEN GH_CONFIG_DIR="$HOME/.config/gh-gomimap" gh auth login
+env -u GH_TOKEN -u GITHUB_TOKEN GH_CONFIG_DIR="$HOME/.config/gh-gomimap" gh auth status
 ```
 
 以後もGitHub API操作には同じプロファイルを明示します。操作前にアクティブなユーザーが`oukiito`であることと、対象リポジトリを確認してください。環境に`GH_TOKEN`／`GITHUB_TOKEN`があると保存済み認証より優先されるため、意図しないアカウントを上書きしていないかも確認します。
 
 この設定は`gh`のIssue・PR等のAPI操作に適用します。このチェックアウトにはリポジトリ専用のHTTPS資格情報ヘルパーを設定し、同じ`gh-gomimap`プロファイルを使います。グローバルなGit設定は変更していません。別のチェックアウトやSSHでのpushには別途設定が必要です。`user.name`／`user.email`はコミット著者の設定で、認証アカウントの選択とは異なります。
+
+本書のコマンド例は一般の開発者向け。開発エージェントは[AGENTS.md](../AGENTS.md)に従って全てのシェル実行に`rtk`／`rtk proxy`を付ける。環境トークンを除外することと専用プロファイルの指定は両方で共通。
 
 トークンはOSの資格情報ストアを使い、リポジトリやチャットへ貼りません。`.env.local`はFlutter用の公開してよい設定だけに使い、GitHubトークンをFlutterのビルド設定へ渡しません。
 
