@@ -51,7 +51,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get areaSaveError =>
-      'Não foi possível salvar a área. Selecione novamente na próxima vez.';
+      'Não foi possível guardar. A definição não mudou. Tente novamente.';
 
   @override
   String sourceOpenError(String url) {
@@ -258,4 +258,36 @@ class AppLocalizationsPt extends AppLocalizations {
   String collectionArea(String area) {
     return 'Área de coleta: $area';
   }
+
+  @override
+  String get setupAreaTitle => 'Definir uma área de exemplo';
+
+  @override
+  String get confirmAreaTitle => 'Usar esta área?';
+
+  @override
+  String candidateArea(String area) {
+    return 'Área a guardar: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return 'Definição atual: $area';
+  }
+
+  @override
+  String get confirmAreaAction => 'Guardar esta área';
+
+  @override
+  String get chooseAgain => 'Escolher novamente';
+
+  @override
+  String get savingArea => 'A guardar…';
+
+  @override
+  String get setupRecovery =>
+      'Não foi possível ler a área definida. Escolha-a novamente.';
+
+  @override
+  String get cancel => 'Cancelar';
 }

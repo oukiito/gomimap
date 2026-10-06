@@ -48,7 +48,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get areaSaveError => '无法保存地区。下次请重新选择。';
+  String get areaSaveError => '无法保存。设置未更改。请重试。';
 
   @override
   String sourceOpenError(String url) {
@@ -236,6 +236,37 @@ class AppLocalizationsZh extends AppLocalizations {
   String collectionArea(String area) {
     return '垃圾收集区域：$area';
   }
+
+  @override
+  String get setupAreaTitle => '设置示例地区';
+
+  @override
+  String get confirmAreaTitle => '使用这个地区吗？';
+
+  @override
+  String candidateArea(String area) {
+    return '将设置的地区：$area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return '当前设置：$area';
+  }
+
+  @override
+  String get confirmAreaAction => '保存这个地区';
+
+  @override
+  String get chooseAgain => '重新选择';
+
+  @override
+  String get savingArea => '正在保存…';
+
+  @override
+  String get setupRecovery => '无法读取地区设置。请重新选择。';
+
+  @override
+  String get cancel => '取消';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -281,7 +312,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
-  String get areaSaveError => '无法保存地区。下次请重新选择。';
+  String get areaSaveError => '无法保存。设置未更改。请重试。';
 
   @override
   String sourceOpenError(String url) {
@@ -469,6 +500,37 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String collectionArea(String area) {
     return '垃圾收集区域：$area';
   }
+
+  @override
+  String get setupAreaTitle => '设置示例地区';
+
+  @override
+  String get confirmAreaTitle => '使用这个地区吗？';
+
+  @override
+  String candidateArea(String area) {
+    return '将设置的地区：$area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return '当前设置：$area';
+  }
+
+  @override
+  String get confirmAreaAction => '保存这个地区';
+
+  @override
+  String get chooseAgain => '重新选择';
+
+  @override
+  String get savingArea => '正在保存…';
+
+  @override
+  String get setupRecovery => '无法读取地区设置。请重新选择。';
+
+  @override
+  String get cancel => '取消';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -514,7 +576,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get areaSaveError => '無法儲存地區。下次請重新選擇。';
+  String get areaSaveError => '無法儲存。設定未變更。請再試一次。';
 
   @override
   String sourceOpenError(String url) {
@@ -702,4 +764,35 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String collectionArea(String area) {
     return '垃圾收集地區：$area';
   }
+
+  @override
+  String get setupAreaTitle => '設定範例地區';
+
+  @override
+  String get confirmAreaTitle => '使用這個地區嗎？';
+
+  @override
+  String candidateArea(String area) {
+    return '將設定的地區：$area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return '目前設定：$area';
+  }
+
+  @override
+  String get confirmAreaAction => '儲存這個地區';
+
+  @override
+  String get chooseAgain => '重新選擇';
+
+  @override
+  String get savingArea => '正在儲存…';
+
+  @override
+  String get setupRecovery => '無法讀取地區設定。請重新選擇。';
+
+  @override
+  String get cancel => '取消';
 }

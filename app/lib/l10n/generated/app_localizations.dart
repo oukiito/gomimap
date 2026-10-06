@@ -189,7 +189,7 @@ abstract class AppLocalizations {
   /// No description provided for @areaSaveError.
   ///
   /// In ja, this message translates to:
-  /// **'地域を保存できませんでした。次回もう一度選んでください。'**
+  /// **'保存できませんでした。設定は変更されていません。もう一度試してください。'**
   String get areaSaveError;
 
   /// No description provided for @sourceOpenError.
@@ -539,6 +539,60 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'収集地区：{area}'**
   String collectionArea(String area);
+
+  /// No description provided for @setupAreaTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'サンプル地区を設定'**
+  String get setupAreaTitle;
+
+  /// No description provided for @confirmAreaTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'この地区でよいですか？'**
+  String get confirmAreaTitle;
+
+  /// No description provided for @candidateArea.
+  ///
+  /// In ja, this message translates to:
+  /// **'設定する地区：{area}'**
+  String candidateArea(String area);
+
+  /// No description provided for @currentArea.
+  ///
+  /// In ja, this message translates to:
+  /// **'現在の設定：{area}'**
+  String currentArea(String area);
+
+  /// No description provided for @confirmAreaAction.
+  ///
+  /// In ja, this message translates to:
+  /// **'この地区で設定'**
+  String get confirmAreaAction;
+
+  /// No description provided for @chooseAgain.
+  ///
+  /// In ja, this message translates to:
+  /// **'選び直す'**
+  String get chooseAgain;
+
+  /// No description provided for @savingArea.
+  ///
+  /// In ja, this message translates to:
+  /// **'保存しています…'**
+  String get savingArea;
+
+  /// No description provided for @setupRecovery.
+  ///
+  /// In ja, this message translates to:
+  /// **'地区の設定を読み込めませんでした。地区を選び直してください。'**
+  String get setupRecovery;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ja, this message translates to:
+  /// **'キャンセル'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

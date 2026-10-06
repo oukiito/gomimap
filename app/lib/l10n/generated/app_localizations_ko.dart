@@ -48,7 +48,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get areaSaveError => '지역을 저장하지 못했습니다. 다음에 다시 선택해 주세요.';
+  String get areaSaveError => '저장하지 못했습니다. 설정은 변경되지 않았습니다. 다시 시도해 주세요.';
 
   @override
   String sourceOpenError(String url) {
@@ -239,4 +239,35 @@ class AppLocalizationsKo extends AppLocalizations {
   String collectionArea(String area) {
     return '쓰레기 수거 지역: $area';
   }
+
+  @override
+  String get setupAreaTitle => '샘플 지역 설정';
+
+  @override
+  String get confirmAreaTitle => '이 지역을 사용할까요?';
+
+  @override
+  String candidateArea(String area) {
+    return '설정할 지역: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return '현재 설정: $area';
+  }
+
+  @override
+  String get confirmAreaAction => '이 지역 저장';
+
+  @override
+  String get chooseAgain => '다시 선택';
+
+  @override
+  String get savingArea => '저장 중…';
+
+  @override
+  String get setupRecovery => '지역 설정을 읽을 수 없습니다. 다시 선택해 주세요.';
+
+  @override
+  String get cancel => '취소';
 }

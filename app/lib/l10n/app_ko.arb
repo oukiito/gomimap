@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "지역을 저장하지 못했습니다. 다음에 다시 선택해 주세요.",
+  "areaSaveError": "저장하지 못했습니다. 설정은 변경되지 않았습니다. 다시 시도해 주세요.",
   "sourceOpenError": "공식 페이지를 열지 못했습니다.\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "대형 쓰레기 규정은 크기와 품목에 따라 다릅니다. 구청의 품목 안내와 신청 정보를 확인하세요.",
   "collectionArea": "쓰레기 수거 지역: {area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "샘플 지역 설정",
+  "confirmAreaTitle": "이 지역을 사용할까요?",
+  "candidateArea": "설정할 지역: {area}",
+  "currentArea": "현재 설정: {area}",
+  "confirmAreaAction": "이 지역 저장",
+  "chooseAgain": "다시 선택",
+  "savingArea": "저장 중…",
+  "setupRecovery": "지역 설정을 읽을 수 없습니다. 다시 선택해 주세요.",
+  "cancel": "취소",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

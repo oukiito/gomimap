@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "Không lưu được khu vực. Vui lòng chọn lại vào lần sau.",
+  "areaSaveError": "Không lưu được. Thiết lập chưa thay đổi. Vui lòng thử lại.",
   "sourceOpenError": "Không mở được trang chính thức.\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "Quy định về rác cồng kềnh tùy kích thước và loại đồ vật. Xem danh mục và thông tin đăng ký của quận.",
   "collectionArea": "Khu vực thu gom rác: {area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "Chọn khu vực mẫu",
+  "confirmAreaTitle": "Dùng khu vực này?",
+  "candidateArea": "Khu vực sẽ lưu: {area}",
+  "currentArea": "Thiết lập hiện tại: {area}",
+  "confirmAreaAction": "Lưu khu vực này",
+  "chooseAgain": "Chọn lại",
+  "savingArea": "Đang lưu…",
+  "setupRecovery": "Không đọc được thiết lập khu vực. Vui lòng chọn lại.",
+  "cancel": "Hủy",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

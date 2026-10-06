@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "无法保存地区。下次请重新选择。",
+  "areaSaveError": "无法保存。设置未更改。请重试。",
   "sourceOpenError": "无法打开官方网站。\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "大件垃圾的处理规定因尺寸和品目而异。请查看区政府的品目说明及预约信息。",
   "collectionArea": "垃圾收集区域：{area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "设置示例地区",
+  "confirmAreaTitle": "使用这个地区吗？",
+  "candidateArea": "将设置的地区：{area}",
+  "currentArea": "当前设置：{area}",
+  "confirmAreaAction": "保存这个地区",
+  "chooseAgain": "重新选择",
+  "savingArea": "正在保存…",
+  "setupRecovery": "无法读取地区设置。请重新选择。",
+  "cancel": "取消",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

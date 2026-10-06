@@ -50,7 +50,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get areaSaveError =>
-      'No se pudo guardar la zona. Vuelve a seleccionarla la próxima vez.';
+      'No se pudo guardar. La configuración no cambió. Inténtalo de nuevo.';
 
   @override
   String sourceOpenError(String url) {
@@ -258,4 +258,36 @@ class AppLocalizationsEs extends AppLocalizations {
   String collectionArea(String area) {
     return 'Zona de recogida: $area';
   }
+
+  @override
+  String get setupAreaTitle => 'Configurar una zona de ejemplo';
+
+  @override
+  String get confirmAreaTitle => '¿Usar esta zona?';
+
+  @override
+  String candidateArea(String area) {
+    return 'Zona que se guardará: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return 'Configuración actual: $area';
+  }
+
+  @override
+  String get confirmAreaAction => 'Guardar esta zona';
+
+  @override
+  String get chooseAgain => 'Elegir de nuevo';
+
+  @override
+  String get savingArea => 'Guardando…';
+
+  @override
+  String get setupRecovery =>
+      'No se pudo leer la zona configurada. Elígela de nuevo.';
+
+  @override
+  String get cancel => 'Cancelar';
 }

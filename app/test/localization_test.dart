@@ -10,6 +10,7 @@ import 'package:gomimap/l10n/languages.dart';
 import 'package:gomimap/l10n/generated/app_localizations.dart';
 import 'package:gomimap/l10n/presentation.dart';
 import 'package:gomimap/data/demo_data.dart';
+import 'package:gomimap/data/demo_setup_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<SharedPreferences> launch(
@@ -18,7 +19,11 @@ Future<SharedPreferences> launch(
   Locale device = const Locale('en', 'US'),
   double scale = 1,
 }) async {
-  SharedPreferences.setMockInitialValues({'app.language': ?saved});
+  SharedPreferences.setMockInitialValues({
+    'app.language': ?saved,
+    PreferencesDemoSetupStore.key: const DemoSetupSnapshot.saved(DemoArea.a)
+        .encode(),
+  });
   final preferences = await SharedPreferences.getInstance();
   tester.view.physicalSize = const Size(390, 844);
   tester.view.devicePixelRatio = 1;

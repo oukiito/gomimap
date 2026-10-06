@@ -19,7 +19,7 @@
       }
     }
   },
-  "areaSaveError": "क्षेत्र सुरक्षित गर्न सकिएन। अर्को पटक फेरि छान्नुहोस्।",
+  "areaSaveError": "सुरक्षित गर्न सकिएन। सेटिङ परिवर्तन भएको छैन। कृपया फेरि प्रयास गर्नुहोस्।",
   "sourceOpenError": "आधिकारिक पृष्ठ खोल्न सकिएन।\n{url}",
   "@sourceOpenError": {
     "placeholders": {
@@ -114,6 +114,29 @@
   "bulkyGuidance": "ठूला फोहोरका नियम आकार र वस्तुको प्रकारअनुसार फरक हुन्छन्। वडाको वस्तु सूची र बुकिङ जानकारी हेर्नुहोस्।",
   "collectionArea": "फोहोर सङ्कलन क्षेत्र: {area}",
   "@collectionArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "setupAreaTitle": "नमुना क्षेत्र छान्नुहोस्",
+  "confirmAreaTitle": "यो क्षेत्र प्रयोग गर्ने?",
+  "candidateArea": "सुरक्षित गरिने क्षेत्र: {area}",
+  "currentArea": "हालको सेटिङ: {area}",
+  "confirmAreaAction": "यो क्षेत्र सुरक्षित गर्नुहोस्",
+  "chooseAgain": "फेरि छान्नुहोस्",
+  "savingArea": "सुरक्षित गर्दै…",
+  "setupRecovery": "क्षेत्रको सेटिङ पढ्न सकिएन। कृपया फेरि छान्नुहोस्।",
+  "cancel": "रद्द गर्नुहोस्",
+  "@candidateArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "@currentArea": {
     "placeholders": {
       "area": {
         "type": "String"

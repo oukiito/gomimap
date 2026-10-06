@@ -51,7 +51,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get areaSaveError =>
-      'क्षेत्र सुरक्षित गर्न सकिएन। अर्को पटक फेरि छान्नुहोस्।';
+      'सुरक्षित गर्न सकिएन। सेटिङ परिवर्तन भएको छैन। कृपया फेरि प्रयास गर्नुहोस्।';
 
   @override
   String sourceOpenError(String url) {
@@ -256,4 +256,36 @@ class AppLocalizationsNe extends AppLocalizations {
   String collectionArea(String area) {
     return 'फोहोर सङ्कलन क्षेत्र: $area';
   }
+
+  @override
+  String get setupAreaTitle => 'नमुना क्षेत्र छान्नुहोस्';
+
+  @override
+  String get confirmAreaTitle => 'यो क्षेत्र प्रयोग गर्ने?';
+
+  @override
+  String candidateArea(String area) {
+    return 'सुरक्षित गरिने क्षेत्र: $area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return 'हालको सेटिङ: $area';
+  }
+
+  @override
+  String get confirmAreaAction => 'यो क्षेत्र सुरक्षित गर्नुहोस्';
+
+  @override
+  String get chooseAgain => 'फेरि छान्नुहोस्';
+
+  @override
+  String get savingArea => 'सुरक्षित गर्दै…';
+
+  @override
+  String get setupRecovery =>
+      'क्षेत्रको सेटिङ पढ्न सकिएन। कृपया फेरि छान्नुहोस्।';
+
+  @override
+  String get cancel => 'रद्द गर्नुहोस्';
 }

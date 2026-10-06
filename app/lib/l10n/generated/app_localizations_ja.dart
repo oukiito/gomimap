@@ -48,7 +48,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get areaSaveError => '地域を保存できませんでした。次回もう一度選んでください。';
+  String get areaSaveError => '保存できませんでした。設定は変更されていません。もう一度試してください。';
 
   @override
   String sourceOpenError(String url) {
@@ -236,4 +236,35 @@ class AppLocalizationsJa extends AppLocalizations {
   String collectionArea(String area) {
     return '収集地区：$area';
   }
+
+  @override
+  String get setupAreaTitle => 'サンプル地区を設定';
+
+  @override
+  String get confirmAreaTitle => 'この地区でよいですか？';
+
+  @override
+  String candidateArea(String area) {
+    return '設定する地区：$area';
+  }
+
+  @override
+  String currentArea(String area) {
+    return '現在の設定：$area';
+  }
+
+  @override
+  String get confirmAreaAction => 'この地区で設定';
+
+  @override
+  String get chooseAgain => '選び直す';
+
+  @override
+  String get savingArea => '保存しています…';
+
+  @override
+  String get setupRecovery => '地区の設定を読み込めませんでした。地区を選び直してください。';
+
+  @override
+  String get cancel => 'キャンセル';
 }

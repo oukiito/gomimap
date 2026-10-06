@@ -11,8 +11,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'data/demo_data.dart';
+import 'data/demo_setup_store.dart';
 import 'domain/schedule.dart';
 import 'ui/collection_map.dart';
+import 'ui/demo_area_setup.dart';
+import 'ui/language_button.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,20 +24,26 @@ Future<void> main() async {
 }
 
 class GomimapApp extends StatefulWidget {
-  const GomimapApp({super.key, required this.preferences});
+  const GomimapApp({super.key, required this.preferences, this.setupStore});
   final SharedPreferences preferences;
+  final DemoSetupStore? setupStore;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
 
 class _GomimapAppState extends State<GomimapApp> {
   Locale? locale;
+  late final DemoSetupStore setupStore;
+  late DemoSetupSnapshot setup;
 
   @override
   void initState() {
     super.initState();
     final saved = widget.preferences.getString('app.language');
     locale = savedLocale(saved);
+    setupStore =
+        widget.setupStore ?? PreferencesDemoSetupStore(widget.preferences);
+    setup = setupStore.read();
   }
 
   Future<bool> changeLanguage(String code) async {
@@ -74,20 +83,31 @@ class _GomimapAppState extends State<GomimapApp> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
       ),
     ),
-    home: HomeShell(
-      preferences: widget.preferences,
-      onLanguageChanged: changeLanguage,
-    ),
+    home: setup.phase == DemoSetupPhase.districtSaved
+        ? HomeShell(
+            area: setup.area!,
+            setupStore: setupStore,
+            onLanguageChanged: changeLanguage,
+          )
+        : DemoAreaSetup(
+            store: setupStore,
+            initial: setup,
+            onLanguageChanged: changeLanguage,
+            onSaved: (area) =>
+                setState(() => setup = DemoSetupSnapshot.saved(area)),
+          ),
   );
 }
 
 class HomeShell extends StatefulWidget {
   const HomeShell({
     super.key,
-    required this.preferences,
+    required this.area,
+    required this.setupStore,
     required this.onLanguageChanged,
   });
-  final SharedPreferences preferences;
+  final DemoArea area;
+  final DemoSetupStore setupStore;
   final Future<bool> Function(String) onLanguageChanged;
   @override
   State<HomeShell> createState() => _HomeShellState();
@@ -107,9 +127,7 @@ class _HomeShellState extends State<HomeShell> {
   @override
   void initState() {
     super.initState();
-    area = widget.preferences.getString('demo.area') == 'b'
-        ? DemoArea.b
-        : DemoArea.a;
+    area = widget.area;
   }
 
   @override
@@ -139,33 +157,15 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Future<void> changeArea() async {
-    final selected = await showModalBottomSheet<DemoArea>(
-      context: context,
-      showDragHandle: true,
-      builder: (context) => SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.chooseArea,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(l10n.fictionalAreas),
-              const SizedBox(height: 16),
-              for (final value in DemoArea.values)
-                ListTile(
-                  title: Text(l10n.areaName(value.name.toUpperCase())),
-                  trailing: value == area ? const Icon(Icons.check) : null,
-                  onTap: () => Navigator.pop(context, value),
-                ),
-            ],
-          ),
+    final selected = await Navigator.of(context).push<DemoArea>(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => DemoAreaSetup(
+          store: widget.setupStore,
+          initial: const DemoSetupSnapshot.choose(),
+          currentArea: area,
+          onLanguageChanged: widget.onLanguageChanged,
+          onSaved: (value) => Navigator.pop(context, value),
         ),
       ),
     );
@@ -173,17 +173,6 @@ class _HomeShellState extends State<HomeShell> {
       return;
     }
     setState(() => area = selected);
-    try {
-      if (await widget.preferences.setString('demo.area', selected.name)) {
-        return;
-      }
-    } catch (_) {
-      /* Display a recoverable persistence error below. */
-    }
-    if (mounted) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(l10n.areaSaveError)));
-    }
   }
 
   @override
@@ -199,29 +188,7 @@ class _HomeShellState extends State<HomeShell> {
           icon: const Icon(Icons.settings_outlined),
           tooltip: l10n.about,
         ),
-        PopupMenuButton<String>(
-          icon: const Icon(Icons.language),
-          tooltip: l10n.language,
-          initialValue: Localizations.localeOf(context).toLanguageTag(),
-          onSelected: (code) async {
-            final saved = await widget.onLanguageChanged(code);
-            if (!saved && context.mounted) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(l10n.languageSaveError)));
-            }
-          },
-          itemBuilder: (context) => [
-            for (final option in languageNames.entries)
-              CheckedPopupMenuItem<String>(
-                value: option.key,
-                checked:
-                    option.key ==
-                    Localizations.localeOf(context).toLanguageTag(),
-                child: Text(option.value),
-              ),
-          ],
-        ),
+        LanguageButton(onChanged: widget.onLanguageChanged),
       ],
     ),
     body: SafeArea(
