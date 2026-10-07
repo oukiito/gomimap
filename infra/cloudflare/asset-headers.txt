@@ -1,0 +1,10 @@
+/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Expose-Headers: ETag
+  X-Content-Type-Options: nosniff
+
+/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/datasets/*
+  Cache-Control: public, max-age=31536000, immutable

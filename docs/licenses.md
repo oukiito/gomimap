@@ -41,6 +41,8 @@ Material Iconsをコードと一緒にGPLへ再ライセンスしない。CC-BY-
 
 ## 今後の具体的な候補
 
+2026-10-08の開発用Cloudflare配信は、Python標準ライブラリと既存Dart検証処理を使う自作コード。Cloudflare SDK、Wrangler、npmパッケージやネイティブSDKを新たに追加していない。公開するfixture・配信スクリプト・Workerの自作部分はGPL-3.0-or-later。Cloudflareサービスの利用条件・料金はコードのライセンスとは別に[配信手順](cloudflare-data.md)へ記録する。
+
 以下は未導入。pub.devの該当バージョン配布アーカイブからLICENSEを取得して[候補の通知](../third_party/candidates/)へ保存した。表のライセンスは当該パッケージ自身のもの。候補の推移依存を現行アプリへ解決したわけではない。
 
 | 用途 | 第一候補／調査版 | ライセンス | 採用方針 |

@@ -13,5 +13,6 @@
 | 2026-10-06 | 初回の地区確認・保存復旧、AGENTSの共通ルール | [初回設定の記録](2026-10-06-first-run-area.md) | [#20](https://github.com/oukiito/gomimap/issues/20)、G05・G07 |
 | 2026-10-07 | 自治体JSON・日程／住所／受入判定、Cloudflareと端末の保存設計 | [データ基盤の記録](2026-10-07-municipal-data.md) | [G04／#4](https://github.com/oukiito/gomimap/issues/4)、G05〜G11 |
 | 2026-10-08 | AI模擬操作・締切表示・詳細の閉じる・品物へ戻る | [UI改善の記録](2026-10-08-persona-ui.md) | [#23](https://github.com/oukiito/gomimap/issues/23)、G05・G09・G12 |
+| 2026-10-08 | Cloudflareの専用認証・開発JSON初回配信コマンド | [開発データ配信の記録](2026-10-08-cloudflare-data.md) | [#26](https://github.com/oukiito/gomimap/issues/26)、G10・G11 |
 
 画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
