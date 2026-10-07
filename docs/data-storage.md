@@ -1,6 +1,6 @@
 # データの保存・Cloudflare配信・端末利用
 
-状態：2026-10-07。Cloudflareを配信元にする利用者の希望に基づく構成案。契約・バケット・ドメイン・配信ジョブは未設定。現在実装したのは版付きJSON、同梱fixture、読み込み・検証・メモリ内の切り替えで、HTTP更新・端末DB／更新ファイルの保存は未実装。
+状態：2026-10-08。Cloudflareを配信元にする利用者の希望に基づく構成案。利用者からアカウント保有・独自ドメイン未取得の申告を受けた。R2有効化・認証情報は未確認で、本プロジェクトのバケット作成・接続・公開・配信ジョブは未実施。現在実装したのは版付きJSON、同梱fixture、読み込み・検証・メモリ内の切り替えで、HTTP更新・端末DB／更新ファイルの保存は未実装。
 
 ## 保存先の役割
 
@@ -35,6 +35,8 @@ JSONはCloudflare CDNの標準キャッシュ対象ではないため、公開JS
 2026-10-07確認時点のR2 Standardの月間無料枠は、10 GB-monthの保存、Class A 100万回、Class B 1,000万回。インターネット向けの転送は無料。枠超過は保存と操作の従量課金で、無料枠はInfrequent Accessに適用されない。利用者数・実データ量・書き込み／読み込み回数・他サービスの料金で予算を確認する。[R2公式料金](https://developers.cloudflare.com/r2/pricing/)
 
 公開JSONだけを小規模に配信する場合、Workers Static Assetsも代替候補。静的アセットへの要求と保存は追加料金なしで、Workerコードの呼び出しは別の料金・制限になる。R2を必須のアプリ依存にせず、提供者を変えても同じHTTPS・JSON形式で取得できるようにする。[Static Assets公式料金](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
+
+独自ドメインがない開発段階では、Workersの`workers.dev`で公開JSONの配信を試す方針。R2＋独自ドメインの本番候補と区別し、[認証の準備手順](cloudflare-setup.md)で対象と権限を限定する。配信コード・認証確認・公開はまだ実施していない。[workers.dev公式資料](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
 
 データ量が未測定なので、月3,000円以内や完全無料を保証する判断はまだしていない。仮想マシンや常時起動のサーバー、D1等のDBを最初から必須にはしない。契約・料金が伴う設定は、具体的な構成と利用量を確認してから行う。
 
