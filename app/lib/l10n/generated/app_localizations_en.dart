@@ -289,4 +289,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String collectionDeadline(String time) {
+    return 'Put out by $time';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item: put out by $time';
+  }
+
+  @override
+  String get chooseCollectionItem =>
+      'Choose the type of item you want to drop off.';
+
+  @override
+  String backToItem(String item) {
+    return 'Back to $item instructions';
+  }
+
+  @override
+  String get close => 'Close';
 }

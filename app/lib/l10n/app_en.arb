@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "Put out by {time}",
+  "itemDeadline": "{item}: put out by {time}",
+  "chooseCollectionItem": "Choose the type of item you want to drop off.",
+  "backToItem": "Back to {item} instructions",
+  "close": "Close",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

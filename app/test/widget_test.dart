@@ -50,6 +50,218 @@ Future<void> tab(WidgetTester tester, String label) async {
 }
 
 void main() {
+  testWidgets('today shows the JSON deadline directly', (tester) async {
+    await start(tester);
+    final today = find.byKey(const ValueKey('today-schedule'));
+    expect(
+      find.descendant(of: today, matching: find.text('出す時間：08:00まで')),
+      findsOneWidget,
+    );
+  });
+  testWidgets(
+    'different category deadlines remain distinct and common deadlines are shown once',
+    (tester) async {
+      final data = fixtureDataset((json) {
+        json['baselines'][1]['recurrences'][0]['weekdays'] = [1];
+        json['baselines'][1]['recurrences'][0]['deadline'] = '09:30';
+      });
+      await start(tester, dataset: data);
+      expect(find.text('燃やすごみ：08:00まで'), findsOneWidget);
+      expect(find.text('資源：09:30まで'), findsOneWidget);
+      final common = fixtureDataset((json) {
+        json['baselines'][1]['recurrences'][0]['weekdays'] = [1];
+      });
+      final prefs = await SharedPreferences.getInstance();
+      await tester.pumpWidget(GomimapApp(preferences: prefs, dataset: common));
+      await tester.pumpAndSettle();
+      expect(find.text('出す時間：08:00まで'), findsOneWidget);
+      expect(find.text('燃やすごみ：08:00まで'), findsNothing);
+    },
+  );
+  testWidgets(
+    'direct locations require an explicit item and retain it across tabs',
+    (tester) async {
+      await start(tester);
+      await tab(tester, '資源回収場所');
+      expect(find.text('持ち込む品物の種類を選んでください。'), findsOneWidget);
+      expect(
+        tester
+            .widgetList<ChoiceChip>(find.byType(ChoiceChip))
+            .every((chip) => !chip.selected),
+        isTrue,
+      );
+      expect(find.byType(CollectionMap), findsNothing);
+      expect(find.byKey(const ValueKey('return-to-item')), findsNothing);
+      await tester.tap(find.widgetWithText(ChoiceChip, '乾電池'));
+      await tester.pumpAndSettle();
+      expect(find.byType(CollectionMap), findsOneWidget);
+      await tab(tester, '今日');
+      await tab(tester, '資源回収場所');
+      expect(
+        tester
+            .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, '乾電池'))
+            .selected,
+        isTrue,
+      );
+      expect(find.byKey(const ValueKey('return-to-item')), findsNothing);
+    },
+  );
+  testWidgets('item, point and settings have a visible close operation', (
+    tester,
+  ) async {
+    await start(tester);
+    await tab(tester, '分別を調べる');
+    await tester.enterText(find.byType(TextField), 'ペット');
+    await tester.tap(find.text('ペットボトル'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('sheet-close')));
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsNothing);
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      'ペット',
+    );
+    await tab(tester, '資源回収場所');
+    await tester.tap(find.widgetWithText(ChoiceChip, '乾電池'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('サンプル回収拠点A'), 150);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('サンプル回収拠点A'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('sheet-close')));
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsNothing);
+    await tester.tap(find.byTooltip('この試作について'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('sheet-close')));
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsNothing);
+  });
+  testWidgets(
+    'map returns to the original item and restores its answer after another filter',
+    (tester) async {
+      await start(tester);
+      await tab(tester, '分別を調べる');
+      await tester.enterText(find.byType(TextField), '充電池');
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.widgetWithText(ListTile, '充電池'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(ListTile, '充電池'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('専用の回収場所を探す'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(ChoiceChip, 'ある・わからない'));
+      await tester.pumpAndSettle();
+      expect(find.text('回収場所の一覧（サンプル 0件）'), findsNothing);
+      await tester.tap(find.widgetWithText(ChoiceChip, '蛍光灯'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('return-to-item')));
+      await tester.pumpAndSettle();
+      expect(
+        find.descendant(
+          of: find.byType(BottomSheet),
+          matching: find.text('充電池'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        '充電池',
+      );
+      await tester.tap(find.text('専用の回収場所を探す'));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, '充電池'))
+            .selected,
+        isTrue,
+      );
+      expect(
+        tester
+            .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, 'ある・わからない'))
+            .selected,
+        isTrue,
+      );
+      expect(find.byType(CollectionMap), findsNothing);
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      expect(
+        find.descendant(
+          of: find.byType(BottomSheet),
+          matching: find.text('充電池'),
+        ),
+        findsOneWidget,
+      );
+      await tester.tap(find.byKey(const ValueKey('sheet-close')));
+      await tester.pumpAndSettle();
+      await tab(tester, '資源回収場所');
+      expect(find.byKey(const ValueKey('return-to-item')), findsNothing);
+    },
+  );
+  testWidgets('new controls remain usable at double text size', (tester) async {
+    await start(tester, scale: 2);
+    await tab(tester, '分別を調べる');
+    await tester.scrollUntilVisible(
+      find.byType(TextField),
+      150,
+      scrollable: find
+          .descendant(
+            of: find.byType(ListView),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '蛍光灯');
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.widgetWithText(ListTile, '蛍光灯'),
+      150,
+      scrollable: find
+          .descendant(
+            of: find.byType(ListView),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ListTile, '蛍光灯'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('専用の回収場所を探す'),
+      150,
+      scrollable: find
+          .descendant(
+            of: find.byType(BottomSheet),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('専用の回収場所を探す'));
+    await tester.pumpAndSettle();
+    final back = find.byKey(const ValueKey('return-to-item'));
+    await tester.scrollUntilVisible(back, -150);
+    await tester.pumpAndSettle();
+    await tester.tap(back);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    final close = find.byKey(const ValueKey('sheet-close'));
+    await tester.scrollUntilVisible(
+      close,
+      -150,
+      scrollable: find
+          .descendant(
+            of: find.byType(BottomSheet),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(close);
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsNothing);
+  });
   testWidgets(
     'category without a verified common translation preserves its source name',
     (tester) async {

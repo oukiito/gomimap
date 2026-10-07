@@ -290,4 +290,26 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get cancel => 'Kanselahin';
+
+  @override
+  String collectionDeadline(String time) {
+    return 'Ilabas bago mag-$time';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item: ilabas bago mag-$time';
+  }
+
+  @override
+  String get chooseCollectionItem =>
+      'Piliin ang uri ng bagay na dadalhin sa lugar ng koleksyon.';
+
+  @override
+  String backToItem(String item) {
+    return 'Bumalik sa mga tagubilin para sa $item';
+  }
+
+  @override
+  String get close => 'Isara';
 }

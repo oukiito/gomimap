@@ -18,6 +18,8 @@ import 'domain/schedule.dart';
 import 'ui/collection_map.dart';
 import 'ui/demo_area_setup.dart';
 import 'ui/language_button.dart';
+import 'ui/schedule_deadlines.dart';
+import 'ui/sheet_close_button.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -132,7 +134,8 @@ class _HomeShellState extends State<HomeShell> {
       DateFormat.MEd(l10n.localeName).format(date);
   int tab = 0;
   late DemoArea area;
-  SpecialItem special = SpecialItem.dryBattery;
+  SpecialItem? special;
+  ({SortingItem item, bool? damaged})? mapOrigin;
   String query = '';
   bool? damaged;
   final searchController = TextEditingController();
@@ -190,91 +193,103 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: Text(
-        l10n.appTitle,
-        style: const TextStyle(fontWeight: FontWeight.w800),
-      ),
-      actions: [
-        IconButton(
-          onPressed: showSettings,
-          icon: const Icon(Icons.settings_outlined),
-          tooltip: l10n.about,
+  Widget build(BuildContext context) => PopScope(
+    canPop: tab != 2 || mapOrigin == null,
+    onPopInvokedWithResult: (didPop, result) {
+      if (!didPop && tab == 2 && mapOrigin != null) returnToItem();
+    },
+    child: Scaffold(
+      appBar: AppBar(
+        title: Text(
+          l10n.appTitle,
+          style: const TextStyle(fontWeight: FontWeight.w800),
         ),
-        LanguageButton(onChanged: widget.onLanguageChanged),
-      ],
-    ),
-    body: SafeArea(
-      child: Column(
-        children: [
-          Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 660),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: areaContext(canChange: true),
-              ),
-            ),
+        actions: [
+          IconButton(
+            onPressed: showSettings,
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: l10n.about,
           ),
-          Expanded(
-            child: Center(
+          LanguageButton(onChanged: widget.onLanguageChanged),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 660),
-                child: ListView(
-                  key: ValueKey(tab),
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFEEC9),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        l10n.sampleBanner,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          color: Color(0xFF654B16),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    ...switch (tab) {
-                      0 => todayPage(),
-                      1 => searchPage(),
-                      _ => placesPage(),
-                    },
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: areaContext(canChange: true),
                 ),
               ),
             ),
+            Expanded(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 660),
+                  child: ListView(
+                    key: PageStorageKey((
+                      tab,
+                      tab == 2 ? mapOrigin?.item.kind : null,
+                    )),
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFEEC9),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          l10n.sampleBanner,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF654B16),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      ...switch (tab) {
+                        0 => todayPage(),
+                        1 => searchPage(),
+                        _ => placesPage(),
+                      },
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: tab,
+        onDestinationSelected: (value) => setState(() {
+          tab = value;
+          if (value != 2) mapOrigin = null;
+        }),
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.wb_sunny_outlined),
+            selectedIcon: const Icon(Icons.wb_sunny),
+            label: l10n.today,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.search),
+            label: l10n.searchTab,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.map_outlined),
+            selectedIcon: const Icon(Icons.map),
+            label: l10n.placesTab,
           ),
         ],
       ),
-    ),
-    bottomNavigationBar: NavigationBar(
-      selectedIndex: tab,
-      onDestinationSelected: (value) => setState(() => tab = value),
-      destinations: [
-        NavigationDestination(
-          icon: const Icon(Icons.wb_sunny_outlined),
-          selectedIcon: const Icon(Icons.wb_sunny),
-          label: l10n.today,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.search),
-          label: l10n.searchTab,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.map_outlined),
-          selectedIcon: const Icon(Icons.map),
-          label: l10n.placesTab,
-        ),
-      ],
     ),
   );
 
@@ -414,6 +429,8 @@ class _HomeShellState extends State<HomeShell> {
           ),
           if (schedule.status == ScheduleStatus.collection) ...[
             const SizedBox(height: 10),
+            ScheduleDeadlines(schedule: schedule),
+            const SizedBox(height: 8),
             Text(l10n.checkTime, style: const TextStyle(fontSize: 14)),
           ],
           if (schedule.status == ScheduleStatus.needsConfirmation)
@@ -491,8 +508,27 @@ class _HomeShellState extends State<HomeShell> {
     ];
   }
 
-  void showItem(SortingItem item) {
-    showModalBottomSheet<void>(
+  void returnToItem() {
+    final origin = mapOrigin;
+    if (tab != 2 || origin == null) return;
+    setState(() {
+      tab = 1;
+      special = origin.item.special;
+      damaged = origin.damaged;
+    });
+    showItem(origin.item);
+  }
+
+  void answerDamage(bool value) => setState(() {
+    damaged = value;
+    final origin = mapOrigin;
+    if (origin != null && origin.item.special == special) {
+      mapOrigin = (item: origin.item, damaged: value);
+    }
+  });
+
+  Future<void> showItem(SortingItem item) async {
+    await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
       isScrollControlled: true,
@@ -503,6 +539,7 @@ class _HomeShellState extends State<HomeShell> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SheetCloseButton(onPressed: () => Navigator.pop(sheet)),
               areaContext(),
               heading(item.localizedName(l10n), l10n.sampleSorting),
               Text(
@@ -515,8 +552,13 @@ class _HomeShellState extends State<HomeShell> {
                   onPressed: () {
                     Navigator.pop(sheet);
                     setState(() {
+                      final previous = mapOrigin;
+                      final answer = previous?.item.kind == item.kind
+                          ? previous?.damaged
+                          : null;
+                      mapOrigin = (item: item, damaged: answer);
                       special = item.special!;
-                      damaged = null;
+                      damaged = answer;
                       tab = 2;
                     });
                   },
@@ -533,15 +575,26 @@ class _HomeShellState extends State<HomeShell> {
         ),
       ),
     );
+    if (mounted && tab != 2) setState(() => mapOrigin = null);
   }
 
   List<Widget> placesPage() {
+    final selected = special;
     final batteryQuestion = special == SpecialItem.rechargeable;
-    final canShowPoints = !batteryQuestion || damaged == false;
+    final canShowPoints =
+        selected != null && (!batteryQuestion || damaged == false);
     final points = canShowPoints
         ? demoPoints.where((point) => point.accepts.contains(special)).toList()
         : <CollectionPoint>[];
     return [
+      if (mapOrigin != null)
+        TextButton.icon(
+          key: const ValueKey('return-to-item'),
+          style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
+          onPressed: returnToItem,
+          icon: const Icon(Icons.arrow_back),
+          label: Text(l10n.backToItem(mapOrigin!.item.localizedName(l10n))),
+        ),
       heading(l10n.placesTab, l10n.placesSubtitle),
       Wrap(
         spacing: 8,
@@ -560,7 +613,10 @@ class _HomeShellState extends State<HomeShell> {
             .toList(),
       ),
       const SizedBox(height: 16),
-      Text(special.localizedHint(l10n), style: const TextStyle(height: 1.6)),
+      if (selected == null)
+        Text(l10n.chooseCollectionItem, style: const TextStyle(height: 1.6))
+      else
+        Text(selected.localizedHint(l10n), style: const TextStyle(height: 1.6)),
       if (batteryQuestion) ...[
         const SizedBox(height: 12),
         Text(
@@ -573,12 +629,12 @@ class _HomeShellState extends State<HomeShell> {
             ChoiceChip(
               label: Text(l10n.noDamage),
               selected: damaged == false,
-              onSelected: (_) => setState(() => damaged = false),
+              onSelected: (_) => answerDamage(false),
             ),
             ChoiceChip(
               label: Text(l10n.damagedOrUnknown),
               selected: damaged == true,
-              onSelected: (_) => setState(() => damaged = true),
+              onSelected: (_) => answerDamage(true),
             ),
           ],
         ),
@@ -590,14 +646,16 @@ class _HomeShellState extends State<HomeShell> {
         TextButton(onPressed: official, child: Text(l10n.officialBattery)),
       ],
       const SizedBox(height: 20),
-      if (canShowPoints) CollectionMap(points: points, onSelected: showPoint),
-      const SizedBox(height: 20),
-      Text(
-        l10n.placesCount(points.length),
-        style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-      ),
-      const SizedBox(height: 6),
-      Text(l10n.fictionalPoints),
+      if (canShowPoints) ...[
+        CollectionMap(points: points, onSelected: showPoint),
+        const SizedBox(height: 20),
+        Text(
+          l10n.placesCount(points.length),
+          style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 6),
+        Text(l10n.fictionalPoints),
+      ],
       if (canShowPoints && points.isEmpty) ...[
         const SizedBox(height: 16),
         Text(l10n.noPoints),
@@ -621,13 +679,15 @@ class _HomeShellState extends State<HomeShell> {
   void showPoint(CollectionPoint point) => showModalBottomSheet<void>(
     context: context,
     showDragHandle: true,
-    builder: (context) => SafeArea(
+    isScrollControlled: true,
+    builder: (sheet) => SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SheetCloseButton(onPressed: () => Navigator.pop(sheet)),
             areaContext(),
             heading(
               l10n.samplePoint(point.id.toUpperCase()),
@@ -652,13 +712,15 @@ class _HomeShellState extends State<HomeShell> {
   void showSettings() => showModalBottomSheet<void>(
     context: context,
     showDragHandle: true,
-    builder: (context) => SafeArea(
+    isScrollControlled: true,
+    builder: (sheet) => SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SheetCloseButton(onPressed: () => Navigator.pop(sheet)),
             areaContext(),
             OutlinedButton.icon(
               onPressed: () {

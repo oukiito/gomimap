@@ -267,6 +267,27 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get cancel => '取消';
+
+  @override
+  String collectionDeadline(String time) {
+    return '请在$time前投放';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item：请在$time前投放';
+  }
+
+  @override
+  String get chooseCollectionItem => '请选择要送去回收的物品类型。';
+
+  @override
+  String backToItem(String item) {
+    return '返回$item的说明';
+  }
+
+  @override
+  String get close => '关闭';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -531,6 +552,27 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get cancel => '取消';
+
+  @override
+  String collectionDeadline(String time) {
+    return '请在$time前投放';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item：请在$time前投放';
+  }
+
+  @override
+  String get chooseCollectionItem => '请选择要送去回收的物品类型。';
+
+  @override
+  String backToItem(String item) {
+    return '返回$item的说明';
+  }
+
+  @override
+  String get close => '关闭';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -795,4 +837,25 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get cancel => '取消';
+
+  @override
+  String collectionDeadline(String time) {
+    return '請在$time前投放';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item：請在$time前投放';
+  }
+
+  @override
+  String get chooseCollectionItem => '請選擇要送去回收的物品類型。';
+
+  @override
+  String backToItem(String item) {
+    return '返回$item的說明';
+  }
+
+  @override
+  String get close => '關閉';
 }

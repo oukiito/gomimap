@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "出す時間：{time}まで",
+  "itemDeadline": "{item}：{time}まで",
+  "chooseCollectionItem": "持ち込む品物の種類を選んでください。",
+  "backToItem": "「{item}」の説明に戻る",
+  "close": "閉じる",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "请在{time}前投放",
+  "itemDeadline": "{item}：请在{time}前投放",
+  "chooseCollectionItem": "请选择要送去回收的物品类型。",
+  "backToItem": "返回{item}的说明",
+  "close": "关闭",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

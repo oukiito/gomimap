@@ -288,4 +288,26 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get cancel => 'रद्द गर्नुहोस्';
+
+  @override
+  String collectionDeadline(String time) {
+    return '$time सम्म बाहिर राख्नुहोस्';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item: $time सम्म बाहिर राख्नुहोस्';
+  }
+
+  @override
+  String get chooseCollectionItem =>
+      'संकलन स्थलमा लैजान चाहेको वस्तुको प्रकार छान्नुहोस्।';
+
+  @override
+  String backToItem(String item) {
+    return '$item को निर्देशनमा फर्कनुहोस्';
+  }
+
+  @override
+  String get close => 'बन्द गर्नुहोस्';
 }

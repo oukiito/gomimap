@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "{time}까지 배출",
+  "itemDeadline": "{item}: {time}까지 배출",
+  "chooseCollectionItem": "가져갈 물품의 종류를 선택해 주세요.",
+  "backToItem": "{item} 안내로 돌아가기",
+  "close": "닫기",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

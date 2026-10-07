@@ -290,4 +290,26 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String collectionDeadline(String time) {
+    return 'Sacar la basura antes de las $time';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item: sacar antes de las $time';
+  }
+
+  @override
+  String get chooseCollectionItem =>
+      'Elige el tipo de objeto que quieres llevar al punto de recogida.';
+
+  @override
+  String backToItem(String item) {
+    return 'Volver a las instrucciones de $item';
+  }
+
+  @override
+  String get close => 'Cerrar';
 }

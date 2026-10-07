@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "Sacar la basura antes de las {time}",
+  "itemDeadline": "{item}: sacar antes de las {time}",
+  "chooseCollectionItem": "Elige el tipo de objeto que quieres llevar al punto de recogida.",
+  "backToItem": "Volver a las instrucciones de {item}",
+  "close": "Cerrar",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "Colocar o lixo até às {time}",
+  "itemDeadline": "{item}: colocar até às {time}",
+  "chooseCollectionItem": "Escolha o tipo de objeto que quer entregar.",
+  "backToItem": "Voltar às instruções de {item}",
+  "close": "Fechar",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }
