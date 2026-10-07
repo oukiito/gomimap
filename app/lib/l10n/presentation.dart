@@ -4,21 +4,22 @@ import '../data/demo_data.dart';
 import '../domain/schedule.dart';
 import 'generated/app_localizations.dart';
 
+extension CollectionPresentation on ScheduledCollection {
+  String localizedName(AppLocalizations l10n) => switch (category.displayKey) {
+    'burnable' => l10n.burnable,
+    'recyclables' => l10n.recyclables,
+    'metals' => l10n.metals,
+    _ => category.name,
+  };
+}
+
 extension SchedulePresentation on DaySchedule {
   String localizedDescription(AppLocalizations l10n) => switch (status) {
     ScheduleStatus.none => l10n.noCollection,
     ScheduleStatus.needsConfirmation => l10n.uncertain,
     ScheduleStatus.collection =>
       collections
-          .map(
-            (entry) => switch (entry.category.displayKey) {
-              'burnable' => l10n.burnable,
-              'recyclables' => l10n.recyclables,
-              'metals' => l10n.metals,
-              // Preserve source names when no verified translation is available.
-              _ => entry.category.name,
-            },
-          )
+          .map((entry) => entry.localizedName(l10n))
           .join(l10n.localeName == 'ja' ? '・' : ', '),
   };
 }

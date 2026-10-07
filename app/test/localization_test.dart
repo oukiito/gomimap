@@ -173,8 +173,77 @@ void main() {
         expect(find.widgetWithText(ListTile, l10n.pet), findsOneWidget);
         expect(tester.takeException(), isNull);
         await selectTab(tester, l10n.placesTab);
+        await tester.scrollUntilVisible(
+          find.widgetWithText(ChoiceChip, l10n.dryBattery),
+          150,
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(find.widgetWithText(ChoiceChip, l10n.dryBattery));
+        await tester.pumpAndSettle();
         await tester.scrollUntilVisible(find.text(l10n.mapTitle), 200);
         expect(find.text(l10n.mapTitle), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await selectTab(tester, l10n.searchTab);
+        await tester.scrollUntilVisible(
+          find.byType(TextField),
+          150,
+          scrollable: find
+              .descendant(
+                of: find.byType(ListView),
+                matching: find.byType(Scrollable),
+              )
+              .first,
+        );
+        await tester.pumpAndSettle();
+        await tester.enterText(find.byType(TextField), l10n.lamp);
+        await tester.pumpAndSettle();
+        await tester.ensureVisible(find.widgetWithText(ListTile, l10n.lamp));
+        await tester.pumpAndSettle();
+        await tester.tap(find.widgetWithText(ListTile, l10n.lamp));
+        await tester.pumpAndSettle();
+        final locations = find.text(l10n.findPlaces);
+        await tester.scrollUntilVisible(
+          locations,
+          150,
+          scrollable: find
+              .descendant(
+                of: find.byType(BottomSheet),
+                matching: find.byType(Scrollable),
+              )
+              .first,
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(locations);
+        await tester.pumpAndSettle();
+        final back = find.byKey(const ValueKey('return-to-item'));
+        await tester.scrollUntilVisible(
+          back,
+          -150,
+          scrollable: find
+              .descendant(
+                of: find.byType(ListView),
+                matching: find.byType(Scrollable),
+              )
+              .first,
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(back);
+        await tester.pumpAndSettle();
+        final close = find.byKey(const ValueKey('sheet-close'));
+        await tester.scrollUntilVisible(
+          close,
+          -150,
+          scrollable: find
+              .descendant(
+                of: find.byType(BottomSheet),
+                matching: find.byType(Scrollable),
+              )
+              .first,
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(close);
+        await tester.pumpAndSettle();
+        expect(find.byType(BottomSheet), findsNothing);
         expect(tester.takeException(), isNull);
       },
     );
@@ -312,6 +381,7 @@ void main() {
         find.textContaining('Do not use a regular collection box.'),
         findsOneWidget,
       );
+      expect(find.text('Sample locations (0)'), findsNothing);
     },
   );
 

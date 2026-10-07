@@ -287,4 +287,26 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get cancel => 'Hủy';
+
+  @override
+  String collectionDeadline(String time) {
+    return 'Mang rác ra trước $time';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item: mang ra trước $time';
+  }
+
+  @override
+  String get chooseCollectionItem =>
+      'Chọn loại đồ bạn muốn mang đến điểm thu gom.';
+
+  @override
+  String backToItem(String item) {
+    return 'Quay lại hướng dẫn cho $item';
+  }
+
+  @override
+  String get close => 'Đóng';
 }

@@ -270,4 +270,25 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get cancel => '취소';
+
+  @override
+  String collectionDeadline(String time) {
+    return '$time까지 배출';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item: $time까지 배출';
+  }
+
+  @override
+  String get chooseCollectionItem => '가져갈 물품의 종류를 선택해 주세요.';
+
+  @override
+  String backToItem(String item) {
+    return '$item 안내로 돌아가기';
+  }
+
+  @override
+  String get close => '닫기';
 }

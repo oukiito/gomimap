@@ -593,6 +593,36 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'キャンセル'**
   String get cancel;
+
+  /// No description provided for @collectionDeadline.
+  ///
+  /// In ja, this message translates to:
+  /// **'出す時間：{time}まで'**
+  String collectionDeadline(String time);
+
+  /// No description provided for @itemDeadline.
+  ///
+  /// In ja, this message translates to:
+  /// **'{item}：{time}まで'**
+  String itemDeadline(String item, String time);
+
+  /// No description provided for @chooseCollectionItem.
+  ///
+  /// In ja, this message translates to:
+  /// **'持ち込む品物の種類を選んでください。'**
+  String get chooseCollectionItem;
+
+  /// No description provided for @backToItem.
+  ///
+  /// In ja, this message translates to:
+  /// **'「{item}」の説明に戻る'**
+  String backToItem(String item);
+
+  /// No description provided for @close.
+  ///
+  /// In ja, this message translates to:
+  /// **'閉じる'**
+  String get close;
 }
 
 class _AppLocalizationsDelegate

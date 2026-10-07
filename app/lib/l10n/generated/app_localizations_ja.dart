@@ -267,4 +267,25 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get cancel => 'キャンセル';
+
+  @override
+  String collectionDeadline(String time) {
+    return '出す時間：$timeまで';
+  }
+
+  @override
+  String itemDeadline(String item, String time) {
+    return '$item：$timeまで';
+  }
+
+  @override
+  String get chooseCollectionItem => '持ち込む品物の種類を選んでください。';
+
+  @override
+  String backToItem(String item) {
+    return '「$item」の説明に戻る';
+  }
+
+  @override
+  String get close => '閉じる';
 }

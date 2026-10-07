@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "Ilabas bago mag-{time}",
+  "itemDeadline": "{item}: ilabas bago mag-{time}",
+  "chooseCollectionItem": "Piliin ang uri ng bagay na dadalhin sa lugar ng koleksyon.",
+  "backToItem": "Bumalik sa mga tagubilin para sa {item}",
+  "close": "Isara",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -142,5 +142,34 @@
         "type": "String"
       }
     }
+  },
+  "collectionDeadline": "Mang rác ra trước {time}",
+  "itemDeadline": "{item}: mang ra trước {time}",
+  "chooseCollectionItem": "Chọn loại đồ bạn muốn mang đến điểm thu gom.",
+  "backToItem": "Quay lại hướng dẫn cho {item}",
+  "close": "Đóng",
+  "@collectionDeadline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@itemDeadline": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@backToItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }
