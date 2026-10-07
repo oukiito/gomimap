@@ -1,19 +1,19 @@
 # Cloudflare配信の認証準備
 
-状態：2026-10-08。アカウントは保有、独自ドメインは未取得。ここはメンテナー向けの準備手順で、配信コード・デプロイコマンド・CIはまだ実装していない。ファイルを保存するだけでは認証・配信は始まらない。[保存設計](data-storage.md)と[運用設計](operations.md)を参照。
+状態：2026-10-08。アカウントは保有、独自ドメインは未取得。[開発用fixtureの初回配信コマンド](cloudflare-data.md)を実装し、ローカル生成・認証は確認済み。公開デプロイ・自動配信CIはまだ実施していない。ファイルを保存するだけでは配信は始まらない。[保存設計](data-storage.md)と[運用設計](operations.md)を参照。
 
 ## 開発用の配信先
 
 開発用JSONにはWorkers Static Assetsと`workers.dev`を候補とする。自作の架空JSONで動作を確かめ、再配布が未承認の自治体データや非公開原文は公開しない。独自ドメイン取得は開発開始の前提ではない。Cloudflareは本番用には独自ドメイン等を推奨している。[workers.devの公式説明](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
 
-推奨Worker名は`gomimap-data-dev`。これは予定名で、作成済みではない。Flutter Webの試作画面を公開するWorkerとは用途を分ける。
+対象Worker名は`gomimap-data-dev`。現在は未作成。Flutter Webの試作画面を公開するWorkerとは用途を分ける。
 
 ## APIトークンを作る場所と権限
 
 1. Cloudflareダッシュボードで対象アカウントを選ぶ。
-2. 対象Workerを先に作成する場合は、**Workers & Pages → Create application**から最小のWorkerを作り、名前を`gomimap-data-dev`にする。これはCloudflare上での作成操作。ごみまっぷの配信コードは後続で置き換える。画面がGit連携のみを求める場合は無理にリポジトリを接続せず、後続の初回デプロイで作成する。[ダッシュボードの公式手順](https://developers.cloudflare.com/workers/get-started/dashboard/)
+2. 現在の初回CLIは**既存Workerを拒否するため、ダッシュボードで先にWorkerを作成しない**。まだ存在しない`gomimap-data-dev`を初回CLIで作る。既に作成済みの場合は無理に削除・上書きせず、既存Worker更新の実装を待つ。
 3. **Manage Account → API Tokens → Create Token**からアカウント所有のカスタムトークンを作る。名前は`gomimap-data-dev-deploy`など用途が分かるものにする。[トークン作成の公式手順](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
-4. 作成済みの`gomimap-data-dev`だけを対象にWorkers **Editor**を付ける。Editorは既存Workerの更新・デプロイに使え、新規作成・削除はできない。対象アカウントとWorkerを確認する。[Workersの権限と対象範囲](https://developers.cloudflare.com/workers/authorization/workers/)
+4. 初回作成には以下の短期**Admin**設定を使う。作成後の交換用トークンには`gomimap-data-dev`だけを対象にWorkers **Editor**を付ける。Editorは既存Workerの更新・デプロイに使え、新規作成・削除はできない。現在のCLIには既存Worker更新は未実装なので、交換後も初回コマンドを再実行して更新することはできない。[Workersの権限と対象範囲](https://developers.cloudflare.com/workers/authorization/workers/)
 5. ダッシュボードで`Copy account ID`を検索するか、Workers & PagesのAccount DetailsからAccount IDをコピーする。[Account IDの公式手順](https://developers.cloudflare.com/fundamentals/account/find-account-and-zone-ids/)
 
 まだWorkerが存在しない場合、個別Worker対象のトークンは作れない。CLIで初回作成するにはWorkers製品全体の**Admin**が必要で、対象アカウントの他のWorkersも管理できる。配信コード・対象・検証方法を用意してから使い、作成後は対象Worker限定のEditorへ交換し、初回用は失効させる。初回作成をしていないのにEditorで作成できるとは扱わない。最初から全アカウント・全製品への権限やGlobal API Keyを渡す必要はない。
@@ -44,7 +44,7 @@ CLOUDFLARE_API_TOKEN=ここをAPIトークンに置き換える
 CLOUDFLARE_WORKER_NAME=gomimap-data-dev
 ```
 
-認証準備の連絡には秘密を含めず、保存先と完了状態だけを示す。確認時も値を画面・ログへ出さず、対象と認証結果だけを記録する。後続のデプロイ処理はこのファイルを明示的に読む設計とし、別プロジェクトの環境変数や共有ログインで対象を上書きしない。まだ読み込み処理は未実装なので、この文書では`source`や未実装のデプロイコマンドを案内しない。
+認証準備の連絡には秘密を含めず、保存先と完了状態だけを示す。確認時も値を画面・ログへ出さず、対象と認証結果だけを記録する。初回配信処理はこのファイルを明示的に読み、別プロジェクトの環境変数や共有ログインを使わない。`source`で実行する必要はない。[実行手順](cloudflare-data.md)で生成・認証・デプロイ・公開確認を分ける。
 
 ## GitHub Actionsへ移す場合
 

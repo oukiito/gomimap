@@ -18,6 +18,8 @@ jobs:
         working-directory: app
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0 # Manifest provenance needs the actual last dataset commit.
       - name: Validate source registry and permission gate
         working-directory: .
         run: |
@@ -34,6 +36,7 @@ jobs:
         run: |
           python3 ../scripts/prepare_demo_data.py
           dart run tool/validate_dataset.dart --allow-fixtures ../data/datasets/fixtures/toshima-demo-v1.json
+          python3 ../scripts/cloudflare_data.py prepare
       - run: dart format --output=none --set-exit-if-changed lib test tool
       - run: flutter analyze
       - run: flutter test
