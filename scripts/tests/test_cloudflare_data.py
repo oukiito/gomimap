@@ -25,7 +25,10 @@ class CloudflareDataTests(unittest.TestCase):
             "CLOUDFLARE_WORKER_NAME=gomimap-data-dev\n"
         )
         self.credential.chmod(0o600)
-        self.assets = {"/manifest.json": (b"{}\n", "application/json; charset=utf-8")}
+        self.manifest = cf.json_bytes({"datasets": [{"sha256": "f" * 64}]})
+        self.assets = {"/manifest.json": (self.manifest, "application/json; charset=utf-8")}
+        self.receipt_path = self.root / "receipt.json"
+        self.worker = {"id": "b" * 32, "name": cf.WORKER, "created_on": "2026-10-07T16:52:53Z", "deployed_on": None, "subdomain": {"enabled": False}}
 
     def test_dedicated_credentials_ignore_global_tokens_and_hide_repr(self):
         with patch.dict("os.environ", {"CLOUDFLARE_API_TOKEN": "another-account", "CLOUDFLARE_ACCOUNT_ID": "b" * 32}):
@@ -82,25 +85,27 @@ class CloudflareDataTests(unittest.TestCase):
         api = Mock()
         api.request.return_value = {}
         with self.assertRaisesRegex(cf.SafeError, "already exists"):
-            cf.deploy(api, self.assets)
+            cf.deploy(api, self.assets, self.receipt_path)
         self.assertEqual([call.args[0] for call in api.request.call_args_list], ["GET"])
 
     def test_unauthorized_or_unknown_404_is_not_an_absent_worker(self):
-        for error in (cf.ApiError(403, [10000]), cf.ApiError(404, [12345])):
+        for error in (cf.ApiError(403, [10000]), cf.ApiError(404, [12345]), cf.ApiError(404, [10222])):
             api = Mock()
             api.request.side_effect = error
             with self.subTest(status=error.status), self.assertRaises(cf.ApiError):
-                cf.deploy(api, self.assets)
+                cf.deploy(api, self.assets, self.receipt_path)
             self.assertEqual(api.request.call_count, 1)
 
     def stage_api(self, buckets=None, upload_result=None):
-        value = cf.asset_hash("/manifest.json", b"{}\n")
+        value = cf.asset_hash("/manifest.json", self.manifest)
         api = Mock()
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
         api.request.side_effect = [
             cf.ApiError(404, [10007]),
             {"jwt": "temporary-upload-token", "buckets": [[value]] if buckets is None else buckets},
+            [self.worker],
             {"jwt": "completion-token"} if upload_result is None else upload_result,
-            cf.ApiError(404, [10007]),
+            self.worker,
             {"id": cf.WORKER},
             {"enabled": True},
         ]
@@ -108,15 +113,15 @@ class CloudflareDataTests(unittest.TestCase):
 
     def test_success_uploads_only_allowlisted_assets_and_has_no_runtime_secret(self):
         api = self.stage_api()
-        cf.deploy(api, self.assets)
+        cf.deploy(api, self.assets, self.receipt_path)
         calls = api.request.call_args_list
-        self.assertEqual([call.args[0] for call in calls], ["GET", "POST", "POST", "GET", "PUT", "POST"])
+        self.assertEqual([call.args[0] for call in calls], ["GET", "POST", "GET", "POST", "GET", "PUT", "POST"])
         registry = json.loads(calls[1].args[2])
         self.assertEqual(set(registry["manifest"]), {"/manifest.json"})
-        upload = calls[2].args[2]
-        self.assertIn(base64.b64encode(b"{}\n"), upload)
-        self.assertEqual(calls[2].args[4], "temporary-upload-token")
-        payload = calls[4].args[2]
+        upload = calls[3].args[2]
+        self.assertIn(base64.b64encode(self.manifest), upload)
+        self.assertEqual(calls[3].args[4], "temporary-upload-token")
+        payload = calls[5].args[2]
         self.assertIn(b'"run_worker_first": false', payload)
         self.assertIn(b'"not_found_handling": "none"', payload)
         self.assertIn(b'"bindings": []', payload)
@@ -127,32 +132,76 @@ class CloudflareDataTests(unittest.TestCase):
 
     def test_empty_buckets_reuse_the_completion_token_without_asset_upload(self):
         api = Mock()
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
         api.request.side_effect = [
             cf.ApiError(404, [10007]), {"jwt": "already-uploaded", "buckets": []},
-            cf.ApiError(404, [10007]), {}, {},
+            [self.worker], self.worker, {}, {},
         ]
-        cf.deploy(api, self.assets)
-        self.assertEqual(len(api.request.call_args_list), 5)
+        cf.deploy(api, self.assets, self.receipt_path)
+        self.assertEqual(len(api.request.call_args_list), 6)
         self.assertNotIn("/workers/assets/upload?base64=true", [c.args[1] for c in api.request.call_args_list])
 
-    def test_upload_failure_does_not_create_or_enable_worker(self):
+    def test_upload_failure_does_not_publish_or_enable_worker(self):
         api = self.stage_api(upload_result={})
         with self.assertRaisesRegex(cf.SafeError, "not completed"):
-            cf.deploy(api, self.assets)
-        self.assertEqual(api.request.call_count, 3)
+            cf.deploy(api, self.assets, self.receipt_path)
+        self.assertEqual(api.request.call_count, 4)
 
     def test_unexpected_bucket_cannot_upload_arbitrary_file(self):
         api = self.stage_api(buckets=[["unknown-private-file-hash"]])
         with self.assertRaisesRegex(cf.SafeError, "Unexpected"):
-            cf.deploy(api, self.assets)
-        self.assertEqual(api.request.call_count, 2)
+            cf.deploy(api, self.assets, self.receipt_path)
+        self.assertEqual(api.request.call_count, 3)
 
     def test_worker_created_during_staging_is_not_overwritten(self):
         api = Mock()
-        api.request.side_effect = [cf.ApiError(404, [10007]), {"jwt": "completion", "buckets": []}, {}]
-        with self.assertRaisesRegex(cf.SafeError, "already exists"):
-            cf.deploy(api, self.assets)
-        self.assertEqual(api.request.call_count, 3)
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
+        active = {**self.worker, "deployed_on": "2026-10-07T17:00:00Z"}
+        api.request.side_effect = [cf.ApiError(404, [10007]), {"jwt": "completion", "buckets": []}, [self.worker], active]
+        with self.assertRaisesRegex(cf.SafeError, "undeployed"):
+            cf.deploy(api, self.assets, self.receipt_path)
+        self.assertEqual(api.request.call_count, 4)
+
+    def test_pinned_empty_worker_can_resume_without_overwriting_a_version(self):
+        api = Mock()
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
+        receipt = cf.receipt_for(api, self.assets, self.worker)
+        self.receipt_path.write_bytes(cf.json_bytes(receipt))
+        self.receipt_path.chmod(0o600)
+        api.request.side_effect = [self.worker, {"jwt": "completion", "buckets": []}, self.worker, {}, {}]
+        cf.deploy(api, self.assets, self.receipt_path, resume=True)
+        self.assertEqual(api.request.call_args_list[0].args[1], "/workers/workers/" + self.worker["id"])
+        self.assertEqual([c.args[0] for c in api.request.call_args_list], ["GET", "POST", "GET", "PUT", "POST"])
+
+    def test_receipt_from_another_account_or_dataset_cannot_resume(self):
+        api = Mock()
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
+        receipt = cf.receipt_for(api, self.assets, self.worker)
+        for field in ("accountFingerprint", "datasetSHA256", "workerName"):
+            self.receipt_path.write_bytes(cf.json_bytes({**receipt, field: "other"}))
+            self.receipt_path.chmod(0o600)
+            with self.subTest(field=field), self.assertRaises(cf.SafeError):
+                cf.deploy(api, self.assets, self.receipt_path, resume=True)
+        api.request.assert_not_called()
+
+    def test_replaced_renamed_public_or_deployed_worker_cannot_resume(self):
+        api = Mock()
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
+        receipt = cf.receipt_for(api, self.assets, self.worker)
+        self.receipt_path.write_bytes(cf.json_bytes(receipt))
+        self.receipt_path.chmod(0o600)
+        for worker in (
+            {**self.worker, "id": "c" * 32},
+            {**self.worker, "created_on": "other"},
+            {**self.worker, "name": "other"},
+            {**self.worker, "subdomain": {"enabled": True}},
+            {**self.worker, "deployed_on": "2026-10-07T17:00:00Z"},
+        ):
+            api.request.reset_mock()
+            api.request.return_value = worker
+            with self.subTest(change=worker), self.assertRaises(cf.SafeError):
+                cf.deploy(api, self.assets, self.receipt_path, resume=True)
+            self.assertEqual(api.request.call_count, 1)
 
     def canonical_source(self):
         source = cf.ROOT / cf.SOURCE
@@ -207,7 +256,7 @@ class CloudflareDataTests(unittest.TestCase):
             "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*",
             "X-Content-Type-Options": "nosniff", "Cache-Control": "public, max-age=0, must-revalidate",
             "ETag": '"test"',
-        }, b"{}\n"
+        }, self.manifest
 
     def test_public_bytes_headers_conditional_and_private_paths(self):
         cf.verify("https://gomimap-data-dev.demo.workers.dev", self.assets, self.fake_public)
