@@ -24,7 +24,7 @@ Flutter **3.47.6**／Dart **3.13.5**を使用しています。地図描画は`f
 
 ローカル環境での実行・テスト、iOS／Androidの環境構築、地図設定は[開発手順](docs/development.md)にまとめています。Web版は画面確認用です。
 
-日程は[data/datasets](data/datasets/README.md)のJSONから読み込みます。自作fixtureの[Cloudflare初回配信・公開照合コマンド](docs/cloudflare-data.md)を実装し、初回実行は途中停止・公開照合は未完了です。アプリは同梱JSONを使い、HTTP更新・端末DB・自動配信は未実装です。[スキーマ1](docs/data-schema-v1.md)、[保存・配信の設計](docs/data-storage.md)を参照してください。
+日程は[data/datasets](data/datasets/README.md)のJSONから読み込みます。自作fixtureを[Cloudflareで公開・照合](docs/cloudflare-data.md)済みです。アプリは同梱JSONを使い、HTTP更新・端末DB・自動配信は未実装です。[スキーマ1](docs/data-schema-v1.md)、[保存・配信の設計](docs/data-storage.md)を参照してください。
 
 ## ドキュメント・参加方法
 

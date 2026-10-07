@@ -6,10 +6,12 @@
 
 ### Fixed
 
+- 公開データの検証要求へ用途を明示したUser-Agentを付け、Cloudflare 1010でPython標準クライアントが拒否される場合にも照合できるようにした。
 - Cloudflareのアセット登録で作成された空Workerを、上書き防止の再確認が拒否する不具合。対象ID・アカウント・JSON checksumを固定し、未公開の同じWorkerだけを再開できるよう修正。
 
 ### Added
 
+- Cloudflareの開発用fixtureを公開し、JSON・manifest・GPLの一致、キャッシュ／CORS、304、秘密パス404を実際に確認した記録。
 - 自作fixture限定のCloudflare初回配信・専用認証・公開照合コマンドと開発用manifest。既存Workerへの上書きを拒否し、Dart検証・checksum・応答方針を確認（自動配信・端末HTTP更新は未実装）。
 - Cloudflareの対象Workerを限定するAPI認証と秘密の保存先の準備手順（配信コード・デプロイ・CIは未実装）。
 - AIペルソナ想定の模擬操作の手順と画面証拠。人による利用者観察・独立評価と区別する記録。

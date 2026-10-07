@@ -1,12 +1,12 @@
 # Cloudflare配信の認証準備
 
-状態：2026-10-08。アカウントは保有、独自ドメインは未取得。[開発用fixtureの初回配信コマンド](cloudflare-data.md)を実装し、ローカル生成・認証は確認済み。初回実行は途中停止し、公開照合は未完了。自動配信CIは未実装。ファイルを保存するだけでは配信は始まらない。[保存設計](data-storage.md)と[運用設計](operations.md)を参照。
+状態：2026-10-08。アカウントは保有、独自ドメインは未取得。[開発用fixtureの初回配信と公開照合](cloudflare-data.md)を完了した。限定Editorへの交換はメンテナーの操作待ち。自動配信CIは未実装。ファイルを保存するだけでは配信は始まらない。[保存設計](data-storage.md)と[運用設計](operations.md)を参照。
 
 ## 開発用の配信先
 
 開発用JSONにはWorkers Static Assetsと`workers.dev`を候補とする。自作の架空JSONで動作を確かめ、再配布が未承認の自治体データや非公開原文は公開しない。独自ドメイン取得は開発開始の前提ではない。Cloudflareは本番用には独自ドメイン等を推奨している。[workers.devの公式説明](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
 
-対象Worker名は`gomimap-data-dev`。初回実行により公開版のないWorkerが存在し、公開照合はまだ完了していない。Flutter Webの試作画面を公開するWorkerとは用途を分ける。
+対象Worker名は`gomimap-data-dev`。自作fixtureとmanifestを公開・照合済み。Flutter Webの試作画面を公開するWorkerとは用途を分ける。
 
 ## APIトークンを作る場所と権限
 

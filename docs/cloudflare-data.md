@@ -1,6 +1,6 @@
 # 開発用JSONのCloudflare配信
 
-状態：2026-10-08。[Issue #26](https://github.com/oukiito/gomimap/issues/26)。初回配信・生成・認証確認・公開内容の照合を実装した。初回実行はアセット登録後に停止し、現在は公開版のないWorkerが存在する。公開URLの照合は未完了。元のWorker・アカウント・データを固定した再開を追加した。実データ、アプリのHTTP更新、定期取得・公開・監視は後続。[保存設計](data-storage.md)、[認証の準備](cloudflare-setup.md)を参照。
+状態：2026-10-08。[Issue #26](https://github.com/oukiito/gomimap/issues/26)。初回配信・生成・認証確認・公開内容の照合を実装し、[開発用manifest](https://gomimap-data-dev.ouki-ito.workers.dev/manifest.json)を公開した。元データの完全なバイト一致、応答方針、条件付き取得、秘密パス404を確認済み。途中の空Workerを固定した復旧記録で再開した経過は[作業記録](work/2026-10-08-cloudflare-data.md)へ残した。実データ、アプリのHTTP更新、定期取得・公開・監視は後続。[保存設計](data-storage.md)、[認証の準備](cloudflare-setup.md)を参照。
 
 ## 公開するもの
 
@@ -44,6 +44,8 @@ python3 scripts/cloudflare_data.py verify
 アップロード完了後にも固定した不変IDと未公開状態を再確認する。存在確認と初回PUTの間の競合をAPI上で完全に排除するものではない。同じ名前のWorkerを同時に別処理で作成しない。復旧記録のない古い失敗は、作成時刻・未公開状態・IDを運用者が確認してからローカルに記録する。名前だけで任意の空Workerを採用したり、既存Workerを削除・強制上書きしたりしない。
 
 元JSONの未コミット変更、Dart検証失敗、アップロード未完了では公開へ進まない。デプロイ後はmanifest・JSON・GPLの完全なバイト一致、Content-Type、CORS、nosniff、キャッシュ方針、ETagによる304、未知／秘密パスの404を確認する。公開検証に失敗した場合は、デプロイ自体を成功した利用者向け配信として報告しない。HTTPS・checksumは通信／内容の確認で、自治体の原文照合や電子署名の代わりではない。
+
+公開照合のHTTP要求は`gomimap-data-verification/1.0`とリポジトリURLをUser-Agentへ明示し、通常取得と条件付き取得で同じ識別を使う。Python標準のUser-AgentではCloudflare 1010が返ることを実測し、識別を明示すると全照合が成功した。ブラウザを偽装したり、配信側の安全設定を無効化したりする対応ではない。アプリのHTTP更新を実装する際も、認証なしの実際のクライアントで疎通を確認する。[Cloudflare 1010の公式説明](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1010/)
 
 ## 次の工程
 

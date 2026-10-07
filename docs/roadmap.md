@@ -37,7 +37,7 @@ UI・UXの共通基準は[Issue #16](https://github.com/oukiito/gomimap/issues/1
 
 G04の日程は今日・地区確認のプレビューへ接続済み。住所条件と受入サービスの判定はAPIと試験データまでで、G05の実地区設定画面とG09の地図接続が後続。Cloudflare配信＋端末保存の構成は[保存・配信設計](data-storage.md)に記録し、契約・取得／配信ジョブ・端末更新・DBはG03／G10／G11で整える。
 
-[Issue #26](https://github.com/oukiito/gomimap/issues/26)で自作fixture限定の[Cloudflare初回配信・公開照合](cloudflare-data.md)を実装し、ローカル生成・認証を確認。公開デプロイは後続。G10の定期取得・更新・監視やG11の端末反映を完了扱いにしない。
+[Issue #26](https://github.com/oukiito/gomimap/issues/26)で自作fixture限定の[Cloudflare初回配信・公開照合](cloudflare-data.md)を完了。JSON・manifest・GPLのバイト一致、checksum、CORS・キャッシュ、304、秘密パス404を実際に確認した。限定Editorへの交換はメンテナーの操作待ち。G10の定期取得・更新・監視やG11の端末反映を完了扱いにしない。
 
 | ID／タイトル | 内容・受け入れ条件 | 検証 |
 | --- | --- | --- |

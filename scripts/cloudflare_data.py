@@ -28,6 +28,7 @@ OUT = ROOT / ".tooling/cloudflare-data"
 RECEIPT = ROOT / "private/cloudflare-data-receipt.json"
 MAX_RESPONSE = 3 * 1024 * 1024
 REPOSITORY = "https://github.com/oukiito/gomimap"
+PUBLIC_USER_AGENT = "gomimap-data-verification/1.0 (+https://github.com/oukiito/gomimap)"
 
 
 class SafeError(Exception):
@@ -336,7 +337,8 @@ def deploy(api, assets, receipt_path=RECEIPT, resume=False):
 def public_get(url, headers=None):
     opener = urllib.request.build_opener(NoRedirect())
     try:
-        with opener.open(urllib.request.Request(url, headers=headers or {}), timeout=30) as response:
+        request_headers = {"User-Agent": PUBLIC_USER_AGENT, **(headers or {})}
+        with opener.open(urllib.request.Request(url, headers=request_headers), timeout=30) as response:
             return response.status, dict(response.headers), read_limited(response)
     except urllib.error.HTTPError as error:
         return error.code, dict(error.headers), read_limited(error)

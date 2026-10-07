@@ -261,6 +261,22 @@ class CloudflareDataTests(unittest.TestCase):
     def test_public_bytes_headers_conditional_and_private_paths(self):
         cf.verify("https://gomimap-data-dev.demo.workers.dev", self.assets, self.fake_public)
 
+    def test_public_request_identifies_client_and_preserves_conditional_header(self):
+        response = Mock()
+        response.status = 304
+        response.headers = {}
+        response.read.return_value = b""
+        response.__enter__ = Mock(return_value=response)
+        response.__exit__ = Mock(return_value=False)
+        opener = Mock()
+        opener.open.return_value = response
+        with patch.object(cf.urllib.request, "build_opener", return_value=opener):
+            cf.public_get("https://gomimap-data-dev.demo.workers.dev/manifest.json", {"If-None-Match": '"test"'})
+        request = opener.open.call_args.args[0]
+        self.assertEqual(request.get_header("User-agent"), cf.PUBLIC_USER_AGENT)
+        self.assertEqual(request.get_header("If-none-match"), '"test"')
+        self.assertIsNone(request.get_header("Authorization"))
+
     def test_public_tamper_missing_cors_bad_cache_or_missing_etag_fail(self):
         for fault in ("tamper", "cors", "cache", "etag", "conditional", "private"):
             def fetch(url, headers=None):
