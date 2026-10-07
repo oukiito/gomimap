@@ -4,6 +4,10 @@
 
 ## Unreleased
 
+### Fixed
+
+- Cloudflareのアセット登録で作成された空Workerを、上書き防止の再確認が拒否する不具合。対象ID・アカウント・JSON checksumを固定し、未公開の同じWorkerだけを再開できるよう修正。
+
 ### Added
 
 - 自作fixture限定のCloudflare初回配信・専用認証・公開照合コマンドと開発用manifest。既存Workerへの上書きを拒否し、Dart検証・checksum・応答方針を確認（自動配信・端末HTTP更新は未実装）。

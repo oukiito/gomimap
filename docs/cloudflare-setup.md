@@ -1,17 +1,17 @@
 # Cloudflare配信の認証準備
 
-状態：2026-10-08。アカウントは保有、独自ドメインは未取得。[開発用fixtureの初回配信コマンド](cloudflare-data.md)を実装し、ローカル生成・認証は確認済み。公開デプロイ・自動配信CIはまだ実施していない。ファイルを保存するだけでは配信は始まらない。[保存設計](data-storage.md)と[運用設計](operations.md)を参照。
+状態：2026-10-08。アカウントは保有、独自ドメインは未取得。[開発用fixtureの初回配信コマンド](cloudflare-data.md)を実装し、ローカル生成・認証は確認済み。初回実行は途中停止し、公開照合は未完了。自動配信CIは未実装。ファイルを保存するだけでは配信は始まらない。[保存設計](data-storage.md)と[運用設計](operations.md)を参照。
 
 ## 開発用の配信先
 
 開発用JSONにはWorkers Static Assetsと`workers.dev`を候補とする。自作の架空JSONで動作を確かめ、再配布が未承認の自治体データや非公開原文は公開しない。独自ドメイン取得は開発開始の前提ではない。Cloudflareは本番用には独自ドメイン等を推奨している。[workers.devの公式説明](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
 
-対象Worker名は`gomimap-data-dev`。現在は未作成。Flutter Webの試作画面を公開するWorkerとは用途を分ける。
+対象Worker名は`gomimap-data-dev`。初回実行により公開版のないWorkerが存在し、公開照合はまだ完了していない。Flutter Webの試作画面を公開するWorkerとは用途を分ける。
 
 ## APIトークンを作る場所と権限
 
 1. Cloudflareダッシュボードで対象アカウントを選ぶ。
-2. 現在の初回CLIは**既存Workerを拒否するため、ダッシュボードで先にWorkerを作成しない**。まだ存在しない`gomimap-data-dev`を初回CLIで作る。既に作成済みの場合は無理に削除・上書きせず、既存Worker更新の実装を待つ。
+2. **ダッシュボードで先にWorkerを作成しない**。初回CLIが`gomimap-data-dev`を作る。途中で空Workerだけが残った場合は、[固定した復旧記録によるresume](cloudflare-data.md)を使う。公開済みの場合は無理に削除・上書きせず、既存Worker更新の実装を待つ。
 3. **Manage Account → API Tokens → Create Token**からアカウント所有のカスタムトークンを作る。名前は`gomimap-data-dev-deploy`など用途が分かるものにする。[トークン作成の公式手順](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
 4. 初回作成には以下の短期**Admin**設定を使う。作成後の交換用トークンには`gomimap-data-dev`だけを対象にWorkers **Editor**を付ける。Editorは既存Workerの更新・デプロイに使え、新規作成・削除はできない。現在のCLIには既存Worker更新は未実装なので、交換後も初回コマンドを再実行して更新することはできない。[Workersの権限と対象範囲](https://developers.cloudflare.com/workers/authorization/workers/)
 5. ダッシュボードで`Copy account ID`を検索するか、Workers & PagesのAccount DetailsからAccount IDをコピーする。[Account IDの公式手順](https://developers.cloudflare.com/fundamentals/account/find-account-and-zone-ids/)

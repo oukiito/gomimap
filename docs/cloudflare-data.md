@@ -1,6 +1,6 @@
 # 開発用JSONのCloudflare配信
 
-状態：2026-10-08。[Issue #26](https://github.com/oukiito/gomimap/issues/26)。初回配信・生成・認証確認・公開内容の照合を実装した。現時点ではローカル生成と認証を確認し、公開デプロイはまだ実施していない。実データ、アプリのHTTP更新、定期取得・公開・監視は後続。[保存設計](data-storage.md)、[認証の準備](cloudflare-setup.md)を参照。
+状態：2026-10-08。[Issue #26](https://github.com/oukiito/gomimap/issues/26)。初回配信・生成・認証確認・公開内容の照合を実装した。初回実行はアセット登録後に停止し、現在は公開版のないWorkerが存在する。公開URLの照合は未完了。元のWorker・アカウント・データを固定した再開を追加した。実データ、アプリのHTTP更新、定期取得・公開・監視は後続。[保存設計](data-storage.md)、[認証の準備](cloudflare-setup.md)を参照。
 
 ## 公開するもの
 
@@ -30,13 +30,18 @@ python3 scripts/cloudflare_data.py check
 # 必須CIに成功してマージされた、変更のないmainで初回デプロイ
 python3 scripts/cloudflare_data.py deploy
 
+# 途中の空Workerだけを、固定したローカル復旧記録で再開
+python3 scripts/cloudflare_data.py resume
+
 # 公開済みのバイト・ヘッダー・条件付き要求・404を検証
 python3 scripts/cloudflare_data.py verify
 ```
 
 認証の既定は`private/cloudflare.env`。ファイルは所有者のみ読める600とし、重複キー・別Worker・不正な形式を拒否する。dotenvをshellで実行せず、環境の`CLOUDFLARE_*`や共有ログインを認証に使わない。APIキーはCloudflare公式APIのAuthorizationヘッダーだけへ送り、アセット・Workerの環境変数・ログには入れない。APIが返すアップロード用の短期JWTもメモリで処理する。
 
-初回専用のコマンドなので、既にWorkerが存在すれば停止する。権限不足や未知の404も「存在しない」と見なさない。アセットのアップロード後にも再確認するが、存在確認と初回PUTの間の競合をAPI上で完全に排除するものではない。同じ名前のWorkerを同時に別処理で作成しない。失敗後に既存Workerを削除したり強制上書きしたりせず、作成状態を確認する。
+初回`deploy`は既にWorkerが存在すれば停止し、権限不足や未知の404も「存在しない」と見なさない。Cloudflareはアセット登録で空Workerを作成することがある。その不変ID・作成日時・アカウントのfingerprint・JSONのchecksumを`private/cloudflare-data-receipt.json`（600）へ記録する。`resume`はその記録と一致し、公開版が一度もなく公開ルートも無効なWorkerだけを受け入れる。別アカウント・別データ・別ID・名前変更・公開済みは拒否する。
+
+アップロード完了後にも固定した不変IDと未公開状態を再確認する。存在確認と初回PUTの間の競合をAPI上で完全に排除するものではない。同じ名前のWorkerを同時に別処理で作成しない。復旧記録のない古い失敗は、作成時刻・未公開状態・IDを運用者が確認してからローカルに記録する。名前だけで任意の空Workerを採用したり、既存Workerを削除・強制上書きしたりしない。
 
 元JSONの未コミット変更、Dart検証失敗、アップロード未完了では公開へ進まない。デプロイ後はmanifest・JSON・GPLの完全なバイト一致、Content-Type、CORS、nosniff、キャッシュ方針、ETagによる304、未知／秘密パスの404を確認する。公開検証に失敗した場合は、デプロイ自体を成功した利用者向け配信として報告しない。HTTPS・checksumは通信／内容の確認で、自治体の原文照合や電子署名の代わりではない。
 

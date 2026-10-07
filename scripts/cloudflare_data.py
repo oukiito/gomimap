@@ -3,7 +3,8 @@
 """Prepare, check, and initially deploy the owned fixture via official REST APIs.
 
 No directory scanning, shell dotenv evaluation, SDK, or global credentials.
-Existing Workers are refused. This is not the production update pipeline.
+Published Workers are refused. Empty Workers can resume only with a pinned local
+recovery receipt. This is not the production update pipeline.
 """
 import argparse
 import base64
@@ -24,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = Path("data/datasets/fixtures/toshima-demo-v1.json")
 WORKER = "gomimap-data-dev"
 OUT = ROOT / ".tooling/cloudflare-data"
+RECEIPT = ROOT / "private/cloudflare-data-receipt.json"
 MAX_RESPONSE = 3 * 1024 * 1024
 REPOSITORY = "https://github.com/oukiito/gomimap"
 
@@ -33,10 +35,10 @@ class SafeError(Exception):
 
 
 class ApiError(SafeError):
-    def __init__(self, status, codes=()):
+    def __init__(self, status, codes=(), operation="request"):
         self.status = status
         self.codes = [code for code in codes if isinstance(code, int)]
-        super().__init__(f"Cloudflare API failed: HTTP {status}, codes {self.codes}")
+        super().__init__(f"Cloudflare API failed during {operation}: HTTP {status}, codes {self.codes}")
 
 
 @dataclass(frozen=True)
@@ -112,7 +114,15 @@ class Cloudflare:
                 codes = []
             finally:
                 error.close()
-            raise ApiError(error.code, codes) from None
+            operation = (
+                "asset registration" if path.endswith("/assets-upload-session") else
+                "asset upload" if path == "/workers/assets/upload?base64=true" else
+                "content publication" if method == "PUT" else
+                "Worker presence check" if path.endswith("/settings") else
+                "pending Worker check" if path.startswith("/workers/workers") else
+                "route configuration" if method == "POST" else "authentication check"
+            )
+            raise ApiError(error.code, codes, operation) from None
         except (urllib.error.URLError, TimeoutError, ValueError, OSError):
             raise SafeError("Cloudflare connection or response validation failed") from None
         if not isinstance(payload, dict) or payload.get("success") is not True:
@@ -218,9 +228,68 @@ def require_absent(api):
     raise SafeError("Target Worker already exists; initial deployment refuses to overwrite it")
 
 
-def deploy(api, assets):
-    # No update switch: an existing Worker, even ours, must not be silently overwritten.
-    require_absent(api)
+def receipt_for(api, assets, worker):
+    identifier = worker.get("id", "")
+    if not re.fullmatch(r"[a-fA-F0-9-]{32,36}", identifier):
+        raise SafeError("Invalid pending Worker identity")
+    if worker.get("name") != WORKER or "deployed_on" not in worker or worker["deployed_on"] is not None:
+        raise SafeError("Worker is not an undeployed target")
+    if (worker.get("subdomain") or {}).get("enabled") is not False:
+        raise SafeError("Pending Worker must not have an enabled public route")
+    manifest = json.loads(assets["/manifest.json"][0])
+    return {
+        "workerId": identifier, "workerName": WORKER,
+        "accountFingerprint": hashlib.sha256(api.credentials.account.encode()).hexdigest(),
+        "datasetSHA256": manifest["datasets"][0]["sha256"],
+        "createdOn": worker.get("created_on"),
+    }
+
+
+def save_pending_receipt(api, assets, path):
+    # Registration can create an empty Worker before its first content version.
+    # Select only our fixed target; never log other workers or immutable IDs.
+    rows = api.request("GET", "/workers/workers?order_by=created_on&order=desc&per_page=100")
+    matches = [row for row in rows if row.get("name") == WORKER]
+    if len(matches) != 1:
+        raise SafeError("Cannot identify the pending Worker unambiguously")
+    receipt = receipt_for(api, assets, matches[0])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        if path.is_symlink() or stat.S_IMODE(path.stat().st_mode) & 0o077 or json.loads(path.read_bytes()) != receipt:
+            raise SafeError("Existing recovery receipt belongs to another operation")
+    else:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(fd, "wb") as output:
+            output.write(json_bytes(receipt))
+    return receipt
+
+
+def require_pending(api, assets, receipt):
+    if not isinstance(receipt, dict) or set(receipt) != {
+        "workerId", "workerName", "accountFingerprint", "datasetSHA256", "createdOn",
+    }:
+        raise SafeError("Invalid recovery receipt")
+    if receipt["workerName"] != WORKER or not re.fullmatch(r"[a-fA-F0-9-]{32,36}", receipt["workerId"]):
+        raise SafeError("Receipt does not identify the target")
+    if receipt["accountFingerprint"] != hashlib.sha256(api.credentials.account.encode()).hexdigest():
+        raise SafeError("Receipt belongs to another account")
+    manifest = json.loads(assets["/manifest.json"][0])
+    if receipt["datasetSHA256"] != manifest["datasets"][0]["sha256"]:
+        raise SafeError("Receipt belongs to different dataset bytes")
+    worker = api.request("GET", "/workers/workers/" + receipt["workerId"])
+    if receipt_for(api, assets, worker) != receipt:
+        raise SafeError("Pending Worker identity or creation state changed")
+
+
+def deploy(api, assets, receipt_path=RECEIPT, resume=False):
+    # Resume requires a pinned identity, the same account/data, and no deployed version.
+    if resume:
+        if receipt_path.is_symlink() or stat.S_IMODE(receipt_path.stat().st_mode) & 0o077:
+            raise SafeError("Recovery receipt must be an owner-only regular file")
+        receipt = json.loads(receipt_path.read_bytes())
+        require_pending(api, assets, receipt)
+    else:
+        require_absent(api)
     manifest, by_hash = {}, {}
     for path, (content, mime) in assets.items():
         value = asset_hash(path, content)
@@ -231,6 +300,8 @@ def deploy(api, assets):
     buckets = session.get("buckets")
     if not isinstance(upload_token, str) or not upload_token or not isinstance(buckets, list):
         raise SafeError("Invalid asset upload session")
+    if not resume:
+        receipt = save_pending_receipt(api, assets, receipt_path)
     completion = upload_token if not buckets else None
     for bucket in buckets:
         if not isinstance(bucket, list) or not bucket or any(value not in by_hash for value in bucket):
@@ -242,8 +313,8 @@ def deploy(api, assets):
             completion = result["jwt"]
     if not isinstance(completion, str) or not completion:
         raise SafeError("Asset upload was not completed; Worker not deployed")
-    # Guard against a Worker created between the preflight and asset staging.
-    require_absent(api)
+    # Recheck the immutable Worker identity and absence of a published version.
+    require_pending(api, assets, receipt)
     metadata = {
         "main_module": "data-worker.mjs", "compatibility_date": "2026-10-01",
         "annotations": {"workers/message": "gomimap owned fixture; initial development deployment"},
@@ -300,9 +371,10 @@ def verify(base, assets, fetch=public_get):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["prepare", "check", "deploy", "verify"])
+    parser.add_argument("command", choices=["prepare", "check", "deploy", "resume", "verify"])
     parser.add_argument("--credentials", type=Path, default=ROOT / "private/cloudflare.env")
     parser.add_argument("--dart", type=Path, default=Path("dart"))
+    parser.add_argument("--receipt", type=Path, default=RECEIPT)
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -315,10 +387,10 @@ def main():
             print("Dedicated account token active; development origin: " + base)
             return
         assets = prepare(args.dart.resolve() if args.dart.exists() else args.dart)
-        if args.command == "deploy":
+        if args.command in ("deploy", "resume"):
             if git("branch", "--show-current").strip() != b"main" or git("status", "--porcelain", "--untracked-files=no").strip():
                 raise SafeError("Deploy only from clean main after the required PR checks")
-            deploy(api, assets)
+            deploy(api, assets, args.receipt, resume=args.command == "resume")
             print("Worker created; verifying the public bytes and response policies")
         verify(base, assets)
         print("Verified fixture assets, checksums, conditional requests and private-path 404: " + base + "/manifest.json")
