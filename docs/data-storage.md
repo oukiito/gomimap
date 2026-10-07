@@ -1,6 +1,6 @@
 # データの保存・Cloudflare配信・端末利用
 
-状態：2026-10-08。Cloudflareを配信元にする利用者の希望に基づく構成案。アカウント保有・独自ドメイン未取得を確認し、専用トークンとworkers.devの読み取り認証を確認した。[開発用fixtureの初回配信・公開照合コマンド](cloudflare-data.md)を実装した。初回実行は空Workerの作成後に停止し、公開照合は未完了。R2有効化・バケット作成・自動配信ジョブも未実施。端末側は版付きJSON、同梱fixture、読み込み・検証・メモリ内の切り替えまでで、HTTP更新・端末DB／更新ファイルの保存は未実装。
+状態：2026-10-08。Cloudflareを配信元にする利用者の希望に基づく構成。アカウント保有・独自ドメイン未取得を確認し、[開発用fixtureの初回配信・公開照合](cloudflare-data.md)を完了した。公開するのはJSON・manifest・GPL本文で、実データではない。R2有効化・バケット作成・自動配信ジョブは未実施。端末側は版付きJSON、同梱fixture、読み込み・検証・メモリ内の切り替えまでで、HTTP更新・端末DB／更新ファイルの保存は未実装。
 
 ## 保存先の役割
 
@@ -36,7 +36,7 @@ JSONはCloudflare CDNの標準キャッシュ対象ではないため、公開JS
 
 公開JSONだけを小規模に配信する場合、Workers Static Assetsも代替候補。静的アセットへの要求と保存は追加料金なしで、Workerコードの呼び出しは別の料金・制限になる。R2を必須のアプリ依存にせず、提供者を変えても同じHTTPS・JSON形式で取得できるようにする。[Static Assets公式料金](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
 
-独自ドメインがない開発段階では、Workersの`workers.dev`で公開JSONの配信を試す方針。R2＋独自ドメインの本番候補と区別し、[認証の準備手順](cloudflare-setup.md)で対象と権限を限定する。初回用コード・認証確認まで完了し、公開照合はまだ完了していない。[workers.dev公式資料](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
+独自ドメインがない開発段階では、Workersの`workers.dev`で自作fixtureを公開・照合した。R2＋独自ドメインの本番候補と区別し、[認証の準備手順](cloudflare-setup.md)で対象と権限を限定する。限定Editorへの交換はメンテナーの操作待ち。[workers.dev公式資料](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
 
 データ量が未測定なので、月3,000円以内や完全無料を保証する判断はまだしていない。仮想マシンや常時起動のサーバー、D1等のDBを最初から必須にはしない。契約・料金が伴う設定は、具体的な構成と利用量を確認してから行う。
 
@@ -55,6 +55,6 @@ flowchart LR
     Local --> Widget[ウィジェット・通知の共有予定]
 ```
 
-これは完成後の流れ。取得・配信・端末更新のジョブは未実装。原文が公開されていることと、GitHub・Cloudflareへ再配布できることは別で、[利用条件の確認Issue](https://github.com/oukiito/gomimap/issues/14)を継続する。
+これは実データについての完成後の流れ。手動の自作fixture初回配信だけを確認した。取得・継続配信・端末更新のジョブは未実装。原文が公開されていることと、GitHub・Cloudflareへ再配布できることは別で、[利用条件の確認Issue](https://github.com/oukiito/gomimap/issues/14)を継続する。
 
 公開版は不変URLに置き、その版・サイズ・チェックサム等を示すmanifestを最後に切り替える設計とする。端末は対象自治体のデータを取得し、全体の検証に成功した後で一括切り替えする。利用者ごとの住所を配信要求へ付けない。以前の版が有効なら失敗時に継続利用し、期限切れなら確認状態に戻る。キャッシュ期限、更新頻度、緊急訂正、明示的なロールバックはG10／G11で実装・検証する。

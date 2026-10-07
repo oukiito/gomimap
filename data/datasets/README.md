@@ -2,7 +2,7 @@
 
 スキーマ1の保存・検証を実装した。現在収録するのは、GPL-3.0-or-laterで作成した[架空の豊島区試験データ](fixtures/toshima-demo-v1.json)のみ。日程・住所・施設・受付条件・取得／確認日時は試験用であり、実際のごみ出しには使用できない。自治体の表・PDF・原文を転載したデータではない。
 
-公開・再配布できる実データは、将来`<municipality-id>/<version>.json`へ追加する。同じ版のファイルを上書きせず、新しい版で変更し、Issue／PRで根拠と差分を確認する。現在は実データを収録していない。自作fixture用の[開発manifest生成・Cloudflare初回配信](../../docs/cloudflare-data.md)は実装し、実公開はまだ行っていない。
+公開・再配布できる実データは、将来`<municipality-id>/<version>.json`へ追加する。同じ版のファイルを上書きせず、新しい版で変更し、Issue／PRで根拠と差分を確認する。現在は実データを収録していない。自作fixture用の[開発manifest生成・Cloudflare初回配信](../../docs/cloudflare-data.md)は実装し、公開バイト・checksum・応答方針を確認した。
 
 構造・判定・検証は[スキーマ1](../../docs/data-schema-v1.md)、Cloudflareと端末の役割は[データ保存・配信設計](../../docs/data-storage.md)を参照する。[出典登録簿](../sources/toshima.json)は原文の取得先・利用条件のメタデータであり、本フォルダーの収集予定と別物。
 
