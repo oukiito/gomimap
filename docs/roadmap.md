@@ -35,7 +35,7 @@ UI・UXの共通基準は[Issue #16](https://github.com/oukiito/gomimap/issues/1
 
 [Issue #20](https://github.com/oukiito/gomimap/issues/20)で、初回の手動選択・確認・保存と復旧を架空データへ実装。実住所・GPS・ウィジェット・通知の初回フローはG05／G07の継続作業。開発エージェントの共通方針は[AGENTS.md](../AGENTS.md)に記録する。
 
-G04の日程は今日・地区確認のプレビューへ接続済み。住所条件と受入サービスの判定はAPIと試験データまでで、G05の実地区設定画面とG09の地図接続が後続。Cloudflare配信＋端末保存の構成は[保存・配信設計](data-storage.md)に記録し、契約・取得／配信ジョブ・端末更新・DBはG03／G10／G11で整える。
+G04の日程は今日・地区確認のプレビューへ接続済み。住所条件と受入サービスの判定はAPIと試験データまでで、G05の実地区設定画面とG09の地図接続が後続。[Issue #33](https://github.com/oukiito/gomimap/issues/33)でCloudflareのfixture取得・検証・端末保存を追加し、実HTTPSと再読込を確認した。[保存・配信設計](data-storage.md)に実装と限界を記録。契約・取得／配信ジョブ・実データ・DB・OSバックグラウンド更新はG03／G10／G11で継続する。
 
 [Issue #26](https://github.com/oukiito/gomimap/issues/26)で自作fixture限定の[Cloudflare初回配信・公開照合](cloudflare-data.md)を完了。JSON・manifest・GPLのバイト一致、checksum、CORS・キャッシュ、304、秘密パス404を実際に確認した。[Issue #30](https://github.com/oukiito/gomimap/issues/30)で交換用トークンの検証を対象Workerの情報に限定し、疎通を確認。初回Admin失効のメンテナー報告を受け、認証切り替えを完了した。G10の定期取得・更新・監視やG11の端末反映を完了扱いにしない。
 

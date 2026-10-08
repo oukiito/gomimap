@@ -1,6 +1,6 @@
 # 開発用JSONのCloudflare配信
 
-状態：2026-10-08。[Issue #26](https://github.com/oukiito/gomimap/issues/26)。初回配信・生成・認証確認・公開内容の照合を実装し、[開発用manifest](https://gomimap-data-dev.ouki-ito.workers.dev/manifest.json)を公開した。元データの完全なバイト一致、応答方針、条件付き取得、秘密パス404を確認済み。途中の空Workerを固定した復旧記録で再開した経過は[作業記録](work/2026-10-08-cloudflare-data.md)へ残した。実データ、アプリのHTTP更新、定期取得・公開・監視は後続。[保存設計](data-storage.md)、[認証の準備](cloudflare-setup.md)を参照。
+状態：2026-10-08。[Issue #26](https://github.com/oukiito/gomimap/issues/26)。初回配信・生成・認証確認・公開内容の照合を実装し、[開発用manifest](https://gomimap-data-dev.ouki-ito.workers.dev/manifest.json)を公開した。元データの完全なバイト一致、応答方針、条件付き取得、秘密パス404を確認済み。途中の空Workerを固定した復旧記録で再開した経過は[作業記録](work/2026-10-08-cloudflare-data.md)へ残した。[Issue #33](https://github.com/oukiito/gomimap/issues/33)でアプリのfixture取得・端末保存も追加した。実データ、定期取得・継続公開・監視は後続。[保存設計](data-storage.md)、[認証の準備](cloudflare-setup.md)を参照。
 
 ## 公開するもの
 

@@ -38,6 +38,10 @@ dependencies:
   url_launcher: ^6.3.3
   flutter_map: ^8.3.2
   latlong2: ^0.9.1
+  # Already resolved transitively; used directly by the dataset client.
+  http: ^1.6.0
+  crypto: ^3.0.7
+  path_provider: ^2.1.6
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.3
