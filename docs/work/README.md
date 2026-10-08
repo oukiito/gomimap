@@ -16,5 +16,6 @@
 | 2026-10-08 | Cloudflareの専用認証・開発JSON初回配信コマンド | [開発データ配信の記録](2026-10-08-cloudflare-data.md) | [#26](https://github.com/oukiito/gomimap/issues/26)、G10・G11 |
 | 2026-10-08 | Cloudflare fixtureのアプリ取得・検証・端末保存・復帰 | [端末取得の記録](2026-10-08-dataset-client.md) | [#33](https://github.com/oukiito/gomimap/issues/33)、G05・G11 |
 | 2026-10-08 | Android Studio導入・Pixel実機確認の準備 | [Android準備の記録](2026-10-08-android-preparation.md) | [#3](https://github.com/oukiito/gomimap/issues/3) |
+| 2026-10-08 | Android SDK準備・初回デバッグAPKのビルド成功 | [Androidビルドの記録](2026-10-08-android-build.md) | [#3](https://github.com/oukiito/gomimap/issues/3) |
 
 画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
