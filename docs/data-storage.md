@@ -36,7 +36,7 @@ JSONはCloudflare CDNの標準キャッシュ対象ではないため、公開JS
 
 公開JSONだけを小規模に配信する場合、Workers Static Assetsも代替候補。静的アセットへの要求と保存は追加料金なしで、Workerコードの呼び出しは別の料金・制限になる。R2を必須のアプリ依存にせず、提供者を変えても同じHTTPS・JSON形式で取得できるようにする。[Static Assets公式料金](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
 
-独自ドメインがない開発段階では、Workersの`workers.dev`で自作fixtureを公開・照合した。R2＋独自ドメインの本番候補と区別し、[認証の準備手順](cloudflare-setup.md)で対象と権限を限定する。交換用トークンで対象Workerの認証・公開照合を確認し、初回Adminの失効は実施確認待ち。[workers.dev公式資料](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
+独自ドメインがない開発段階では、Workersの`workers.dev`で自作fixtureを公開・照合した。R2＋独自ドメインの本番候補と区別し、[認証の準備手順](cloudflare-setup.md)で対象と権限を限定する。交換用トークンで対象Workerの認証・公開照合を確認し、初回Admin失効はメンテナーの完了報告で記録した。[workers.dev公式資料](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
 
 データ量が未測定なので、月3,000円以内や完全無料を保証する判断はまだしていない。仮想マシンや常時起動のサーバー、D1等のDBを最初から必須にはしない。契約・料金が伴う設定は、具体的な構成と利用量を確認してから行う。
 

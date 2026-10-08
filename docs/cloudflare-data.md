@@ -51,7 +51,7 @@ python3 scripts/cloudflare_data.py verify
 
 ## 次の工程
 
-初回作成後は`gomimap-data-dev`限定のEditorトークンへ交換する。交換用トークンによる認証・対象Workerと公開データの照合は確認済み。初回Adminトークンの失効をメンテナーへ依頼し、実施確認はまだない。配信スクリプトにはトークン管理権限を持たせず、メンテナーがダッシュボードで実施する。Workerを削除する手順ではない。[公式のWorkers権限](https://developers.cloudflare.com/workers/authorization/workers/)
+初回作成後は`gomimap-data-dev`限定のEditorトークンへ交換する。交換用トークンによる認証・対象Workerと公開データの照合は確認済み。2026-10-08にメンテナーから初回Admin失効の完了報告を受けた。失効のAPI独立確認とは区別する。配信スクリプトにはトークン管理権限を持たせず、メンテナーがダッシュボードで実施する。Workerを削除する手順ではない。[公式のWorkers権限](https://developers.cloudflare.com/workers/authorization/workers/)
 
 既存Workerの更新・旧版保持・ロールバック、承認済みの実データ、manifestの端末検証・保存、自動配信CI、取得／差分PR／独立監視はまだない。初回配信コマンドの完成や公開中のfixtureを、これらの稼働・全国対応・豊島区の実予定として扱わない。
 
