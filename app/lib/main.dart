@@ -17,6 +17,13 @@ import 'data/demo_setup_store.dart';
 import 'data/demo_dataset_repository.dart';
 import 'domain/municipal_dataset.dart';
 import 'domain/schedule.dart';
+import 'domain/calendar_date.dart';
+import 'domain/schedule_focus.dart';
+import 'widgets/widget_bridge.dart';
+import 'widgets/widget_offer_store.dart';
+import 'widgets/widget_setup_store.dart';
+import 'widgets/widget_projection.dart';
+import 'ui/widget_offer.dart';
 import 'ui/collection_map.dart';
 import 'ui/demo_area_setup.dart';
 import 'ui/language_button.dart';
@@ -27,7 +34,15 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
   final repository = await loadDemoDatasetRepository();
-  runApp(GomimapApp(preferences: preferences, repository: repository));
+  final bridge = AndroidHomeWidgetBridge();
+  await bridge.initialize();
+  runApp(
+    GomimapApp(
+      preferences: preferences,
+      repository: repository,
+      widgetBridge: bridge,
+    ),
+  );
 }
 
 class GomimapApp extends StatefulWidget {
@@ -37,11 +52,19 @@ class GomimapApp extends StatefulWidget {
     this.setupStore,
     this.dataset,
     this.repository,
+    this.widgetBridge,
+    this.displayDate,
+    this.clock,
   });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
   final MunicipalDataset? dataset;
   final DemoDatasetRepository? repository;
+  final HomeWidgetBridge? widgetBridge;
+
+  /// Explicit fixture date for tests; normal runs use the Japanese civil date.
+  final DateTime? displayDate;
+  final DateTime Function()? clock;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
@@ -50,6 +73,25 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   Locale? locale;
   late final DemoSetupStore setupStore;
   late DemoSetupSnapshot setup;
+  late final HomeWidgetBridge bridge;
+  late final WidgetOfferStore offer;
+  final homeKey = GlobalKey<_HomeShellState>();
+  final navigatorKey = GlobalKey<NavigatorState>();
+  Timer? midnight;
+  Future<bool> publishing = Future.value(true);
+  String? cachedProjection;
+  MunicipalDataset? projectedDataset;
+  DemoArea? projectedArea;
+  CalendarDate? projectedDay;
+  DateTime now() => widget.clock?.call() ?? DateTime.now();
+  DateTime get displayDate =>
+      widget.displayDate ?? CalendarDate.inJapan(now()).value;
+  int get displayMinute {
+    final date =
+        widget.displayDate ?? now().toUtc().add(const Duration(hours: 9));
+    return date.hour * 60 + date.minute;
+  }
+
   MunicipalDataset? get dataset => widget.repository?.current ?? widget.dataset;
 
   @override
@@ -57,24 +99,133 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     super.initState();
     final saved = widget.preferences.getString('app.language');
     locale = savedLocale(saved);
-    setupStore =
+    final base =
         widget.setupStore ?? PreferencesDemoSetupStore(widget.preferences);
-    setup = setupStore.read();
+    setup = base.read();
+    bridge = widget.widgetBridge ?? const UnavailableHomeWidgetBridge();
+    offer = WidgetOfferStore(
+      widget.preferences,
+      legacyDistrictSaved: setup.phase == DemoSetupPhase.districtSaved,
+    );
+    setupStore = bridge.available ? WidgetSetupStore(base, offer) : base;
+    bridge.setOpenTodayHandler(openToday);
+    scheduleDisplayRefresh();
     WidgetsBinding.instance.addObserver(this);
     widget.repository?.addListener(datasetChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) unawaited(widget.repository?.refresh());
+      if (mounted) unawaited(publishWidget());
+      unawaited(
+        bridge.consumeLaunch().then((fromWidget) {
+          if (fromWidget && mounted) openToday();
+        }),
+      );
     });
   }
 
   void datasetChanged() {
+    scheduleDisplayRefresh();
     if (mounted) setState(() {});
+    if (mounted) unawaited(publishWidget());
+  }
+
+  void openToday() {
+    if (!mounted || setup.phase != DemoSetupPhase.districtSaved) return;
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);
+    homeKey.currentState?.selectToday();
+  }
+
+  void scheduleDisplayRefresh() {
+    midnight?.cancel();
+    if (widget.displayDate != null) return;
+    final instant = now().toUtc();
+    final today = CalendarDate.inJapan(instant);
+    var next = today.addDays(1).startInJapanUtc;
+    final area = setupStore.read().area;
+    if (area != null) {
+      for (final entry in demoCalendar(
+        area,
+        dataset: dataset,
+      ).onDate(today).collections) {
+        final boundary = today.startInJapanUtc.add(
+          Duration(hours: entry.deadline.hour, minutes: entry.deadline.minute),
+        );
+        if (boundary.isAfter(instant) && boundary.isBefore(next)) {
+          next = boundary;
+        }
+      }
+    }
+    midnight = Timer(next.difference(now().toUtc()), () {
+      if (!mounted) return;
+      setState(() {});
+      unawaited(publishWidget());
+      scheduleDisplayRefresh();
+    });
+  }
+
+  Future<bool> publishWidget() {
+    if (!bridge.available ||
+        setupStore.read().phase != DemoSetupPhase.districtSaved) {
+      return Future.value(false);
+    }
+    final area = setupStore.read().area!;
+    final day = CalendarDate.fromFields(displayDate);
+    if (cachedProjection == null ||
+        !identical(projectedDataset, dataset) ||
+        projectedArea != area ||
+        projectedDay != day) {
+      cachedProjection = buildWidgetProjection(
+        dataset: dataset,
+        area: area,
+        start: day,
+        generatedAt: now(),
+      );
+      projectedDataset = dataset;
+      projectedArea = area;
+      projectedDay = day;
+    }
+    final projection = cachedProjection!;
+    publishing = publishing.then(
+      (_) => bridge.publish(projection),
+      onError: (_) => bridge.publish(projection),
+    );
+    return publishing;
+  }
+
+  void savedArea(DemoArea area) {
+    setState(() => setup = DemoSetupSnapshot.saved(area));
+    scheduleDisplayRefresh();
+    unawaited(publishWidget());
+  }
+
+  void showWidgetSettings() {
+    final current = setupStore.read();
+    if (current.area == null) return;
+    navigatorKey.currentState?.push(
+      MaterialPageRoute<void>(
+        builder: (context) => WidgetOffer(
+          area: current.area!,
+          dataset: dataset,
+          date: displayDate,
+          minute: displayMinute,
+          bridge: bridge,
+          store: offer,
+          firstTime: false,
+          publish: publishWidget,
+          onLanguageChanged: changeLanguage,
+          onDone: () => navigatorKey.currentState?.pop(),
+        ),
+      ),
+    );
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      setState(() {});
+      scheduleDisplayRefresh();
       unawaited(widget.repository?.refresh());
+      unawaited(publishWidget());
     }
   }
 
@@ -82,15 +233,20 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     widget.repository?.removeListener(datasetChanged);
+    midnight?.cancel();
     super.dispose();
   }
 
   Future<bool> changeLanguage(String code) async {
     final selected = savedLocale(code);
     if (selected == null) return false;
-    setState(() => locale = selected);
     try {
-      return await widget.preferences.setString('app.language', code);
+      if (!await widget.preferences.setString('app.language', code)) {
+        return false;
+      }
+      if (mounted) setState(() => locale = selected);
+      unawaited(publishWidget());
+      return true;
     } catch (_) {
       return false;
     }
@@ -98,6 +254,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+    navigatorKey: navigatorKey,
     onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
     debugShowCheckedModeBanner: false,
     locale: locale,
@@ -123,19 +280,39 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
       ),
     ),
     home: setup.phase == DemoSetupPhase.districtSaved
-        ? HomeShell(
-            area: setup.area!,
-            dataset: dataset,
-            setupStore: setupStore,
-            onLanguageChanged: changeLanguage,
-          )
+        ? bridge.available && !offer.answered
+              ? WidgetOffer(
+                  area: setup.area!,
+                  dataset: dataset,
+                  date: displayDate,
+                  minute: displayMinute,
+                  bridge: bridge,
+                  store: offer,
+                  firstTime: true,
+                  publish: publishWidget,
+                  onDone: () => setState(() {}),
+                  onLanguageChanged: changeLanguage,
+                )
+              : HomeShell(
+                  key: homeKey,
+                  area: setup.area!,
+                  dataset: dataset,
+                  displayDate: displayDate,
+                  displayMinute: displayMinute,
+                  onAreaSaved: savedArea,
+                  onWidgetSettings: bridge.available
+                      ? showWidgetSettings
+                      : null,
+                  setupStore: setupStore,
+                  onLanguageChanged: changeLanguage,
+                )
         : DemoAreaSetup(
             store: setupStore,
             dataset: dataset,
             initial: setup,
+            previewDate: displayDate,
             onLanguageChanged: changeLanguage,
-            onSaved: (area) =>
-                setState(() => setup = DemoSetupSnapshot.saved(area)),
+            onSaved: savedArea,
           ),
   );
 }
@@ -147,11 +324,19 @@ class HomeShell extends StatefulWidget {
     required this.dataset,
     required this.setupStore,
     required this.onLanguageChanged,
+    required this.displayDate,
+    this.displayMinute = 0,
+    required this.onAreaSaved,
+    this.onWidgetSettings,
   });
   final DemoArea area;
   final MunicipalDataset? dataset;
   final DemoSetupStore setupStore;
   final Future<bool> Function(String) onLanguageChanged;
+  final DateTime displayDate;
+  final int displayMinute;
+  final ValueChanged<DemoArea> onAreaSaved;
+  final VoidCallback? onWidgetSettings;
   @override
   State<HomeShell> createState() => _HomeShellState();
 }
@@ -167,6 +352,13 @@ class _HomeShellState extends State<HomeShell> {
   String query = '';
   bool? damaged;
   final searchController = TextEditingController();
+
+  void selectToday() {
+    setState(() {
+      tab = 0;
+      mapOrigin = null;
+    });
+  }
 
   @override
   void initState() {
@@ -209,6 +401,7 @@ class _HomeShellState extends State<HomeShell> {
           dataset: widget.dataset,
           initial: const DemoSetupSnapshot.choose(),
           currentArea: area,
+          previewDate: widget.displayDate,
           onLanguageChanged: widget.onLanguageChanged,
           onSaved: (value) => Navigator.pop(context, value),
         ),
@@ -218,6 +411,7 @@ class _HomeShellState extends State<HomeShell> {
       return;
     }
     setState(() => area = selected);
+    widget.onAreaSaved(selected);
   }
 
   @override
@@ -384,20 +578,55 @@ class _HomeShellState extends State<HomeShell> {
 
   List<Widget> todayPage() {
     final calendar = demoCalendar(area, dataset: widget.dataset);
+    final day = CalendarDate.fromFields(widget.displayDate);
+    final days = [for (var i = 0; i < 35; i++) calendar.onDate(day.addDays(i))];
+    final focus = scheduleFocus(days, widget.displayMinute);
+    final original = days.first;
+    final today =
+        focus.day == day &&
+            original.status == ScheduleStatus.collection &&
+            focus.collections.length != original.collections.length
+        ? DaySchedule(
+            day: day,
+            areaId: original.areaId,
+            municipalityId: original.municipalityId,
+            datasetVersion: original.datasetVersion,
+            fixture: original.fixture,
+            status: original.status,
+            collections: original.collections.where(
+              (entry) =>
+                  entry.deadline.hour * 60 + entry.deadline.minute <=
+                  widget.displayMinute,
+            ),
+            reasons: original.reasons,
+            sources: original.sources,
+          )
+        : original;
+    final history =
+        focus.day != day ||
+        focus.collections.length != original.collections.length;
+    final focusLabel = focus.day == day
+        ? l10n.today
+        : focus.day == day.addDays(1)
+        ? l10n.tomorrow
+        : l10n.widgetNext;
     return [
       Padding(
         padding: const EdgeInsets.only(bottom: 12),
         child: Text(
-          l10n.demoDate(DateFormat.yMMMMd(l10n.localeName).format(demoToday)),
+          l10n.demoDate(
+            DateFormat.yMMMMd(l10n.localeName).format(widget.displayDate),
+          ),
           style: TextStyle(color: Colors.grey.shade700),
         ),
       ),
-      scheduleCard(l10n.today, calendar.on(demoToday), prominent: true),
+      scheduleCard(focusLabel, focus, prominent: true),
       const SizedBox(height: 12),
-      scheduleCard(
-        l10n.tomorrow,
-        calendar.on(demoToday.add(const Duration(days: 1))),
-      ),
+      if (history) scheduleCard(l10n.today, today, showExpired: true),
+      if (focus.day != day.addDays(1)) ...[
+        if (history) const SizedBox(height: 12),
+        scheduleCard(l10n.tomorrow, days[1]),
+      ],
       const SizedBox(height: 28),
       Text(
         l10n.upcoming,
@@ -405,7 +634,10 @@ class _HomeShellState extends State<HomeShell> {
       ),
       const SizedBox(height: 8),
       for (var offset = 2; offset < 7; offset++)
-        scheduleRow(calendar.on(demoToday.add(Duration(days: offset)))),
+        if (days[offset].day != focus.day)
+          scheduleRow(
+            calendar.on(widget.displayDate.add(Duration(days: offset))),
+          ),
       const SizedBox(height: 20),
       OutlinedButton.icon(
         onPressed: official,
@@ -419,6 +651,7 @@ class _HomeShellState extends State<HomeShell> {
     String day,
     DaySchedule schedule, {
     bool prominent = false,
+    bool showExpired = false,
   }) => Container(
     key: prominent ? const ValueKey('today-schedule') : null,
     padding: const EdgeInsets.all(24),
@@ -457,12 +690,29 @@ class _HomeShellState extends State<HomeShell> {
           ),
           if (schedule.status == ScheduleStatus.collection) ...[
             const SizedBox(height: 10),
+            if (showExpired &&
+                schedule.collections.every(
+                  (entry) =>
+                      entry.deadline.hour * 60 + entry.deadline.minute <=
+                      widget.displayMinute,
+                ))
+              Text(
+                l10n.disposalDeadlinePassed,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
             ScheduleDeadlines(schedule: schedule),
             const SizedBox(height: 8),
             Text(l10n.checkTime, style: const TextStyle(fontSize: 14)),
           ],
           if (schedule.status == ScheduleStatus.needsConfirmation)
-            TextButton(onPressed: official, child: Text(l10n.official)),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: prominent ? Colors.white : null,
+                minimumSize: const Size(48, 48),
+              ),
+              onPressed: official,
+              child: Text(l10n.official),
+            ),
         ],
       ),
     ),
@@ -768,6 +1018,18 @@ class _HomeShellState extends State<HomeShell> {
               l10n.aboutBody,
               style: const TextStyle(fontSize: 16, height: 1.7),
             ),
+            if (widget.onWidgetSettings != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: OutlinedButton.icon(
+                  icon: const Icon(Icons.widgets_outlined),
+                  label: Text(l10n.widgetSettings),
+                  onPressed: () {
+                    Navigator.pop(sheet);
+                    widget.onWidgetSettings!();
+                  },
+                ),
+              ),
           ],
         ),
       ),

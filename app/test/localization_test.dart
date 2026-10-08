@@ -37,7 +37,11 @@ Future<SharedPreferences> launch(
   addTearDown(tester.platformDispatcher.clearLocalesTestValue);
   addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
   await tester.pumpWidget(
-    GomimapApp(preferences: preferences, dataset: fixtureDataset()),
+    GomimapApp(
+      displayDate: DateTime(2026, 10, 5),
+      preferences: preferences,
+      dataset: fixtureDataset(),
+    ),
   );
   await tester.pumpAndSettle();
   return preferences;
@@ -281,7 +285,11 @@ void main() {
       expect(find.text('可燃垃圾'), findsOneWidget);
       await tester.pumpWidget(const SizedBox());
       await tester.pumpWidget(
-        GomimapApp(preferences: preferences, dataset: fixtureDataset()),
+        GomimapApp(
+          displayDate: DateTime(2026, 10, 5),
+          preferences: preferences,
+          dataset: fixtureDataset(),
+        ),
       );
       await tester.pumpAndSettle();
       expect(
@@ -316,7 +324,11 @@ void main() {
       expect(preferences.getString('app.language'), 'en');
       await tester.pumpWidget(const SizedBox());
       await tester.pumpWidget(
-        GomimapApp(preferences: preferences, dataset: fixtureDataset()),
+        GomimapApp(
+          displayDate: DateTime(2026, 10, 5),
+          preferences: preferences,
+          dataset: fixtureDataset(),
+        ),
       );
       await tester.pumpAndSettle();
       expect(find.text('Burnable waste'), findsOneWidget);

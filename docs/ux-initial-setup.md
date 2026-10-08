@@ -1,6 +1,6 @@
 # 初回設定・収集地区表示・ウィジェット追加の設計図
 
-状態：2026-10-06。関連：[Issue #18](https://github.com/oukiito/gomimap/issues/18)・[Issue #20](https://github.com/oukiito/gomimap/issues/20)。地区の常時表示・変更、初回の手動選択・確認・保存・途中復帰は架空地区の試作に実装。GPS・住所解決、ウィジェットのネイティブ実装・初回案内、通知案内は未実装。全画面の理由一覧は[UI設計](ux-design.md)、対象利用者は[ペルソナ](personas.md)を参照。
+状態：2026-10-08。関連：[Issue #18](https://github.com/oukiito/gomimap/issues/18)・[Issue #20](https://github.com/oukiito/gomimap/issues/20)。地区の常時表示・変更、初回の手動選択・確認・保存・途中復帰は架空地区の試作に実装。Androidウィジェット・初回案内は[W01〜W17](ux-android-widget.md)に実装。GPS・住所解決、iOSウィジェット、通知案内は未実装。全画面の理由一覧は[UI設計](ux-design.md)、対象利用者は[ペルソナ](personas.md)を参照。
 
 ## 初回の流れ
 
@@ -107,11 +107,11 @@ B番号は本設計図の要素・操作ID。既存のS／T番号と併せて実
 
 ## 試作へ実装した初回の動作
 
-実住所や位置による照合がない現在の試作は、サンプル地区の手動選択→確認→保存→今日までを提供する。製品版で予定するS01・S02の一部を検証するための動作で、上の製品フロー全体の完成ではない。GPSの取得だけを実装して架空地区へ対応付けることや、実際には追加できないウィジェットを提案することはしない。
+実住所や位置による照合がない現在の試作は、サンプル地区の手動選択→確認→保存→対応Androidで初回ウィジェット提案→今日までを提供する。製品版で予定するS01・S02の一部を検証するための動作で、上の製品フロー全体の完成ではない。GPSの取得だけを実装して架空地区へ対応付けることや、実際には追加できないウィジェットを提案することはしない。
 
 地区変更にも同じ確認画面を使う。変更中の候補は保存せず、保存成功時だけ旧地区を切り替える。初回に限り、未回答の確認を再開するため候補を端末へ保存する。初回の「選び直す」は保存済み候補を解除し、変更中の「選び直す」は旧地区を変更しない。
 
-`demo.setup.v1`にバージョン・段階（`choose`／`confirm`／`districtSaved`）と必要なサンプル地区IDを1つのJSON値として保存する。`districtSaved`は**地区を確認した状態だけ**を意味し、将来のウィジェット・通知の初回手順を回答済みと扱う値ではない。実装時は任意手順の進行と回答を別に保存し、既存の地区保存だけで未回答手順を飛ばさない。
+`demo.setup.v1`にバージョン・段階（`choose`／`confirm`／`districtSaved`）と必要なサンプル地区IDを1つのJSON値として保存する。`districtSaved`は**地区を確認した状態だけ**を意味し、ウィジェット・通知の初回手順を回答済みと扱う値ではない。`widget.offer.answered.v1`で回答を別保存。新規の地区保存前に未回答を永続化し、保存失敗では進めない。従来の地区保存済み試作への移行は再提案せず設定から追加する。
 
 旧`demo.area`が有効なA／Bなら既存利用者の選択を引き継ぐ。新キーが存在する場合は新キーだけを読み、不正・将来の未知形式なら復旧説明と未設定へ戻す。試作設定は実地区IDへ流用しない。保存失敗時は確定済みのメモリ状態を保持し、保存ライブラリの先行キャッシュを再読み込みする。通知・ウィジェットとの一括更新や、OS保存の永続性保証を実装したものではない。
 
@@ -159,7 +159,7 @@ B番号は本設計図の要素・操作ID。既存のS／T番号と併せて実
 | 3タブの常時地区表示、タップで変更、設定から変更、品物／拠点詳細の地区 | 架空地区の試作に実装。実機・利用者観察は未実施 | [#18](https://github.com/oukiito/gomimap/issues/18) |
 | 手動での初回地区選択・確認・保存・途中復帰、変更の確認・取消・失敗復旧 | 架空地区の試作に実装。B22〜33に理由を記録 | [#20](https://github.com/oukiito/gomimap/issues/20)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | GPS取得・正しい区域照合、住所例外 | 設計。実データと位置API・提供者の確認が必要 | [#5](https://github.com/oukiito/gomimap/issues/5) |
-| 初回ウィジェット提案・スキップ・一度だけの表示 | 設計。動作しない追加ボタンを試作へ置かない | [#5](https://github.com/oukiito/gomimap/issues/5)・[#7](https://github.com/oukiito/gomimap/issues/7) |
-| 本体と共有するウィジェット・Android追加要求・iPhone手順 | 設計。ネイティブビルド・実機PoCは未実施 | [#3](https://github.com/oukiito/gomimap/issues/3)・[#7](https://github.com/oukiito/gomimap/issues/7) |
+| 初回ウィジェット提案・スキップ・一度だけの表示 | 対応Androidの自作fixtureに実装。未回答再開・保存失敗・スキップの試験済み | [#5](https://github.com/oukiito/gomimap/issues/5)・[#7](https://github.com/oukiito/gomimap/issues/7) |
+| 本体と共有するウィジェット・Android追加要求・iPhone手順 | Androidの共有・追加要求・実配置を確認。iOSは未実装 | [#3](https://github.com/oukiito/gomimap/issues/3)・[#7](https://github.com/oukiito/gomimap/issues/7) |
 
 実装にはB番号ごとの確認結果を紐付け、[UI設計の利用者試験](ux-design.md#利用者試験)U1・U6・U7へ、初回のみの表示、追加取消、設定からの再追加、地区常時表示・文字拡大を加える。未実施の検証を成功と記録しない。

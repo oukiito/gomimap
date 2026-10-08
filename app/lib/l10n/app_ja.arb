@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "今日のごみ",
+  "widgetSample": "開発用サンプル",
+  "widgetNext": "次回",
+  "widgetOfferTitle": "今日のごみをホーム画面に表示",
+  "widgetOfferBody": "アプリを開かず、日付とごみの種類を確認できます。",
+  "widgetAdd": "追加する",
+  "widgetSkip": "スキップ",
+  "widgetSettings": "ホーム画面ウィジェット",
+  "widgetAdded": "ホーム画面に追加されています",
+  "widgetRequested": "追加を要求しました。OSの確認で追加してください。",
+  "widgetUnsupported": "ホーム画面を長押しし、「ウィジェット」から「ごみまっぷ」を追加できます。",
+  "widgetFailure": "追加要求ができませんでした。もう一度試すか、ホーム画面から追加してください。",
+  "widgetSaveError": "選択を保存できませんでした。もう一度試してください。",
+  "disposalDeadlinePassed": "ごみ出しの締切を過ぎています"
 }

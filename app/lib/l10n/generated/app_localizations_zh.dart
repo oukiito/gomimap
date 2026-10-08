@@ -288,6 +288,48 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get close => '关闭';
+
+  @override
+  String get widgetLabel => '垃圾收集日程';
+
+  @override
+  String get widgetSample => '开发用示例';
+
+  @override
+  String get widgetNext => '下次安排';
+
+  @override
+  String get widgetOfferTitle => '在主屏幕显示今天的垃圾';
+
+  @override
+  String get widgetOfferBody => '无需打开应用，即可查看日期和垃圾种类。';
+
+  @override
+  String get widgetAdd => '添加';
+
+  @override
+  String get widgetSkip => '跳过';
+
+  @override
+  String get widgetSettings => '主屏幕小组件';
+
+  @override
+  String get widgetAdded => '已添加到主屏幕';
+
+  @override
+  String get widgetRequested => '已请求添加。请在系统提示中确认。';
+
+  @override
+  String get widgetUnsupported => '长按主屏幕，选择“小组件”，然后添加“Gomimap”。';
+
+  @override
+  String get widgetFailure => '无法请求添加。请重试或从主屏幕添加。';
+
+  @override
+  String get widgetSaveError => '无法保存选择。请重试。';
+
+  @override
+  String get disposalDeadlinePassed => '已过垃圾投放截止时间';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -573,6 +615,48 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get close => '关闭';
+
+  @override
+  String get widgetLabel => '垃圾收集日程';
+
+  @override
+  String get widgetSample => '开发用示例';
+
+  @override
+  String get widgetNext => '下次安排';
+
+  @override
+  String get widgetOfferTitle => '在主屏幕显示今天的垃圾';
+
+  @override
+  String get widgetOfferBody => '无需打开应用，即可查看日期和垃圾种类。';
+
+  @override
+  String get widgetAdd => '添加';
+
+  @override
+  String get widgetSkip => '跳过';
+
+  @override
+  String get widgetSettings => '主屏幕小组件';
+
+  @override
+  String get widgetAdded => '已添加到主屏幕';
+
+  @override
+  String get widgetRequested => '已请求添加。请在系统提示中确认。';
+
+  @override
+  String get widgetUnsupported => '长按主屏幕，选择“小组件”，然后添加“Gomimap”。';
+
+  @override
+  String get widgetFailure => '无法请求添加。请重试或从主屏幕添加。';
+
+  @override
+  String get widgetSaveError => '无法保存选择。请重试。';
+
+  @override
+  String get disposalDeadlinePassed => '已过垃圾投放截止时间';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -858,4 +942,46 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get close => '關閉';
+
+  @override
+  String get widgetLabel => '垃圾收集日程';
+
+  @override
+  String get widgetSample => '開發用範例';
+
+  @override
+  String get widgetNext => '下次安排';
+
+  @override
+  String get widgetOfferTitle => '在主畫面顯示今天的垃圾';
+
+  @override
+  String get widgetOfferBody => '不用開啟應用程式，即可查看日期和垃圾種類。';
+
+  @override
+  String get widgetAdd => '加入';
+
+  @override
+  String get widgetSkip => '略過';
+
+  @override
+  String get widgetSettings => '主畫面小工具';
+
+  @override
+  String get widgetAdded => '已加入主畫面';
+
+  @override
+  String get widgetRequested => '已提出加入要求。請在系統提示中確認。';
+
+  @override
+  String get widgetUnsupported => '長按主畫面，選擇「小工具」，再加入「Gomimap」。';
+
+  @override
+  String get widgetFailure => '無法提出加入要求。請重試或從主畫面加入。';
+
+  @override
+  String get widgetSaveError => '無法儲存選擇。請重試。';
+
+  @override
+  String get disposalDeadlinePassed => '已過垃圾投放截止時間';
 }

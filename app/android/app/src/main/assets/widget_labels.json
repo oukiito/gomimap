@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "locales": {
+    "en": {
+      "widgetLabel": "Waste schedule",
+      "widgetSample": "Development sample",
+      "widgetNext": "Next schedule",
+      "uncertain": "Collection schedule needs confirmation",
+      "chooseArea": "Select area",
+      "areaName": "Toshima · Sample area {area}"
+    },
+    "es": {
+      "widgetLabel": "Recogida de basura",
+      "widgetSample": "Ejemplo de desarrollo",
+      "widgetNext": "Próxima previsión",
+      "uncertain": "Es necesario confirmar el calendario de recogida",
+      "chooseArea": "Seleccionar zona",
+      "areaName": "Toshima · Zona de ejemplo {area}"
+    },
+    "fil": {
+      "widgetLabel": "Iskedyul ng basura",
+      "widgetSample": "Halimbawa para sa pag-develop",
+      "widgetNext": "Susunod na iskedyul",
+      "uncertain": "Kailangang kumpirmahin ang iskedyul ng koleksyon",
+      "chooseArea": "Pumili ng lugar",
+      "areaName": "Toshima · Halimbawang lugar {area}"
+    },
+    "ja": {
+      "widgetLabel": "今日のごみ",
+      "widgetSample": "開発用サンプル",
+      "widgetNext": "次回",
+      "uncertain": "収集予定の確認が必要",
+      "chooseArea": "地域を選ぶ",
+      "areaName": "豊島区・サンプル地域{area}"
+    },
+    "ko": {
+      "widgetLabel": "쓰레기 수거 일정",
+      "widgetSample": "개발용 예시",
+      "widgetNext": "다음 일정",
+      "uncertain": "수거 일정 확인이 필요합니다",
+      "chooseArea": "지역 선택",
+      "areaName": "도시마구 · 샘플 지역 {area}"
+    },
+    "ne": {
+      "widgetLabel": "फोहोर सङ्कलन तालिका",
+      "widgetSample": "विकास नमुना",
+      "widgetNext": "अर्को तालिका",
+      "uncertain": "सङ्कलन तालिका पुष्टि गर्नुपर्छ",
+      "chooseArea": "क्षेत्र छान्नुहोस्",
+      "areaName": "तोशिमा · नमुना क्षेत्र {area}"
+    },
+    "pt": {
+      "widgetLabel": "Coleta de lixo",
+      "widgetSample": "Exemplo de desenvolvimento",
+      "widgetNext": "Próxima previsão",
+      "uncertain": "É preciso confirmar o calendário de coleta",
+      "chooseArea": "Selecionar área",
+      "areaName": "Toshima · Área de exemplo {area}"
+    },
+    "vi": {
+      "widgetLabel": "Lịch thu gom rác",
+      "widgetSample": "Mẫu phát triển",
+      "widgetNext": "Lịch tiếp theo",
+      "uncertain": "Cần xác nhận lịch thu gom",
+      "chooseArea": "Chọn khu vực",
+      "areaName": "Toshima · Khu vực mẫu {area}"
+    },
+    "zh-Hans": {
+      "widgetLabel": "垃圾收集日程",
+      "widgetSample": "开发用示例",
+      "widgetNext": "下次安排",
+      "uncertain": "需要确认垃圾收集安排",
+      "chooseArea": "选择地区",
+      "areaName": "丰岛区 · 示例地区{area}"
+    },
+    "zh-Hant": {
+      "widgetLabel": "垃圾收集日程",
+      "widgetSample": "開發用範例",
+      "widgetNext": "下次安排",
+      "uncertain": "需要確認垃圾收集安排",
+      "chooseArea": "選擇地區",
+      "areaName": "豐島區 · 範例地區{area}"
+    }
+  }
+}

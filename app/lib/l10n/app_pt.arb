@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "Coleta de lixo",
+  "widgetSample": "Exemplo de desenvolvimento",
+  "widgetNext": "Próxima previsão",
+  "widgetOfferTitle": "Mostrar o lixo de hoje na tela inicial",
+  "widgetOfferBody": "Veja a data e o tipo de lixo sem abrir o aplicativo.",
+  "widgetAdd": "Adicionar",
+  "widgetSkip": "Pular",
+  "widgetSettings": "Widget da tela inicial",
+  "widgetAdded": "Adicionado à tela inicial",
+  "widgetRequested": "Adição solicitada. Confirme na janela do sistema.",
+  "widgetUnsupported": "Toque e segure a tela inicial, escolha Widgets e adicione Gomimap.",
+  "widgetFailure": "Não foi possível solicitar. Tente novamente ou adicione pela tela inicial.",
+  "widgetSaveError": "Não foi possível salvar a escolha. Tente novamente.",
+  "disposalDeadlinePassed": "O prazo para colocar o lixo terminou"
 }

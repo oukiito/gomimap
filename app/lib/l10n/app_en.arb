@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "Waste schedule",
+  "widgetSample": "Development sample",
+  "widgetNext": "Next schedule",
+  "widgetOfferTitle": "Show today’s waste on your home screen",
+  "widgetOfferBody": "See the date and waste type without opening the app.",
+  "widgetAdd": "Add widget",
+  "widgetSkip": "Skip",
+  "widgetSettings": "Home screen widget",
+  "widgetAdded": "Added to the home screen",
+  "widgetRequested": "Addition requested. Confirm in the system dialog.",
+  "widgetUnsupported": "Touch and hold the home screen, select Widgets, then add Gomimap.",
+  "widgetFailure": "Could not request the widget. Retry or add it from the home screen.",
+  "widgetSaveError": "Could not save your choice. Please retry.",
+  "disposalDeadlinePassed": "The disposal deadline has passed"
 }

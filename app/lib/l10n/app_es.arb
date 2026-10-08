@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "Recogida de basura",
+  "widgetSample": "Ejemplo de desarrollo",
+  "widgetNext": "Próxima previsión",
+  "widgetOfferTitle": "Mostrar la basura de hoy en la pantalla de inicio",
+  "widgetOfferBody": "Consulta la fecha y el tipo de basura sin abrir la aplicación.",
+  "widgetAdd": "Añadir",
+  "widgetSkip": "Omitir",
+  "widgetSettings": "Widget de la pantalla de inicio",
+  "widgetAdded": "Añadido a la pantalla de inicio",
+  "widgetRequested": "Se solicitó añadirlo. Confirma en el diálogo del sistema.",
+  "widgetUnsupported": "Mantén pulsada la pantalla de inicio, elige Widgets y añade Gomimap.",
+  "widgetFailure": "No se pudo solicitar. Reintenta o añádelo desde la pantalla de inicio.",
+  "widgetSaveError": "No se pudo guardar la elección. Reintenta.",
+  "disposalDeadlinePassed": "El plazo para sacar la basura ha pasado"
 }

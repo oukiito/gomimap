@@ -623,6 +623,90 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'閉じる'**
   String get close;
+
+  /// No description provided for @widgetLabel.
+  ///
+  /// In ja, this message translates to:
+  /// **'今日のごみ'**
+  String get widgetLabel;
+
+  /// No description provided for @widgetSample.
+  ///
+  /// In ja, this message translates to:
+  /// **'開発用サンプル'**
+  String get widgetSample;
+
+  /// No description provided for @widgetNext.
+  ///
+  /// In ja, this message translates to:
+  /// **'次回'**
+  String get widgetNext;
+
+  /// No description provided for @widgetOfferTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'今日のごみをホーム画面に表示'**
+  String get widgetOfferTitle;
+
+  /// No description provided for @widgetOfferBody.
+  ///
+  /// In ja, this message translates to:
+  /// **'アプリを開かず、日付とごみの種類を確認できます。'**
+  String get widgetOfferBody;
+
+  /// No description provided for @widgetAdd.
+  ///
+  /// In ja, this message translates to:
+  /// **'追加する'**
+  String get widgetAdd;
+
+  /// No description provided for @widgetSkip.
+  ///
+  /// In ja, this message translates to:
+  /// **'スキップ'**
+  String get widgetSkip;
+
+  /// No description provided for @widgetSettings.
+  ///
+  /// In ja, this message translates to:
+  /// **'ホーム画面ウィジェット'**
+  String get widgetSettings;
+
+  /// No description provided for @widgetAdded.
+  ///
+  /// In ja, this message translates to:
+  /// **'ホーム画面に追加されています'**
+  String get widgetAdded;
+
+  /// No description provided for @widgetRequested.
+  ///
+  /// In ja, this message translates to:
+  /// **'追加を要求しました。OSの確認で追加してください。'**
+  String get widgetRequested;
+
+  /// No description provided for @widgetUnsupported.
+  ///
+  /// In ja, this message translates to:
+  /// **'ホーム画面を長押しし、「ウィジェット」から「ごみまっぷ」を追加できます。'**
+  String get widgetUnsupported;
+
+  /// No description provided for @widgetFailure.
+  ///
+  /// In ja, this message translates to:
+  /// **'追加要求ができませんでした。もう一度試すか、ホーム画面から追加してください。'**
+  String get widgetFailure;
+
+  /// No description provided for @widgetSaveError.
+  ///
+  /// In ja, this message translates to:
+  /// **'選択を保存できませんでした。もう一度試してください。'**
+  String get widgetSaveError;
+
+  /// No description provided for @disposalDeadlinePassed.
+  ///
+  /// In ja, this message translates to:
+  /// **'ごみ出しの締切を過ぎています'**
+  String get disposalDeadlinePassed;
 }
 
 class _AppLocalizationsDelegate

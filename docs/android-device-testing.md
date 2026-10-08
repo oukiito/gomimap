@@ -2,7 +2,7 @@
 
 対象：開発用ごみまっぷ。ストア登録は不要。アプリのデータ・日付・地区は架空の表示例で、実際のごみ出しには使えない。[Issue #3](https://github.com/oukiito/gomimap/issues/3)の一部として、ビルド成功と実機確認を分けて記録する。
 
-現在：2026-10-08にPixelで地区の保存・再起動保持と通常のHTTPS取得・JSON保存・原本一致を確認。オフライン画面は本人が確認した。debug／profileで起動性能を測定し、Pixelにはprofile版が入っている。残る操作・異常系は継続する。[ビルド記録](work/2026-10-08-android-build.md)、[実機の結果と限界](work/2026-10-08-pixel-runtime.md)を参照。
+現在：2026-10-08にPixelで地区の保存・再起動保持と通常のHTTPS取得・JSON保存・原本一致を確認。オフライン画面は本人が確認した。debug／profileで起動性能を測定し、Pixelにはprofile版が入っている。Androidウィジェットの配置を確認し、2×2への縮小・オフライン・タップは本人が確認。締切切替版の最終実機確認を含む残る項目は[ウィジェット記録](work/2026-10-08-android-widget.md)で追跡する。[ビルド記録](work/2026-10-08-android-build.md)、[実機の結果と限界](work/2026-10-08-pixel-runtime.md)を参照。
 
 ## Macの初回準備
 
@@ -53,3 +53,20 @@ cd app
 GPS、実自治体の日程、通知、ウィジェット、実地図配信は現在未実装／未接続。動いているような確認結果を付けない。期限切れ・破損・保存失敗の自動試験はあるが、実機でのOS強制終了・電源断の耐久性を代替しない。
 
 記録にはアプリのコミット・版、端末モデル、数値のOS／API、確認操作と結果、未確認項目を残す。USBシリアル・詳細住所・通知などの個人情報・生の端末ログは公開しない。再インストールによる初回の再試験は設定・キャッシュを消すため、消去対象を確認して本人の許可を得る。
+
+## AndroidウィジェットのSDK試験
+
+新しい試験ライブラリを入れず、SDK標準のInstrumentationで共有する日程投影・日本日時・時間帯選択・不明・期限切れ・複数締切・文字拡大を確認する。`app/`で次を実行し、ネイティブ試験のJSONをDartの共有処理から再生成する。
+
+```sh
+flutter test --dart-define=GOMIMAP_EXPORT_WIDGET_FIXTURE=true test/home_widget_projection_test.dart
+```
+
+次に`app/android/`で付属JDKを`JAVA_HOME`に設定して`./gradlew :app:assembleDebugAndroidTest`を実行する。profile本体と試験APKをデータ保持で更新し、次を実行する。下記のIDは自分の接続端末を指定する。
+
+```sh
+adb -s <端末ID> install -r -t build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+adb -s <端末ID> shell am instrument -w dev.gomimap.gomimap.test/dev.gomimap.gomimap.WidgetChecksInstrumentation
+```
+
+APKの相対パスは`app/`を起点とする。結果Bundleの`result=PASS`と試験数を確認する。Instrumentationの終了コード`-1`はActivity.RESULT_OK。これはランチャーでの配置・縮小・オフライン表示・タップや、実際のOS更新到達とは別に記録する。端末時計や利用者の共有ファイルを試験で変更しない。
