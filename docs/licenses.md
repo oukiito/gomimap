@@ -1,6 +1,6 @@
 # ライセンスとライブラリ選定
 
-確認日：2026-10-06。これは開発時点の依存関係調査で、完成したiOS／Androidバイナリの配布承認ではない。
+確認日：2026-10-06、データ取得・保存の追加確認は2026-10-08。これは開発時点の依存関係調査で、完成したiOS／Androidバイナリの配布承認ではない。
 
 ## プロジェクトのライセンス
 
@@ -19,6 +19,7 @@ GPLは商用利用を禁止しない。配布する改変版等にはGPLの条�
 | 地域・言語の保存 | shared_preferences 2.5.5 | BSD-3-Clause | 継続。大量の自治体データはDBへ |
 | 公式サイト・外部リンク | url_launcher 6.3.3 | BSD-3-Clause | 継続 |
 | 地図描画・座標 | flutter_map 8.3.2 / latlong2 0.9.1 | BSD-3-Clause / Apache-2.0 | Google Mapsの依存を除去。配信元は未設定 |
+| データ取得・checksum・保存先 | http 1.6.0 / crypto 3.0.7 / path_provider 2.1.6 | 全てBSD-3-Clause | 既存の推移依存を同じ版で直接利用。通知を保持 |
 | アイコン | cupertino_icons 1.0.9 | MIT | テンプレート依存。現在主にMaterial Iconsを使用 |
 | 開発用解析・テスト | flutter_lints 6.0.0、flutter_test（SDK） | BSD-3-Clause | 開発用。完成バイナリへの包含とは区別 |
 
@@ -27,6 +28,14 @@ GPLは商用利用を禁止しない。配布する改変版等にはGPLの条�
 本文の一次分類はBSD-3-Clause 72、Apache-2.0 4、MIT 9、エンジンの集約通知1。`sky_engine/LICENSE`は多数の第三者通知を含むため、全体をBSDと判定していない。各ファイル内の個別通知とリリース成果物への包含は別途照合する。削除したGoogle Maps系の通知は現行一覧から除去した。
 
 BSD-3-Clause・MITは表示等の条件を保持してGPLと組み合わせる。Apache-2.0もGPLv3との組合せが可能で、GPLv2-onlyとは異なる。[Apache Software Foundationの説明](https://www.apache.org/licenses/GPL-compatibility.html)。この判断をプロプライエタリSDKや地図サービスへ拡張しない。
+
+## データ取得・保存の追加確認
+
+2026-10-08の取得・保存実装では上記3パッケージを直接依存へ移した。lockfileの版・推移的パッケージ集合は変わらず86件。再生成したライセンス本文・版・本文SHA-256も同じで、lockfileのSHA-256だけを更新した。一次資料：[http](https://pub.dev/packages/http)、[crypto](https://pub.dev/packages/crypto)、[path_provider](https://pub.dev/packages/path_provider)、同じ解決版の[保存した原文](../third_party/README.md)。利用時の追加ライブラリ料金はなく、Cloudflareの通信・配信費用は[別途のサービス条件](data-storage.md)に従う。
+
+Flutterラッパーだけで判断せず、解決済み`path_provider_android 2.3.1`と`path_provider_foundation 2.6.0`の実装も確認した。Androidは既存の`jni`／`jni_flutter`経由でOSのContext.filesDirを、iOSは既存の`ffi`／`objective_c`経由でFoundationのApplication Supportを使う。これらのパッケージ・関連する既存のネイティブビルドhookの通知も現行一覧に含まれ、追加の商用SDK・地図契約を導入していない。`http`の標準クライアントはDart HttpClient／ブラウザーfetch、`crypto`はDartのSHA-256処理。OS API・SDK・エンジン全体をBSDへ変更する意味ではなく、完成バイナリでのネイティブ成果物・必要通知・両OSビルドの監査は後続。
+
+収集データをネイティブの`shared_preferences`へ大量保存しない。同プラグインの[公式注意](https://pub.dev/packages/shared_preferences)は重要データの書込耐久性を保証していないため、JSONは専用ファイルを使い、Webの利用は消失しうる確認用キャッシュに限定した。
 
 ## SDK付属フォント・アイコン
 
@@ -52,7 +61,6 @@ Material Iconsをコードと一緒にGPLへ再ライセンスしない。CC-BY-
 | ウィジェット連携 | home_widget 0.10.0 | BSD-3-Clause | 本体とデータ共有。SwiftUI／Android側の画面は別実装 |
 | 端末DB | drift 2.35.1 | MIT | 収集予定・品目・拠点のオフライン保存。sqlite3等の実配布構成は追加監査 |
 | 状態管理 | flutter_riverpod 3.4.3 | MIT | 非同期データ更新の段階で検証。現在はFlutter標準のState |
-| データ取得 | http 1.6.0 | BSD-3-Clause | 版付き自治体データのHTTPS取得 |
 | 位置情報 | geolocator 14.1.1 | MIT | **保留**。ラッパーのMITだけで採用を確定しない |
 
 一次情報：[通知](https://pub.dev/packages/flutter_local_notifications/license)、[home_widget](https://pub.dev/packages/home_widget/license)、[drift](https://pub.dev/packages/drift/license)、[Riverpod](https://pub.dev/packages/flutter_riverpod/license)、[flutter_map](https://pub.dev/packages/flutter_map/license)、[geolocator](https://pub.dev/packages/geolocator/license)。バージョンを更新したら再確認する。

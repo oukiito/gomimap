@@ -10,6 +10,7 @@
 | --- | --- |
 | 実装済み | 今日・明日・今後の予定表示、初回のサンプル地区選択・確認・保存と途中復帰、地区の常時表示・変更、分別検索、特殊品目の回収場所画面、10種類の言語選択と保存 |
 | データ基盤を実装 | 自治体別の版付きJSON、住所条件・日付例外・期限・受入条件の判定、根拠・参照・公開メタデータの検査。同梱するのは自作の架空データのみ |
+| 開発用データの取得・保存を実装 | CloudflareのfixtureをHTTPS取得・検証し、保存後に反映。起動は保存済み／同梱から表示。ネイティブのファイル保存・ブラウザー確認用キャッシュは実装済み、両OS実機は未検証 |
 | 地図描画を実装 | `flutter_map`へ移行済み。タイル配信元は未設定で、標準起動時は未接続表示 |
 | 開発中・計画中 | 豊島区の公式データ、位置・住所による地域設定、通知、両OSのウィジェット、粗大ごみ条件確認、データ更新・監視 |
 | 未検証 | iOS／Androidのネイティブビルドと実機動作、各言語話者による翻訳確認、利用者検証 |
@@ -24,7 +25,7 @@ Flutter **3.47.6**／Dart **3.13.5**を使用しています。地図描画は`f
 
 ローカル環境での実行・テスト、iOS／Androidの環境構築、地図設定は[開発手順](docs/development.md)にまとめています。Web版は画面確認用です。
 
-日程は[data/datasets](data/datasets/README.md)のJSONから読み込みます。自作fixtureを[Cloudflareで公開・照合](docs/cloudflare-data.md)済みです。アプリは同梱JSONを使い、HTTP更新・端末DB・自動配信は未実装です。[スキーマ1](docs/data-schema-v1.md)、[保存・配信の設計](docs/data-storage.md)を参照してください。
+日程は[data/datasets](data/datasets/README.md)のJSONから読み込みます。自作fixtureを[Cloudflareで公開・照合](docs/cloudflare-data.md)済みです。アプリは保存済み／同梱JSONで開き、表示後に更新を確認します。取得・保存は開発用fixture限定で、端末DB・実自治体データ・自動配信は未実装です。[スキーマ1](docs/data-schema-v1.md)、[保存・配信の設計](docs/data-storage.md)、[検証記録](docs/work/2026-10-08-dataset-client.md)を参照してください。
 
 ## ドキュメント・参加方法
 

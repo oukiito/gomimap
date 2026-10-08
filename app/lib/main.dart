@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'data/demo_data.dart';
 import 'data/demo_setup_store.dart';
-import 'data/bundled_dataset.dart';
+import 'data/demo_dataset_repository.dart';
 import 'domain/municipal_dataset.dart';
 import 'domain/schedule.dart';
 import 'ui/collection_map.dart';
@@ -24,8 +26,8 @@ import 'ui/sheet_close_button.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
-  final dataset = await loadBundledDemoDataset();
-  runApp(GomimapApp(preferences: preferences, dataset: dataset));
+  final repository = await loadDemoDatasetRepository();
+  runApp(GomimapApp(preferences: preferences, repository: repository));
 }
 
 class GomimapApp extends StatefulWidget {
@@ -34,18 +36,21 @@ class GomimapApp extends StatefulWidget {
     required this.preferences,
     this.setupStore,
     this.dataset,
+    this.repository,
   });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
   final MunicipalDataset? dataset;
+  final DemoDatasetRepository? repository;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
 
-class _GomimapAppState extends State<GomimapApp> {
+class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   Locale? locale;
   late final DemoSetupStore setupStore;
   late DemoSetupSnapshot setup;
+  MunicipalDataset? get dataset => widget.repository?.current ?? widget.dataset;
 
   @override
   void initState() {
@@ -55,6 +60,29 @@ class _GomimapAppState extends State<GomimapApp> {
     setupStore =
         widget.setupStore ?? PreferencesDemoSetupStore(widget.preferences);
     setup = setupStore.read();
+    WidgetsBinding.instance.addObserver(this);
+    widget.repository?.addListener(datasetChanged);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(widget.repository?.refresh());
+    });
+  }
+
+  void datasetChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      unawaited(widget.repository?.refresh());
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    widget.repository?.removeListener(datasetChanged);
+    super.dispose();
   }
 
   Future<bool> changeLanguage(String code) async {
@@ -97,13 +125,13 @@ class _GomimapAppState extends State<GomimapApp> {
     home: setup.phase == DemoSetupPhase.districtSaved
         ? HomeShell(
             area: setup.area!,
-            dataset: widget.dataset,
+            dataset: dataset,
             setupStore: setupStore,
             onLanguageChanged: changeLanguage,
           )
         : DemoAreaSetup(
             store: setupStore,
-            dataset: widget.dataset,
+            dataset: dataset,
             initial: setup,
             onLanguageChanged: changeLanguage,
             onSaved: (area) =>

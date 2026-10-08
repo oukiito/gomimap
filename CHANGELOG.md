@@ -12,6 +12,7 @@
 
 ### Added
 
+- 開発用Cloudflare JSONのHTTPS取得・サイズ／checksum／スキーマ検証、端末ファイル保存と直前の版の保持。保存済み／同梱から表示し、起動・復帰時に更新を確認する処理（fixture限定、実機未検証）。
 - Cloudflareの開発用fixtureを公開し、JSON・manifest・GPLの一致、キャッシュ／CORS、304、秘密パス404を実際に確認した記録。
 - 自作fixture限定のCloudflare初回配信・専用認証・公開照合コマンドと開発用manifest。既存Workerへの上書きを拒否し、Dart検証・checksum・応答方針を確認（自動配信・端末HTTP更新は未実装）。
 - Cloudflareの対象Workerを限定するAPI認証と秘密の保存先の準備手順（配信コード・デプロイ・CIは未実装）。

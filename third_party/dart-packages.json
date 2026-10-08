@@ -1,7 +1,7 @@
 {
   "scope": "Resolved Dart packages including development and platform alternatives; not a shipped-binary bill of materials",
   "flutterVersion": "3.47.6",
-  "lockfileSha256": "87dbe6fd41a216d8c2edfdd632d2c27d13f6f21fd98572bf89e17dc1a1dadd56",
+  "lockfileSha256": "50dbe7a2f0dba09e42ddf4264ffeea31665ce24b3c32d23624d758f135225dbc",
   "unresolved": [
     "Native SDKs and Gradle/SPM/CocoaPods dependencies",
     "Release-specific Flutter engine, fonts and asset notices",

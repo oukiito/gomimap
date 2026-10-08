@@ -98,6 +98,18 @@ python3 scripts/validate_sources.py
 python3 -m unittest discover -s scripts/tests -v
 ```
 
+## 開発用データの取得・保存の確認
+
+開発用fixtureは保存済み／同梱から起動し、表示後に固定のCloudflare公開URLを認証なしで確認する。地区・言語・精密位置を要求へ付けない。更新周期・保存ファイル・失敗時の扱い・Webの限界は[保存設計](data-storage.md)を参照。端末DB、実自治体データ、両OS実機確認は未完了。
+
+通常のテストはネットワークを使わない。公開fixtureの実HTTPS取得・ファイル保存・再読込を明示的に確認する場合は、`app/`で次を実行する。認証ファイルは不要。
+
+```sh
+flutter test --no-pub --dart-define=GOMIMAP_VERIFY_LIVE_DATA=true test/live_dataset_test.dart
+```
+
+これは開発マシンのFlutter試験で、iOS／Android実機の保存や通信の成功を意味しない。Web確認版全体をオフラインで再読込できるPWAではない。
+
 ## 多言語対応
 
 画面文言は`app/lib/l10n/app_*.arb`で管理する。日本語・英語・中国語（簡体字／繁体字）・韓国語・ベトナム語・ネパール語・ポルトガル語・スペイン語・フィリピノ語（タガログ語）を提供する。Flutterの`gen-l10n`で`lib/l10n/generated/`へ型付きクラスを生成し、生成コードは直接編集しない。`flutter pub get`／ビルド時にも再生成する。言語追加時はARB、`lib/l10n/languages.dart`の母語表記・ロケール、iOSの`CFBundleLocalizations`、テストを更新する。中国語の基底`app_zh.arb`は簡体字のフォールバックで、選択肢には簡体字・繁体字だけを表示する。追加の宣伝・説明文は不要。
