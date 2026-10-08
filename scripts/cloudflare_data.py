@@ -209,10 +209,30 @@ def multipart(parts):
     return bytes(body), f"multipart/form-data; boundary={boundary}"
 
 
-def check(api):
+def check(api, receipt_path=RECEIPT):
     result = api.request("GET", "/tokens/verify")
     if not isinstance(result, dict) or result.get("status") != "active":
         raise SafeError("Token is not active")
+    if receipt_path.exists():
+        if receipt_path.is_symlink() or stat.S_IMODE(receipt_path.stat().st_mode) & 0o077:
+            raise SafeError("Worker identity receipt must be owner-only")
+        receipt = json.loads(receipt_path.read_bytes())
+        if not isinstance(receipt, dict) or receipt.get("workerName") != WORKER:
+            raise SafeError("Receipt does not identify the target")
+        if receipt.get("accountFingerprint") != hashlib.sha256(api.credentials.account.encode()).hexdigest():
+            raise SafeError("Receipt belongs to another account")
+        identifier = receipt.get("workerId", "")
+        if not isinstance(identifier, str) or not re.fullmatch(r"[a-fA-F0-9-]{32,36}", identifier):
+            raise SafeError("Invalid Worker identity")
+        worker = api.request("GET", "/workers/workers/" + identifier)
+        if worker.get("id") != identifier or worker.get("name") != WORKER or worker.get("created_on") != receipt.get("createdOn"):
+            raise SafeError("Worker identity has changed")
+        origin = (worker.get("subdomain") or {}).get("url", "")
+        if not isinstance(origin, str) or not re.fullmatch(r"https://gomimap-data-dev\.[a-z0-9-]+\.workers\.dev", origin):
+            raise SafeError("Unexpected target Worker origin")
+        return origin
+    # Before initial creation there is no per-Worker identity; bootstrap Admin
+    # can read the account subdomain. Never fall back after a receipt error.
     subdomain = api.request("GET", "/workers/subdomain").get("subdomain", "")
     if not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?", subdomain):
         raise SafeError("Register a workers.dev account subdomain before deploying")
@@ -384,7 +404,7 @@ def main():
             print(f"Prepared {len(assets)} explicitly selected public fixture assets")
             return
         api = Cloudflare(load_credentials(args.credentials))
-        base = check(api)
+        base = check(api, args.receipt)
         if args.command == "check":
             print("Dedicated account token active; development origin: " + base)
             return
