@@ -42,9 +42,9 @@ cd app
 
 ## ネイティブ環境
 
-2026-10-05のローカル確認環境にはXcode本体とAndroid SDKがなかった。2026-10-08にAndroidのデバッグAPKを初めてビルドし、成功を確認。iOSビルドと両OSの実機動作は未検証。PoCの設定下限はiOS 15／Android API 24。最終サポート範囲は実機試験で決める。アプリ識別子`dev.gomimap.gomimap`は仮で、ストア登録前に確定する。署名も開発用のテンプレート段階。
+2026-10-05のローカル確認環境にはXcode本体とAndroid SDKがなかった。2026-10-08にAndroidのデバッグAPKのビルドと、Pixelでの初回操作・地区保存を確認。iOSビルド・実機と、Androidの残る場面は未検証。PoCの設定下限はiOS 15／Android API 24。最終サポート範囲は実機試験で決める。アプリ識別子`dev.gomimap.gomimap`は仮で、ストア登録前に確定する。署名も開発用のテンプレート段階。
 
-2026-10-08にAndroid Studioと付属JDKを導入し、本人の初回SDKセットアップ後、不足していた公式ツール・指定API／NDKを追加した。Android toolchainは成功。USB端末はまだ未検出で、インストール・実機動作は未確認。[Android実機の手順](android-device-testing.md)、[準備記録](work/2026-10-08-android-preparation.md)、[初回ビルド結果](work/2026-10-08-android-build.md)を参照する。
+2026-10-08にAndroid Studioと付属JDKを導入し、本人の初回SDKセットアップ後、不足していた公式ツール・指定API／NDKを追加した。Android toolchainは成功。Pixel 10 Pro／Android17で起動と地区保存を確認したが、HTTP更新と残る実機試験は未完了。[Android実機の手順](android-device-testing.md)、[準備記録](work/2026-10-08-android-preparation.md)、[初回ビルド](work/2026-10-08-android-build.md)、[実機結果](work/2026-10-08-pixel-runtime.md)を参照する。
 
 iOSはXcode、AndroidはAndroid SDKとJDK等を用意し、`flutter doctor`の必要項目を解消してから`flutter run`で確認する。iOSの無料Personal Teamには有効期間等の制限があり、継続配布・TestFlightの代わりにはしない。[Apple公式](https://developer.apple.com/support/compare-memberships/)
 
