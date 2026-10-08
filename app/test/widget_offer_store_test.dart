@@ -9,6 +9,7 @@ import 'package:gomimap/data/demo_data.dart';
 class FailedOfferPreferences implements SharedPreferences {
   Object? persisted, optimistic;
   int reloads = 0;
+  bool reloadFails = false;
   @override
   Object? get(String key) => optimistic ?? persisted;
   @override
@@ -21,6 +22,7 @@ class FailedOfferPreferences implements SharedPreferences {
 
   @override
   Future<void> reload() async {
+    if (reloadFails) throw StateError('host storage unavailable');
     optimistic = persisted;
     reloads++;
   }
@@ -41,6 +43,22 @@ class CountingSetupStore implements DemoSetupStore {
 }
 
 void main() {
+  test('failed reload cannot turn optimistic pending cache into a committed marker', () async {
+    final prefs = FailedOfferPreferences()..reloadFails = true;
+    final delegate = CountingSetupStore();
+    final setup = WidgetSetupStore(
+      delegate,
+      WidgetOfferStore(prefs, legacyDistrictSaved: false),
+    );
+    for (var i = 0; i < 2; i++) {
+      expect(
+        await setup.save(const DemoSetupSnapshot.saved(DemoArea.a)),
+        false,
+      );
+    }
+    expect(prefs.containsKey(WidgetOfferStore.key), true);
+    expect(delegate.writes, 0);
+  });
   test('failed answer reloads optimistic preferences and does not suppress a pending offer', () {
     final prefs = FailedOfferPreferences()..persisted = false;
     final offer = WidgetOfferStore(prefs, legacyDistrictSaved: true);

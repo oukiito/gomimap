@@ -7,13 +7,17 @@ class WidgetOfferStore {
   WidgetOfferStore(this.preferences, {required bool legacyDistrictSaved}) {
     final saved = preferences.get(key);
     answered = saved is bool ? saved : saved != null || legacyDistrictSaved;
+    pendingPersisted = saved == false;
   }
   static const key = 'widget.offer.answered.v1';
   final SharedPreferences preferences;
   late bool answered;
+  late bool pendingPersisted;
   Future<bool> ensurePending() async {
-    if (answered || preferences.containsKey(key)) return true;
-    return _write(false);
+    if (answered || pendingPersisted) return true;
+    if (!await _write(false)) return false;
+    pendingPersisted = true;
+    return true;
   }
 
   Future<bool> answer() async {
