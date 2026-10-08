@@ -39,6 +39,8 @@ python3 scripts/cloudflare_data.py verify
 
 認証の既定は`private/cloudflare.env`。ファイルは所有者のみ読める600とし、重複キー・別Worker・不正な形式を拒否する。dotenvをshellで実行せず、環境の`CLOUDFLARE_*`や共有ログインを認証に使わない。APIキーはCloudflare公式APIのAuthorizationヘッダーだけへ送り、アセット・Workerの環境変数・ログには入れない。APIが返すアップロード用の短期JWTもメモリで処理する。
 
+作成後のcheck／verifyは、ローカル記録の不変ID・作成時刻・アカウントfingerprintを照合し、対象Workerの公開URLだけを読む。対象Worker限定の権限ではアカウント全体のサブドメイン取得が403になることを実測したため、広い取得へフォールバックしない。初回の記録がまだ存在しない場合だけ、作成前のAdminでアカウントサブドメインを確認する。コピーしたcheckout等で記録がない場合は、元の正しい記録を安全に移すか対象IDを確認して準備し、交換用トークンの権限を広げて解決しない。
+
 初回`deploy`は既にWorkerが存在すれば停止し、権限不足や未知の404も「存在しない」と見なさない。Cloudflareはアセット登録で空Workerを作成することがある。その不変ID・作成日時・アカウントのfingerprint・JSONのchecksumを`private/cloudflare-data-receipt.json`（600）へ記録する。`resume`はその記録と一致し、公開版が一度もなく公開ルートも無効なWorkerだけを受け入れる。別アカウント・別データ・別ID・名前変更・公開済みは拒否する。
 
 アップロード完了後にも固定した不変IDと未公開状態を再確認する。存在確認と初回PUTの間の競合をAPI上で完全に排除するものではない。同じ名前のWorkerを同時に別処理で作成しない。復旧記録のない古い失敗は、作成時刻・未公開状態・IDを運用者が確認してからローカルに記録する。名前だけで任意の空Workerを採用したり、既存Workerを削除・強制上書きしたりしない。
@@ -49,7 +51,7 @@ python3 scripts/cloudflare_data.py verify
 
 ## 次の工程
 
-初回作成後は`gomimap-data-dev`限定のEditorトークンへ交換する。初回Adminトークンを失効させる前に、限定トークンでの認証確認を行う。この交換はトークン管理権限を持たない配信スクリプトでは行わず、メンテナーがダッシュボードで実施する。Workerを削除する手順ではない。[公式のWorkers権限](https://developers.cloudflare.com/workers/authorization/workers/)
+初回作成後は`gomimap-data-dev`限定のEditorトークンへ交換する。交換用トークンによる認証・対象Workerと公開データの照合は確認済み。初回Adminトークンの失効をメンテナーへ依頼し、実施確認はまだない。配信スクリプトにはトークン管理権限を持たせず、メンテナーがダッシュボードで実施する。Workerを削除する手順ではない。[公式のWorkers権限](https://developers.cloudflare.com/workers/authorization/workers/)
 
 既存Workerの更新・旧版保持・ロールバック、承認済みの実データ、manifestの端末検証・保存、自動配信CI、取得／差分PR／独立監視はまだない。初回配信コマンドの完成や公開中のfixtureを、これらの稼働・全国対応・豊島区の実予定として扱わない。
 

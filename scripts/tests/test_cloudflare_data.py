@@ -203,6 +203,50 @@ class CloudflareDataTests(unittest.TestCase):
                 cf.deploy(api, self.assets, self.receipt_path, resume=True)
             self.assertEqual(api.request.call_count, 1)
 
+    def scoped_check_api(self):
+        api = Mock()
+        api.credentials = cf.Credentials("a" * 32, TEST_TOKEN)
+        receipt = cf.receipt_for(api, self.assets, self.worker)
+        self.receipt_path.write_bytes(cf.json_bytes(receipt))
+        self.receipt_path.chmod(0o600)
+        published = {**self.worker, "deployed_on": "2026-10-07T17:12:26Z", "subdomain": {
+            "enabled": True, "url": "https://gomimap-data-dev.demo.workers.dev",
+        }}
+        api.request.side_effect = [{"status": "active"}, published]
+        return api, receipt, published
+
+    def test_scoped_token_check_never_requests_account_subdomain(self):
+        api, _, _ = self.scoped_check_api()
+        self.assertEqual(cf.check(api, self.receipt_path), "https://gomimap-data-dev.demo.workers.dev")
+        self.assertEqual([c.args[1] for c in api.request.call_args_list], ["/tokens/verify", "/workers/workers/" + self.worker["id"]])
+
+    def test_bad_identity_receipt_cannot_fall_back_to_account_information(self):
+        for field in ("accountFingerprint", "workerName", "workerId"):
+            api, receipt, _ = self.scoped_check_api()
+            self.receipt_path.write_bytes(cf.json_bytes({**receipt, field: "other"}))
+            with self.subTest(field=field), self.assertRaises(cf.SafeError):
+                cf.check(api, self.receipt_path)
+            self.assertEqual(api.request.call_count, 1)
+
+    def test_foreign_worker_identity_or_url_is_rejected_without_fallback(self):
+        api, _, published = self.scoped_check_api()
+        for changed in (
+            {**published, "id": "c" * 32}, {**published, "name": "another-worker"},
+            {**published, "created_on": "changed"},
+            {**published, "subdomain": {"url": "https://another.example"}},
+        ):
+            api.request.reset_mock()
+            api.request.side_effect = [{"status": "active"}, changed]
+            with self.subTest(change=changed), self.assertRaises(cf.SafeError):
+                cf.check(api, self.receipt_path)
+            self.assertEqual(api.request.call_count, 2)
+
+    def test_initial_bootstrap_without_receipt_can_read_account_subdomain(self):
+        api = Mock()
+        api.request.side_effect = [{"status": "active"}, {"subdomain": "demo"}]
+        self.assertEqual(cf.check(api, self.root / "missing"), "https://gomimap-data-dev.demo.workers.dev")
+        self.assertEqual(api.request.call_args_list[1].args[1], "/workers/subdomain")
+
     def canonical_source(self):
         source = cf.ROOT / cf.SOURCE
         target = self.root / cf.SOURCE
