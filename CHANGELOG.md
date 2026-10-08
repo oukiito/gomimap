@@ -12,6 +12,7 @@
 
 ### Added
 
+- Pixel 10 Pro／Android 17でのインストール・起動・地区保存と、一時ファイル保存の確認記録。通常の更新は名前解決エラーで未完了。
 - Androidの開発用デバッグAPKの初回ビルド確認、PixelのUSB接続・実機試験の手順。端末のインストールと動作確認は未実施。
 - 開発用Cloudflare JSONのHTTPS取得・サイズ／checksum／スキーマ検証、端末ファイル保存と直前の版の保持。保存済み／同梱から表示し、起動・復帰時に更新を確認する処理（fixture限定、実機未検証）。
 - Cloudflareの開発用fixtureを公開し、JSON・manifest・GPLの一致、キャッシュ／CORS、304、秘密パス404を実際に確認した記録。
