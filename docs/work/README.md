@@ -15,5 +15,6 @@
 | 2026-10-08 | AI模擬操作・締切表示・詳細の閉じる・品物へ戻る | [UI改善の記録](2026-10-08-persona-ui.md) | [#23](https://github.com/oukiito/gomimap/issues/23)、G05・G09・G12 |
 | 2026-10-08 | Cloudflareの専用認証・開発JSON初回配信コマンド | [開発データ配信の記録](2026-10-08-cloudflare-data.md) | [#26](https://github.com/oukiito/gomimap/issues/26)、G10・G11 |
 | 2026-10-08 | Cloudflare fixtureのアプリ取得・検証・端末保存・復帰 | [端末取得の記録](2026-10-08-dataset-client.md) | [#33](https://github.com/oukiito/gomimap/issues/33)、G05・G11 |
+| 2026-10-08 | Android Studio導入・Pixel実機確認の準備 | [Android準備の記録](2026-10-08-android-preparation.md) | [#3](https://github.com/oukiito/gomimap/issues/3) |
 
 画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
