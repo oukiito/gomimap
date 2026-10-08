@@ -290,7 +290,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get close => '閉じる';
 
   @override
-  String get widgetLabel => '今日のごみ';
+  String get widgetLabel => 'ごみの予定';
 
   @override
   String get widgetSample => '開発用サンプル';
@@ -299,7 +299,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get widgetNext => '次回';
 
   @override
-  String get widgetOfferTitle => '今日のごみをホーム画面に表示';
+  String get widgetOfferTitle => 'ごみの予定をホーム画面に表示';
 
   @override
   String get widgetOfferBody => 'アプリを開かず、日付とごみの種類を確認できます。';

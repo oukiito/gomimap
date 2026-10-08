@@ -323,7 +323,8 @@ class AppLocalizationsFil extends AppLocalizations {
   String get widgetNext => 'Susunod na iskedyul';
 
   @override
-  String get widgetOfferTitle => 'Ipakita ang basura ngayon sa home screen';
+  String get widgetOfferTitle =>
+      'Ipakita ang iskedyul ng basura sa home screen';
 
   @override
   String get widgetOfferBody =>

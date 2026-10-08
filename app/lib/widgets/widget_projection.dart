@@ -26,13 +26,24 @@ String buildWidgetProjection({
   final locales = <String, Object?>{};
   for (final locale in appLocales) {
     final l10n = lookupAppLocalizations(locale);
+    List<String> deadlineLines(DaySchedule day) {
+      final times = day.collections
+          .map((entry) => entry.deadline.toString())
+          .toSet();
+      if (times.length == 1) return [l10n.collectionDeadline(times.single)];
+      return [
+        for (final entry in day.collections)
+          l10n.itemDeadline(
+            entry.localizedName(l10n),
+            entry.deadline.toString(),
+          ),
+      ];
+    }
+
     Map<String, Object?> presentation(DaySchedule day) => {
       'status': day.status.name,
       'title': day.localizedDescription(l10n),
-      'lines': [
-        for (final collection in day.collections)
-          '${collection.localizedName(l10n)}: ${l10n.collectionDeadline(collection.deadline.toString())}',
-      ],
+      'lines': deadlineLines(day),
       'dateLabel': DateFormat.MEd(l10n.localeName).format(day.date),
     };
     Map<String, Object?> segment(int index, int minute) {

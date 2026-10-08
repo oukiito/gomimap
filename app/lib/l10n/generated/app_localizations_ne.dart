@@ -321,7 +321,8 @@ class AppLocalizationsNe extends AppLocalizations {
   String get widgetNext => 'अर्को तालिका';
 
   @override
-  String get widgetOfferTitle => 'होम स्क्रिनमा आजको फोहोर देखाउनुहोस्';
+  String get widgetOfferTitle =>
+      'होम स्क्रिनमा फोहोर सङ्कलन तालिका देखाउनुहोस्';
 
   @override
   String get widgetOfferBody => 'एप नखोली मिति र फोहोरको प्रकार हेर्न सकिन्छ।';

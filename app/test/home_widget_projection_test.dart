@@ -38,6 +38,7 @@ void main() {
     }
     expect(locales['en']['days']['2026-10-05']['title'], 'Burnable waste');
     expect(locales['ja']['days']['2026-10-05']['lines'][0], contains('08:00'));
+    expect(locales['ja']['days']['2026-10-05']['lines'][0], '出す時間：08:00まで');
     if (const bool.fromEnvironment('GOMIMAP_EXPORT_WIDGET_FIXTURE')) {
       final file = File(
         'android/app/src/androidTest/assets/widget_projection.json',
@@ -69,6 +70,22 @@ void main() {
         expect(variant['days']['2027-02-01']['status'], 'needsConfirmation');
       }
     }
+  });
+  test('a common deadline stays readable once while all category names remain in the title', () {
+    final data = fixtureDataset((json) {
+      json['baselines'][1]['recurrences'][0]['weekdays'] = [1];
+    });
+    final projection = jsonDecode(
+      buildWidgetProjection(
+        dataset: data,
+        area: DemoArea.a,
+        start: CalendarDate(2026, 10, 5),
+        generatedAt: DateTime.utc(2026, 10, 5),
+      ),
+    );
+    final day = projection['locales']['ja']['days']['2026-10-05'];
+    expect(day['title'], '燃やすごみ・資源');
+    expect(day['lines'], ['出す時間：08:00まで']);
   });
   test('multiple categories and distinct deadlines survive projection without losing one', () {
     final data = fixtureDataset((json) {

@@ -22,5 +22,6 @@
 | 2026-10-08 | Androidウィジェット・2×2・締切後の次回表示・初回追加 | [ウィジェット記録](2026-10-08-android-widget.md) | [#7](https://github.com/oukiito/gomimap/issues/7)、G05 |
 
 | 2026-10-09 | Maestroローカル導入・MCP起動・Semantics ID・Flow準備 | [Maestro準備](2026-10-09-maestro-preparation.md) | [#42](https://github.com/oukiito/gomimap/issues/42)、G03・G07 |
+| 2026-10-09 | Maestroの実画面取得・OS追加・日英の比較／復帰、締切の文字切れと言語更新を修正 | [Maestro UI試験](2026-10-09-maestro-ui-poc.md) | [#42](https://github.com/oukiito/gomimap/issues/42)、[#7](https://github.com/oukiito/gomimap/issues/7) |
 
-画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
+画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

@@ -299,7 +299,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get widgetNext => '下次安排';
 
   @override
-  String get widgetOfferTitle => '在主屏幕显示今天的垃圾';
+  String get widgetOfferTitle => '在主屏幕显示垃圾收集日程';
 
   @override
   String get widgetOfferBody => '无需打开应用，即可查看日期和垃圾种类。';
@@ -626,7 +626,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get widgetNext => '下次安排';
 
   @override
-  String get widgetOfferTitle => '在主屏幕显示今天的垃圾';
+  String get widgetOfferTitle => '在主屏幕显示垃圾收集日程';
 
   @override
   String get widgetOfferBody => '无需打开应用，即可查看日期和垃圾种类。';
@@ -953,7 +953,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get widgetNext => '下次安排';
 
   @override
-  String get widgetOfferTitle => '在主畫面顯示今天的垃圾';
+  String get widgetOfferTitle => '在主畫面顯示垃圾收集日程';
 
   @override
   String get widgetOfferBody => '不用開啟應用程式，即可查看日期和垃圾種類。';

@@ -322,7 +322,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get widgetNext => 'Next schedule';
 
   @override
-  String get widgetOfferTitle => 'Show today’s waste on your home screen';
+  String get widgetOfferTitle => 'Show your waste schedule on the home screen';
 
   @override
   String get widgetOfferBody =>

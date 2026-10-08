@@ -175,7 +175,7 @@
   "widgetLabel": "쓰레기 수거 일정",
   "widgetSample": "개발용 예시",
   "widgetNext": "다음 일정",
-  "widgetOfferTitle": "홈 화면에 오늘의 쓰레기 표시",
+  "widgetOfferTitle": "홈 화면에 쓰레기 수거 일정 표시",
   "widgetOfferBody": "앱을 열지 않고 날짜와 쓰레기 종류를 확인합니다.",
   "widgetAdd": "추가",
   "widgetSkip": "건너뛰기",

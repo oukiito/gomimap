@@ -1,10 +1,10 @@
 # Androidの画面取得・操作を含む自動試験
 
-状態：調査に続き、Maestro 2.11.0のローカル導入、プロジェクト用MCP登録とサーバー起動・ツール一覧取得、試験用IDとFlowを準備。Codexの現在のセッションへ新ツールはまだ反映されず、画面操作のPoC・UI用CIは未実施。[準備記録](work/2026-10-09-maestro-preparation.md)。関連：[Issue #3](https://github.com/oukiito/gomimap/issues/3)、[Issue #7](https://github.com/oukiito/gomimap/issues/7)。現在の実機確認は[ウィジェット記録](work/2026-10-08-android-widget.md)。
+状態：Maestro 2.11.0とプロジェクト用MCPを導入。Codex再起動後に専用API37エミュレータでOS追加・画面取得・A01〜A04のassert・タップ復帰と日英の言語変更を確認した。[準備記録](work/2026-10-09-maestro-preparation.md)、[実行記録](work/2026-10-09-maestro-ui-poc.md)。UI用CI・Pixel実機のMaestro試験・時刻境界のUI試験は未実施。関連：[Issue #3](https://github.com/oukiito/gomimap/issues/3)、[Issue #7](https://github.com/oukiito/gomimap/issues/7)。実機確認は[ウィジェット記録](work/2026-10-08-android-widget.md)。
 
 ## 推奨
 
-まず**Maestro CLIと公式Maestro MCPを使う小さなPoC**を行う。AIが画面の要素を調べて操作し、その操作をYAMLの再実行可能なテストへ保存する。必要なウィジェットの検証をAndroid UI Automatorで補う。これらは技術面からの提案であり、Pixel 10 Pro／Android 17との接続・動作を確認した結論ではない。
+**Maestro CLIと公式Maestro MCP**で、画面の要素を調べて操作し、成功した手順をYAMLへ保存する。エミュレータの本体とホーム画面の比較はこの構成で確認できた。必要になった細かなウィジェット操作をAndroid UI Automatorで補う。Pixel 10 Pro／Android 17のMaestro動作を確認した結論ではない。
 
 Maestroの公式資料はAndroid実機の操作と、FlutterのSemanticsを利用した試験を説明している。[対応プラットフォーム](https://docs.maestro.dev/get-started/supported-platform/android)、[Flutter対応](https://docs.maestro.dev/get-started/supported-platform/flutter)。MCPは画面の要素・画像取得、Flow実行を提供し、Viewerはブラウザーに端末を表示する。[公式MCPとViewer](https://docs.maestro.dev/get-started/maestro-mcp)。
 
@@ -39,7 +39,7 @@ MCPツール名は版によって変わるため、接続後の提供ツール�
 
 ## 接続準備の案
 
-現在のMacではAndroid SDKと付属JDK、USBのPixel接続によるSDK試験は確認済み。Maestro CLIは2.11.0を導入済み。サーバーの初期化・ツール一覧を確認したが、このセッションに新しいMaestroツールはまだない。
+現在のMacではAndroid SDKと付属JDK、USBのPixel接続によるSDK試験は確認済み。Maestro CLIは2.11.0を導入済み。Codexの再起動後に`list_devices`・`inspect_screen`・`take_screenshot`・`run`を使い、専用エミュレータを明示してPoCを実行した。
 
 1. 画面取得・操作が許可された試験環境と対象端末を確認する。
 2. [公式手順](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli)でMaestroを導入し、版を固定する。要件はJava 17以上。導入結果は準備記録へ保存した。
@@ -65,15 +65,15 @@ MAESTRO_CLI_NO_ANALYTICS = "true"
 | --- | --- | --- |
 | A01 | 専用試験環境の地区保存済み画面で、今日の予定を取得 | 本体の地区・日付・状態をassertし、実画面PNGを保存。モデルの読み込み成功との違いを確認 |
 | A02 | Homeへ戻り、既存の試験用ウィジェットを調べる | 表示対象日・地区・種類・締切、今日／次回のラベルが本体と一致。根拠はW01・02・04・12・14 |
-| A03 | 試験用ウィジェットをタップ | 本体の今日へ到達。検索語・地区が保持される。根拠はW07 |
+| A03 | 試験用ウィジェットをタップ | 本体の今日へ到達し地区を保持。検索語の保持は別の操作試験で確認する。根拠はW07 |
 | A04 | 言語を変え、アプリからHomeへ戻る | 本体とウィジェットが同じ言語。検索対象を文言ではなく固定IDで選ぶ |
 | A05 | 専用試験環境で2×2・文字200%・長い訳へ変更 | 日付・地区・予定が読め、スクロールで全内容が確認できる。根拠はW04・05 |
 | A06 | 本体とAndroidの双方へ同じ試験時刻を注入し、締切直前・ちょうど・経過・0時を進める | 今日の未締切区分→次回の切替。今日／次回の不明を飛ばさない。根拠はW13〜16 |
 | A07 | 専用環境で追加・取消・スキップ・再起動・削除後の再追加を実行 | 配置と要求を区別し、通常起動で再提案しない。根拠はW08〜11 |
 
-まずA01〜A03の1本を通す。Maestroでウィジェットの要素・タップを扱えない場合は、同じ対象をUI Automatorで検証する。どちらも実際の描画を確認できなければ成功とはしない。
+A01〜A03の1本と日英のA04が専用エミュレータで成功した。A05の200%・他の長い訳、A06の時刻注入、A07の取消等は残る。Maestroで扱えない操作が生じた場合はUI Automatorを検討し、実際の描画を確認できなければ成功とはしない。
 
-現在の`ValueKey('today-schedule')`等はDartの試験用で、外部ランナーから見えるIDではない。PoCでは`Semantics(identifier: ...)`を適切な操作・予定要素へ追加し、10言語で固定の識別子を使う。読み上げの日本語等のラベルはそのまま保持し、利用者にテストIDを見せない。[MaestroのFlutter識別子](https://docs.maestro.dev/get-started/supported-platform/flutter)。
+`ValueKey('today-schedule')`等はDartの試験用で、外部ランナーから見えるIDではない。PoC用の`Semantics(identifier: ...)`を操作・予定要素へ追加し、10言語で固定の識別子を使う。読み上げの日本語等のラベルは保持し、利用者にテストIDを見せない。[MaestroのFlutter識別子](https://docs.maestro.dev/get-started/supported-platform/flutter)。
 
 A06の本体用`clock`注入だけではネイティブウィジェットの時刻は変わらない。専用ビルドでネイティブにも試験時計を用意し、同じ時間帯を選ばせる必要がある。実装は未着手。OS時計を個人端末で変更して再現しない。AIのテストが実時間を読むだけでは日付境界の再現試験にならない。
 
@@ -94,10 +94,10 @@ Maestro CLI、Patrol、Appium、scrcpyの各プロジェクトはApache-2.0を�
 
 まずローカルのOSS構成を候補とし、有料クラウド・AI評価の契約はしない。クラウドサービスの費用や利用条件はコードのライセンスとは別に調べる。スクリーンショットを毎操作LLMへ送ることを回帰試験の必須条件にせず、assertで判定し、重要な画面や失敗時に絞って画像を確認する。
 
-## このセッションの制約
+## 実行権限の扱い
 
-ADBの直接キャプチャは自動承認レビューで拒否された。これはAndroidに自動試験の方法がないことを意味しない。この資料は技術構成と必要な検証の調査であり、拒否された取得を別ツールやMCPへ置き換えて実行したものではない。MCPを追加すれば操作が許可されるとは保証しない。端末操作・取得が許可された実行環境を確認してからPoCを進める。
+調査時に個人PixelへのADB直接キャプチャは自動承認レビューで拒否され、再試行していない。今回の画面操作は、新たに提供されたMaestro MCPで専用エミュレータを対象に実行した。MCP接続だけで他の対象への操作許可が得られるとは扱わず、各環境の対象・実行条件を確認する。
 
 ## 準備したファイル
 
-[Flowと実行手順](../e2e/maestro/README.md)、`scripts/install_maestro.py`、`scripts/maestro_runtime.py`を追加した。固定ID・読み上げ・クリック動作の理由と確認は[準備記録](work/2026-10-09-maestro-preparation.md)へ記録。準備完了をA01〜A03の実行成功と扱わない。
+[Flowと実行手順](../e2e/maestro/README.md)、`scripts/install_maestro.py`、`scripts/maestro_runtime.py`を追加した。固定ID・読み上げ・クリック動作の理由は[準備記録](work/2026-10-09-maestro-preparation.md)、実画面の合否と修正は[実行記録](work/2026-10-09-maestro-ui-poc.md)へ分けて保存した。

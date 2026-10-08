@@ -320,7 +320,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get widgetNext => 'Lịch tiếp theo';
 
   @override
-  String get widgetOfferTitle => 'Hiển thị rác hôm nay trên màn hình chính';
+  String get widgetOfferTitle =>
+      'Hiển thị lịch thu gom rác trên màn hình chính';
 
   @override
   String get widgetOfferBody =>

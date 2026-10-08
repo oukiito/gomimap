@@ -1,18 +1,25 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-# A01-A03. Preconditions: Japanese demo A, app open, one widget already placed.
-# Use a dedicated emulator and freshly exported expectation.json. Not executed yet.
+# A01-A04. Preconditions: demo A, matching saved locale, one widget placed.
+# Use a dedicated emulator and freshly exported expectation.json.
 appId: ${APP_ID}
 name: Compare app and widget then open the app
 tags: [gomimap, isolated-emulator, widget, smoke]
 ---
+- launchApp:
+    clearState: false
+    stopApp: false
+    permissions:
+      all: deny
 - assertVisible:
     id: schedule-primary-date
     text: ${EXPECTED_DATE_PATTERN}
 - assertVisible:
     id: schedule-primary-description
     text: ${EXPECTED_DESCRIPTION_PATTERN}
+- assertVisible:
+    text: ${EXPECTED_APP_AREA_PATTERN}
 - takeScreenshot:
-    path: A01-app
+    path: .tooling/maestro-results/${RUN_ID}/A01-app
     cropOn:
       id: schedule-primary
 - pressKey: Home
@@ -22,8 +29,18 @@ tags: [gomimap, isolated-emulator, widget, smoke]
 - assertVisible:
     id: ${WIDGET_DESCRIPTION_ID}
     text: ${EXPECTED_DESCRIPTION_PATTERN}
+- assertVisible:
+    id: ${WIDGET_AREA_ID}
+    text: ${EXPECTED_AREA_PATTERN}
+- runFlow:
+    when:
+      true: ${EXPECTED_HAS_DEADLINE == 'true'}
+    commands:
+      - assertVisible:
+          id: ${WIDGET_DEADLINE_ID}
+          text: ${EXPECTED_DEADLINE_PATTERN}
 - takeScreenshot:
-    path: A02-widget
+    path: .tooling/maestro-results/${RUN_ID}/A02-widget
     cropOn:
       id: ${WIDGET_ROOT_ID}
 - tapOn:
@@ -34,7 +51,9 @@ tags: [gomimap, isolated-emulator, widget, smoke]
 - assertVisible:
     id: schedule-primary-description
     text: ${EXPECTED_DESCRIPTION_PATTERN}
+- assertVisible:
+    text: ${EXPECTED_APP_AREA_PATTERN}
 - takeScreenshot:
-    path: A03-returned-app
+    path: .tooling/maestro-results/${RUN_ID}/A03-returned-app
     cropOn:
       id: schedule-primary

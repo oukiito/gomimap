@@ -8,6 +8,7 @@
 | --- | --- |
 | 環境構築・起動・ローカル設定 | [開発手順](development.md) |
 | Maestroの導入・MCP起動・試験用IDとFlowの準備状況 | [準備記録](work/2026-10-09-maestro-preparation.md) |
+| MaestroによるAndroidの実画面取得・操作・日英ウィジェットの検証結果 | [UI試験の記録](work/2026-10-09-maestro-ui-poc.md) |
 | Androidの画面取得・操作・AI連携・自動UI試験の候補 | [自動UI試験の調査](android-ui-test-strategy.md) |
 | Android実機の接続・初回準備・試験項目 | [Android実機確認](android-device-testing.md) |
 | 初回リリースの画面・通知・ウィジェット・地図 | [プロダクト仕様](product-spec.md) |
