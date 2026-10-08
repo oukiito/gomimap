@@ -38,11 +38,13 @@ cd app
 
 ## 同梱データと検証
 
-日程の元データを変更した場合、リポジトリ直下で`python3 scripts/prepare_demo_data.py`を再実行してからテスト・ビルドする。生成した同梱JSONはGitに追加せず、`data/datasets/fixtures/toshima-demo-v1.json`のみを編集する。スキーマ・公開検査は[データ仕様](data-schema-v1.md)、保存先とCloudflareの推奨構成は[保存・配信](data-storage.md)を参照する。HTTP更新・端末DB・配信ジョブは未実装。
+日程の元データを変更した場合、リポジトリ直下で`python3 scripts/prepare_demo_data.py`を再実行してからテスト・ビルドする。生成した同梱JSONはGitに追加せず、`data/datasets/fixtures/toshima-demo-v1.json`のみを編集する。スキーマ・公開検査は[データ仕様](data-schema-v1.md)、保存先とfixtureのHTTP取得・保存は[保存・配信](data-storage.md)を参照する。端末DB・実データ・配信ジョブは未実装。
 
 ## ネイティブ環境
 
 2026-10-05のローカル確認環境にはXcode本体とAndroid SDKがなかった。iOS／Androidのビルド成功、実機動作は未検証。PoCの設定下限はiOS 15／Android API 24。最終サポート範囲は実機試験で決める。アプリ識別子`dev.gomimap.gomimap`は仮で、ストア登録前に確定する。署名も開発用のテンプレート段階。
+
+2026-10-08にAndroid Studioと付属JDKを導入。SDKセットアップと端末接続は本人の操作待ちで、Androidビルド成功・実機動作は未確認。[Android実機の準備・確認手順](android-device-testing.md)、[この日の準備記録](work/2026-10-08-android-preparation.md)を参照する。
 
 iOSはXcode、AndroidはAndroid SDKとJDK等を用意し、`flutter doctor`の必要項目を解消してから`flutter run`で確認する。iOSの無料Personal Teamには有効期間等の制限があり、継続配布・TestFlightの代わりにはしない。[Apple公式](https://developer.apple.com/support/compare-memberships/)
 
