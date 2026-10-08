@@ -18,6 +18,7 @@
 | 実装したJSONのフィールド・判定・公開検証と残る境界 | [データスキーマ1](data-schema-v1.md) |
 | GitHub・Cloudflare・端末の保存先と更新の流れ | [データ保存・配信](data-storage.md) |
 | 通信待ち・保存失敗・更新後の操作状態をどう扱うか | [更新時のUI設計](ux-data-refresh.md) |
+| 起動画面と起動性能の理由・測定の判断 | [起動時の設計](ux-startup.md) |
 | Cloudflareのデプロイ認証・権限・秘密の保存先 | [Cloudflare認証の準備](cloudflare-setup.md) |
 | 開発用JSONの初回配信・manifest・公開照合 | [Cloudflareデータ配信](cloudflare-data.md) |
 | ライブラリ・配信構成・費用 | [アーキテクチャ](architecture.md) |
