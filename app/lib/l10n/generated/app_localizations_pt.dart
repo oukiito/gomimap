@@ -323,7 +323,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get widgetNext => 'Próxima previsão';
 
   @override
-  String get widgetOfferTitle => 'Mostrar o lixo de hoje na tela inicial';
+  String get widgetOfferTitle => 'Mostrar a coleta de lixo na tela inicial';
 
   @override
   String get widgetOfferBody =>

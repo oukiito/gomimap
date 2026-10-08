@@ -11,6 +11,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Build
 import android.widget.RemoteViews
+import java.security.MessageDigest
 import java.util.concurrent.Executors
 
 class GarbageWidgetProvider : AppWidgetProvider() {
@@ -61,7 +62,9 @@ class GarbageWidgetProvider : AppWidgetProvider() {
             val adapter = Intent(context, GarbageWidgetService::class.java)
                 .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id)
                 .putExtra("compact", compact)
-            adapter.data = android.net.Uri.parse("gomimap-widget://rows/$id?compact=$compact")
+            // A new rendered revision must not reuse the launcher's old
+            // collection adapter when language/date/area changes.
+            adapter.data = adapterUri(id, compact, content)
             view.setRemoteAdapter(R.id.widget_rows, adapter)
             view.setEmptyView(R.id.widget_rows, R.id.widget_empty)
             view.setTextViewText(R.id.widget_empty, content.title)
@@ -71,14 +74,19 @@ class GarbageWidgetProvider : AppWidgetProvider() {
         fun compact(options: Bundle): Boolean =
             options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 0) < 220 ||
                 options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 0) < 220
-        @Suppress("DEPRECATION")
+        fun adapterUri(id: Int, compact: Boolean, content: WidgetContent): android.net.Uri {
+            val revision = MessageDigest.getInstance("SHA-256").digest(content.toString().toByteArray(Charsets.UTF_8))
+                .joinToString("") { "%02x".format(it) }
+            return android.net.Uri.parse("gomimap-widget://rows/$id?compact=$compact&revision=$revision")
+        }
         fun updateAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
             val ids = ids(context)
             if (ids.isEmpty()) return
             val content = GarbageWidgetData.content(context)
             for (id in ids) manager.updateAppWidget(id, views(context, id, content))
-            manager.notifyAppWidgetViewDataChanged(ids, R.id.widget_rows)
+            // The revision-specific adapter loads its matching rows. Sending
+            // a separate data-change event can reapply a stale header.
             schedule(context)
         }
         fun alarmIntent(context: Context): PendingIntent = PendingIntent.getBroadcast(context, 70,

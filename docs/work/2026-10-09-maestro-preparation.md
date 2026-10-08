@@ -2,6 +2,8 @@
 
 関連：[Issue #42](https://github.com/oukiito/gomimap/issues/42)、[方式](../android-ui-test-strategy.md)、[Flow](../../e2e/maestro/README.md)。自作fixtureを対象に準備した。A01〜A03のAndroid画面取得・タップ・復帰はまだ実行していない。
 
+後続：Codexの再起動後、専用エミュレータのA01〜A04を実行した。[実画面の検証記録](2026-10-09-maestro-ui-poc.md)。以下は再起動前の準備時点の結果を保持する。
+
 ## 実施したこと
 
 | 対象 | 確認結果 |

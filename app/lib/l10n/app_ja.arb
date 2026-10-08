@@ -172,10 +172,10 @@
       }
     }
   },
-  "widgetLabel": "今日のごみ",
+  "widgetLabel": "ごみの予定",
   "widgetSample": "開発用サンプル",
   "widgetNext": "次回",
-  "widgetOfferTitle": "今日のごみをホーム画面に表示",
+  "widgetOfferTitle": "ごみの予定をホーム画面に表示",
   "widgetOfferBody": "アプリを開かず、日付とごみの種類を確認できます。",
   "widgetAdd": "追加する",
   "widgetSkip": "スキップ",

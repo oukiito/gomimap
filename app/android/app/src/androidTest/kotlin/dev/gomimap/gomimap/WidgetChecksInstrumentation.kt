@@ -39,6 +39,10 @@ class WidgetChecksInstrumentation : Instrumentation() {
             verify(content("2026-10-05", "b").status == "needsConfirmation", "district mismatch")
             verify(content("2026-10-05", null).status == "needsConfirmation", "unconfigured")
             verify(content("2026-10-05", tag="en").title == "Burnable waste", "English")
+            val japaneseAdapter = GarbageWidgetProvider.adapterUri(1, true, content("2026-10-05"))
+            verify(japaneseAdapter == GarbageWidgetProvider.adapterUri(1, true, content("2026-10-05")), "unchanged adapter revision is stable")
+            verify(japaneseAdapter != GarbageWidgetProvider.adapterUri(1, true, content("2026-10-05", tag="en")), "language change replaces collection adapter")
+            verify(japaneseAdapter != GarbageWidgetProvider.adapterUri(1, true, content("2026-10-07")), "date change replaces collection adapter")
             verify(GarbageWidgetData.language("zh-Hant", LocaleList(Locale.JAPAN)) == "zh-Hant", "saved language")
             verify(GarbageWidgetData.language(null, LocaleList(Locale.TAIWAN)) == "zh-Hant", "locale fallback")
             verify(WidgetDate.today(1791125999999L).toString() == "2026-10-04", "before Japan midnight")
@@ -94,6 +98,20 @@ class WidgetChecksInstrumentation : Instrumentation() {
                 small.measure(View.MeasureSpec.makeMeasureSpec(160, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
                 verify(small.measuredHeight > 48, "compact row expands for font scale")
                 verify(small.findViewById<TextView>(R.id.compact_title).maxLines == Int.MAX_VALUE, "compact title not truncated")
+                // The observed 2x2 launcher leaves 164dp width and 42dp visible
+                // height for this row. Accessibility text alone missed clipping.
+                val normalConfig = Configuration(targetContext.resources.configuration).apply { fontScale = 1f }
+                val normalContext = targetContext.createConfigurationContext(normalConfig)
+                val deadlineRow = android.widget.RemoteViews(targetContext.packageName, R.layout.garbage_widget_row)
+                deadlineRow.setTextViewText(R.id.widget_row_text, content("2026-10-05").lines.single())
+                deadlineRow.setTextViewTextSize(R.id.widget_row_text, android.util.TypedValue.COMPLEX_UNIT_SP, 16f)
+                val deadlineView = deadlineRow.apply(normalContext, null) as TextView
+                val density = normalContext.resources.displayMetrics.density
+                val width = (164 * density).toInt()
+                deadlineView.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
+                deadlineView.layout(0, 0, width, deadlineView.measuredHeight)
+                verify(deadlineView.layout.lineCount == 1, "shared deadline fits compact row width")
+                verify(deadlineView.totalPaddingTop + deadlineView.layout.getLineBottom(0) <= 42 * density, "deadline glyphs fit observed visible row")
             }
             if (verifyLive) {
                 // Read only our configured app's data. No screen capture,

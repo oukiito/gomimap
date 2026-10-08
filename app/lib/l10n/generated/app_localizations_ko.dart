@@ -302,7 +302,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get widgetNext => '다음 일정';
 
   @override
-  String get widgetOfferTitle => '홈 화면에 오늘의 쓰레기 표시';
+  String get widgetOfferTitle => '홈 화면에 쓰레기 수거 일정 표시';
 
   @override
   String get widgetOfferBody => '앱을 열지 않고 날짜와 쓰레기 종류를 확인합니다.';

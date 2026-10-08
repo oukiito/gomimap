@@ -324,7 +324,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get widgetOfferTitle =>
-      'Mostrar la basura de hoy en la pantalla de inicio';
+      'Mostrar el calendario de recogida en la pantalla de inicio';
 
   @override
   String get widgetOfferBody =>

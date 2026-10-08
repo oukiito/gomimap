@@ -1,9 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-# Dedicated emulator only. Assumes the app is already open; never clears data.
+# Dedicated emulator only. Preserves saved data and existing widgets.
 appId: ${APP_ID}
 name: Prepare the Japanese demo district
 tags: [gomimap, isolated-emulator, setup]
 ---
+- launchApp:
+    clearState: false
+    stopApp: false
+    permissions:
+      all: deny
 - tapOn:
     id: language-menu
 - tapOn:

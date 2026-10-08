@@ -627,7 +627,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetLabel.
   ///
   /// In ja, this message translates to:
-  /// **'今日のごみ'**
+  /// **'ごみの予定'**
   String get widgetLabel;
 
   /// No description provided for @widgetSample.
@@ -645,7 +645,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetOfferTitle.
   ///
   /// In ja, this message translates to:
-  /// **'今日のごみをホーム画面に表示'**
+  /// **'ごみの予定をホーム画面に表示'**
   String get widgetOfferTitle;
 
   /// No description provided for @widgetOfferBody.

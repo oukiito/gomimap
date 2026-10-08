@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# A04. Dedicated emulator, demo A saved and one widget placed.
+appId: ${APP_ID}
+name: Change saved language and compare app and widget
+tags: [gomimap, isolated-emulator, widget, language]
+---
+- launchApp:
+    clearState: false
+    stopApp: false
+    permissions:
+      all: deny
+- tapOn:
+    id: language-menu
+- tapOn:
+    id: language-${EXPECTED_LOCALE}
+- runFlow: widget-smoke.yaml
