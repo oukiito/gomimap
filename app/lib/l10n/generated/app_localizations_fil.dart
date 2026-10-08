@@ -312,4 +312,50 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get close => 'Isara';
+
+  @override
+  String get widgetLabel => 'Iskedyul ng basura';
+
+  @override
+  String get widgetSample => 'Halimbawa para sa pag-develop';
+
+  @override
+  String get widgetNext => 'Susunod na iskedyul';
+
+  @override
+  String get widgetOfferTitle => 'Ipakita ang basura ngayon sa home screen';
+
+  @override
+  String get widgetOfferBody =>
+      'Tingnan ang petsa at uri ng basura nang hindi binubuksan ang app.';
+
+  @override
+  String get widgetAdd => 'Idagdag';
+
+  @override
+  String get widgetSkip => 'Laktawan';
+
+  @override
+  String get widgetSettings => 'Widget sa home screen';
+
+  @override
+  String get widgetAdded => 'Naidagdag sa home screen';
+
+  @override
+  String get widgetRequested =>
+      'Hiniling ang pagdagdag. Kumpirmahin sa dialog ng system.';
+
+  @override
+  String get widgetUnsupported =>
+      'Pindutin nang matagal ang home screen, piliin ang Widgets, at idagdag ang Gomimap.';
+
+  @override
+  String get widgetFailure =>
+      'Hindi nahiling ang pagdagdag. Subukan muli o idagdag mula sa home screen.';
+
+  @override
+  String get widgetSaveError => 'Hindi na-save ang pinili. Subukan muli.';
+
+  @override
+  String get disposalDeadlinePassed => 'Lumipas na ang oras ng pagtatapon';
 }

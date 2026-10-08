@@ -312,4 +312,52 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get close => 'Cerrar';
+
+  @override
+  String get widgetLabel => 'Recogida de basura';
+
+  @override
+  String get widgetSample => 'Ejemplo de desarrollo';
+
+  @override
+  String get widgetNext => 'Próxima previsión';
+
+  @override
+  String get widgetOfferTitle =>
+      'Mostrar la basura de hoy en la pantalla de inicio';
+
+  @override
+  String get widgetOfferBody =>
+      'Consulta la fecha y el tipo de basura sin abrir la aplicación.';
+
+  @override
+  String get widgetAdd => 'Añadir';
+
+  @override
+  String get widgetSkip => 'Omitir';
+
+  @override
+  String get widgetSettings => 'Widget de la pantalla de inicio';
+
+  @override
+  String get widgetAdded => 'Añadido a la pantalla de inicio';
+
+  @override
+  String get widgetRequested =>
+      'Se solicitó añadirlo. Confirma en el diálogo del sistema.';
+
+  @override
+  String get widgetUnsupported =>
+      'Mantén pulsada la pantalla de inicio, elige Widgets y añade Gomimap.';
+
+  @override
+  String get widgetFailure =>
+      'No se pudo solicitar. Reintenta o añádelo desde la pantalla de inicio.';
+
+  @override
+  String get widgetSaveError => 'No se pudo guardar la elección. Reintenta.';
+
+  @override
+  String get disposalDeadlinePassed =>
+      'El plazo para sacar la basura ha pasado';
 }

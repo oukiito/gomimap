@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "垃圾收集日程",
+  "widgetSample": "開發用範例",
+  "widgetNext": "下次安排",
+  "widgetOfferTitle": "在主畫面顯示今天的垃圾",
+  "widgetOfferBody": "不用開啟應用程式，即可查看日期和垃圾種類。",
+  "widgetAdd": "加入",
+  "widgetSkip": "略過",
+  "widgetSettings": "主畫面小工具",
+  "widgetAdded": "已加入主畫面",
+  "widgetRequested": "已提出加入要求。請在系統提示中確認。",
+  "widgetUnsupported": "長按主畫面，選擇「小工具」，再加入「Gomimap」。",
+  "widgetFailure": "無法提出加入要求。請重試或從主畫面加入。",
+  "widgetSaveError": "無法儲存選擇。請重試。",
+  "disposalDeadlinePassed": "已過垃圾投放截止時間"
 }

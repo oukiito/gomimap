@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "Iskedyul ng basura",
+  "widgetSample": "Halimbawa para sa pag-develop",
+  "widgetNext": "Susunod na iskedyul",
+  "widgetOfferTitle": "Ipakita ang basura ngayon sa home screen",
+  "widgetOfferBody": "Tingnan ang petsa at uri ng basura nang hindi binubuksan ang app.",
+  "widgetAdd": "Idagdag",
+  "widgetSkip": "Laktawan",
+  "widgetSettings": "Widget sa home screen",
+  "widgetAdded": "Naidagdag sa home screen",
+  "widgetRequested": "Hiniling ang pagdagdag. Kumpirmahin sa dialog ng system.",
+  "widgetUnsupported": "Pindutin nang matagal ang home screen, piliin ang Widgets, at idagdag ang Gomimap.",
+  "widgetFailure": "Hindi nahiling ang pagdagdag. Subukan muli o idagdag mula sa home screen.",
+  "widgetSaveError": "Hindi na-save ang pinili. Subukan muli.",
+  "disposalDeadlinePassed": "Lumipas na ang oras ng pagtatapon"
 }

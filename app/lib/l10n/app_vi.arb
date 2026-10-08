@@ -171,5 +171,19 @@
         "type": "String"
       }
     }
-  }
+  },
+  "widgetLabel": "Lịch thu gom rác",
+  "widgetSample": "Mẫu phát triển",
+  "widgetNext": "Lịch tiếp theo",
+  "widgetOfferTitle": "Hiển thị rác hôm nay trên màn hình chính",
+  "widgetOfferBody": "Xem ngày và loại rác mà không cần mở ứng dụng.",
+  "widgetAdd": "Thêm",
+  "widgetSkip": "Bỏ qua",
+  "widgetSettings": "Tiện ích màn hình chính",
+  "widgetAdded": "Đã thêm vào màn hình chính",
+  "widgetRequested": "Đã yêu cầu thêm. Hãy xác nhận trong hộp thoại hệ thống.",
+  "widgetUnsupported": "Nhấn giữ màn hình chính, chọn Tiện ích rồi thêm Gomimap.",
+  "widgetFailure": "Không thể yêu cầu thêm. Thử lại hoặc thêm từ màn hình chính.",
+  "widgetSaveError": "Không thể lưu lựa chọn. Vui lòng thử lại.",
+  "disposalDeadlinePassed": "Đã quá giờ mang rác ra"
 }

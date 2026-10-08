@@ -306,6 +306,7 @@ void main() {
       download.gate = Completer<void>();
       await tester.pumpWidget(
         GomimapApp(
+          displayDate: DateTime(2026, 10, 5),
           preferences: await SharedPreferences.getInstance(),
           repository: repository,
         ),

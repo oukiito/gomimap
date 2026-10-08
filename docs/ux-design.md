@@ -143,19 +143,21 @@ flowchart TD
 
 | 現状／課題 | 利用者への影響と改善 | 担当Issue |
 | --- | --- | --- |
-| #20でサンプルの初回手動選択・確認・保存・途中復帰、変更の確認・取消・保存失敗復旧を追加 | 実住所・位置で自宅の予定を設定する機能とS14・S03は未実装。詳細の理由は[初回設計B22〜33](ux-initial-setup.md) | [#20](https://github.com/oukiito/gomimap/issues/20)・[#5](https://github.com/oukiito/gomimap/issues/5) |
+| #20でサンプルの初回手動選択・確認・保存・途中復帰、変更の確認・取消・保存失敗復旧を追加 | 実住所・位置で自宅の予定を設定する機能とS03は未実装。S14のAndroidは[W08〜11](ux-android-widget.md)へ実装。詳細の理由は[初回設計B22〜33](ux-initial-setup.md) | [#20](https://github.com/oukiito/gomimap/issues/20)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | 地区表示は#18で3タブの固定表示・変更導線、品物／拠点詳細・設定の対象地区を試作に追加。#20で未設定・候補・保存済みを区別 | 本物の区域解決は未実装。小さい文字でも読めるか実機・利用者検証が必要 | [#18](https://github.com/oukiito/gomimap/issues/18)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | #23で今日・明日のJSON締切を表示。複数区分で異なる締切を残す。準備、日詳細・先のカレンダーは未実装 | 試作の時刻であり、実時間の原文照合と、準備・次回の使いやすさは後続 | [#23](https://github.com/oukiito/gomimap/issues/23)・[#5](https://github.com/oukiito/gomimap/issues/5) |
-| G04で今日・地区確認の予定例を同じ版付きJSONへ接続。欠落・期限切れ・未確認は収集なしにせず公式確認へ | P1・P2が確認と通常利用で異なる予定を見ない。理由と検証は[初回設計B34〜36](ux-initial-setup.md)。実地区・通知・ウィジェット接続は後続 | [#4](https://github.com/oukiito/gomimap/issues/4)・[#5](https://github.com/oukiito/gomimap/issues/5) |
+| G04で今日・地区確認の予定例を同じ版付きJSONへ接続。欠落・期限切れ・未確認は収集なしにせず公式確認へ | P1・P2が確認と通常利用で異なる予定を見ない。理由と検証は[初回設計B34〜36](ux-initial-setup.md)。実地区・通知・iOSウィジェット接続は後続 | [#4](https://github.com/oukiito/gomimap/issues/4)・[#5](https://github.com/oukiito/gomimap/issues/5) |
 | 全ての公式ボタンが同じ総合ページを開く | P2が目的の情報を再度探す。対象のルール・品目・施設へリンクする | [#5](https://github.com/oukiito/gomimap/issues/5)・[#8](https://github.com/oukiito/gomimap/issues/8)・[#9](https://github.com/oukiito/gomimap/issues/9) |
 | 多言語UIはあるが検索対象はサンプル品物。ルール翻訳の確認未完了 | 翻訳された画面だけではP2の分別を解決できない。別名・具体例・出し方を言語別に確認 | [#8](https://github.com/oukiito/gomimap/issues/8)・[#12](https://github.com/oukiito/gomimap/issues/12) |
 | #23で直接開いた回収場所は品目未選択。充電池の未回答／不明では件数を表示しない | 品目の誤適用と未判定を0件とする誤解を防ぐ設計。条件は膨張・破損確認中心で、受入サービスAPI接続は後続 | [#23](https://github.com/oukiito/gomimap/issues/23)・[#9](https://github.com/oukiito/gomimap/issues/9) |
 | 拠点詳細は架空情報、一覧が地図の下に常設 | 受付可否や時間を判断できない。地図中心・ピンの補助カード・代替一覧にし、試験データで条件を実装 | [#9](https://github.com/oukiito/gomimap/issues/9) |
 | #23で検索経由の地図に元の品物へ戻る操作とOS戻るを追加。検索語・元の回答と地図側の別品目を分離 | 用件の復元を自動回帰とブラウザで確認。人による発見・データ版変更時の再評価・実機は後続 | [#23](https://github.com/oukiito/gomimap/issues/23)・[#8](https://github.com/oukiito/gomimap/issues/8)・[#9](https://github.com/oukiito/gomimap/issues/9) |
 | #23で品物・拠点・設定の詳細に見える閉じるを追加し、文字拡大と全言語の回帰を確認 | 人による操作発見と読み上げ・実機のフォーカス復帰は未検証 | [#23](https://github.com/oukiito/gomimap/issues/23)・[#5](https://github.com/oukiito/gomimap/issues/5) |
-| 設定は試作説明と地区変更のみ。通知・ウィジェット・初回案内は未実装 | P1の通知設定見直しと起動前確認ができない。S12・S14と両OSの表示・追加を実装 | [#5](https://github.com/oukiito/gomimap/issues/5)・[#6](https://github.com/oukiito/gomimap/issues/6)・[#7](https://github.com/oukiito/gomimap/issues/7) |
+| 設定にAndroidウィジェット追加を実装。Android初回案内と締切後の次回表示は[W01〜W17](ux-android-widget.md)。通知・iOSは未実装 | 通知の設定見直しは後続。Androidの実データとiOSの表示・追加を後続で確認 | [#5](https://github.com/oukiito/gomimap/issues/5)・[#6](https://github.com/oukiito/gomimap/issues/6)・[#7](https://github.com/oukiito/gomimap/issues/7) |
 
 UI実装の順は、今日と初期設定、分別の出し方、条件に合う回収地図。通知・ウィジェットは同じ日程データから実装する。データの権利確認やネイティブPoCの依存は[開発計画](roadmap.md)に従い、先に進められる画面・ルールは架空データで検証する。
+
+締切後の主表示・今日の補助表示・2×2と操作の理由は[Androidウィジェット W13〜W17](ux-android-widget.md)。試作のタップ先は本体の「今日」タブで同じ現在時刻を再評価し、対象日詳細S05は未実装。検索の入力と確定地区を保持する。
 
 ## 利用者試験
 

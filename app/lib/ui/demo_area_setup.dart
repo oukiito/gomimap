@@ -21,12 +21,14 @@ class DemoAreaSetup extends StatefulWidget {
     required this.onLanguageChanged,
     required this.onSaved,
     this.currentArea,
+    this.previewDate,
   });
 
   final DemoSetupStore store;
   final MunicipalDataset? dataset;
   final DemoSetupSnapshot initial;
   final DemoArea? currentArea;
+  final DateTime? previewDate;
   final Future<bool> Function(String) onLanguageChanged;
   final ValueChanged<DemoArea> onSaved;
 
@@ -182,16 +184,19 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
                               children: [
                                 Text(
                                   l10n.demoDate(
-                                    DateFormat.yMMMMd(l10n.localeName)
-                                        .format(demoToday),
+                                    DateFormat.yMMMMd(
+                                      l10n.localeName,
+                                    ).format(widget.previewDate ?? demoToday),
                                   ),
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
                                   demoCalendar(
-                                    candidate,
-                                    dataset: widget.dataset,
-                                  ).on(demoToday).localizedDescription(l10n),
+                                        candidate,
+                                        dataset: widget.dataset,
+                                      )
+                                      .on(widget.previewDate ?? demoToday)
+                                      .localizedDescription(l10n),
                                   style: const TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,

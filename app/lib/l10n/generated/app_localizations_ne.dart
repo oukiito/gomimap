@@ -310,4 +310,50 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get close => 'बन्द गर्नुहोस्';
+
+  @override
+  String get widgetLabel => 'फोहोर सङ्कलन तालिका';
+
+  @override
+  String get widgetSample => 'विकास नमुना';
+
+  @override
+  String get widgetNext => 'अर्को तालिका';
+
+  @override
+  String get widgetOfferTitle => 'होम स्क्रिनमा आजको फोहोर देखाउनुहोस्';
+
+  @override
+  String get widgetOfferBody => 'एप नखोली मिति र फोहोरको प्रकार हेर्न सकिन्छ।';
+
+  @override
+  String get widgetAdd => 'थप्नुहोस्';
+
+  @override
+  String get widgetSkip => 'छोड्नुहोस्';
+
+  @override
+  String get widgetSettings => 'होम स्क्रिन विजेट';
+
+  @override
+  String get widgetAdded => 'होम स्क्रिनमा थपिएको छ';
+
+  @override
+  String get widgetRequested =>
+      'थप्न अनुरोध गरियो। प्रणालीको संवादमा पुष्टि गर्नुहोस्।';
+
+  @override
+  String get widgetUnsupported =>
+      'होम स्क्रिनमा लामो थिच्नुहोस्, विजेट छान्नुहोस् र Gomimap थप्नुहोस्।';
+
+  @override
+  String get widgetFailure =>
+      'थप्न अनुरोध गर्न सकिएन। फेरि प्रयास गर्नुहोस् वा होम स्क्रिनबाट थप्नुहोस्।';
+
+  @override
+  String get widgetSaveError =>
+      'छनोट सुरक्षित गर्न सकिएन। फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get disposalDeadlinePassed => 'फोहोर निकाल्ने समयसीमा सकिएको छ';
 }

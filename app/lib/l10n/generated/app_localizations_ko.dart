@@ -291,4 +291,46 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get close => '닫기';
+
+  @override
+  String get widgetLabel => '쓰레기 수거 일정';
+
+  @override
+  String get widgetSample => '개발용 예시';
+
+  @override
+  String get widgetNext => '다음 일정';
+
+  @override
+  String get widgetOfferTitle => '홈 화면에 오늘의 쓰레기 표시';
+
+  @override
+  String get widgetOfferBody => '앱을 열지 않고 날짜와 쓰레기 종류를 확인합니다.';
+
+  @override
+  String get widgetAdd => '추가';
+
+  @override
+  String get widgetSkip => '건너뛰기';
+
+  @override
+  String get widgetSettings => '홈 화면 위젯';
+
+  @override
+  String get widgetAdded => '홈 화면에 추가되었습니다';
+
+  @override
+  String get widgetRequested => '추가를 요청했습니다. 시스템 창에서 확인하세요.';
+
+  @override
+  String get widgetUnsupported => '홈 화면을 길게 누르고 위젯에서 Gomimap을 추가하세요.';
+
+  @override
+  String get widgetFailure => '추가 요청에 실패했습니다. 다시 시도하거나 홈 화면에서 추가하세요.';
+
+  @override
+  String get widgetSaveError => '선택을 저장하지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get disposalDeadlinePassed => '쓰레기 배출 마감 시간이 지났습니다';
 }

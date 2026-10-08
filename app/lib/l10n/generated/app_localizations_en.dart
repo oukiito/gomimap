@@ -311,4 +311,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get close => 'Close';
+
+  @override
+  String get widgetLabel => 'Waste schedule';
+
+  @override
+  String get widgetSample => 'Development sample';
+
+  @override
+  String get widgetNext => 'Next schedule';
+
+  @override
+  String get widgetOfferTitle => 'Show today’s waste on your home screen';
+
+  @override
+  String get widgetOfferBody =>
+      'See the date and waste type without opening the app.';
+
+  @override
+  String get widgetAdd => 'Add widget';
+
+  @override
+  String get widgetSkip => 'Skip';
+
+  @override
+  String get widgetSettings => 'Home screen widget';
+
+  @override
+  String get widgetAdded => 'Added to the home screen';
+
+  @override
+  String get widgetRequested =>
+      'Addition requested. Confirm in the system dialog.';
+
+  @override
+  String get widgetUnsupported =>
+      'Touch and hold the home screen, select Widgets, then add Gomimap.';
+
+  @override
+  String get widgetFailure =>
+      'Could not request the widget. Retry or add it from the home screen.';
+
+  @override
+  String get widgetSaveError => 'Could not save your choice. Please retry.';
+
+  @override
+  String get disposalDeadlinePassed => 'The disposal deadline has passed';
 }

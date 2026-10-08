@@ -37,6 +37,10 @@ Flutterラッパーだけで判断せず、解決済み`path_provider_android 2.
 
 収集データをネイティブの`shared_preferences`へ大量保存しない。同プラグインの[公式注意](https://pub.dev/packages/shared_preferences)は重要データの書込耐久性を保証していないため、JSONは専用ファイルを使い、Webの利用は消失しうる確認用キャッシュに限定した。
 
+## Androidウィジェット（2026-10-08）
+
+既存のFlutter MethodChannelとAndroid標準のAppWidgetProvider・RemoteViews・AlarmManagerを使う自作実装。Dart・Maven依存は追加せず、棚卸しは86件のまま。`home_widget`は候補のままで未導入。自作のコード・XML・翻訳JSONはGPL-3.0-or-later。試験はAndroid SDKのInstrumentationのみで追加の試験SDKを入れていない。Android SDK・Flutterエンジン・既存プラグインの条件は従来どおりで、OS APIをGPLへ変更する意味ではない。profileビルドを確認したが、ストア配布用の完成バイナリ監査は後続。
+
 ## SDK付属フォント・アイコン
 
 パッケージ一覧とは別に、使用中のFlutter SDKの`bin/cache/artifacts/material_fonts`に同梱された原文を[保存](../third_party/fonts/README.md)した。

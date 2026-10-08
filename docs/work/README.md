@@ -19,4 +19,6 @@
 | 2026-10-08 | Android SDK準備・初回デバッグAPKのビルド成功 | [Androidビルドの記録](2026-10-08-android-build.md) | [#3](https://github.com/oukiito/gomimap/issues/3) |
 | 2026-10-08 | Pixelで起動・地区保存、更新失敗の切り分け | [Pixel実機の記録](2026-10-08-pixel-runtime.md) | [#3](https://github.com/oukiito/gomimap/issues/3) |
 
+| 2026-10-08 | Androidウィジェット・2×2・締切後の次回表示・初回追加 | [ウィジェット記録](2026-10-08-android-widget.md) | [#7](https://github.com/oukiito/gomimap/issues/7)、G05 |
+
 画面証跡は`screenshots/`にあります。実データの正確性やネイティブ動作の証拠としては扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

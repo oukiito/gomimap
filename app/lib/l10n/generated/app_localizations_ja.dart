@@ -288,4 +288,46 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get close => '閉じる';
+
+  @override
+  String get widgetLabel => '今日のごみ';
+
+  @override
+  String get widgetSample => '開発用サンプル';
+
+  @override
+  String get widgetNext => '次回';
+
+  @override
+  String get widgetOfferTitle => '今日のごみをホーム画面に表示';
+
+  @override
+  String get widgetOfferBody => 'アプリを開かず、日付とごみの種類を確認できます。';
+
+  @override
+  String get widgetAdd => '追加する';
+
+  @override
+  String get widgetSkip => 'スキップ';
+
+  @override
+  String get widgetSettings => 'ホーム画面ウィジェット';
+
+  @override
+  String get widgetAdded => 'ホーム画面に追加されています';
+
+  @override
+  String get widgetRequested => '追加を要求しました。OSの確認で追加してください。';
+
+  @override
+  String get widgetUnsupported => 'ホーム画面を長押しし、「ウィジェット」から「ごみまっぷ」を追加できます。';
+
+  @override
+  String get widgetFailure => '追加要求ができませんでした。もう一度試すか、ホーム画面から追加してください。';
+
+  @override
+  String get widgetSaveError => '選択を保存できませんでした。もう一度試してください。';
+
+  @override
+  String get disposalDeadlinePassed => 'ごみ出しの締切を過ぎています';
 }

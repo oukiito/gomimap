@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="12dp" android:background="@drawable/widget_background">
+    <TextView android:id="@+id/preview_date" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="18sp" android:textColor="#173E30" android:textStyle="bold" />
+    <TextView android:id="@+id/preview_area" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:textColor="#24684F" />
+    <TextView android:id="@+id/preview_sample" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#654B16" />
+    <TextView android:id="@+id/preview_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="24sp" android:textColor="#173E30" android:textStyle="bold" />
+</LinearLayout>

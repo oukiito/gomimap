@@ -312,4 +312,51 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get close => 'Fechar';
+
+  @override
+  String get widgetLabel => 'Coleta de lixo';
+
+  @override
+  String get widgetSample => 'Exemplo de desenvolvimento';
+
+  @override
+  String get widgetNext => 'Próxima previsão';
+
+  @override
+  String get widgetOfferTitle => 'Mostrar o lixo de hoje na tela inicial';
+
+  @override
+  String get widgetOfferBody =>
+      'Veja a data e o tipo de lixo sem abrir o aplicativo.';
+
+  @override
+  String get widgetAdd => 'Adicionar';
+
+  @override
+  String get widgetSkip => 'Pular';
+
+  @override
+  String get widgetSettings => 'Widget da tela inicial';
+
+  @override
+  String get widgetAdded => 'Adicionado à tela inicial';
+
+  @override
+  String get widgetRequested =>
+      'Adição solicitada. Confirme na janela do sistema.';
+
+  @override
+  String get widgetUnsupported =>
+      'Toque e segure a tela inicial, escolha Widgets e adicione Gomimap.';
+
+  @override
+  String get widgetFailure =>
+      'Não foi possível solicitar. Tente novamente ou adicione pela tela inicial.';
+
+  @override
+  String get widgetSaveError =>
+      'Não foi possível salvar a escolha. Tente novamente.';
+
+  @override
+  String get disposalDeadlinePassed => 'O prazo para colocar o lixo terminou';
 }

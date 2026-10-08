@@ -49,6 +49,7 @@ Future<SharedPreferences> launchSetup(
   addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
   await tester.pumpWidget(
     GomimapApp(
+      displayDate: DateTime(2026, 10, 5),
       preferences: prefs,
       setupStore: store,
       dataset: fixtureDataset(),
@@ -124,7 +125,11 @@ void main() {
       await tester.pumpWidget(const SizedBox());
       await prefs.reload();
       await tester.pumpWidget(
-        GomimapApp(preferences: prefs, dataset: fixtureDataset()),
+        GomimapApp(
+          displayDate: DateTime(2026, 10, 5),
+          preferences: prefs,
+          dataset: fixtureDataset(),
+        ),
       );
       await tester.pumpAndSettle();
       expect(find.text('設定する地区：豊島区・サンプル地域B'), findsOneWidget);
@@ -133,7 +138,11 @@ void main() {
       await tester.pumpWidget(const SizedBox());
       await prefs.reload();
       await tester.pumpWidget(
-        GomimapApp(preferences: prefs, dataset: fixtureDataset()),
+        GomimapApp(
+          displayDate: DateTime(2026, 10, 5),
+          preferences: prefs,
+          dataset: fixtureDataset(),
+        ),
       );
       await tester.pumpAndSettle();
       expect(find.byType(HomeShell), findsOneWidget);

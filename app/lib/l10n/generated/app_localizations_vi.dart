@@ -309,4 +309,50 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get close => 'Đóng';
+
+  @override
+  String get widgetLabel => 'Lịch thu gom rác';
+
+  @override
+  String get widgetSample => 'Mẫu phát triển';
+
+  @override
+  String get widgetNext => 'Lịch tiếp theo';
+
+  @override
+  String get widgetOfferTitle => 'Hiển thị rác hôm nay trên màn hình chính';
+
+  @override
+  String get widgetOfferBody =>
+      'Xem ngày và loại rác mà không cần mở ứng dụng.';
+
+  @override
+  String get widgetAdd => 'Thêm';
+
+  @override
+  String get widgetSkip => 'Bỏ qua';
+
+  @override
+  String get widgetSettings => 'Tiện ích màn hình chính';
+
+  @override
+  String get widgetAdded => 'Đã thêm vào màn hình chính';
+
+  @override
+  String get widgetRequested =>
+      'Đã yêu cầu thêm. Hãy xác nhận trong hộp thoại hệ thống.';
+
+  @override
+  String get widgetUnsupported =>
+      'Nhấn giữ màn hình chính, chọn Tiện ích rồi thêm Gomimap.';
+
+  @override
+  String get widgetFailure =>
+      'Không thể yêu cầu thêm. Thử lại hoặc thêm từ màn hình chính.';
+
+  @override
+  String get widgetSaveError => 'Không thể lưu lựa chọn. Vui lòng thử lại.';
+
+  @override
+  String get disposalDeadlinePassed => 'Đã quá giờ mang rác ra';
 }

@@ -15,6 +15,8 @@ import 'package:gomimap/domain/municipal_dataset.dart';
 Future<SharedPreferences> start(
   WidgetTester tester, {
   double scale = 1,
+  DateTime? at,
+  DateTime Function()? clock,
   bool missingData = false,
   MunicipalDataset? dataset,
 }) async {
@@ -32,6 +34,8 @@ Future<SharedPreferences> start(
   addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
   await tester.pumpWidget(
     GomimapApp(
+      displayDate: clock != null ? null : at ?? DateTime(2026, 10, 5),
+      clock: clock,
       preferences: prefs,
       dataset: missingData ? null : dataset ?? fixtureDataset(),
     ),
@@ -50,6 +54,68 @@ Future<void> tab(WidgetTester tester, String label) async {
 }
 
 void main() {
+  testWidgets(
+    'after deadline next date is primary and today remains marked expired',
+    (tester) async {
+      await start(tester, at: DateTime(2026, 10, 5, 10));
+      final primary = find.byKey(const ValueKey('today-schedule'));
+      expect(
+        find.descendant(of: primary, matching: find.text('資源')),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(of: primary, matching: find.textContaining('10/7')),
+        findsOneWidget,
+      );
+      expect(find.text('ごみ出しの締切を過ぎています'), findsOneWidget);
+    },
+  );
+  testWidgets('unknown today remains primary after 10am', (tester) async {
+    await start(tester, at: DateTime(2026, 10, 8, 10));
+    final primary = find.byKey(const ValueKey('today-schedule'));
+    expect(
+      find.descendant(of: primary, matching: find.text('収集予定の確認が必要')),
+      findsOneWidget,
+    );
+    expect(find.text('ごみ出しの締切を過ぎています'), findsNothing);
+  });
+  testWidgets('foreground timer changes primary at the Japan deadline', (
+    tester,
+  ) async {
+    var instant = DateTime.utc(2026, 10, 4, 22, 59, 59);
+    await start(tester, clock: () => instant);
+    final primary = find.byKey(const ValueKey('today-schedule'));
+    expect(
+      find.descendant(of: primary, matching: find.text('燃やすごみ')),
+      findsOneWidget,
+    );
+    instant = instant.add(const Duration(seconds: 1));
+    await tester.pump(const Duration(seconds: 1));
+    expect(
+      find.descendant(of: primary, matching: find.text('資源')),
+      findsOneWidget,
+    );
+    await tester.pumpWidget(const SizedBox());
+  });
+  testWidgets(
+    'foreground midnight timer relabels tomorrow without changing OS clock',
+    (tester) async {
+      var instant = DateTime.utc(2026, 10, 5, 14, 59, 59);
+      await start(tester, clock: () => instant);
+      final primary = find.byKey(const ValueKey('today-schedule'));
+      expect(
+        find.descendant(of: primary, matching: find.textContaining('次回')),
+        findsOneWidget,
+      );
+      instant = instant.add(const Duration(seconds: 1));
+      await tester.pump(const Duration(seconds: 1));
+      expect(
+        find.descendant(of: primary, matching: find.textContaining('明日')),
+        findsOneWidget,
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
   testWidgets('today shows the JSON deadline directly', (tester) async {
     await start(tester);
     final today = find.byKey(const ValueKey('today-schedule'));
@@ -72,7 +138,13 @@ void main() {
         json['baselines'][1]['recurrences'][0]['weekdays'] = [1];
       });
       final prefs = await SharedPreferences.getInstance();
-      await tester.pumpWidget(GomimapApp(preferences: prefs, dataset: common));
+      await tester.pumpWidget(
+        GomimapApp(
+          displayDate: DateTime(2026, 10, 5),
+          preferences: prefs,
+          dataset: common,
+        ),
+      );
       await tester.pumpAndSettle();
       expect(find.text('出す時間：08:00まで'), findsOneWidget);
       expect(find.text('燃やすごみ：08:00まで'), findsNothing);
@@ -401,7 +473,11 @@ void main() {
     expect(PreferencesDemoSetupStore(prefs).read().area, DemoArea.b);
     await tester.pumpWidget(const SizedBox());
     await tester.pumpWidget(
-      GomimapApp(preferences: prefs, dataset: fixtureDataset()),
+      GomimapApp(
+        displayDate: DateTime(2026, 10, 5),
+        preferences: prefs,
+        dataset: fixtureDataset(),
+      ),
     );
     await tester.pumpAndSettle();
     expect(find.textContaining('サンプル地域B'), findsOneWidget);

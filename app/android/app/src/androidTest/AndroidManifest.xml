@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <instrumentation android:name="dev.gomimap.gomimap.WidgetChecksInstrumentation"
+        android:targetPackage="dev.gomimap.gomimap" android:label="Gomimap widget checks" />
+</manifest>
