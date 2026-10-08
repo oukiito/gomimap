@@ -14,7 +14,12 @@ import java.util.Locale
 
 /** SDK-only native checks; never edits real settings, snapshot or OS clock. */
 class WidgetChecksInstrumentation : Instrumentation() {
-    override fun onCreate(arguments: Bundle?) { super.onCreate(arguments); start() }
+    private var verifyLive = false
+    override fun onCreate(arguments: Bundle?) {
+        super.onCreate(arguments)
+        verifyLive = arguments?.getString("verifyLive") == "true"
+        start()
+    }
     override fun onStart() {
         val result = Bundle()
         try {
@@ -89,6 +94,18 @@ class WidgetChecksInstrumentation : Instrumentation() {
                 small.measure(View.MeasureSpec.makeMeasureSpec(160, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
                 verify(small.measuredHeight > 48, "compact row expands for font scale")
                 verify(small.findViewById<TextView>(R.id.compact_title).maxLines == Int.MAX_VALUE, "compact title not truncated")
+            }
+            if (verifyLive) {
+                // Read only our configured app's data. No screen capture,
+                // launcher manipulation or clock/settings changes.
+                val live = GarbageWidgetData.content(targetContext)
+                result.putString("liveDateLabel", live.dateLabel)
+                result.putString("liveVersion", live.version ?: "missing")
+                val liveRoot = GarbageWidgetData.validate(GarbageWidgetData.file(targetContext).readText(Charsets.UTF_8))
+                verify(GarbageWidgetData.read(targetContext) != null, "running app projection validates")
+                verify(liveRoot.getString("datasetVersion") == GarbageWidgetData.activeVersion(targetContext), "running dataset version agrees")
+                verify(liveRoot.getString("areaId") == GarbageWidgetData.confirmedArea(targetContext), "running district agrees")
+                verify(live.version == liveRoot.getString("datasetVersion"), "running widget uses the projection, not fallback")
             }
             result.putString("checks", checks.toString())
             result.putString("result", "PASS")
