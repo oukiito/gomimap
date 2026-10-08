@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import 'package:flutter/material.dart';
+
+import 'identified_action.dart';
+
 import 'package:intl/intl.dart';
 
 import '../data/demo_data.dart';
@@ -206,17 +209,20 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
                             ),
                           ),
                           const SizedBox(height: 24),
-                          FilledButton(
-                            key: const ValueKey('confirm-area-save'),
-                            style: FilledButton.styleFrom(
-                              minimumSize: const Size(48, 48),
+                          identifiedAction(
+                            'setup-confirm-area',
+                            FilledButton(
+                              key: const ValueKey('confirm-area-save'),
+                              style: FilledButton.styleFrom(
+                                minimumSize: const Size(48, 48),
+                              ),
+                              onPressed: saving
+                                  ? null
+                                  : () => moveTo(
+                                      DemoSetupSnapshot.saved(candidate),
+                                    ),
+                              child: Text(l10n.confirmAreaAction),
                             ),
-                            onPressed: saving
-                                ? null
-                                : () => moveTo(
-                                    DemoSetupSnapshot.saved(candidate),
-                                  ),
-                            child: Text(l10n.confirmAreaAction),
                           ),
                           TextButton(
                             style: TextButton.styleFrom(
@@ -232,20 +238,23 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
                           for (final area in DemoArea.values)
                             Padding(
                               padding: const EdgeInsets.only(bottom: 12),
-                              child: OutlinedButton(
-                                key: ValueKey('choose-area-${area.name}'),
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: const Size(48, 64),
-                                  padding: const EdgeInsets.all(16),
-                                  alignment: Alignment.centerLeft,
-                                ),
-                                onPressed: saving
-                                    ? null
-                                    : () => moveTo(
-                                        DemoSetupSnapshot.confirm(area),
-                                      ),
-                                child: Text(
-                                  l10n.areaName(area.name.toUpperCase()),
+                              child: identifiedAction(
+                                'setup-area-${area.name}',
+                                OutlinedButton(
+                                  key: ValueKey('choose-area-${area.name}'),
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size(48, 64),
+                                    padding: const EdgeInsets.all(16),
+                                    alignment: Alignment.centerLeft,
+                                  ),
+                                  onPressed: saving
+                                      ? null
+                                      : () => moveTo(
+                                          DemoSetupSnapshot.confirm(area),
+                                        ),
+                                  child: Text(
+                                    l10n.areaName(area.name.toUpperCase()),
+                                  ),
                                 ),
                               ),
                             ),

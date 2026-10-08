@@ -1,6 +1,6 @@
 # Androidの画面取得・操作を含む自動試験
 
-状態：一次資料の調査と導入案。Maestroの導入、MCP接続、画面操作のPoC、CIジョブは未実施。関連：[Issue #3](https://github.com/oukiito/gomimap/issues/3)、[Issue #7](https://github.com/oukiito/gomimap/issues/7)。現在の実機確認は[ウィジェット記録](work/2026-10-08-android-widget.md)。
+状態：調査に続き、Maestro 2.11.0のローカル導入、プロジェクト用MCP登録とサーバー起動・ツール一覧取得、試験用IDとFlowを準備。Codexの現在のセッションへ新ツールはまだ反映されず、画面操作のPoC・UI用CIは未実施。[準備記録](work/2026-10-09-maestro-preparation.md)。関連：[Issue #3](https://github.com/oukiito/gomimap/issues/3)、[Issue #7](https://github.com/oukiito/gomimap/issues/7)。現在の実機確認は[ウィジェット記録](work/2026-10-08-android-widget.md)。
 
 ## 推奨
 
@@ -39,12 +39,12 @@ MCPツール名は版によって変わるため、接続後の提供ツール�
 
 ## 接続準備の案
 
-現在のMacではAndroid SDKと付属JDK、USBのPixel接続によるSDK試験は確認済み。Maestro CLIは未導入で、このセッションにMaestro MCPのツールはない。
+現在のMacではAndroid SDKと付属JDK、USBのPixel接続によるSDK試験は確認済み。Maestro CLIは2.11.0を導入済み。サーバーの初期化・ツール一覧を確認したが、このセッションに新しいMaestroツールはまだない。
 
 1. 画面取得・操作が許可された試験環境と対象端末を確認する。
-2. [公式手順](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli)でMaestroを導入し、版を固定する。要件はJava 17以上。今回はインストールしていない。
+2. [公式手順](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli)でMaestroを導入し、版を固定する。要件はJava 17以上。導入結果は準備記録へ保存した。
 3. `JAVA_HOME`・Android SDK・Maestroの実行パスを、その試験環境の設定へ指定する。グローバルな他プロジェクトの設定を変えない。
-4. CodexへローカルSTDIOサーバーを登録する。[OpenAI公式MCP設定](https://developers.openai.com/codex/mcp)はプロジェクト範囲の`.codex/config.toml`も説明している。以下は構成例で、作成・接続済みではない。
+4. CodexへローカルSTDIOサーバーを登録する。[OpenAI公式MCP設定](https://developers.openai.com/codex/mcp)はプロジェクト範囲の`.codex/config.toml`も説明している。以下は汎用構成例。実際の登録は個人パスを含むGit対象外の設定と、プロジェクト内の起動スクリプトを使用した。
 
 ```toml
 [mcp_servers.maestro]
@@ -97,3 +97,7 @@ Maestro CLI、Patrol、Appium、scrcpyの各プロジェクトはApache-2.0を�
 ## このセッションの制約
 
 ADBの直接キャプチャは自動承認レビューで拒否された。これはAndroidに自動試験の方法がないことを意味しない。この資料は技術構成と必要な検証の調査であり、拒否された取得を別ツールやMCPへ置き換えて実行したものではない。MCPを追加すれば操作が許可されるとは保証しない。端末操作・取得が許可された実行環境を確認してからPoCを進める。
+
+## 準備したファイル
+
+[Flowと実行手順](../e2e/maestro/README.md)、`scripts/install_maestro.py`、`scripts/maestro_runtime.py`を追加した。固定ID・読み上げ・クリック動作の理由と確認は[準備記録](work/2026-10-09-maestro-preparation.md)へ記録。準備完了をA01〜A03の実行成功と扱わない。

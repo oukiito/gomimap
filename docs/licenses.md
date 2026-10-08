@@ -93,3 +93,9 @@ GPL採用だけでApp Store公開が確約されるわけではない。GPL第10
 ## 画面操作の自動試験の調査候補
 
 [自動UI試験の調査](android-ui-test-strategy.md)でMaestro CLI／公式MCP、UI Automator、Patrol、Appium、scrcpyを比較した。Maestro・Patrol・Appium・scrcpyの各プロジェクトのApache-2.0原文を確認したが、新しい依存・プラグインを導入していない。採用版の固定、推移的依存・試験APKへの包含・必要通知・送信と費用の監査は導入時に行う。現行アプリの棚卸し86件は変わらない。
+
+## Maestro 2.11.0のローカル導入
+
+公式cli-2.11.0のarchive SHA-256を`5384593cb4e7a106489e75a821d157dd43f4e438df6bc308b72e82c685e1283a`へ固定した。[版の原文LICENSE](https://github.com/mobile-dev-inc/Maestro/blob/cli-2.11.0/LICENSE)はApache-2.0で、ローカル配布物へ保持。ホスト側195 JARのハッシュとnotice／licenseファイルの場所、内包するmaestro-app.apk・maestro-server.apkを専用のGit対象外inventoryへ記録した。32 JARでnotice等を検出したが、全推移条件・対応ソースの配布監査を完了した意味ではない。
+
+Maestroはローカルの独立した試験プロセスとして使い、アプリのpub・Maven依存へ追加・組み込みしていない。配布archive・JAR・試験driver APKは公開リポジトリや製品APKへ再配布せず、原文を保持する。製品アプリの既存棚卸しは86件のまま。ホストtoolの使用と、製品バイナリのGPL配布監査を区別する。クラウド契約・追加AI解析を有効にせず、初回は既存Macのローカル試験を使用する。[準備記録](work/2026-10-09-maestro-preparation.md)。

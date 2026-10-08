@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Dedicated emulator only. Assumes the app is already open; never clears data.
+appId: ${APP_ID}
+name: Prepare the Japanese demo district
+tags: [gomimap, isolated-emulator, setup]
+---
+- tapOn:
+    id: language-menu
+- tapOn:
+    id: language-ja
+- runFlow:
+    when:
+      visible:
+        id: setup-area-a
+    commands:
+      - tapOn:
+          id: setup-area-a
+- runFlow:
+    when:
+      visible:
+        id: setup-confirm-area
+    commands:
+      - tapOn:
+          id: setup-confirm-area
+# If the initial widget offer appears, inspect the actual OS pin dialog next.
+# Do not guess launcher-specific confirmation text or claim placement success.

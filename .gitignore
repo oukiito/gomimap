@@ -1,5 +1,7 @@
 # Local tools and generated files
 .tooling/
+.codex/config.toml
+.maestro/
 .DS_Store
 .dart_tool/
 build/

@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import 'package:flutter/material.dart';
+
+import 'identified_action.dart';
+
 import 'package:intl/intl.dart';
 
 import '../data/demo_data.dart';
@@ -212,15 +215,21 @@ class _WidgetOfferState extends State<WidgetOffer> with WidgetsBindingObserver {
               ),
             const SizedBox(height: 16),
             if (supported == true && !added)
-              FilledButton(
-                onPressed: busy ? null : _add,
-                child: Text(l10n.widgetAdd),
+              identifiedAction(
+                'widget-add',
+                FilledButton(
+                  onPressed: busy ? null : _add,
+                  child: Text(l10n.widgetAdd),
+                ),
               ),
             if (widget.firstTime)
-              TextButton(
-                key: const ValueKey('widget-offer-skip'),
-                onPressed: busy ? null : _skip,
-                child: Text(l10n.widgetSkip),
+              identifiedAction(
+                'widget-skip',
+                TextButton(
+                  key: const ValueKey('widget-offer-skip'),
+                  onPressed: busy ? null : _skip,
+                  child: Text(l10n.widgetSkip),
+                ),
               ),
           ],
         ),

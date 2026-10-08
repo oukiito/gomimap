@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# A01-A03. Preconditions: Japanese demo A, app open, one widget already placed.
+# Use a dedicated emulator and freshly exported expectation.json. Not executed yet.
+appId: ${APP_ID}
+name: Compare app and widget then open the app
+tags: [gomimap, isolated-emulator, widget, smoke]
+---
+- assertVisible:
+    id: schedule-primary-date
+    text: ${EXPECTED_DATE_PATTERN}
+- assertVisible:
+    id: schedule-primary-description
+    text: ${EXPECTED_DESCRIPTION_PATTERN}
+- takeScreenshot:
+    path: A01-app
+    cropOn:
+      id: schedule-primary
+- pressKey: Home
+- assertVisible:
+    id: ${WIDGET_DATE_ID}
+    text: ${EXPECTED_DATE_PATTERN}
+- assertVisible:
+    id: ${WIDGET_DESCRIPTION_ID}
+    text: ${EXPECTED_DESCRIPTION_PATTERN}
+- takeScreenshot:
+    path: A02-widget
+    cropOn:
+      id: ${WIDGET_ROOT_ID}
+- tapOn:
+    id: ${WIDGET_DATE_ID}
+- assertVisible:
+    id: schedule-primary-date
+    text: ${EXPECTED_DATE_PATTERN}
+- assertVisible:
+    id: schedule-primary-description
+    text: ${EXPECTED_DESCRIPTION_PATTERN}
+- takeScreenshot:
+    path: A03-returned-app
+    cropOn:
+      id: schedule-primary
