@@ -3,6 +3,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'ui/identified_action.dart';
+
 import 'package:intl/intl.dart';
 
 import 'l10n/generated/app_localizations.dart';
@@ -427,10 +430,13 @@ class _HomeShellState extends State<HomeShell> {
           style: const TextStyle(fontWeight: FontWeight.w800),
         ),
         actions: [
-          IconButton(
-            onPressed: showSettings,
-            icon: const Icon(Icons.settings_outlined),
-            tooltip: l10n.about,
+          identifiedAction(
+            'settings-open',
+            IconButton(
+              onPressed: showSettings,
+              icon: const Icon(Icons.settings_outlined),
+              tooltip: l10n.about,
+            ),
           ),
           LanguageButton(onChanged: widget.onLanguageChanged),
         ],
@@ -652,68 +658,77 @@ class _HomeShellState extends State<HomeShell> {
     DaySchedule schedule, {
     bool prominent = false,
     bool showExpired = false,
-  }) => Container(
-    key: prominent ? const ValueKey('today-schedule') : null,
-    padding: const EdgeInsets.all(24),
-    decoration: BoxDecoration(
-      color: prominent ? const Color(0xFF24684F) : const Color(0xFFEAF1E8),
-      borderRadius: BorderRadius.circular(24),
-    ),
-    child: DefaultTextStyle(
-      style: TextStyle(
-        color: prominent ? Colors.white : const Color(0xFF203D30),
-        fontSize: 16,
+  }) => Semantics(
+    identifier: prominent ? 'schedule-primary' : null,
+    child: Container(
+      key: prominent ? const ValueKey('today-schedule') : null,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: prominent ? const Color(0xFF24684F) : const Color(0xFFEAF1E8),
+        borderRadius: BorderRadius.circular(24),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$day  ${dateLabel(schedule.date)}',
-            style: const TextStyle(fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 18),
-          Icon(
-            schedule.status == ScheduleStatus.collection
-                ? Icons.delete_outline
-                : Icons.event_available_outlined,
-            size: prominent ? 44 : 28,
-            color: prominent ? Colors.white : const Color(0xFF24684F),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            schedule.localizedDescription(l10n),
-            style: TextStyle(
-              fontSize: prominent ? 30 : 23,
-              fontWeight: FontWeight.bold,
-              height: 1.4,
-            ),
-          ),
-          if (schedule.status == ScheduleStatus.collection) ...[
-            const SizedBox(height: 10),
-            if (showExpired &&
-                schedule.collections.every(
-                  (entry) =>
-                      entry.deadline.hour * 60 + entry.deadline.minute <=
-                      widget.displayMinute,
-                ))
-              Text(
-                l10n.disposalDeadlinePassed,
+      child: DefaultTextStyle(
+        style: TextStyle(
+          color: prominent ? Colors.white : const Color(0xFF203D30),
+          fontSize: 16,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Semantics(
+              identifier: prominent ? 'schedule-primary-date' : null,
+              child: Text(
+                '$day  ${dateLabel(schedule.date)}',
                 style: const TextStyle(fontWeight: FontWeight.w600),
               ),
-            ScheduleDeadlines(schedule: schedule),
-            const SizedBox(height: 8),
-            Text(l10n.checkTime, style: const TextStyle(fontSize: 14)),
-          ],
-          if (schedule.status == ScheduleStatus.needsConfirmation)
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: prominent ? Colors.white : null,
-                minimumSize: const Size(48, 48),
-              ),
-              onPressed: official,
-              child: Text(l10n.official),
             ),
-        ],
+            const SizedBox(height: 18),
+            Icon(
+              schedule.status == ScheduleStatus.collection
+                  ? Icons.delete_outline
+                  : Icons.event_available_outlined,
+              size: prominent ? 44 : 28,
+              color: prominent ? Colors.white : const Color(0xFF24684F),
+            ),
+            const SizedBox(height: 10),
+            Semantics(
+              identifier: prominent ? 'schedule-primary-description' : null,
+              child: Text(
+                schedule.localizedDescription(l10n),
+                style: TextStyle(
+                  fontSize: prominent ? 30 : 23,
+                  fontWeight: FontWeight.bold,
+                  height: 1.4,
+                ),
+              ),
+            ),
+            if (schedule.status == ScheduleStatus.collection) ...[
+              const SizedBox(height: 10),
+              if (showExpired &&
+                  schedule.collections.every(
+                    (entry) =>
+                        entry.deadline.hour * 60 + entry.deadline.minute <=
+                        widget.displayMinute,
+                  ))
+                Text(
+                  l10n.disposalDeadlinePassed,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+              ScheduleDeadlines(schedule: schedule),
+              const SizedBox(height: 8),
+              Text(l10n.checkTime, style: const TextStyle(fontSize: 14)),
+            ],
+            if (schedule.status == ScheduleStatus.needsConfirmation)
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: prominent ? Colors.white : null,
+                  minimumSize: const Size(48, 48),
+                ),
+                onPressed: official,
+                child: Text(l10n.official),
+              ),
+          ],
+        ),
       ),
     ),
   );
@@ -1021,13 +1036,16 @@ class _HomeShellState extends State<HomeShell> {
             if (widget.onWidgetSettings != null)
               Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: OutlinedButton.icon(
-                  icon: const Icon(Icons.widgets_outlined),
-                  label: Text(l10n.widgetSettings),
-                  onPressed: () {
-                    Navigator.pop(sheet);
-                    widget.onWidgetSettings!();
-                  },
+                child: identifiedAction(
+                  'settings-widget',
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.widgets_outlined),
+                    label: Text(l10n.widgetSettings),
+                    onPressed: () {
+                      Navigator.pop(sheet);
+                      widget.onWidgetSettings!();
+                    },
+                  ),
                 ),
               ),
           ],
