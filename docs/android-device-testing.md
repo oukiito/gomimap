@@ -78,3 +78,7 @@ adb -s <端末ID> shell am instrument -w -e verifyLive true dev.gomimap.gomimap.
 ```
 
 このオプションは現在の保存ファイル・データ版・地区と、ネイティブの通常読み込み結果を確認する。44項目になる。未設定の端末や期限切れの投影では成功を前提にしない。画面を取得・操作せず、ランチャーの描画完了を保証する試験でもない。
+
+## 画面操作を含む自動試験の導入案
+
+Maestro CLI／公式MCPとUI Automatorの候補比較、PixelのPoC項目、固定IDと試験時計、実行権限・成果物の分離は[自動UI試験の調査](android-ui-test-strategy.md)を参照する。これは導入案で、現在の44項目を画面キャプチャ・タップ試験へ変更したものではない。
