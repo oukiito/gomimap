@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "This reminder is for a different area. Showing your current area.",
   "notificationUpdated": "The schedule has changed since this reminder.",
-  "notificationOfferTitle": "Remind me on collection days"
+  "notificationOfferTitle": "Remind me on collection days",
+  "mapLoadError": "The map could not be loaded",
+  "mapRetry": "Retry",
+  "mapShowList": "View list"
 }

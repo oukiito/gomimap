@@ -839,6 +839,24 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'ごみの日を通知'**
   String get notificationOfferTitle;
+
+  /// No description provided for @mapLoadError.
+  ///
+  /// In ja, this message translates to:
+  /// **'地図を読み込めません'**
+  String get mapLoadError;
+
+  /// No description provided for @mapRetry.
+  ///
+  /// In ja, this message translates to:
+  /// **'再試行'**
+  String get mapRetry;
+
+  /// No description provided for @mapShowList.
+  ///
+  /// In ja, this message translates to:
+  /// **'一覧を見る'**
+  String get mapShowList;
 }
 
 class _AppLocalizationsDelegate

@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "यो सूचना अर्को क्षेत्रको हो। हालको क्षेत्र देखाइँदै छ।",
   "notificationUpdated": "यो सूचनापछि तालिका परिवर्तन भएको छ।",
-  "notificationOfferTitle": "सङ्कलन दिनमा सूचना दिनुहोस्"
+  "notificationOfferTitle": "सङ्कलन दिनमा सूचना दिनुहोस्",
+  "mapLoadError": "नक्सा लोड गर्न सकिएन",
+  "mapRetry": "फेरि प्रयास गर्नुहोस्",
+  "mapShowList": "सूची हेर्नुहोस्"
 }

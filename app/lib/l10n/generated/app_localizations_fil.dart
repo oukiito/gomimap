@@ -444,4 +444,13 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get notificationOfferTitle =>
       'Ipaalala sa akin ang mga araw ng koleksiyon';
+
+  @override
+  String get mapLoadError => 'Hindi ma-load ang mapa';
+
+  @override
+  String get mapRetry => 'Subukan muli';
+
+  @override
+  String get mapShowList => 'Tingnan ang listahan';
 }

@@ -162,7 +162,10 @@ void main() {
             .every((chip) => !chip.selected),
         isTrue,
       );
-      expect(find.byType(CollectionMap), findsNothing);
+      expect(
+        tester.widget<CollectionMap>(find.byType(CollectionMap)).points,
+        hasLength(2),
+      );
       expect(find.byKey(const ValueKey('return-to-item')), findsNothing);
       await tester.tap(find.widgetWithText(ChoiceChip, '乾電池'));
       await tester.pumpAndSettle();
@@ -254,7 +257,10 @@ void main() {
             .selected,
         isTrue,
       );
-      expect(find.byType(CollectionMap), findsNothing);
+      expect(
+        tester.widget<CollectionMap>(find.byType(CollectionMap)).points,
+        isEmpty,
+      );
       await tester.binding.handlePopRoute();
       await tester.pumpAndSettle();
       expect(
@@ -512,7 +518,7 @@ void main() {
     expect(find.widgetWithText(ChoiceChip, 'ペットボトル'), findsNothing);
     final map = tester.widget<CollectionMap>(find.byType(CollectionMap));
     expect(map.points.map((point) => point.id), ['b']);
-    expect(find.textContaining('地図はまだ接続していません'), findsOneWidget);
+    expect(find.text('地図を読み込めません'), findsOneWidget);
   });
   testWidgets(
     'unknown or damaged batteries never show ordinary box locations',
@@ -521,10 +527,16 @@ void main() {
       await tab(tester, '資源回収場所');
       await tester.tap(find.widgetWithText(ChoiceChip, '充電池'));
       await tester.pumpAndSettle();
-      expect(find.byType(CollectionMap), findsNothing);
+      expect(
+        tester.widget<CollectionMap>(find.byType(CollectionMap)).points,
+        isEmpty,
+      );
       await tester.tap(find.widgetWithText(ChoiceChip, 'ある・わからない'));
       await tester.pumpAndSettle();
-      expect(find.byType(CollectionMap), findsNothing);
+      expect(
+        tester.widget<CollectionMap>(find.byType(CollectionMap)).points,
+        isEmpty,
+      );
       expect(find.textContaining('通常の回収箱へは案内しません'), findsOneWidget);
     },
   );

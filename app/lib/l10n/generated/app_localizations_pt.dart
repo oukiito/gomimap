@@ -441,4 +441,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => 'Lembrar nos dias de coleta';
+
+  @override
+  String get mapLoadError => 'Não foi possível carregar o mapa';
+
+  @override
+  String get mapRetry => 'Tentar novamente';
+
+  @override
+  String get mapShowList => 'Ver lista';
 }

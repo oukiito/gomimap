@@ -408,6 +408,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => '在收集日提醒我';
+
+  @override
+  String get mapLoadError => '无法加载地图';
+
+  @override
+  String get mapRetry => '重试';
+
+  @override
+  String get mapShowList => '查看列表';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -813,6 +822,15 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get notificationOfferTitle => '在收集日提醒我';
+
+  @override
+  String get mapLoadError => '无法加载地图';
+
+  @override
+  String get mapRetry => '重试';
+
+  @override
+  String get mapShowList => '查看列表';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -1218,4 +1236,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get notificationOfferTitle => '在收集日提醒我';
+
+  @override
+  String get mapLoadError => '無法載入地圖';
+
+  @override
+  String get mapRetry => '重試';
+
+  @override
+  String get mapShowList => '查看列表';
 }

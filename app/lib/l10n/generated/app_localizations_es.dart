@@ -443,4 +443,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => 'Avisarme los días de recogida';
+
+  @override
+  String get mapLoadError => 'No se pudo cargar el mapa';
+
+  @override
+  String get mapRetry => 'Reintentar';
+
+  @override
+  String get mapShowList => 'Ver lista';
 }

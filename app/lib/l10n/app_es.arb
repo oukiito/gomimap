@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "Este aviso es de otra zona. Se muestra la zona actual.",
   "notificationUpdated": "El calendario cambió después de este aviso.",
-  "notificationOfferTitle": "Avisarme los días de recogida"
+  "notificationOfferTitle": "Avisarme los días de recogida",
+  "mapLoadError": "No se pudo cargar el mapa",
+  "mapRetry": "Reintentar",
+  "mapShowList": "Ver lista"
 }

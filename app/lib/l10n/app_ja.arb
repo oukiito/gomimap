@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "別の収集地区の通知です。現在の地区を表示します。",
   "notificationUpdated": "通知後に予定が更新されています。",
-  "notificationOfferTitle": "ごみの日を通知"
+  "notificationOfferTitle": "ごみの日を通知",
+  "mapLoadError": "地図を読み込めません",
+  "mapRetry": "再試行",
+  "mapShowList": "一覧を見る"
 }

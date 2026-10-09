@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "Lời nhắc thuộc khu vực khác. Hiện khu vực hiện tại.",
   "notificationUpdated": "Lịch đã thay đổi sau lời nhắc này.",
-  "notificationOfferTitle": "Nhắc tôi vào ngày thu gom"
+  "notificationOfferTitle": "Nhắc tôi vào ngày thu gom",
+  "mapLoadError": "Không tải được bản đồ",
+  "mapRetry": "Thử lại",
+  "mapShowList": "Xem danh sách"
 }

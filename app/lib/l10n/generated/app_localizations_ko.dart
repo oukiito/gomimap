@@ -411,4 +411,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => '수거일에 알림 받기';
+
+  @override
+  String get mapLoadError => '지도를 불러올 수 없습니다';
+
+  @override
+  String get mapRetry => '다시 시도';
+
+  @override
+  String get mapShowList => '목록 보기';
 }
