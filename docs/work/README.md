@@ -42,4 +42,6 @@
 
 | 2026-10-10 | 難易度・公開／判定／復旧／運用の追加契約と実装開始ゲート | [着手設計の記録](2026-10-10-implementation-readiness.md) | [#65](https://github.com/oukiito/gomimap/issues/65)、[#53](https://github.com/oukiito/gomimap/issues/53) |
 
+| 2026-10-10 | 設計D2に基づく分別の優先順位・不明・矛盾の判定核 | [分別判定の記録](2026-10-10-sorting-decision.md) | [#67](https://github.com/oukiito/gomimap/issues/67)、G08 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

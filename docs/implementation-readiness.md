@@ -48,7 +48,7 @@ manifest v2はbundleの不変HTTPSパス、sha256、bytes、releaseNumber、自�
 
 ## D2 分別判定を先に確定する
 
-SortingRules v1は`version, municipalityId, releaseId, validPeriod, questions, routes, preparations, rules`を必須とする。質問には意味ID・型（bool／enum／有限整数）・単位・測る対象・入力範囲・文言IDを持たせる。ルールにはID・対象item／area・適用期間・明示priority・AND条件のORグループ・結果・根拠を持たせる。分類ルールと施設のacceptanceRulesを代用し合わない。
+SortingRules v1は`version, municipalityId, releaseId, validPeriod, questions, routes, preparations, rules`を必須とする。質問には意味ID・型（bool／enum／有限整数）・単位・測る対象・入力範囲・文言IDを持たせる。ルールにはID・対象item／area・適用期間・明示priority（0〜65535）・AND条件のORグループ・結果・根拠を持たせる。分類ルールと施設のacceptanceRulesを代用し合わない。
 
 結果は`categoryId`／`routeId`（少なくとも片方）と重複なしの順序付き`preparationIds`。categoryIdはcalendar.categories、routeId／preparationIdsはsorting内の登録簿へ参照する。routesは`id, kind, labelMessageId, officialUrl, sourceIds, validPeriod`を必須とし、kindはhousehold／bulkyApplication／recyclingLaw／specialCollection／officialConsultationへ限定。preparationsは`id, messageId, sourceIds, validPeriod`を必須とする。URLは自治体の出典登録で確認した公式HTTPS経路だけで、LLMが返した任意URLを開かない。未知ID・ルールの適用期間を覆わない参照・根拠欠落・全言語に存在しない固定文言IDをbundleの検査で拒否する。対象日がcatalogの期間外なら分類を確定しない。
 
@@ -59,7 +59,7 @@ SortingRules v1は`version, municipalityId, releaseId, validPeriod, questions, r
 1. 自治体・地区・対象item・対象日・根拠を照合。現在の版に対象がなければ未対応／確認必要で、区分を補完しない。
 2. 各条件をaccepted／rejected／unknownで評価。AND内にrejectedがあればその組はrejected、OR内にacceptedがあればそのルールはaccepted。
 3. priorityは大きいほど優先。acceptedの最高順位より上、または同順位のunknownがあれば、低順位の結果を確定しない。acceptedがなければ最高順位unknownから確認する。
-4. 欠けている利用者回答は必要な質問を一つずつ出す。根拠不明等、質問で解決できないunknownは確認必要へ。同順位acceptedのcategory／route／準備IDが異なれば矛盾として保留し、配列順・多数決で決めない。
+4. まず最高順位の未解決グループだけを扱い、欠けている利用者回答は必要な質問を一つずつ出す。そのグループに根拠不明等、質問で解決できないunknownがあれば確認必要へ。上位の質問への回答でacceptedを確立すれば、下位の根拠不明は結論に影響しなくなる。上位がrejectedなら次の順位を再評価する。同順位acceptedのcategory／route／準備IDが異なれば矛盾として保留し、配列順・多数決で決めない。
 5. 競合するunknownがなく、最高順位acceptedの結果が同一のときだけ確定。全rejected／該当なしは確認必要で、一般ごみを既定値にしない。
 
 質問は最高順位の未解決条件に限定し、意味IDの固定順で表示する。答えた結果不要になった質問を続けず、住所・写真・自由記述を要求しない。質問の答えは当該用件のメモリだけに保持。品目変更でその品目の答えを解除。版変更では結論を破棄し、質問のID・型・単位が同じ答えだけ再検証する。地区変更では地区依存の答えを解除する。
