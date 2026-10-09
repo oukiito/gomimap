@@ -183,7 +183,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Schedules, areas and locations are fictional, based on October 5, 2026. Do not use them for actual waste disposal.\n\nNotifications, widgets and location settings are not implemented. This prototype sends no notifications.\n\nOnly your sample area and language are saved. Photos and location data are not collected.';
+      'This development sample uses fictional schedules, areas and collection sites. Do not use it for actual waste disposal.\n\nArea, language and reminder settings are stored on your device. Photos and location are not collected.';
 
   @override
   String get dryBattery => 'Dry-cell batteries';
@@ -357,4 +357,87 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => 'The disposal deadline has passed';
+
+  @override
+  String get notifications => 'Waste reminders';
+
+  @override
+  String get notificationIntro => 'Get a reminder on collection mornings.';
+
+  @override
+  String get notificationEnabled => 'Morning reminder';
+
+  @override
+  String get notificationEvening => 'Also remind the evening before';
+
+  @override
+  String get notificationSave => 'Save';
+
+  @override
+  String get notificationLater => 'Later';
+
+  @override
+  String get notificationPermission =>
+      'Notifications are not allowed on this device';
+
+  @override
+  String get notificationOsSettings => 'Open device notification settings';
+
+  @override
+  String get notificationNone => 'No collection dates can be scheduled';
+
+  @override
+  String get notificationFixture =>
+      'The normal app does not schedule sample reminders';
+
+  @override
+  String notificationReserved(int count) {
+    return 'Scheduled: $count';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return 'Test clock: $count preview reminders';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return 'Next reminder: $when';
+  }
+
+  @override
+  String get notificationError =>
+      'Could not save or apply changes. Check settings and scheduled reminders.';
+
+  @override
+  String get notificationRetry => 'Retry';
+
+  @override
+  String get notificationTest => 'Show test notification';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return 'Waste today, $date';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return 'Prepare for tomorrow, $date';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'Test: $title';
+  }
+
+  @override
+  String get notificationChangedArea =>
+      'This reminder is for a different area. Showing your current area.';
+
+  @override
+  String get notificationUpdated =>
+      'The schedule has changed since this reminder.';
+
+  @override
+  String get notificationOfferTitle => 'Remind me on collection days';
 }

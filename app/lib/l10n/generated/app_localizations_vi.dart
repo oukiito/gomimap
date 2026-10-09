@@ -182,7 +182,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Lịch, khu vực và điểm thu gom là giả định, lấy ngày 5 tháng 10 năm 2026 làm mốc. Không dùng để đổ rác thực tế.\n\nChưa có thông báo, tiện ích và cài đặt vị trí. Bản thử nghiệm này không gửi thông báo.\n\nChỉ lưu khu vực mẫu và ngôn ngữ đã chọn. Không thu thập ảnh hay vị trí.';
+      'Bản mẫu phát triển dùng lịch, khu vực và điểm thu gom giả định. Không dùng để bỏ rác thực tế.\n\nKhu vực, ngôn ngữ và cài đặt nhắc được lưu trên thiết bị. Không thu thập ảnh hoặc vị trí.';
 
   @override
   String get dryBattery => 'Pin khô';
@@ -356,4 +356,84 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => 'Đã quá giờ mang rác ra';
+
+  @override
+  String get notifications => 'Nhắc ngày thu gom rác';
+
+  @override
+  String get notificationIntro => 'Nhắc vào buổi sáng có thu gom.';
+
+  @override
+  String get notificationEnabled => 'Nhắc buổi sáng';
+
+  @override
+  String get notificationEvening => 'Nhắc thêm vào tối hôm trước';
+
+  @override
+  String get notificationSave => 'Lưu';
+
+  @override
+  String get notificationLater => 'Để sau';
+
+  @override
+  String get notificationPermission => 'Thiết bị chưa cho phép thông báo';
+
+  @override
+  String get notificationOsSettings => 'Mở cài đặt thông báo của thiết bị';
+
+  @override
+  String get notificationNone => 'Không có ngày thu gom để đặt lịch';
+
+  @override
+  String get notificationFixture => 'Ứng dụng thường không đặt lịch nhắc mẫu';
+
+  @override
+  String notificationReserved(int count) {
+    return 'Đã đặt: $count';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return 'Đồng hồ thử: xem trước $count lời nhắc';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return 'Lời nhắc tiếp theo: $when';
+  }
+
+  @override
+  String get notificationError =>
+      'Không thể lưu hoặc áp dụng. Kiểm tra cài đặt và lịch nhắc.';
+
+  @override
+  String get notificationRetry => 'Thử lại';
+
+  @override
+  String get notificationTest => 'Hiện thông báo thử';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return 'Rác hôm nay, $date';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return 'Chuẩn bị cho ngày mai, $date';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'Thử: $title';
+  }
+
+  @override
+  String get notificationChangedArea =>
+      'Lời nhắc thuộc khu vực khác. Hiện khu vực hiện tại.';
+
+  @override
+  String get notificationUpdated => 'Lịch đã thay đổi sau lời nhắc này.';
+
+  @override
+  String get notificationOfferTitle => 'Nhắc tôi vào ngày thu gom';
 }

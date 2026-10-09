@@ -31,7 +31,7 @@ class WidgetChecksInstrumentation : Instrumentation() {
                 .putExtra("gomimap.qa.scenario", "tomorrow")
             if (targetContext.packageName.endsWith(".qa")) {
                 verify(RuntimeClock.candidate(targetContext, probe)?.get("millis") == 1791154800000L, "QA clock accepts an isolated instant")
-                verify(RuntimeClock.frozen(targetContext), "QA clock is frozen")
+                verify(RuntimeClock.candidate(targetContext,probe)?.get("real")==false, "QA clock defaults to frozen")
             } else {
                 val before = System.currentTimeMillis()
                 verify(RuntimeClock.candidate(targetContext, probe) == null, "normal APK rejects QA arguments")
@@ -40,6 +40,27 @@ class WidgetChecksInstrumentation : Instrumentation() {
             verify(RuntimeClock.candidate(targetContext, android.content.Intent(probe).putExtra("gomimap.qa.clock_ms", "-1")) == null, "negative clock rejected")
             verify(RuntimeClock.candidate(targetContext, android.content.Intent(probe).putExtra("gomimap.qa.clock_ms", "4102444800000")) == null, "unsupported future clock rejected")
             verify(RuntimeClock.candidate(targetContext, android.content.Intent(probe).putExtra("gomimap.qa.scenario", "unknown")) == null, "unknown clock scenario rejected")
+            val dayStart=WidgetDate.parse("2026-10-05").millis
+            val notificationEntry=JSONObject().put("id",1).put("due",dayStart+360*60000L).put("expires",dayStart+480*60000L)
+                .put("date","2026-10-05").put("kind","morning").put("title","Today").put("areaLabel","Sample A").put("separator",", ")
+                .put("collections",org.json.JSONArray().put(JSONObject().put("name","Burnable").put("detail","08:00").put("deadline",dayStart+480*60000L)))
+            val notificationPlan=JSONObject().put("schemaVersion",1).put("municipalityId","demo-toshima").put("areaId","a")
+                .put("datasetVersion","toshima-demo-v1").put("fixture",true).put("locale","ja").put("channelName","Collection").put("testTitle","Test: {title}")
+                .put("entries",org.json.JSONArray().put(notificationEntry))
+            CollectionNotifications.validate(notificationPlan)
+            verify(CollectionNotifications.deliverable(notificationPlan,notificationEntry,dayStart+360*60000L),"notification eligible at configured instant")
+            verify(!CollectionNotifications.deliverable(notificationPlan,notificationEntry,dayStart+360*60000L-1),"notification not delivered early")
+            verify(!CollectionNotifications.deliverable(notificationPlan,notificationEntry,dayStart+480*60000L),"notification cutoff is exclusive")
+            val night=JSONObject(notificationEntry.toString()).put("kind","evening").put("date","2026-10-06")
+                .put("due",dayStart+1200*60000L).put("expires",dayStart+1440*60000L)
+            verify(CollectionNotifications.deliverable(notificationPlan,night,dayStart+1200*60000L),"evening notification targets tomorrow")
+            verify(!CollectionNotifications.deliverable(notificationPlan,night,dayStart+1440*60000L),"evening notification expires at midnight")
+            val duplicate=JSONObject(notificationPlan.toString()).put("entries",org.json.JSONArray().put(notificationEntry).put(notificationEntry))
+            verify(try{CollectionNotifications.validate(duplicate);false}catch(_:Exception){true},"duplicate notification IDs rejected")
+            val notificationFile=java.io.File(targetContext.filesDir,"notifications/current.json")
+            val beforePlan=if(notificationFile.exists())notificationFile.readText() else null
+            verify(!CollectionNotifications.apply(targetContext,"{}"),"invalid notification plan rejected")
+            verify((if(notificationFile.exists())notificationFile.readText() else null)==beforePlan,"invalid plan preserves old reservations")
             fun content(date: String, area: String? = "a", tag: String = "ja", minute: Int = 0) = GarbageWidgetData.resolve(
                 root, area, tag, WidgetDate.parse(date), GarbageWidgetData.fallback(targetContext, tag), minute)
             verify(content("2026-10-05").status == "collection", "collection status")

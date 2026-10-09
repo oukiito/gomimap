@@ -184,7 +184,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Los calendarios, zonas y lugares son ficticios y se basan en el 5 de octubre de 2026. No los uses para tirar basura real.\n\nLas notificaciones, widgets y ajustes de ubicación aún no están implementados. Este prototipo no envía notificaciones.\n\nSolo se guardan la zona de ejemplo y el idioma elegidos. No se recopilan fotos ni datos de ubicación.';
+      'Esta muestra de desarrollo usa calendarios, zonas y puntos de recogida ficticios. No la uses para sacar basura de verdad.\n\nLa zona, el idioma y los ajustes de avisos se guardan en el dispositivo. No se recopilan fotos ni ubicación.';
 
   @override
   String get dryBattery => 'Pilas secas';
@@ -360,4 +360,87 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get disposalDeadlinePassed =>
       'El plazo para sacar la basura ha pasado';
+
+  @override
+  String get notifications => 'Recordatorios de recogida';
+
+  @override
+  String get notificationIntro => 'Recibe un aviso las mañanas de recogida.';
+
+  @override
+  String get notificationEnabled => 'Aviso por la mañana';
+
+  @override
+  String get notificationEvening => 'Avisar también la noche anterior';
+
+  @override
+  String get notificationSave => 'Guardar';
+
+  @override
+  String get notificationLater => 'Más tarde';
+
+  @override
+  String get notificationPermission =>
+      'Este dispositivo no permite las notificaciones';
+
+  @override
+  String get notificationOsSettings => 'Abrir los ajustes de notificaciones';
+
+  @override
+  String get notificationNone => 'No hay fechas de recogida para programar';
+
+  @override
+  String get notificationFixture =>
+      'La aplicación normal no programa avisos de ejemplo';
+
+  @override
+  String notificationReserved(int count) {
+    return 'Programados: $count';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return 'Reloj de prueba: vista previa de $count avisos';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return 'Próximo aviso: $when';
+  }
+
+  @override
+  String get notificationError =>
+      'No se pudo guardar o aplicar. Revisa los ajustes y los avisos programados.';
+
+  @override
+  String get notificationRetry => 'Reintentar';
+
+  @override
+  String get notificationTest => 'Mostrar notificación de prueba';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return 'Basura de hoy, $date';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return 'Preparar para mañana, $date';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'Prueba: $title';
+  }
+
+  @override
+  String get notificationChangedArea =>
+      'Este aviso es de otra zona. Se muestra la zona actual.';
+
+  @override
+  String get notificationUpdated =>
+      'El calendario cambió después de este aviso.';
+
+  @override
+  String get notificationOfferTitle => 'Avisarme los días de recogida';
 }

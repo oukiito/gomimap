@@ -12,6 +12,7 @@ import android.os.Bundle
 
 class MainActivity : FlutterActivity() {
     private var widgetChannel: MethodChannel? = null
+    private var notifications: NotificationBridge? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         RuntimeClock.consume(this, intent)
         super.onCreate(savedInstanceState)
@@ -19,6 +20,7 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(engine: FlutterEngine) {
         super.configureFlutterEngine(engine)
         RuntimeClock.attach(this, engine)
+        notifications=NotificationBridge(this,engine)
         widgetChannel = MethodChannel(engine.dartExecutor.binaryMessenger, "dev.gomimap.gomimap/home_widget")
         widgetChannel!!.setMethodCallHandler { call, result ->
             val manager = AppWidgetManager.getInstance(this)
@@ -54,6 +56,7 @@ class MainActivity : FlutterActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        notifications?.newIntent()
         if (RuntimeClock.consume(this, intent)) {
             RuntimeClock.notifyChanged(this)
             GarbageWidgetProvider.updateAll(this)
@@ -62,5 +65,9 @@ class MainActivity : FlutterActivity() {
             widgetChannel?.invokeMethod("openToday", null)
             intent.removeExtra(GarbageWidgetProvider.OPEN)
         }
+    }
+    override fun onRequestPermissionsResult(requestCode:Int,permissions:Array<out String>,grantResults:IntArray) {
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults)
+        notifications?.permissionResult(requestCode)
     }
 }

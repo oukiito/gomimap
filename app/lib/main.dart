@@ -33,12 +33,19 @@ import 'ui/language_button.dart';
 import 'ui/schedule_deadlines.dart';
 import 'ui/sheet_close_button.dart';
 import 'qa/qa_runtime.dart';
+import 'notifications/notification_bridge.dart';
+import 'notifications/notification_controller.dart';
+import 'notifications/notification_state.dart';
+import 'notifications/notification_plan.dart';
+import 'ui/notification_settings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
   final bridge = AndroidHomeWidgetBridge();
   await bridge.initialize();
+  final notifications = AndroidNotificationsBridge();
+  await notifications.initialize();
   if (qaBuild) {
     final runtime = await QaRuntime.connect();
     runApp(
@@ -48,8 +55,9 @@ Future<void> main() async {
           preferences: preferences,
           dataset: runtime.dataset,
           widgetBridge: bridge,
+          notificationsBridge: notifications,
           clock: () => runtime.now(),
-          clockFrozen: true,
+          clockFrozen: runtime.frozen,
         ),
       ),
     );
@@ -61,6 +69,7 @@ Future<void> main() async {
       preferences: preferences,
       repository: repository,
       widgetBridge: bridge,
+      notificationsBridge: notifications,
     ),
   );
 }
@@ -76,6 +85,8 @@ class GomimapApp extends StatefulWidget {
     this.displayDate,
     this.clock,
     this.clockFrozen = false,
+    this.notificationsBridge,
+    this.allowQaNotifications = qaBuild,
   });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
@@ -87,6 +98,8 @@ class GomimapApp extends StatefulWidget {
   final DateTime? displayDate;
   final DateTime Function()? clock;
   final bool clockFrozen;
+  final NotificationsBridge? notificationsBridge;
+  final bool allowQaNotifications;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
@@ -97,6 +110,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   late DemoSetupSnapshot setup;
   late final HomeWidgetBridge bridge;
   late final WidgetOfferStore offer;
+  late final NotificationController notifications;
   final homeKey = GlobalKey<_HomeShellState>();
   final navigatorKey = GlobalKey<NavigatorState>();
   Timer? midnight;
@@ -129,7 +143,20 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
       widget.preferences,
       legacyDistrictSaved: setup.phase == DemoSetupPhase.districtSaved,
     );
-    setupStore = bridge.available ? WidgetSetupStore(base, offer) : base;
+    notifications = NotificationController(
+      store: NotificationStateStore(
+        widget.preferences,
+        legacyDistrictSaved: setup.phase == DemoSetupPhase.districtSaved,
+      ),
+      bridge:
+          widget.notificationsBridge ?? const UnavailableNotificationsBridge(),
+      plan: buildNotifications,
+    );
+    final district = bridge.available ? WidgetSetupStore(base, offer) : base;
+    setupStore = notifications.bridge.available
+        ? NotificationSetupStore(district, notifications)
+        : district;
+    notifications.bridge.onOpen(openNotification);
     bridge.setOpenTodayHandler(openToday);
     scheduleDisplayRefresh();
     WidgetsBinding.instance.addObserver(this);
@@ -137,6 +164,12 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) unawaited(widget.repository?.refresh());
       if (mounted) unawaited(publishWidget());
+      if (mounted) unawaited(notifications.refresh());
+      unawaited(
+        notifications.bridge.consumeLaunch().then((target) {
+          if (target != null && mounted) openNotification(target);
+        }),
+      );
       unawaited(
         bridge.consumeLaunch().then((fromWidget) {
           if (fromWidget && mounted) openToday();
@@ -149,6 +182,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     scheduleDisplayRefresh();
     if (mounted) setState(() {});
     if (mounted) unawaited(publishWidget());
+    if (mounted) unawaited(notifications.refresh());
   }
 
   @override
@@ -159,6 +193,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
         !identical(oldWidget.dataset, widget.dataset)) {
       scheduleDisplayRefresh();
       unawaited(publishWidget());
+      unawaited(notifications.refresh());
     }
   }
 
@@ -229,6 +264,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     setState(() => setup = DemoSetupSnapshot.saved(area));
     scheduleDisplayRefresh();
     unawaited(publishWidget());
+    unawaited(notifications.refresh());
   }
 
   void showWidgetSettings() {
@@ -259,6 +295,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
       scheduleDisplayRefresh();
       unawaited(widget.repository?.refresh());
       unawaited(publishWidget());
+      unawaited(notifications.refresh());
     }
   }
 
@@ -267,6 +304,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     widget.repository?.removeListener(datasetChanged);
     midnight?.cancel();
+    notifications.dispose();
     super.dispose();
   }
 
@@ -274,16 +312,84 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     final selected = savedLocale(code);
     if (selected == null) return false;
     try {
+      if (!await notifications.pause()) return false;
       if (!await widget.preferences.setString('app.language', code)) {
+        await widget.preferences.reload();
+        await notifications.refresh();
         return false;
       }
       if (mounted) setState(() => locale = selected);
       unawaited(publishWidget());
+      unawaited(notifications.refresh());
       return true;
     } catch (_) {
+      unawaited(notifications.refresh());
       return false;
     }
   }
+
+  Map<String, Object?> buildNotifications(NotificationSettings settings) {
+    final area = setupStore.read().area;
+    final tag =
+        locale ??
+        resolveAppLocale(
+          WidgetsBinding.instance.platformDispatcher.locales,
+          appLocales,
+        );
+    final l10n = lookupAppLocalizations(tag);
+    final today = CalendarDate.inJapan(now());
+    final calendar = demoCalendar(area ?? DemoArea.a, dataset: dataset);
+    return notificationPlan(
+      days: [for (var i = 0; i < 14; i++) calendar.onDate(today.addDays(i))],
+      settings: settings,
+      now: now(),
+      l10n: l10n,
+      areaLabel: l10n.areaName((area ?? DemoArea.a).name.toUpperCase()),
+      locale: tag.toLanguageTag(),
+      validUntil: dataset?.period.end.startInJapanUtc ?? now(),
+      allowQaFixtures: widget.allowQaNotifications,
+    );
+  }
+
+  void openNotification(Map<String, dynamic> target) {
+    if (!mounted || setup.phase != DemoSetupPhase.districtSaved) return;
+    openToday();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (target['areaId'] != setup.area!.name) {
+        final c = navigatorKey.currentContext!;
+        ScaffoldMessenger.of(c).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(c).notificationChangedArea),
+          ),
+        );
+        return;
+      }
+      try {
+        homeKey.currentState?.showSchedule(
+          CalendarDate.parse(target['date'] as String),
+          updated: target['datasetVersion'] != dataset?.version,
+        );
+      } catch (_) {
+        /* Reject invalid deep link. */
+      }
+    });
+  }
+
+  Widget notificationPage({required bool firstTime}) =>
+      NotificationSettingsPage(
+        controller: notifications,
+        area: setup.area!,
+        firstTime: firstTime,
+        qa: widget.allowQaNotifications,
+        fixture: dataset?.kind == DatasetKind.fixture,
+        onLanguageChanged: changeLanguage,
+        onDone: () =>
+            firstTime ? setState(() {}) : navigatorKey.currentState?.pop(),
+      );
+  void showNotificationSettings() => navigatorKey.currentState?.push(
+    MaterialPageRoute<void>(builder: (_) => notificationPage(firstTime: false)),
+  );
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -326,6 +432,8 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
                   onDone: () => setState(() {}),
                   onLanguageChanged: changeLanguage,
                 )
+              : notifications.bridge.available && !notifications.store.answered
+              ? notificationPage(firstTime: true)
               : HomeShell(
                   key: homeKey,
                   area: setup.area!,
@@ -338,6 +446,9 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
                       : null,
                   setupStore: setupStore,
                   onLanguageChanged: changeLanguage,
+                  onNotificationSettings: notifications.bridge.available
+                      ? showNotificationSettings
+                      : null,
                 )
         : DemoAreaSetup(
             store: setupStore,
@@ -361,6 +472,7 @@ class HomeShell extends StatefulWidget {
     this.displayMinute = 0,
     required this.onAreaSaved,
     this.onWidgetSettings,
+    this.onNotificationSettings,
   });
   final DemoArea area;
   final MunicipalDataset? dataset;
@@ -370,6 +482,7 @@ class HomeShell extends StatefulWidget {
   final int displayMinute;
   final ValueChanged<DemoArea> onAreaSaved;
   final VoidCallback? onWidgetSettings;
+  final VoidCallback? onNotificationSettings;
   @override
   State<HomeShell> createState() => _HomeShellState();
 }
@@ -391,6 +504,66 @@ class _HomeShellState extends State<HomeShell> {
       tab = 0;
       mapOrigin = null;
     });
+  }
+
+  void showSchedule(CalendarDate date, {bool updated = false}) {
+    final day = demoCalendar(area, dataset: widget.dataset).onDate(date);
+    final current = CalendarDate.fromFields(widget.displayDate);
+    final expired =
+        date.compareTo(current) < 0 ||
+        (date == current &&
+            day.collections.isNotEmpty &&
+            day.collections.every(
+              (e) =>
+                  e.deadline.hour * 60 + e.deadline.minute <=
+                  widget.displayMinute,
+            ));
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (sheet) => SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SheetCloseButton(onPressed: () => Navigator.pop(sheet)),
+              areaContext(),
+              Semantics(
+                identifier: 'notification-target-date',
+                child: Text(
+                  DateFormat.yMMMMd(l10n.localeName).format(date.value),
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              if (updated) Text(l10n.notificationUpdated),
+              const SizedBox(height: 12),
+              Text(
+                day.localizedDescription(l10n),
+                style: const TextStyle(fontSize: 24),
+              ),
+              if (expired && day.status == ScheduleStatus.collection)
+                Text(l10n.disposalDeadlinePassed),
+              ScheduleDeadlines(schedule: day),
+              Text(l10n.checkTime),
+              TextButton(
+                onPressed: official,
+                child: Text(l10n.officialToshima),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(sheet),
+                child: Text(l10n.today),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -1074,6 +1247,21 @@ class _HomeShellState extends State<HomeShell> {
                     onPressed: () {
                       Navigator.pop(sheet);
                       widget.onWidgetSettings!();
+                    },
+                  ),
+                ),
+              ),
+            if (widget.onNotificationSettings != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: identifiedAction(
+                  'settings-notifications',
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.notifications_outlined),
+                    label: Text(l10n.notifications),
+                    onPressed: () {
+                      Navigator.pop(sheet);
+                      widget.onNotificationSettings!();
                     },
                   ),
                 ),

@@ -182,7 +182,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'तालिका, क्षेत्र र सङ्कलन स्थल काल्पनिक हुन् र २०२६ अक्टोबर ५ मा आधारित छन्। वास्तविक फोहोर फाल्न प्रयोग नगर्नुहोस्।\n\nसूचना, विजेट र स्थानसम्बन्धी सेटिङ अझै बनेका छैनन्। यो नमुनाले सूचना पठाउँदैन।\n\nछानिएको नमुना क्षेत्र र भाषा मात्र सुरक्षित गरिन्छ। फोटो वा स्थानको जानकारी सङ्कलन गरिँदैन।';
+      'यो विकास नमुनामा काल्पनिक तालिका, क्षेत्र र सङ्कलन स्थान छन्। वास्तविक फोहोर फाल्न प्रयोग नगर्नुहोस्।\n\nक्षेत्र, भाषा र सूचना सेटिङ उपकरणमा सेभ हुन्छन्। फोटो वा स्थान जानकारी सङ्कलन गरिँदैन।';
 
   @override
   String get dryBattery => 'सुक्खा ब्याट्री';
@@ -357,4 +357,84 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => 'फोहोर निकाल्ने समयसीमा सकिएको छ';
+
+  @override
+  String get notifications => 'फोहोर सङ्कलन सूचना';
+
+  @override
+  String get notificationIntro => 'सङ्कलन हुने बिहान सूचना पाउनुहोस्।';
+
+  @override
+  String get notificationEnabled => 'बिहानको सूचना';
+
+  @override
+  String get notificationEvening => 'अघिल्लो साँझ पनि सूचना';
+
+  @override
+  String get notificationSave => 'सेभ गर्नुहोस्';
+
+  @override
+  String get notificationLater => 'पछि';
+
+  @override
+  String get notificationPermission => 'यस उपकरणमा सूचना अनुमति छैन';
+
+  @override
+  String get notificationOsSettings => 'उपकरणको सूचना सेटिङ खोल्नुहोस्';
+
+  @override
+  String get notificationNone => 'सूचना तय गर्न मिल्ने सङ्कलन दिन छैन';
+
+  @override
+  String get notificationFixture => 'सामान्य एपले नमुना सूचना तय गर्दैन';
+
+  @override
+  String notificationReserved(int count) {
+    return 'तय गरिएका: $count';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return 'परीक्षण घडी: $count सूचनाको पूर्वावलोकन';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return 'अर्को सूचना: $when';
+  }
+
+  @override
+  String get notificationError =>
+      'सेभ वा लागू गर्न सकिएन। सेटिङ र तय गरिएका सूचना जाँच्नुहोस्।';
+
+  @override
+  String get notificationRetry => 'फेरि प्रयास';
+
+  @override
+  String get notificationTest => 'परीक्षण सूचना देखाउनुहोस्';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return 'आज $date को फोहोर';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return 'भोलि $date को तयारी';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'परीक्षण: $title';
+  }
+
+  @override
+  String get notificationChangedArea =>
+      'यो सूचना अर्को क्षेत्रको हो। हालको क्षेत्र देखाइँदै छ।';
+
+  @override
+  String get notificationUpdated => 'यो सूचनापछि तालिका परिवर्तन भएको छ।';
+
+  @override
+  String get notificationOfferTitle => 'सङ्कलन दिनमा सूचना दिनुहोस्';
 }

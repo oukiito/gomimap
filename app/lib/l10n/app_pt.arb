@@ -92,7 +92,7 @@
   "pointConditions": "Horários e condições: não cadastrados.\nEste não é um ponto de entrega real. Rotas indisponíveis.",
   "mapTitle": "Mapa de coleta",
   "mapUnavailable": "O mapa ainda não está conectado.\nUse a lista abaixo para testar o protótipo.",
-  "aboutBody": "Calendários, áreas e locais são fictícios, com base em 5 de outubro de 2026. Não use para descartar lixo de verdade.\n\nNotificações, widgets e configurações de localização ainda não foram implementados. Este protótipo não envia notificações.\n\nSomente a área de exemplo e o idioma escolhidos são salvos. Não coletamos fotos nem localização.",
+  "aboutBody": "Esta amostra de desenvolvimento usa calendários, áreas e pontos de coleta fictícios. Não a use para descartar lixo de verdade.\n\nÁrea, idioma e configurações de lembretes são salvos no dispositivo. Fotos e localização não são coletadas.",
   "dryBattery": "Pilhas secas",
   "rechargeable": "Baterias recarregáveis",
   "appliance": "Pequenos eletrônicos",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "Toque e segure a tela inicial, escolha Widgets e adicione Gomimap.",
   "widgetFailure": "Não foi possível solicitar. Tente novamente ou adicione pela tela inicial.",
   "widgetSaveError": "Não foi possível salvar a escolha. Tente novamente.",
-  "disposalDeadlinePassed": "O prazo para colocar o lixo terminou"
+  "disposalDeadlinePassed": "O prazo para colocar o lixo terminou",
+  "notifications": "Lembretes de coleta",
+  "notificationIntro": "Receba um lembrete nas manhãs de coleta.",
+  "notificationEnabled": "Lembrete de manhã",
+  "notificationEvening": "Lembrar também na noite anterior",
+  "notificationSave": "Salvar",
+  "notificationLater": "Depois",
+  "notificationPermission": "As notificações não estão permitidas neste dispositivo",
+  "notificationOsSettings": "Abrir as configurações de notificações",
+  "notificationNone": "Não há datas de coleta para agendar",
+  "notificationFixture": "O aplicativo normal não agenda lembretes de exemplo",
+  "notificationReserved": "Agendados: {count}",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "Relógio de teste: prévia de {count} lembretes",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "Próximo lembrete: {when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "Não foi possível salvar ou aplicar. Confira as configurações e os lembretes.",
+  "notificationRetry": "Tentar novamente",
+  "notificationTest": "Mostrar notificação de teste",
+  "notificationMorningTitle": "Lixo de hoje, {date}",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "Preparar para amanhã, {date}",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "Teste: {title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "Este lembrete é de outra área. Exibindo a área atual.",
+  "notificationUpdated": "O calendário mudou após este lembrete.",
+  "notificationOfferTitle": "Lembrar nos dias de coleta"
 }

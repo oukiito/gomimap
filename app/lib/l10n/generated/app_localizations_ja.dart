@@ -173,7 +173,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      '2026年10月5日を基準にした架空の日程・地域・回収場所です。実際のごみ出しには使えません。\n\n通知・ウィジェット・位置情報の設定は、今後追加します。この試作から通知は届きません。\n\n保存するのは選んだサンプル地域と言語のみ。写真や位置情報は取得しません。';
+      '架空の日程・地域・回収場所を使う開発用サンプルです。実際のごみ出しには使えません。\n\n地区・言語・通知の設定は端末に保存します。写真や位置情報は取得しません。';
 
   @override
   String get dryBattery => '乾電池';
@@ -330,4 +330,82 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => 'ごみ出しの締切を過ぎています';
+
+  @override
+  String get notifications => 'ごみの日の通知';
+
+  @override
+  String get notificationIntro => '収集がある朝に通知します。';
+
+  @override
+  String get notificationEnabled => '朝の通知';
+
+  @override
+  String get notificationEvening => '前夜にも通知';
+
+  @override
+  String get notificationSave => '保存';
+
+  @override
+  String get notificationLater => 'あとで';
+
+  @override
+  String get notificationPermission => '端末で通知が許可されていません';
+
+  @override
+  String get notificationOsSettings => '端末の通知設定を開く';
+
+  @override
+  String get notificationNone => '予約できる収集予定がありません';
+
+  @override
+  String get notificationFixture => '通常版ではサンプルの通知を予約しません';
+
+  @override
+  String notificationReserved(int count) {
+    return '予約済み：$count件';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return '試験時計：予約プレビュー$count件';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return '次の予定：$when';
+  }
+
+  @override
+  String get notificationError => '保存または反映に失敗しました。設定と予約状況を確認してください。';
+
+  @override
+  String get notificationRetry => '再試行';
+
+  @override
+  String get notificationTest => 'テスト通知を表示';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return '今日$dateのごみ';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return '明日$dateの準備';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'テスト：$title';
+  }
+
+  @override
+  String get notificationChangedArea => '別の収集地区の通知です。現在の地区を表示します。';
+
+  @override
+  String get notificationUpdated => '通知後に予定が更新されています。';
+
+  @override
+  String get notificationOfferTitle => 'ごみの日を通知';
 }

@@ -184,7 +184,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Kathang-isip ang mga iskedyul, lugar at koleksyon, batay sa Oktubre 5, 2026. Huwag gamitin sa aktuwal na pagtatapon.\n\nHindi pa gumagana ang mga abiso, widget at setting ng lokasyon. Hindi nagpapadala ng abiso ang prototype na ito.\n\nAng napiling halimbawang lugar at wika lang ang sine-save. Hindi kinokolekta ang mga larawan o lokasyon.';
+      'Gumagamit ang development sample ng kathang-isip na iskedyul, lugar at koleksiyon. Huwag gamitin sa aktuwal na pagtatapon ng basura.\n\nNasa device ang lugar, wika at setting ng paalala. Hindi kinokolekta ang mga larawan o lokasyon.';
 
   @override
   String get dryBattery => 'Mga dry-cell na baterya';
@@ -359,4 +359,89 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => 'Lumipas na ang oras ng pagtatapon';
+
+  @override
+  String get notifications => 'Mga paalala sa koleksiyon';
+
+  @override
+  String get notificationIntro => 'Magpaalala sa umagang may koleksiyon.';
+
+  @override
+  String get notificationEnabled => 'Paalala sa umaga';
+
+  @override
+  String get notificationEvening => 'Magpaalala rin sa gabi bago nito';
+
+  @override
+  String get notificationSave => 'I-save';
+
+  @override
+  String get notificationLater => 'Mamaya';
+
+  @override
+  String get notificationPermission =>
+      'Hindi pinapayagan ang mga notification sa device';
+
+  @override
+  String get notificationOsSettings => 'Buksan ang mga setting ng notification';
+
+  @override
+  String get notificationNone =>
+      'Walang araw ng koleksiyon na maaaring iiskedyul';
+
+  @override
+  String get notificationFixture =>
+      'Hindi nag-iiskedyul ng halimbawang paalala ang normal na app';
+
+  @override
+  String notificationReserved(int count) {
+    return 'Naka-iskedyul: $count';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return 'Orasan ng pagsubok: preview ng $count paalala';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return 'Susunod na paalala: $when';
+  }
+
+  @override
+  String get notificationError =>
+      'Hindi na-save o na-apply. Suriin ang mga setting at paalala.';
+
+  @override
+  String get notificationRetry => 'Subukang muli';
+
+  @override
+  String get notificationTest => 'Ipakita ang test notification';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return 'Basura ngayong $date';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return 'Paghahanda para bukas, $date';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'Pagsubok: $title';
+  }
+
+  @override
+  String get notificationChangedArea =>
+      'Para sa ibang lugar ang paalalang ito. Ipinapakita ang kasalukuyang lugar.';
+
+  @override
+  String get notificationUpdated =>
+      'Nagbago ang iskedyul matapos ang paalalang ito.';
+
+  @override
+  String get notificationOfferTitle =>
+      'Ipaalala sa akin ang mga araw ng koleksiyon';
 }

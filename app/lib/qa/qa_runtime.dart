@@ -46,7 +46,9 @@ class QaRuntime extends ChangeNotifier {
   int _revision = -1;
   DateTime _instant = DateTime.utc(2026, 10, 4, 22, 59, 59);
   String _scenario = 'normal';
-  DateTime now() => _instant;
+  bool _frozen = true;
+  bool get frozen => _frozen;
+  DateTime now() => _frozen ? _instant : DateTime.now().toUtc();
   MunicipalDataset get dataset => datasets[_scenario]!;
   String get scenario => _scenario;
 
@@ -69,6 +71,7 @@ class QaRuntime extends ChangeNotifier {
     _revision = revision;
     _instant = DateTime.fromMillisecondsSinceEpoch(millis, isUtc: true);
     _scenario = scenario as String;
+    _frozen = value['frozen'] != false;
     notifyListeners();
     return true;
   }

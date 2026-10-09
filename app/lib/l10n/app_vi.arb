@@ -92,7 +92,7 @@
   "pointConditions": "Giờ và điều kiện tiếp nhận: chưa đăng ký.\nĐây không phải nơi tiếp nhận thực tế. Không cung cấp chỉ đường.",
   "mapTitle": "Bản đồ thu gom",
   "mapUnavailable": "Chưa kết nối bản đồ.\nBạn có thể dùng thử danh sách bên dưới.",
-  "aboutBody": "Lịch, khu vực và điểm thu gom là giả định, lấy ngày 5 tháng 10 năm 2026 làm mốc. Không dùng để đổ rác thực tế.\n\nChưa có thông báo, tiện ích và cài đặt vị trí. Bản thử nghiệm này không gửi thông báo.\n\nChỉ lưu khu vực mẫu và ngôn ngữ đã chọn. Không thu thập ảnh hay vị trí.",
+  "aboutBody": "Bản mẫu phát triển dùng lịch, khu vực và điểm thu gom giả định. Không dùng để bỏ rác thực tế.\n\nKhu vực, ngôn ngữ và cài đặt nhắc được lưu trên thiết bị. Không thu thập ảnh hoặc vị trí.",
   "dryBattery": "Pin khô",
   "rechargeable": "Pin sạc",
   "appliance": "Thiết bị điện nhỏ",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "Nhấn giữ màn hình chính, chọn Tiện ích rồi thêm Gomimap.",
   "widgetFailure": "Không thể yêu cầu thêm. Thử lại hoặc thêm từ màn hình chính.",
   "widgetSaveError": "Không thể lưu lựa chọn. Vui lòng thử lại.",
-  "disposalDeadlinePassed": "Đã quá giờ mang rác ra"
+  "disposalDeadlinePassed": "Đã quá giờ mang rác ra",
+  "notifications": "Nhắc ngày thu gom rác",
+  "notificationIntro": "Nhắc vào buổi sáng có thu gom.",
+  "notificationEnabled": "Nhắc buổi sáng",
+  "notificationEvening": "Nhắc thêm vào tối hôm trước",
+  "notificationSave": "Lưu",
+  "notificationLater": "Để sau",
+  "notificationPermission": "Thiết bị chưa cho phép thông báo",
+  "notificationOsSettings": "Mở cài đặt thông báo của thiết bị",
+  "notificationNone": "Không có ngày thu gom để đặt lịch",
+  "notificationFixture": "Ứng dụng thường không đặt lịch nhắc mẫu",
+  "notificationReserved": "Đã đặt: {count}",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "Đồng hồ thử: xem trước {count} lời nhắc",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "Lời nhắc tiếp theo: {when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "Không thể lưu hoặc áp dụng. Kiểm tra cài đặt và lịch nhắc.",
+  "notificationRetry": "Thử lại",
+  "notificationTest": "Hiện thông báo thử",
+  "notificationMorningTitle": "Rác hôm nay, {date}",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "Chuẩn bị cho ngày mai, {date}",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "Thử: {title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "Lời nhắc thuộc khu vực khác. Hiện khu vực hiện tại.",
+  "notificationUpdated": "Lịch đã thay đổi sau lời nhắc này.",
+  "notificationOfferTitle": "Nhắc tôi vào ngày thu gom"
 }

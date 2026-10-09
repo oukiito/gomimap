@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# QA emulator, sample A/Japanese. launchApp resets QA permissions to unset;
+# consent is exercised through the actual OS dialog after the Save action.
+# This does not change permissions or settings for the normal app.
+appId: dev.gomimap.gomimap.qa
+name: Save collection reminders then cancel their reservations
+tags: [gomimap, isolated-emulator, notifications]
+---
+- launchApp:
+    clearState: false
+    stopApp: true
+    permissions:
+      all: unset
+    arguments:
+      gomimap.qa.clock_ms: "1791154799000"
+      gomimap.qa.scenario: "normal"
+      gomimap.qa.real: "true"
+- tapOn:
+    id: settings-open
+- tapOn:
+    id: settings-notifications
+- runFlow:
+    when:
+      visible:
+        id: notification-enabled
+        checked: true
+    commands:
+      - tapOn:
+          id: notification-enabled
+      - tapOn:
+          id: notification-save
+- tapOn:
+    id: notification-enabled
+- tapOn:
+    id: notification-save
+- runFlow:
+    when:
+      visible:
+        id: com.android.permissioncontroller:id/permission_allow_button
+    commands:
+      - tapOn:
+          id: com.android.permissioncontroller:id/permission_allow_button
+- assertVisible:
+    text: '予約済み：[1-9][0-9]*件'
+- takeScreenshot:
+    path: .tooling/notifications/smoke-on
+    cropOn:
+      id: notification-content
+- tapOn:
+    id: notification-enabled
+- tapOn:
+    id: notification-save
+- assertVisible:
+    text: '予約済み：0件'
+- assertNotVisible:
+    id: notification-test
+- takeScreenshot:
+    path: .tooling/notifications/smoke-off
+    cropOn:
+      id: notification-content

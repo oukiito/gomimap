@@ -417,7 +417,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutBody.
   ///
   /// In ja, this message translates to:
-  /// **'2026年10月5日を基準にした架空の日程・地域・回収場所です。実際のごみ出しには使えません。\n\n通知・ウィジェット・位置情報の設定は、今後追加します。この試作から通知は届きません。\n\n保存するのは選んだサンプル地域と言語のみ。写真や位置情報は取得しません。'**
+  /// **'架空の日程・地域・回収場所を使う開発用サンプルです。実際のごみ出しには使えません。\n\n地区・言語・通知の設定は端末に保存します。写真や位置情報は取得しません。'**
   String get aboutBody;
 
   /// No description provided for @dryBattery.
@@ -707,6 +707,138 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'ごみ出しの締切を過ぎています'**
   String get disposalDeadlinePassed;
+
+  /// No description provided for @notifications.
+  ///
+  /// In ja, this message translates to:
+  /// **'ごみの日の通知'**
+  String get notifications;
+
+  /// No description provided for @notificationIntro.
+  ///
+  /// In ja, this message translates to:
+  /// **'収集がある朝に通知します。'**
+  String get notificationIntro;
+
+  /// No description provided for @notificationEnabled.
+  ///
+  /// In ja, this message translates to:
+  /// **'朝の通知'**
+  String get notificationEnabled;
+
+  /// No description provided for @notificationEvening.
+  ///
+  /// In ja, this message translates to:
+  /// **'前夜にも通知'**
+  String get notificationEvening;
+
+  /// No description provided for @notificationSave.
+  ///
+  /// In ja, this message translates to:
+  /// **'保存'**
+  String get notificationSave;
+
+  /// No description provided for @notificationLater.
+  ///
+  /// In ja, this message translates to:
+  /// **'あとで'**
+  String get notificationLater;
+
+  /// No description provided for @notificationPermission.
+  ///
+  /// In ja, this message translates to:
+  /// **'端末で通知が許可されていません'**
+  String get notificationPermission;
+
+  /// No description provided for @notificationOsSettings.
+  ///
+  /// In ja, this message translates to:
+  /// **'端末の通知設定を開く'**
+  String get notificationOsSettings;
+
+  /// No description provided for @notificationNone.
+  ///
+  /// In ja, this message translates to:
+  /// **'予約できる収集予定がありません'**
+  String get notificationNone;
+
+  /// No description provided for @notificationFixture.
+  ///
+  /// In ja, this message translates to:
+  /// **'通常版ではサンプルの通知を予約しません'**
+  String get notificationFixture;
+
+  /// No description provided for @notificationReserved.
+  ///
+  /// In ja, this message translates to:
+  /// **'予約済み：{count}件'**
+  String notificationReserved(int count);
+
+  /// No description provided for @notificationPreview.
+  ///
+  /// In ja, this message translates to:
+  /// **'試験時計：予約プレビュー{count}件'**
+  String notificationPreview(int count);
+
+  /// No description provided for @notificationNext.
+  ///
+  /// In ja, this message translates to:
+  /// **'次の予定：{when}'**
+  String notificationNext(String when);
+
+  /// No description provided for @notificationError.
+  ///
+  /// In ja, this message translates to:
+  /// **'保存または反映に失敗しました。設定と予約状況を確認してください。'**
+  String get notificationError;
+
+  /// No description provided for @notificationRetry.
+  ///
+  /// In ja, this message translates to:
+  /// **'再試行'**
+  String get notificationRetry;
+
+  /// No description provided for @notificationTest.
+  ///
+  /// In ja, this message translates to:
+  /// **'テスト通知を表示'**
+  String get notificationTest;
+
+  /// No description provided for @notificationMorningTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'今日{date}のごみ'**
+  String notificationMorningTitle(String date);
+
+  /// No description provided for @notificationEveningTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'明日{date}の準備'**
+  String notificationEveningTitle(String date);
+
+  /// No description provided for @notificationTestTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'テスト：{title}'**
+  String notificationTestTitle(String title);
+
+  /// No description provided for @notificationChangedArea.
+  ///
+  /// In ja, this message translates to:
+  /// **'別の収集地区の通知です。現在の地区を表示します。'**
+  String get notificationChangedArea;
+
+  /// No description provided for @notificationUpdated.
+  ///
+  /// In ja, this message translates to:
+  /// **'通知後に予定が更新されています。'**
+  String get notificationUpdated;
+
+  /// No description provided for @notificationOfferTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'ごみの日を通知'**
+  String get notificationOfferTitle;
 }
 
 class _AppLocalizationsDelegate
