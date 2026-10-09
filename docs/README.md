@@ -7,6 +7,13 @@
 | 知りたいこと | 文書 |
 | --- | --- |
 | 環境構築・起動・ローカル設定 | [開発手順](development.md) |
+| 残る機能の具体的な設計・着手条件・実装順 | [残る機能の設計](remaining-design.md) |
+| 朝／前夜の通知、許可・予約・取消・遅延 | [通知の設計](ux-notifications.md) |
+| GPS／住所の候補・境界・拒否・自宅の保存 | [位置・住所の設計](ux-location.md) |
+| iOSの共有・Timeline・表示容量・追加・タップ | [iOSウィジェット](ux-ios-widget.md) |
+| 品物の条件・粗大ごみ・資源回収地図と詳細 | [分別・回収場所](ux-sorting-recycling.md) |
+| 地区・版・言語の更新途中の終了とOSへの復旧 | [更新の調整](update-coordination.md) |
+| 未完了の受け入れ試験と証拠の区別 | [受け入れ試験](release-test-plan.md) |
 | Maestroの導入・MCP起動・試験用IDとFlowの準備状況 | [準備記録](work/2026-10-09-maestro-preparation.md) |
 | MaestroによるAndroidの実画面取得・操作・日英ウィジェットの検証結果 | [UI試験の記録](work/2026-10-09-maestro-ui-poc.md) |
 | Androidの画面取得・操作・AI連携・自動UI試験の候補 | [自動UI試験の調査](android-ui-test-strategy.md) |
