@@ -269,5 +269,6 @@
   "addressUnsupported": "No supported collection district was found",
   "addressConflict": "More than one collection district matches",
   "addressNeedsConfirmation": "Check the collection district",
-  "addressDataChanged": "The information changed. Choose the district again"
+  "addressDataChanged": "The information changed. Choose the district again",
+  "updateEffectsError": "Notifications or widgets could not be updated."
 }

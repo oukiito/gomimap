@@ -16,6 +16,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'data/demo_data.dart';
+import 'data/update_coordinator.dart';
+import 'data/update_journal.dart';
+import 'data/update_journal_factory.dart';
 import 'data/demo_setup_store.dart';
 import 'data/demo_dataset_repository.dart';
 import 'domain/municipal_dataset.dart';
@@ -42,6 +45,7 @@ import 'ui/notification_settings.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
+  final journal = await createUpdateJournal();
   final bridge = AndroidHomeWidgetBridge();
   await bridge.initialize();
   final notifications = AndroidNotificationsBridge();
@@ -53,6 +57,7 @@ Future<void> main() async {
         listenable: runtime,
         builder: (context, _) => GomimapApp(
           preferences: preferences,
+          updateJournal: journal,
           dataset: runtime.dataset,
           widgetBridge: bridge,
           notificationsBridge: notifications,
@@ -68,6 +73,7 @@ Future<void> main() async {
   runApp(
     GomimapApp(
       preferences: preferences,
+      updateJournal: journal,
       repository: repository,
       widgetBridge: bridge,
       notificationsBridge: notifications,
@@ -81,6 +87,7 @@ class GomimapApp extends StatefulWidget {
     super.key,
     required this.preferences,
     this.setupStore,
+    this.updateJournal,
     this.dataset,
     this.repository,
     this.widgetBridge,
@@ -93,6 +100,7 @@ class GomimapApp extends StatefulWidget {
   });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
+  final UpdateJournal? updateJournal;
   final MunicipalDataset? dataset;
   final DemoDatasetRepository? repository;
   final HomeWidgetBridge? widgetBridge;
@@ -115,6 +123,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   late final HomeWidgetBridge bridge;
   late final WidgetOfferStore offer;
   late final NotificationController notifications;
+  UpdateCoordinator? updates;
   final homeKey = GlobalKey<_HomeShellState>();
   final navigatorKey = GlobalKey<NavigatorState>();
   Timer? midnight;
@@ -157,9 +166,44 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
       plan: buildNotifications,
     );
     final district = bridge.available ? WidgetSetupStore(base, offer) : base;
-    setupStore = notifications.bridge.available
+    setupStore = notifications.bridge.available || widget.updateJournal != null
         ? NotificationSetupStore(district, notifications)
         : district;
+    if (widget.updateJournal != null) {
+      updates = UpdateCoordinator(
+        journal: widget.updateJournal!,
+        readState: () => {
+          'municipalityId': dataset?.municipality.id,
+          'areaId': setupStore.read().phase == DemoSetupPhase.districtSaved
+              ? setupStore.read().area?.name
+              : null,
+          'datasetVersion': dataset?.version,
+          // Persist the device-default choice, not a transient resolved locale.
+          'locale': locale?.toLanguageTag() ?? 'und',
+          'notifications': notifications.store.settings.toJson(),
+          'notificationAnswered': notifications.store.answered,
+        },
+        stop: () async {
+          try {
+            await publishing;
+          } catch (_) {
+            /* Drain older projections. */
+          }
+          return notifications.pause();
+        },
+        reflect: () async {
+          final widgetOk =
+              !bridge.available ||
+              setupStore.read().phase != DemoSetupPhase.districtSaved ||
+              await publishWidget(raw: true);
+          final notificationOk = await notifications.reflectNow();
+          return widgetOk && notificationOk;
+        },
+      );
+      updates!.addListener(updateStatusChanged);
+      notifications.coordinator = updates;
+      widget.repository?.coordinator = updates;
+    }
     notifications.bridge.onOpen(openNotification);
     bridge.setOpenTodayHandler(openToday);
     scheduleDisplayRefresh();
@@ -167,8 +211,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     widget.repository?.addListener(datasetChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) unawaited(widget.repository?.refresh());
-      if (mounted) unawaited(publishWidget());
-      if (mounted) unawaited(notifications.refresh());
+      if (mounted) unawaited(refreshEffects());
       unawaited(
         notifications.bridge.consumeLaunch().then((target) {
           if (target != null && mounted) openNotification(target);
@@ -182,11 +225,14 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     });
   }
 
+  void updateStatusChanged() {
+    if (mounted) setState(() {});
+  }
+
   void datasetChanged() {
     scheduleDisplayRefresh();
     if (mounted) setState(() {});
-    if (mounted) unawaited(publishWidget());
-    if (mounted) unawaited(notifications.refresh());
+    if (mounted) unawaited(refreshEffects());
   }
 
   @override
@@ -196,8 +242,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
         oldWidget.clockFrozen != widget.clockFrozen ||
         !identical(oldWidget.dataset, widget.dataset)) {
       scheduleDisplayRefresh();
-      unawaited(publishWidget());
-      unawaited(notifications.refresh());
+      unawaited(refreshEffects());
     }
   }
 
@@ -235,7 +280,17 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     });
   }
 
-  Future<bool> publishWidget() {
+  Future<void> refreshEffects() async {
+    if (updates != null) {
+      await notifications.refresh();
+    } else {
+      await publishWidget();
+      await notifications.refresh();
+    }
+  }
+
+  Future<bool> publishWidget({bool raw = false}) {
+    if (!raw && updates != null) return updates!.reconcile();
     if (!bridge.available ||
         setupStore.read().phase != DemoSetupPhase.districtSaved) {
       return Future.value(false);
@@ -267,8 +322,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   void savedArea(DemoArea area) {
     setState(() => setup = DemoSetupSnapshot.saved(area));
     scheduleDisplayRefresh();
-    unawaited(publishWidget());
-    unawaited(notifications.refresh());
+    unawaited(refreshEffects());
   }
 
   void showWidgetSettings() {
@@ -298,8 +352,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
       setState(() {});
       scheduleDisplayRefresh();
       unawaited(widget.repository?.refresh());
-      unawaited(publishWidget());
-      unawaited(notifications.refresh());
+      unawaited(refreshEffects());
     }
   }
 
@@ -308,13 +361,33 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     widget.repository?.removeListener(datasetChanged);
     midnight?.cancel();
+    if (identical(widget.repository?.coordinator, updates)) {
+      widget.repository?.coordinator = null;
+    }
     notifications.dispose();
+    updates?.removeListener(updateStatusChanged);
+    updates?.dispose();
     super.dispose();
   }
 
   Future<bool> changeLanguage(String code) async {
     final selected = savedLocale(code);
     if (selected == null) return false;
+    if (updates != null) {
+      return updates!.change('language', {'locale': code}, () async {
+        try {
+          if (!await widget.preferences.setString('app.language', code)) {
+            await widget.preferences.reload();
+            return false;
+          }
+          if (mounted) setState(() => locale = selected);
+          return true;
+        } catch (_) {
+          await widget.preferences.reload();
+          return false;
+        }
+      });
+    }
     try {
       if (!await notifications.pause()) return false;
       if (!await widget.preferences.setString('app.language', code)) {
@@ -323,8 +396,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
         return false;
       }
       if (mounted) setState(() => locale = selected);
-      unawaited(publishWidget());
-      unawaited(notifications.refresh());
+      unawaited(refreshEffects());
       return true;
     } catch (_) {
       unawaited(notifications.refresh());
@@ -333,7 +405,10 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
   }
 
   Map<String, Object?> buildNotifications(NotificationSettings settings) {
-    final area = setupStore.read().area;
+    final saved = setupStore.read();
+    final area = saved.phase == DemoSetupPhase.districtSaved
+        ? saved.area
+        : null;
     final tag =
         locale ??
         resolveAppLocale(
@@ -345,7 +420,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     final calendar = demoCalendar(area ?? DemoArea.a, dataset: dataset);
     return notificationPlan(
       days: [for (var i = 0; i < 14; i++) calendar.onDate(today.addDays(i))],
-      settings: settings,
+      settings: area == null ? const NotificationSettings() : settings,
       now: now(),
       l10n: l10n,
       areaLabel: l10n.areaName((area ?? DemoArea.a).name.toUpperCase()),
@@ -440,6 +515,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
               ? notificationPage(firstTime: true)
               : HomeShell(
                   key: homeKey,
+                  updates: updates,
                   area: setup.area!,
                   dataset: dataset,
                   displayDate: displayDate,
@@ -478,9 +554,11 @@ class HomeShell extends StatefulWidget {
     required this.onAreaSaved,
     this.onWidgetSettings,
     this.onNotificationSettings,
+    this.updates,
     this.mapTileSource = const MapTileSource.fromEnvironment(),
   });
   final DemoArea area;
+  final UpdateCoordinator? updates;
   final MunicipalDataset? dataset;
   final DemoSetupStore setupStore;
   final Future<bool> Function(String) onLanguageChanged;
@@ -1249,6 +1327,30 @@ class _HomeShellState extends State<HomeShell> {
           children: [
             SheetCloseButton(onPressed: () => Navigator.pop(sheet)),
             areaContext(),
+            if (widget.updates != null)
+              ListenableBuilder(
+                listenable: widget.updates!,
+                builder: (context, _) => widget.updates!.failed
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Semantics(
+                            liveRegion: true,
+                            child: Text(l10n.updateEffectsError),
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              minimumSize: const Size(48, 48),
+                            ),
+                            onPressed: widget.updates!.busy
+                                ? null
+                                : widget.updates!.reconcile,
+                            child: Text(l10n.notificationRetry),
+                          ),
+                        ],
+                      )
+                    : const SizedBox.shrink(),
+              ),
             OutlinedButton.icon(
               onPressed: () {
                 Navigator.pop(context);

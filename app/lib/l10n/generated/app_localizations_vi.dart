@@ -497,4 +497,8 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get addressDataChanged =>
       'Thông tin đã thay đổi. Hãy chọn lại khu vực';
+
+  @override
+  String get updateEffectsError =>
+      'Chưa thể xác nhận thông báo hoặc tiện ích đã được cập nhật.';
 }

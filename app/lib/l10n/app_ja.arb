@@ -269,5 +269,6 @@
   "addressUnsupported": "対応する収集地区が見つかりません",
   "addressConflict": "収集地区を一つに特定できません",
   "addressNeedsConfirmation": "収集地区の確認が必要",
-  "addressDataChanged": "情報が変わりました。もう一度地区を選んでください"
+  "addressDataChanged": "情報が変わりました。もう一度地区を選んでください",
+  "updateEffectsError": "通知・ウィジェットの反映を確認できません。"
 }

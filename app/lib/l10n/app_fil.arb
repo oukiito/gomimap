@@ -269,5 +269,6 @@
   "addressUnsupported": "Walang nahanap na sinusuportahang distrito",
   "addressConflict": "Hindi matukoy ang iisang distrito",
   "addressNeedsConfirmation": "Kailangang kumpirmahin ang distrito",
-  "addressDataChanged": "Nagbago ang impormasyon. Piliin muli ang distrito"
+  "addressDataChanged": "Nagbago ang impormasyon. Piliin muli ang distrito",
+  "updateEffectsError": "Hindi makumpirma ang pag-update ng mga notification o widget."
 }

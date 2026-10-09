@@ -36,4 +36,6 @@
 
 | 2026-10-10 | クリア済みCSVの実取得・hash／304・候補・週次workflowと外部health | [CSV監視の記録](2026-10-10-cleared-catalog-monitor.md) | [#58](https://github.com/oukiito/gomimap/issues/58)、G10 |
 
+| 2026-10-10 | 地区・言語・日程版・通知設定の直列更新、journal復旧・失敗再試行 | [更新復旧の記録](2026-10-10-update-coordination.md) | [#60](https://github.com/oukiito/gomimap/issues/60)、G11 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

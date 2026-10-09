@@ -269,5 +269,6 @@
   "addressUnsupported": "Không tìm thấy khu thu gom được hỗ trợ",
   "addressConflict": "Không thể xác định một khu thu gom duy nhất",
   "addressNeedsConfirmation": "Cần xác nhận khu thu gom",
-  "addressDataChanged": "Thông tin đã thay đổi. Hãy chọn lại khu vực"
+  "addressDataChanged": "Thông tin đã thay đổi. Hãy chọn lại khu vực",
+  "updateEffectsError": "Chưa thể xác nhận thông báo hoặc tiện ích đã được cập nhật."
 }

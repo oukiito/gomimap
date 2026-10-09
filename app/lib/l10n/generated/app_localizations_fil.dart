@@ -505,4 +505,8 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get addressDataChanged =>
       'Nagbago ang impormasyon. Piliin muli ang distrito';
+
+  @override
+  String get updateEffectsError =>
+      'Hindi makumpirma ang pag-update ng mga notification o widget.';
 }
