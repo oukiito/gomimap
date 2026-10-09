@@ -76,3 +76,7 @@ dart run tool/validate_dataset.dart ../data/datasets/<municipality-id>/<version>
 ```
 
 公開URL・承認PR・配信用チェックサムを実際の更新手順と結び付ける処理、Cloudflareへの公開、端末の旧版復旧はG10／G11の継続作業。再利用条件が未確認の実資料をfixtureに置き換えて公開することはしない。
+
+## 全国向けの拡張境界
+
+schema1は一つのareaIdを軸に、区域×区分の日程を表す。品目・回収方式で異なる区域、部分的な確定、夜間の持ち出し窓は[全国対応設計](national-collection-matching.md)のCalendar v2／HomeCollectionProfileで別に定義する。schema1の未知キー拒否を緩めず、fixtureを実住所へ対応付けない。v2のcodec・移行・合成試験は未実装。

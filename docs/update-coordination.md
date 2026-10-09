@@ -4,9 +4,11 @@
 
 製品の単一DeviceState・版／世代照合と確認付き破損復旧は[追加契約 D5／G5](implementation-readiness.md)で具体化した。現在の#60のfixture調整処理を製品形式の実装済みと扱わない。
 
+製品のselectionは[全国対応設計](national-collection-matching.md)のHomeCollectionProfile全体を保持する。単一areaIdではなく、方式別binding・部分確定・夜間の窓を同じ世代で扱う。これらの新しいcodecと投影の試験は未完了。
+
 ## 保存と反映世代
 
-確定selectionは自治体・区域・データ版・言語・通知設定の版を持つ。`generation`は端末内の単調増加値で、内容を反映する1回の世代を識別する。単一の調整処理が更新要求を直列化する。pendingには新しいselection、作業理由、旧予約ID、取消・確定保存・投影・通知登録の進行を記録する。
+製品の確定selectionは自治体・HomeCollectionProfile・データ版・言語・通知設定の版を持つ。`generation`は端末内の単調増加値で、内容を反映する1回の世代を識別する。単一の調整処理が更新要求を直列化する。pendingには新しいselection、作業理由、旧予約ID、取消・確定保存・投影・通知登録の進行を記録する。
 
 1. 候補データ全体・区域・期間を検証し、次の本体状態と投影・通知planを準備する。取消・候補を開くだけでは進めない。
 2. 旧地区／旧版／旧言語／旧設定の予約IDとpendingを端末へ保存する。

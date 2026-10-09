@@ -44,4 +44,6 @@
 
 | 2026-10-10 | 設計D2に基づく分別の優先順位・不明・矛盾の判定核 | [分別判定の記録](2026-10-10-sorting-decision.md) | [#67](https://github.com/oukiito/gomimap/issues/67)、G08 |
 
+| 2026-10-10 | 全国の住所・品目別区域・地域回収・夜間への対応設計を見直し | [全国対応の記録](2026-10-10-national-collection-matching.md) | [#69](https://github.com/oukiito/gomimap/issues/69)、G04・G05 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
