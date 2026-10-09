@@ -184,8 +184,8 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(find.widgetWithText(ChoiceChip, l10n.dryBattery));
         await tester.pumpAndSettle();
-        await tester.scrollUntilVisible(find.text(l10n.mapTitle), 200);
-        expect(find.text(l10n.mapTitle), findsOneWidget);
+        await tester.scrollUntilVisible(find.text(l10n.mapLoadError), 200);
+        expect(find.text(l10n.mapLoadError), findsOneWidget);
         expect(tester.takeException(), isNull);
         await selectTab(tester, l10n.searchTab);
         await tester.scrollUntilVisible(

@@ -436,4 +436,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => 'Nhắc tôi vào ngày thu gom';
+
+  @override
+  String get mapLoadError => 'Không tải được bản đồ';
+
+  @override
+  String get mapRetry => 'Thử lại';
+
+  @override
+  String get mapShowList => 'Xem danh sách';
 }

@@ -60,7 +60,7 @@ iOSはXcode、AndroidはAndroid SDKとJDK等を用意し、`flutter doctor`の�
 # リポジトリ直下で作成（既存の.env.localがある場合は実行不要）
 cp .env.example .env.local
 
-# app/ディレクトリへ移動して起動（タイル設定が空なら未接続表示）
+# app/ディレクトリへ移動して起動（空のタイル設定はGSI、MAP_DISABLED=trueなら停止）
 cd app
 ../.tooling/flutter/bin/flutter run -d chrome --dart-define-from-file=../.env.local
 ```
@@ -69,7 +69,7 @@ Flutterは`--dart-define-from-file`で`.env`形式の設定を読み込む。[Fl
 
 ## 地図の接続
 
-2026-10-06にGoogle Mapsの依存と両OSのAPIキー設定を除去し、`flutter_map`へ移行した。Webでも同じ描画を使う。デフォルトでは外部タイルを取得せず、未接続表示を維持する。
+2026-10-06にGoogle Mapsの依存と両OSのAPIキー設定を除去し、`flutter_map`へ移行した。Webでも同じ描画を使う。通常起動では国土地理院の淡色地図を表示する。カスタム値は3項目を同時に指定する。MAP_DISABLED=trueでリモートタイルを無効にできる。詳細は[ライセンス記録](licenses.md)を参照。
 
 利用条件を確認した配信元を、次の3つの`--dart-define`で設定する。3つが揃い、URLがHTTPSで、タイルURLに`{z}`・`{x}`・`{y}`が含まれる場合に描画する。
 
@@ -77,7 +77,7 @@ Flutterは`--dart-define-from-file`で`.env`形式の設定を読み込む。[Fl
 - `MAP_ATTRIBUTION`：配信元が指定する帰属表示（地図上に常時表示）
 - `MAP_ATTRIBUTION_URL`：帰属表示から開くHTTPSの権利情報ページ
 
-秘密のサーバーキーをクライアントへ埋め込まない。製品版の配信元・契約は未確定。タイル設定を有効にしても拠点は架空のままであり、実際の訪問案内には使わない。未接続表示・ピン選択・帰属表示をテスト済み。実配信との接続、通信失敗時の案内、両OS実機試験は未完了。
+秘密のサーバーキーをクライアントへ埋め込まない。ライブ描画元は国土地理院を採用。実拠点・受付条件の接続は未完了。タイル設定を有効にしても拠点は架空のままであり、実際の訪問案内には使わない。専用エミュレータの実配信・ピン・帰属、Mock503から再試行／一覧・位置保持を確認。両OS実機と実拠点・受付条件は継続。
 
 OSM標準タイルサーバーを無条件で製品の配信元にしない。[公式利用条件](https://operations.osmfoundation.org/policies/tiles/)に従い、帰属表示、アプリ識別、HTTPキャッシュ、Web Refererなどを配信元ごとに確認する。先読み・一括ダウンロードは実装していない。
 

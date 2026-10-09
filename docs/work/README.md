@@ -30,4 +30,6 @@
 
 | 2026-10-09 | Android実予約からの配送、再起動・Doze、期限／取消・QA計測と新しいMCP接続 | [実配送の記録](2026-10-09-android-notification-delivery.md) | [#51](https://github.com/oukiito/gomimap/issues/51)、G06 |
 
+| 2026-10-09 | GSIタイル接続・地図のpan／タブ復帰保持・失敗と一覧 | [地図接続の記録](2026-10-09-gsi-map.md) | [#54](https://github.com/oukiito/gomimap/issues/54)、G09 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

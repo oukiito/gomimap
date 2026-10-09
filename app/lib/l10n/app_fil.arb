@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "Para sa ibang lugar ang paalalang ito. Ipinapakita ang kasalukuyang lugar.",
   "notificationUpdated": "Nagbago ang iskedyul matapos ang paalalang ito.",
-  "notificationOfferTitle": "Ipaalala sa akin ang mga araw ng koleksiyon"
+  "notificationOfferTitle": "Ipaalala sa akin ang mga araw ng koleksiyon",
+  "mapLoadError": "Hindi ma-load ang mapa",
+  "mapRetry": "Subukan muli",
+  "mapShowList": "Tingnan ang listahan"
 }

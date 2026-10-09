@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "此提醒屬於其他收集地區。顯示目前地區。",
   "notificationUpdated": "此提醒之後日程已更新。",
-  "notificationOfferTitle": "在收集日提醒我"
+  "notificationOfferTitle": "在收集日提醒我",
+  "mapLoadError": "無法載入地圖",
+  "mapRetry": "重試",
+  "mapShowList": "查看列表"
 }

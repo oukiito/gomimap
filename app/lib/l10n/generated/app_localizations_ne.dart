@@ -437,4 +437,13 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => 'सङ्कलन दिनमा सूचना दिनुहोस्';
+
+  @override
+  String get mapLoadError => 'नक्सा लोड गर्न सकिएन';
+
+  @override
+  String get mapRetry => 'फेरि प्रयास गर्नुहोस्';
+
+  @override
+  String get mapShowList => 'सूची हेर्नुहोस्';
 }

@@ -56,6 +56,7 @@ Future<void> main() async {
           dataset: runtime.dataset,
           widgetBridge: bridge,
           notificationsBridge: notifications,
+          mapTileSource: MapTileSource.forApp(),
           clock: () => runtime.now(),
           clockFrozen: runtime.frozen,
         ),
@@ -70,6 +71,7 @@ Future<void> main() async {
       repository: repository,
       widgetBridge: bridge,
       notificationsBridge: notifications,
+      mapTileSource: MapTileSource.forApp(),
     ),
   );
 }
@@ -87,6 +89,7 @@ class GomimapApp extends StatefulWidget {
     this.clockFrozen = false,
     this.notificationsBridge,
     this.allowQaNotifications = qaBuild,
+    this.mapTileSource = const MapTileSource.fromEnvironment(),
   });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
@@ -100,6 +103,7 @@ class GomimapApp extends StatefulWidget {
   final bool clockFrozen;
   final NotificationsBridge? notificationsBridge;
   final bool allowQaNotifications;
+  final MapTileSource mapTileSource;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
@@ -446,6 +450,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
                       : null,
                   setupStore: setupStore,
                   onLanguageChanged: changeLanguage,
+                  mapTileSource: widget.mapTileSource,
                   onNotificationSettings: notifications.bridge.available
                       ? showNotificationSettings
                       : null,
@@ -473,6 +478,7 @@ class HomeShell extends StatefulWidget {
     required this.onAreaSaved,
     this.onWidgetSettings,
     this.onNotificationSettings,
+    this.mapTileSource = const MapTileSource.fromEnvironment(),
   });
   final DemoArea area;
   final MunicipalDataset? dataset;
@@ -483,6 +489,7 @@ class HomeShell extends StatefulWidget {
   final ValueChanged<DemoArea> onAreaSaved;
   final VoidCallback? onWidgetSettings;
   final VoidCallback? onNotificationSettings;
+  final MapTileSource mapTileSource;
   @override
   State<HomeShell> createState() => _HomeShellState();
 }
@@ -498,6 +505,8 @@ class _HomeShellState extends State<HomeShell> {
   String query = '';
   bool? damaged;
   final searchController = TextEditingController();
+  final mapView = CollectionMapView();
+  final mapListKey = GlobalKey();
 
   void selectToday() {
     setState(() {
@@ -1091,7 +1100,11 @@ class _HomeShellState extends State<HomeShell> {
           icon: const Icon(Icons.arrow_back),
           label: Text(l10n.backToItem(mapOrigin!.item.localizedName(l10n))),
         ),
-      heading(l10n.placesTab, l10n.placesSubtitle),
+      Text(
+        l10n.placesTab,
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      const SizedBox(height: 12),
       Wrap(
         spacing: 8,
         runSpacing: 8,
@@ -1142,11 +1155,29 @@ class _HomeShellState extends State<HomeShell> {
         TextButton(onPressed: official, child: Text(l10n.officialBattery)),
       ],
       const SizedBox(height: 20),
+      CollectionMap(
+        key: const ValueKey('collection-map'),
+        points: selected == null ? demoPoints : points,
+        onSelected: showPoint,
+        tileSource: widget.mapTileSource,
+        view: mapView,
+        onShowList: canShowPoints && points.isNotEmpty
+            ? () {
+                final c = mapListKey.currentContext;
+                if (c != null) {
+                  Scrollable.ensureVisible(
+                    c,
+                    duration: const Duration(milliseconds: 250),
+                  );
+                }
+              }
+            : null,
+      ),
       if (canShowPoints) ...[
-        CollectionMap(points: points, onSelected: showPoint),
         const SizedBox(height: 20),
         Text(
           l10n.placesCount(points.length),
+          key: mapListKey,
           style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 6),

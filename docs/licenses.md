@@ -107,3 +107,11 @@ Maestroはローカルの独立した試験プロセスとして使い、アプ�
 Android標準API／既存SDK・Flutterエンジンの利用条件や第三者表示は従来のまま。これをOS全体のGPLへの再ライセンスや完成バイナリ監査完了とは扱わない。通常／QA profileビルドを確認し、ストア配布時のネイティブ成果物・全NOTICEの照合は継続する。
 
 #51の配送試験もAndroid SDK標準Instrumentation・NotificationManagerとPython標準ライブラリだけを使う。新しいpub／Maven／Python配布依存は追加しない。QA専用の計測・試験runner・CLIは自作GPL-3.0-or-laterで、完成バイナリのライセンス監査完了とは別。通常APKへ試験runnerを含めず、QA専用ファイルパスがないことをDEXで確認した。
+
+## 国土地理院の淡色タイル（2026-10-09、#54）
+
+アプリの通常起動に淡色地図（pale、ズーム10〜18）を採用する。タイル一覧の「アプリ上でリアルタイムに読み込む利用は出典明示で申請不要」と、国土地理院のPDL1.0適用・例外を確認した。[タイル一覧](https://maps.gsi.go.jp/development/ichiran.html)、[GSI規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)、[PDL1.0](https://www.digital.go.jp/resources/open_data/public_data_license_v1.0)。PDL1.0にはCC BY4.0による利用の許諾もある。地図データを自作コードのGPLへ変更しない。
+
+出典は地図内の「国土地理院 / GSI」からタイル一覧へ常時リンクする。小縮尺の第三者出典が指定されるズーム2〜8は使わず、写真や他機関の重ね合わせも追加しない。画像加工・先読み・一括取得・タイルの再配布は実装しない。ライブ地図表示として使用し、国土地理院が本アプリの拠点を作成／承認したとの表示をしない。
+
+APIキー・地図ラッパーの追加・有料契約は不要。既存flutter_map8.3.2／httpを使用し推移依存は変わらない。ネイティブは既存のBuiltInMapCachingProviderを使い、HTTP freshnessを尊重、起動時の縮小目標は32MiB。これは実行中の厳密な上限ではない。WebはブラウザーのHTTPキャッシュ。提供元が通信失敗や継続提供を保証するとは扱わず、実測の費用／負荷確認は継続。

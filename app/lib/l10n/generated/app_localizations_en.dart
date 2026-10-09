@@ -440,4 +440,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => 'Remind me on collection days';
+
+  @override
+  String get mapLoadError => 'The map could not be loaded';
+
+  @override
+  String get mapRetry => 'Retry';
+
+  @override
+  String get mapShowList => 'View list';
 }

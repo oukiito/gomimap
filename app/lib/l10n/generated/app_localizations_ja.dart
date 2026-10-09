@@ -408,4 +408,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get notificationOfferTitle => 'ごみの日を通知';
+
+  @override
+  String get mapLoadError => '地図を読み込めません';
+
+  @override
+  String get mapRetry => '再試行';
+
+  @override
+  String get mapShowList => '一覧を見る';
 }

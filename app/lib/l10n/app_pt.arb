@@ -249,5 +249,8 @@
   },
   "notificationChangedArea": "Este lembrete é de outra área. Exibindo a área atual.",
   "notificationUpdated": "O calendário mudou após este lembrete.",
-  "notificationOfferTitle": "Lembrar nos dias de coleta"
+  "notificationOfferTitle": "Lembrar nos dias de coleta",
+  "mapLoadError": "Não foi possível carregar o mapa",
+  "mapRetry": "Tentar novamente",
+  "mapShowList": "Ver lista"
 }
