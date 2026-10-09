@@ -449,4 +449,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mapShowList => 'View list';
+
+  @override
+  String get addressChoose => 'Choose by address';
+
+  @override
+  String get addressTown => 'Town';
+
+  @override
+  String get addressChome => 'Chome';
+
+  @override
+  String get addressBlock => 'Block number';
+
+  @override
+  String get addressStreet => 'Along Fictional Street?';
+
+  @override
+  String get addressSelect => 'Choose an option';
+
+  @override
+  String get addressYes => 'Yes';
+
+  @override
+  String get addressNo => 'No';
+
+  @override
+  String get addressAlong => 'Along the street';
+
+  @override
+  String get addressAway => 'Not along the street';
+
+  @override
+  String get addressFictionalTown => 'Fictional town';
+
+  @override
+  String get addressFind => 'Review this district';
+
+  @override
+  String get addressUnknown => 'Not sure';
+
+  @override
+  String get addressUnsupported => 'No supported collection district was found';
+
+  @override
+  String get addressConflict => 'More than one collection district matches';
+
+  @override
+  String get addressNeedsConfirmation => 'Check the collection district';
+
+  @override
+  String get addressDataChanged =>
+      'The information changed. Choose the district again';
 }

@@ -12,6 +12,8 @@ import '../domain/municipal_dataset.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../l10n/presentation.dart';
 import 'language_button.dart';
+import 'address_area_form.dart';
+import '../domain/calendar_date.dart';
 
 /// Shared confirmation flow for first-time demo setup and later corrections.
 /// It cannot resolve GPS coordinates or select a real municipality district.
@@ -43,6 +45,7 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
   late DemoSetupSnapshot snapshot;
   bool saving = false;
   bool failed = false;
+  bool addressChanged = false;
   bool get editing => widget.currentArea != null;
   bool get confirming => snapshot.phase == DemoSetupPhase.confirm;
 
@@ -79,6 +82,45 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
       failed = !saved;
       if (saved) snapshot = next;
     });
+  }
+
+  Future<void> chooseAddress() async {
+    final source = widget.dataset;
+    if (source == null ||
+        source.kind != DatasetKind.fixture ||
+        source.municipality.id != 'demo-toshima') {
+      return;
+    }
+    setState(() => addressChanged = false);
+    final id = await Navigator.push<String>(
+      context,
+      MaterialPageRoute(
+        builder: (c) => AddressAreaForm(
+          dataset: source,
+          currentAreaId: widget.currentArea?.name,
+          date: CalendarDate.fromFields(widget.previewDate ?? demoToday),
+          onLanguageChanged: widget.onLanguageChanged,
+          onCandidate: (id) => Navigator.pop(c, id),
+        ),
+      ),
+    );
+    if (!mounted || id == null) return;
+    final date = CalendarDate.fromFields(widget.previewDate ?? demoToday);
+    final area = source.areas[id];
+    if (widget.dataset?.version != source.version ||
+        area == null ||
+        !source.period.contains(date) ||
+        !area.period.contains(date) ||
+        !source.evidenceSupports(area.sourceIds, date)) {
+      setState(() => addressChanged = true);
+      return;
+    }
+    final candidate = DemoArea.values.where((a) => a.name == id).firstOrNull;
+    if (candidate == null) {
+      setState(() => addressChanged = true);
+      return;
+    }
+    await moveTo(DemoSetupSnapshot.confirm(candidate));
   }
 
   @override
@@ -258,6 +300,17 @@ class _DemoAreaSetupState extends State<DemoAreaSetup> {
                                 ),
                               ),
                             ),
+                        if (!confirming &&
+                            widget.dataset?.kind == DatasetKind.fixture &&
+                            widget.dataset?.municipality.id == 'demo-toshima')
+                          identifiedAction(
+                            'setup-address',
+                            TextButton(
+                              onPressed: saving ? null : chooseAddress,
+                              child: Text(l10n.addressChoose),
+                            ),
+                          ),
+                        if (addressChanged) Text(l10n.addressDataChanged),
                         if (editing)
                           TextButton(
                             style: TextButton.styleFrom(

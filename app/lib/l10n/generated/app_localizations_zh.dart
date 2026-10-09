@@ -417,6 +417,57 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get mapShowList => '查看列表';
+
+  @override
+  String get addressChoose => '按地址选择';
+
+  @override
+  String get addressTown => '町名';
+
+  @override
+  String get addressChome => '丁目';
+
+  @override
+  String get addressBlock => '街区号';
+
+  @override
+  String get addressStreet => '是否沿虚构街道？';
+
+  @override
+  String get addressSelect => '请选择';
+
+  @override
+  String get addressYes => '是';
+
+  @override
+  String get addressNo => '否';
+
+  @override
+  String get addressAlong => '沿街';
+
+  @override
+  String get addressAway => '不沿街';
+
+  @override
+  String get addressFictionalTown => '虚构町';
+
+  @override
+  String get addressFind => '确认此地区';
+
+  @override
+  String get addressUnknown => '不清楚';
+
+  @override
+  String get addressUnsupported => '未找到支持的收集地区';
+
+  @override
+  String get addressConflict => '无法确定唯一的收集地区';
+
+  @override
+  String get addressNeedsConfirmation => '需要确认收集地区';
+
+  @override
+  String get addressDataChanged => '信息已变更，请重新选择地区';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -831,6 +882,57 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get mapShowList => '查看列表';
+
+  @override
+  String get addressChoose => '按地址选择';
+
+  @override
+  String get addressTown => '町名';
+
+  @override
+  String get addressChome => '丁目';
+
+  @override
+  String get addressBlock => '街区号';
+
+  @override
+  String get addressStreet => '是否沿虚构街道？';
+
+  @override
+  String get addressSelect => '请选择';
+
+  @override
+  String get addressYes => '是';
+
+  @override
+  String get addressNo => '否';
+
+  @override
+  String get addressAlong => '沿街';
+
+  @override
+  String get addressAway => '不沿街';
+
+  @override
+  String get addressFictionalTown => '虚构町';
+
+  @override
+  String get addressFind => '确认此地区';
+
+  @override
+  String get addressUnknown => '不清楚';
+
+  @override
+  String get addressUnsupported => '未找到支持的收集地区';
+
+  @override
+  String get addressConflict => '无法确定唯一的收集地区';
+
+  @override
+  String get addressNeedsConfirmation => '需要确认收集地区';
+
+  @override
+  String get addressDataChanged => '信息已变更，请重新选择地区';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -1245,4 +1347,55 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get mapShowList => '查看列表';
+
+  @override
+  String get addressChoose => '依地址選擇';
+
+  @override
+  String get addressTown => '町名';
+
+  @override
+  String get addressChome => '丁目';
+
+  @override
+  String get addressBlock => '街區號';
+
+  @override
+  String get addressStreet => '是否沿虛構街道？';
+
+  @override
+  String get addressSelect => '請選擇';
+
+  @override
+  String get addressYes => '是';
+
+  @override
+  String get addressNo => '否';
+
+  @override
+  String get addressAlong => '沿街';
+
+  @override
+  String get addressAway => '不沿街';
+
+  @override
+  String get addressFictionalTown => '虛構町';
+
+  @override
+  String get addressFind => '確認此地區';
+
+  @override
+  String get addressUnknown => '不清楚';
+
+  @override
+  String get addressUnsupported => '找不到支援的收集地區';
+
+  @override
+  String get addressConflict => '無法確定唯一的收集地區';
+
+  @override
+  String get addressNeedsConfirmation => '需要確認收集地區';
+
+  @override
+  String get addressDataChanged => '資訊已變更，請重新選擇地區';
 }

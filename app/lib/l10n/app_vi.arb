@@ -252,5 +252,22 @@
   "notificationOfferTitle": "Nhắc tôi vào ngày thu gom",
   "mapLoadError": "Không tải được bản đồ",
   "mapRetry": "Thử lại",
-  "mapShowList": "Xem danh sách"
+  "mapShowList": "Xem danh sách",
+  "addressChoose": "Chọn theo địa chỉ",
+  "addressTown": "Tên khu phố",
+  "addressChome": "Chome",
+  "addressBlock": "Số khu",
+  "addressStreet": "Dọc theo đường giả định?",
+  "addressSelect": "Hãy chọn",
+  "addressYes": "Có",
+  "addressNo": "Không",
+  "addressAlong": "Dọc theo đường",
+  "addressAway": "Không dọc theo đường",
+  "addressFictionalTown": "Khu phố giả định",
+  "addressFind": "Xác nhận khu vực này",
+  "addressUnknown": "Không rõ",
+  "addressUnsupported": "Không tìm thấy khu thu gom được hỗ trợ",
+  "addressConflict": "Không thể xác định một khu thu gom duy nhất",
+  "addressNeedsConfirmation": "Cần xác nhận khu thu gom",
+  "addressDataChanged": "Thông tin đã thay đổi. Hãy chọn lại khu vực"
 }

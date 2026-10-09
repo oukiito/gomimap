@@ -252,5 +252,22 @@
   "notificationOfferTitle": "Lembrar nos dias de coleta",
   "mapLoadError": "Não foi possível carregar o mapa",
   "mapRetry": "Tentar novamente",
-  "mapShowList": "Ver lista"
+  "mapShowList": "Ver lista",
+  "addressChoose": "Escolher pelo endereço",
+  "addressTown": "Bairro",
+  "addressChome": "Chome",
+  "addressBlock": "Número do quarteirão",
+  "addressStreet": "Junto à rua fictícia?",
+  "addressSelect": "Escolha uma opção",
+  "addressYes": "Sim",
+  "addressNo": "Não",
+  "addressAlong": "Junto à rua",
+  "addressAway": "Fora da rua",
+  "addressFictionalTown": "Bairro fictício",
+  "addressFind": "Confirmar este distrito",
+  "addressUnknown": "Não sei",
+  "addressUnsupported": "Nenhum distrito de coleta compatível foi encontrado",
+  "addressConflict": "Não foi possível identificar um único distrito",
+  "addressNeedsConfirmation": "É preciso confirmar o distrito de coleta",
+  "addressDataChanged": "As informações mudaram. Escolha o distrito novamente"
 }

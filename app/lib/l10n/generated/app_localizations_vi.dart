@@ -445,4 +445,56 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get mapShowList => 'Xem danh sách';
+
+  @override
+  String get addressChoose => 'Chọn theo địa chỉ';
+
+  @override
+  String get addressTown => 'Tên khu phố';
+
+  @override
+  String get addressChome => 'Chome';
+
+  @override
+  String get addressBlock => 'Số khu';
+
+  @override
+  String get addressStreet => 'Dọc theo đường giả định?';
+
+  @override
+  String get addressSelect => 'Hãy chọn';
+
+  @override
+  String get addressYes => 'Có';
+
+  @override
+  String get addressNo => 'Không';
+
+  @override
+  String get addressAlong => 'Dọc theo đường';
+
+  @override
+  String get addressAway => 'Không dọc theo đường';
+
+  @override
+  String get addressFictionalTown => 'Khu phố giả định';
+
+  @override
+  String get addressFind => 'Xác nhận khu vực này';
+
+  @override
+  String get addressUnknown => 'Không rõ';
+
+  @override
+  String get addressUnsupported => 'Không tìm thấy khu thu gom được hỗ trợ';
+
+  @override
+  String get addressConflict => 'Không thể xác định một khu thu gom duy nhất';
+
+  @override
+  String get addressNeedsConfirmation => 'Cần xác nhận khu thu gom';
+
+  @override
+  String get addressDataChanged =>
+      'Thông tin đã thay đổi. Hãy chọn lại khu vực';
 }

@@ -252,5 +252,22 @@
   "notificationOfferTitle": "Avisarme los días de recogida",
   "mapLoadError": "No se pudo cargar el mapa",
   "mapRetry": "Reintentar",
-  "mapShowList": "Ver lista"
+  "mapShowList": "Ver lista",
+  "addressChoose": "Elegir por dirección",
+  "addressTown": "Barrio",
+  "addressChome": "Chome",
+  "addressBlock": "Número de bloque",
+  "addressStreet": "¿Junto a la calle ficticia?",
+  "addressSelect": "Elige una opción",
+  "addressYes": "Sí",
+  "addressNo": "No",
+  "addressAlong": "Junto a la calle",
+  "addressAway": "Fuera de la calle",
+  "addressFictionalTown": "Barrio ficticio",
+  "addressFind": "Confirmar este distrito",
+  "addressUnknown": "No lo sé",
+  "addressUnsupported": "No se encontró un distrito de recogida compatible",
+  "addressConflict": "No se puede identificar un único distrito",
+  "addressNeedsConfirmation": "Hay que confirmar el distrito de recogida",
+  "addressDataChanged": "La información cambió. Elige el distrito de nuevo"
 }

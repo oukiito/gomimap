@@ -452,4 +452,58 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get mapShowList => 'Ver lista';
+
+  @override
+  String get addressChoose => 'Elegir por dirección';
+
+  @override
+  String get addressTown => 'Barrio';
+
+  @override
+  String get addressChome => 'Chome';
+
+  @override
+  String get addressBlock => 'Número de bloque';
+
+  @override
+  String get addressStreet => '¿Junto a la calle ficticia?';
+
+  @override
+  String get addressSelect => 'Elige una opción';
+
+  @override
+  String get addressYes => 'Sí';
+
+  @override
+  String get addressNo => 'No';
+
+  @override
+  String get addressAlong => 'Junto a la calle';
+
+  @override
+  String get addressAway => 'Fuera de la calle';
+
+  @override
+  String get addressFictionalTown => 'Barrio ficticio';
+
+  @override
+  String get addressFind => 'Confirmar este distrito';
+
+  @override
+  String get addressUnknown => 'No lo sé';
+
+  @override
+  String get addressUnsupported =>
+      'No se encontró un distrito de recogida compatible';
+
+  @override
+  String get addressConflict => 'No se puede identificar un único distrito';
+
+  @override
+  String get addressNeedsConfirmation =>
+      'Hay que confirmar el distrito de recogida';
+
+  @override
+  String get addressDataChanged =>
+      'La información cambió. Elige el distrito de nuevo';
 }

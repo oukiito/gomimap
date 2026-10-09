@@ -446,4 +446,56 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get mapShowList => 'सूची हेर्नुहोस्';
+
+  @override
+  String get addressChoose => 'ठेगानाबाट छान्नुहोस्';
+
+  @override
+  String get addressTown => 'टोलको नाम';
+
+  @override
+  String get addressChome => 'चोमे';
+
+  @override
+  String get addressBlock => 'ब्लक नम्बर';
+
+  @override
+  String get addressStreet => 'काल्पनिक सडकको छेउमा हो?';
+
+  @override
+  String get addressSelect => 'विकल्प छान्नुहोस्';
+
+  @override
+  String get addressYes => 'हो';
+
+  @override
+  String get addressNo => 'होइन';
+
+  @override
+  String get addressAlong => 'सडकको छेउमा';
+
+  @override
+  String get addressAway => 'सडकको छेउमा होइन';
+
+  @override
+  String get addressFictionalTown => 'काल्पनिक टोल';
+
+  @override
+  String get addressFind => 'यो क्षेत्र जाँच गर्नुहोस्';
+
+  @override
+  String get addressUnknown => 'थाहा छैन';
+
+  @override
+  String get addressUnsupported => 'समर्थित सङ्कलन क्षेत्र भेटिएन';
+
+  @override
+  String get addressConflict => 'एउटा सङ्कलन क्षेत्र पहिचान गर्न सकिएन';
+
+  @override
+  String get addressNeedsConfirmation => 'सङ्कलन क्षेत्र पुष्टि गर्न आवश्यक छ';
+
+  @override
+  String get addressDataChanged =>
+      'जानकारी परिवर्तन भयो। क्षेत्र फेरि छान्नुहोस्';
 }

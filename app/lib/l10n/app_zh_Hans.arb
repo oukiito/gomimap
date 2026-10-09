@@ -252,5 +252,22 @@
   "notificationOfferTitle": "在收集日提醒我",
   "mapLoadError": "无法加载地图",
   "mapRetry": "重试",
-  "mapShowList": "查看列表"
+  "mapShowList": "查看列表",
+  "addressChoose": "按地址选择",
+  "addressTown": "町名",
+  "addressChome": "丁目",
+  "addressBlock": "街区号",
+  "addressStreet": "是否沿虚构街道？",
+  "addressSelect": "请选择",
+  "addressYes": "是",
+  "addressNo": "否",
+  "addressAlong": "沿街",
+  "addressAway": "不沿街",
+  "addressFictionalTown": "虚构町",
+  "addressFind": "确认此地区",
+  "addressUnknown": "不清楚",
+  "addressUnsupported": "未找到支持的收集地区",
+  "addressConflict": "无法确定唯一的收集地区",
+  "addressNeedsConfirmation": "需要确认收集地区",
+  "addressDataChanged": "信息已变更，请重新选择地区"
 }

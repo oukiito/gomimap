@@ -857,6 +857,108 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'一覧を見る'**
   String get mapShowList;
+
+  /// No description provided for @addressChoose.
+  ///
+  /// In ja, this message translates to:
+  /// **'住所から選ぶ'**
+  String get addressChoose;
+
+  /// No description provided for @addressTown.
+  ///
+  /// In ja, this message translates to:
+  /// **'町名'**
+  String get addressTown;
+
+  /// No description provided for @addressChome.
+  ///
+  /// In ja, this message translates to:
+  /// **'丁目'**
+  String get addressChome;
+
+  /// No description provided for @addressBlock.
+  ///
+  /// In ja, this message translates to:
+  /// **'番地'**
+  String get addressBlock;
+
+  /// No description provided for @addressStreet.
+  ///
+  /// In ja, this message translates to:
+  /// **'架空通り沿いですか？'**
+  String get addressStreet;
+
+  /// No description provided for @addressSelect.
+  ///
+  /// In ja, this message translates to:
+  /// **'選択してください'**
+  String get addressSelect;
+
+  /// No description provided for @addressYes.
+  ///
+  /// In ja, this message translates to:
+  /// **'はい'**
+  String get addressYes;
+
+  /// No description provided for @addressNo.
+  ///
+  /// In ja, this message translates to:
+  /// **'いいえ'**
+  String get addressNo;
+
+  /// No description provided for @addressAlong.
+  ///
+  /// In ja, this message translates to:
+  /// **'通り沿い'**
+  String get addressAlong;
+
+  /// No description provided for @addressAway.
+  ///
+  /// In ja, this message translates to:
+  /// **'通り沿いではない'**
+  String get addressAway;
+
+  /// No description provided for @addressFictionalTown.
+  ///
+  /// In ja, this message translates to:
+  /// **'架空町'**
+  String get addressFictionalTown;
+
+  /// No description provided for @addressFind.
+  ///
+  /// In ja, this message translates to:
+  /// **'この地区を確認する'**
+  String get addressFind;
+
+  /// No description provided for @addressUnknown.
+  ///
+  /// In ja, this message translates to:
+  /// **'わからない'**
+  String get addressUnknown;
+
+  /// No description provided for @addressUnsupported.
+  ///
+  /// In ja, this message translates to:
+  /// **'対応する収集地区が見つかりません'**
+  String get addressUnsupported;
+
+  /// No description provided for @addressConflict.
+  ///
+  /// In ja, this message translates to:
+  /// **'収集地区を一つに特定できません'**
+  String get addressConflict;
+
+  /// No description provided for @addressNeedsConfirmation.
+  ///
+  /// In ja, this message translates to:
+  /// **'収集地区の確認が必要'**
+  String get addressNeedsConfirmation;
+
+  /// No description provided for @addressDataChanged.
+  ///
+  /// In ja, this message translates to:
+  /// **'情報が変わりました。もう一度地区を選んでください'**
+  String get addressDataChanged;
 }
 
 class _AppLocalizationsDelegate
