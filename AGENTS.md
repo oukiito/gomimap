@@ -28,6 +28,7 @@
 
 ## Issue・PRとGitHub認証
 
+- 区域・分別・配信・復旧の実装前は[実装前の契約](docs/implementation-readiness.md)の型・状態遷移・UI理由・失敗時の復帰・具体的な期待値と開始ゲートを確認する。重大な未解決を方針だけで埋めず、fixtureの合格を製品データや外部ジョブの有効化条件の代わりにしない。
 - 作業前に関連Issueの目的・範囲・受け入れ条件を確認する。大きな追加はIssueで記録し、`codex/<実際のIssue番号>-<説明>`ブランチで進める。
 - 原則1つの目的につき1つのPR。コードと対応する設計・CHANGELOG・検証記録を一緒に更新する。[CONTRIBUTING](CONTRIBUTING.md)と[GitHub運用](docs/github-workflow.md)を参照する。
 - このプロジェクトのGitHub操作は`oukiito`／`oukiito/gomimap`を使う。専用の`GH_CONFIG_DIR`を毎回指定し、共有の`gh auth switch`やグローバルなGit認証設定を変更しない。
