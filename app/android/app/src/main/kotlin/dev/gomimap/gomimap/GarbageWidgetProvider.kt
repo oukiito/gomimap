@@ -94,7 +94,8 @@ class GarbageWidgetProvider : AppWidgetProvider() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         fun schedule(context: Context) {
             if (ids(context).isEmpty()) return
-            val instant = System.currentTimeMillis()
+            if (RuntimeClock.frozen(context)) return // Explicit QA clock changes refresh the widget.
+            val instant = RuntimeClock.now(context)
             val next = GarbageWidgetData.nextRefresh(GarbageWidgetData.read(context), WidgetDate.today(instant),
                 GarbageWidgetData.minute(instant), GarbageWidgetData.currentLanguage(context))
             // No exact alarm permission. OS/Doze can delay refresh; the date is explicit.

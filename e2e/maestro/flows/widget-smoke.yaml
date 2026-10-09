@@ -23,6 +23,11 @@ tags: [gomimap, isolated-emulator, widget, smoke]
     cropOn:
       id: schedule-primary
 - pressKey: Home
+- swipe:
+    from:
+      id: ${WIDGET_ROWS_ID}
+    direction: DOWN
+    duration: 300
 - assertVisible:
     id: ${WIDGET_DATE_ID}
     text: ${EXPECTED_DATE_PATTERN}
@@ -43,6 +48,25 @@ tags: [gomimap, isolated-emulator, widget, smoke]
     path: .tooling/maestro-results/${RUN_ID}/A02-widget
     cropOn:
       id: ${WIDGET_ROOT_ID}
+- runFlow:
+    when:
+      true: ${EXPECTED_HAS_SECOND_DEADLINE == 'true'}
+    commands:
+      - swipe:
+          from:
+            id: ${WIDGET_ROWS_ID}
+          direction: UP
+          duration: 300
+      - assertVisible:
+          id: ${WIDGET_DEADLINE_ID}
+          text: ${EXPECTED_DEADLINE_PATTERN}
+      - assertVisible:
+          id: ${WIDGET_DEADLINE_ID}
+          text: ${EXPECTED_SECOND_DEADLINE_PATTERN}
+      - takeScreenshot:
+          path: .tooling/maestro-results/${RUN_ID}/A02-widget-deadlines
+          cropOn:
+            id: ${WIDGET_ROOT_ID}
 - tapOn:
     id: ${WIDGET_DATE_ID}
 - assertVisible:

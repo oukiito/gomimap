@@ -27,6 +27,19 @@ class WidgetChecksInstrumentation : Instrumentation() {
             val root = GarbageWidgetData.validate(text)
             var checks = 0
             fun verify(ok: Boolean, name: String) { check(ok) { name }; checks++ }
+            val probe = android.content.Intent().putExtra("gomimap.qa.clock_ms", "1791154800000")
+                .putExtra("gomimap.qa.scenario", "tomorrow")
+            if (targetContext.packageName.endsWith(".qa")) {
+                verify(RuntimeClock.candidate(targetContext, probe)?.get("millis") == 1791154800000L, "QA clock accepts an isolated instant")
+                verify(RuntimeClock.frozen(targetContext), "QA clock is frozen")
+            } else {
+                val before = System.currentTimeMillis()
+                verify(RuntimeClock.candidate(targetContext, probe) == null, "normal APK rejects QA arguments")
+                verify(!RuntimeClock.frozen(targetContext) && RuntimeClock.now(targetContext) in before..System.currentTimeMillis(), "normal APK uses real clock")
+            }
+            verify(RuntimeClock.candidate(targetContext, android.content.Intent(probe).putExtra("gomimap.qa.clock_ms", "-1")) == null, "negative clock rejected")
+            verify(RuntimeClock.candidate(targetContext, android.content.Intent(probe).putExtra("gomimap.qa.clock_ms", "4102444800000")) == null, "unsupported future clock rejected")
+            verify(RuntimeClock.candidate(targetContext, android.content.Intent(probe).putExtra("gomimap.qa.scenario", "unknown")) == null, "unknown clock scenario rejected")
             fun content(date: String, area: String? = "a", tag: String = "ja", minute: Int = 0) = GarbageWidgetData.resolve(
                 root, area, tag, WidgetDate.parse(date), GarbageWidgetData.fallback(targetContext, tag), minute)
             verify(content("2026-10-05").status == "collection", "collection status")
@@ -118,6 +131,7 @@ class WidgetChecksInstrumentation : Instrumentation() {
                 // launcher manipulation or clock/settings changes.
                 val live = GarbageWidgetData.content(targetContext)
                 result.putString("liveDateLabel", live.dateLabel)
+                result.putString("liveClockMillis", RuntimeClock.now(targetContext).toString())
                 result.putString("liveVersion", live.version ?: "missing")
                 val liveRoot = GarbageWidgetData.validate(GarbageWidgetData.file(targetContext).readText(Charsets.UTF_8))
                 verify(GarbageWidgetData.read(targetContext) != null, "running app projection validates")

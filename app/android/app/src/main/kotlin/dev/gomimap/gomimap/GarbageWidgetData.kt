@@ -141,7 +141,7 @@ object GarbageWidgetData {
     }
 
     fun content(context: Context): WidgetContent {
-        val instant = System.currentTimeMillis()
+        val instant = RuntimeClock.now(context)
         val tag = currentLanguage(context)
         return resolve(read(context)?.takeIf { it.optString("datasetVersion") == activeVersion(context) },
             confirmedArea(context), tag, WidgetDate.today(instant), fallback(context, tag), minute(instant))
@@ -164,7 +164,7 @@ object GarbageWidgetData {
                 return entry.getString("version")
             } catch (_: Exception) { /* Try previous complete revision. */ }
         }
-        return "toshima-demo-v1" // The pinned, owned bundled fixture.
+        return RuntimeClock.bundledVersion(context) // The pinned, owned fixture for this target.
     }
 
     fun resolve(root: JSONObject?, areaId: String?, tag: String, date: WidgetDate, labels: JSONObject, minute: Int = 0): WidgetContent {

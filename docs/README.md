@@ -14,6 +14,7 @@
 | 品物の条件・粗大ごみ・資源回収地図と詳細 | [分別・回収場所](ux-sorting-recycling.md) |
 | 地区・版・言語の更新途中の終了とOSへの復旧 | [更新の調整](update-coordination.md) |
 | 未完了の受け入れ試験と証拠の区別 | [受け入れ試験](release-test-plan.md) |
+| Androidの隔離QA時計・締切／0時の実画面試験 | [QA時計](qa-clock.md) |
 | Maestroの導入・MCP起動・試験用IDとFlowの準備状況 | [準備記録](work/2026-10-09-maestro-preparation.md) |
 | MaestroによるAndroidの実画面取得・操作・日英ウィジェットの検証結果 | [UI試験の記録](work/2026-10-09-maestro-ui-poc.md) |
 | Androidの画面取得・操作・AI連携・自動UI試験の候補 | [自動UI試験の調査](android-ui-test-strategy.md) |

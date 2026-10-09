@@ -1,0 +1,11 @@
+[
+  {"id":"before","scenario":"tomorrow","instant":"2026-10-04T22:59:59.999Z","date":"今日 10/5(月)","description":"燃やすごみ"},
+  {"id":"at","scenario":"tomorrow","instant":"2026-10-04T23:00:00Z","date":"明日 10/6(火)","description":"資源"},
+  {"id":"midnight","scenario":"tomorrow","instant":"2026-10-05T15:00:00Z","date":"今日 10/6(火)","description":"資源"},
+  {"id":"multi-before","scenario":"multi","instant":"2026-10-04T22:59:59.999Z","date":"今日 10/5(月)","description":"燃やすごみ・資源"},
+  {"id":"multi-partial","scenario":"multi","instant":"2026-10-04T23:00:00Z","date":"今日 10/5(月)","description":"資源"},
+  {"id":"multi-after","scenario":"multi","instant":"2026-10-05T00:30:00Z","date":"明日 10/6(火)","description":"資源"},
+  {"id":"unknown","scenario":"normal","instant":"2026-10-08T14:00:00Z","date":"今日 10/8(木)","description":"収集予定の確認が必要"},
+  {"id":"next","scenario":"normal","instant":"2026-10-04T23:00:00Z","date":"次回 10/7(水)","description":"資源"},
+  {"id":"expired","scenario":"normal","instant":"2027-03-01T01:00:00Z","date":"今日 3/1(月)","description":"収集予定の確認が必要"}
+]
