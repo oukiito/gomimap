@@ -2,7 +2,7 @@
 
 2026-10-07にスキーマ1のJSON検証と日程・区域・受入判定、メモリ内の候補切替を実装した。2026-10-08に[開発用fixtureのCloudflare初回配信・公開照合](cloudflare-data.md)を完了した。以下の実データ取得・継続公開・監視は設計で、稼働していない。GitHubで承認した版をCloudflareへ配信し、端末に有効なコピーを保存する案は[保存・配信設計](data-storage.md)を参照する。
 
-状態：頻度と人による確認は合意済み。以下の閾値・時刻・実装方法は提案。ジョブも監視も未作成・未稼働。
+状態：頻度と人による確認は合意済み。以下の閾値・時刻・実装方法は提案。日程・お知らせ・LLMのジョブと常設の独立監視は未稼働。#58で権利確認済みCSVカタログ2件の週次監視を実装し、mainへの取り込み後に手動実行と有効状態を確認する。
 
 ## 確認頻度と公開頻度
 
@@ -92,3 +92,26 @@ LLMのモデル／API利用・原文送信条件は有効化前に固定する�
 取得ログはrun ID、source ID、attempted/success/validatedの時刻、HTTP結果、差分hash、パーサー版、候補PR IDを持つ。原文スナップショットは保管許可・保持期間・送信許可に従い非公開へ置く。許可のない本文を公開Actions artifact／ログへ保存しない。heartbeatは収集jobとは別事業者で監視し、GitHub障害時にも担当者へ届く経路を試す。
 
 独立監視提供者、通知先・担当者、試験通知の到達、権利確認済みソース、配信先、専用の最小権限認証、月額と呼出制限が揃うまで有効化しない。現在のCloudflare fixture配信に定期jobがあるとは扱わない。受信・取消・再予約は[端末の反映設計](update-coordination.md)で確認し、オフライン端末への即時取消を約束しない。
+
+## クリア済みCSVの週次監視（#58）
+
+対象はtoshima-facilities／toshima-open-data-listの2件に固定する。archive=allowedかつcurrent_referenceと登録済みCSV列が必須。対象の許可が取り消された・消えた場合、対象を黙って減らして成功とはしない。HTML／PDF・ごみ日程・回収受付12件は対象外。施設558件を資源回収拠点558件と表示しない。
+
+`source_monitor.py`は20秒timeout・最大3回・2MiB上限・redirect禁止で取得する。CSV列／行を確認し、私有cacheにchecksum名の不変CSVとsnapshot、最後の試行を原子的に保存する。破損snapshotは無視して再取得、304は検証済み本文がある場合だけ成功。取得失敗を変更なしにしない。ETagや最終更新ヘッダーだけの変更を本文差分と扱わない。
+
+```sh
+python3 scripts/source_monitor.py
+python3 scripts/source_monitor_notice.py --report .tooling/source-monitor/report.json --summary .tooling/source-monitor/summary.md
+```
+
+raw CSVはGit対象外・owner専用。公開サマリーと候補はsource ID・hash・サイズ・行数・列等のメタデータだけ。原資料や資格情報をGitHub Issueへ貼らない。変更を原資料で確認した後に`apply_source_candidate.py`を実行し、専用ブランチのPRで登録簿更新を審査する。candidateの旧hashが現登録簿と違う場合は拒否。権利・適用範囲・本番データの承認へ自動変換しない。
+
+```sh
+python3 scripts/apply_source_candidate.py --candidate .tooling/source-monitor/candidate.json
+```
+
+`.github/workflows/source-monitor.yml`は月曜03:17日本時間（UTC日曜18:17）、手動起動を持つ。権限はcontents:read／issues:writeだけ。失敗／変更があると固定のbot Issueへ集約し、同じfingerprintでは通知を増やさない。正常・変更なしはサマリーだけ。失敗をcontinue-on-errorで隠さず最後にjob failureとして残す。PR作成／承認用のActions権限は増やしていない。
+
+`check_source_monitor_health.py`は外部の実行基盤から使う読み取り専用probe。mainのschedule／workflow_dispatch、active、有効な直近成功8日以内、最新失敗を検査する。API不通をhealthyにしない。このコマンドだけで常設監視や通知経路が用意されたとは扱わない。
+
+月次LLM・独立watchdog・日次お知らせ・実データ配信は未有効化。Codexのローカル予定実行はMacとアプリの稼働が必要なので、常設の外部監視を確保した代わりにしない。[OpenAI公式仕様](https://learn.chatgpt.com/docs/automations?surface=app)。

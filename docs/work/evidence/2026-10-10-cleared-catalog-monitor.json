@@ -1,0 +1,131 @@
+{
+  "reportVersion": 1,
+  "scope": "cleared-csv-catalogs-only",
+  "checkedAt": "2026-10-09T17:51:20Z",
+  "complete": true,
+  "results": [
+    {
+      "sourceId": "toshima-facilities",
+      "status": "unchanged",
+      "oldSha256": "191b8e278c7a9839d5ef7a090beeef42c9b8b45e45ced066cd6e981b15cf2e34",
+      "snapshotVersion": 1,
+      "url": "https://www.city.toshima.lg.jp/documents/11459/r5_public_facility.csv",
+      "metadata": {
+        "sha256": "191b8e278c7a9839d5ef7a090beeef42c9b8b45e45ced066cd6e981b15cf2e34",
+        "bytes": 81198,
+        "rows": 558,
+        "columns": [
+          "都道府県コード又は市区町村コード",
+          "NO",
+          "都道府県名",
+          "市区町村名",
+          "名称",
+          "名称_カナ",
+          "名称_通称",
+          "POIコード",
+          "住所",
+          "方書",
+          "緯度",
+          "経度",
+          "電話番号",
+          "内線番号",
+          "法人番号",
+          "団体名",
+          "利用可能曜日",
+          "開始時間",
+          "終了時間",
+          "利用可能時間特記事項",
+          "説明",
+          "バリアフリー情報",
+          "URL",
+          "備考"
+        ],
+        "last_modified": "Tue, 07 Nov 2023 08:05:25 GMT"
+      },
+      "checkedAt": "2026-10-09T17:51:20Z",
+      "attemptedAt": "2026-10-09T17:51:20Z"
+    },
+    {
+      "sourceId": "toshima-open-data-list",
+      "status": "unchanged",
+      "oldSha256": "7f859788813f243147795f939e7ff0416b3e5bc603ab5bf66fd656d9b7841334",
+      "snapshotVersion": 1,
+      "url": "https://www.city.toshima.lg.jp/documents/11459/r5_open_data_list.csv",
+      "metadata": {
+        "sha256": "7f859788813f243147795f939e7ff0416b3e5bc603ab5bf66fd656d9b7841334",
+        "bytes": 1485,
+        "rows": 13,
+        "columns": [
+          "都道府県コード又は市区町村コード",
+          "NO",
+          "都道府県名",
+          "市区町村名",
+          "データ名称",
+          "データ概要",
+          "データ形式",
+          "分類",
+          "更新頻度",
+          "URL",
+          "API対応有無",
+          "ライセンス",
+          "登録日",
+          "最終更新日",
+          "備考"
+        ],
+        "last_modified": "Tue, 07 Nov 2023 08:05:25 GMT"
+      },
+      "checkedAt": "2026-10-09T17:51:20Z",
+      "attemptedAt": "2026-10-09T17:51:20Z"
+    }
+  ],
+  "notMonitored": [
+    {
+      "sourceId": "toshima-weekdays",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-resources",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-household",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-year-end",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-rechargeable",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-batteries",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-small-electronics",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-fluorescent",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-bulky",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-notices",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-weather",
+      "reason": "outside_monitor_contract"
+    },
+    {
+      "sourceId": "toshima-calendar-link",
+      "reason": "outside_monitor_contract"
+    }
+  ]
+}

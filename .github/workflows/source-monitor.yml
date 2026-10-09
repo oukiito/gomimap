@@ -1,0 +1,32 @@
+name: Cleared CSV catalog monitor
+on:
+  schedule:
+    # Monday 03:17 Asia/Tokyo = Sunday 18:17 UTC.
+    - cron: '17 18 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: cleared-catalog-monitor
+  cancel-in-progress: false
+jobs:
+  catalogs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4; existing pinned tool.
+      - name: Fetch only cleared catalogs
+        id: fetch
+        continue-on-error: true
+        run: |
+          python3 scripts/source_monitor.py --cache "$RUNNER_TEMP/source-cache" --report "$RUNNER_TEMP/source-report.json" --candidate "$RUNNER_TEMP/source-candidate.json"
+      - name: Summary and actionable notice
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/source_monitor_notice.py --report "$RUNNER_TEMP/source-report.json" --summary "$GITHUB_STEP_SUMMARY" --notify
+      - name: Keep failure visible
+        if: steps.fetch.outcome == 'failure'
+        run: exit 1
