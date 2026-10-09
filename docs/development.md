@@ -42,6 +42,8 @@ cd app
 
 ## ネイティブ環境
 
+Androidの締切・0時・不明・複数区分の実画面試験は[別IDのQA時計](qa-clock.md)を使用する。通常APKの時計を変更する定義ではない。OS時計や個人端末のデータを変更せず、試験用APKを専用エミュレータで使う。
+
 2026-10-05のローカル確認環境にはXcode本体とAndroid SDKがなかった。2026-10-08にAndroidのデバッグAPKのビルドと、Pixelでの初回操作・地区保存を確認。iOSビルド・実機と、Androidの残る場面は未検証。PoCの設定下限はiOS 15／Android API 24。最終サポート範囲は実機試験で決める。アプリ識別子`dev.gomimap.gomimap`は仮で、ストア登録前に確定する。署名も開発用のテンプレート段階。
 
 2026-10-08にAndroid Studioと付属JDKを導入し、本人の初回SDKセットアップ後、不足していた公式ツール・指定API／NDKを追加した。Android toolchainは成功。Pixel 10 Pro／Android17で地区の保存・再起動保持と通常のHTTPS取得・JSON保存・原本一致を確認。オフライン画面は本人が確認し、profileで起動性能を測定した。残る操作・異常系は継続する。[Android実機の手順](android-device-testing.md)、[準備記録](work/2026-10-08-android-preparation.md)、[初回ビルド](work/2026-10-08-android-build.md)、[実機結果](work/2026-10-08-pixel-runtime.md)を参照する。

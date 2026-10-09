@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Isolated QA target only. Fresh expectation.json defines the injected instant.
+appId: dev.gomimap.gomimap.qa
+name: Advance the shared QA clock and compare app and widget
+tags: [gomimap, isolated-emulator, widget, clock]
+---
+- launchApp:
+    clearState: false
+    stopApp: false
+    permissions:
+      all: deny
+    arguments:
+      gomimap.qa.clock_ms: "${CLOCK_MS}"
+      gomimap.qa.scenario: "${CLOCK_SCENARIO}"
+- assertTrue: ${APP_ID == 'dev.gomimap.gomimap.qa'}
+- runFlow: widget-smoke.yaml

@@ -32,13 +32,30 @@ import 'ui/demo_area_setup.dart';
 import 'ui/language_button.dart';
 import 'ui/schedule_deadlines.dart';
 import 'ui/sheet_close_button.dart';
+import 'qa/qa_runtime.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await SharedPreferences.getInstance();
-  final repository = await loadDemoDatasetRepository();
   final bridge = AndroidHomeWidgetBridge();
   await bridge.initialize();
+  if (qaBuild) {
+    final runtime = await QaRuntime.connect();
+    runApp(
+      ListenableBuilder(
+        listenable: runtime,
+        builder: (context, _) => GomimapApp(
+          preferences: preferences,
+          dataset: runtime.dataset,
+          widgetBridge: bridge,
+          clock: () => runtime.now(),
+          clockFrozen: true,
+        ),
+      ),
+    );
+    return;
+  }
+  final repository = await loadDemoDatasetRepository();
   runApp(
     GomimapApp(
       preferences: preferences,
@@ -58,6 +75,7 @@ class GomimapApp extends StatefulWidget {
     this.widgetBridge,
     this.displayDate,
     this.clock,
+    this.clockFrozen = false,
   });
   final SharedPreferences preferences;
   final DemoSetupStore? setupStore;
@@ -68,6 +86,7 @@ class GomimapApp extends StatefulWidget {
   /// Explicit fixture date for tests; normal runs use the Japanese civil date.
   final DateTime? displayDate;
   final DateTime Function()? clock;
+  final bool clockFrozen;
   @override
   State<GomimapApp> createState() => _GomimapAppState();
 }
@@ -132,6 +151,17 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
     if (mounted) unawaited(publishWidget());
   }
 
+  @override
+  void didUpdateWidget(covariant GomimapApp oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.clock != widget.clock ||
+        oldWidget.clockFrozen != widget.clockFrozen ||
+        !identical(oldWidget.dataset, widget.dataset)) {
+      scheduleDisplayRefresh();
+      unawaited(publishWidget());
+    }
+  }
+
   void openToday() {
     if (!mounted || setup.phase != DemoSetupPhase.districtSaved) return;
     navigatorKey.currentState?.popUntil((route) => route.isFirst);
@@ -140,7 +170,7 @@ class _GomimapAppState extends State<GomimapApp> with WidgetsBindingObserver {
 
   void scheduleDisplayRefresh() {
     midnight?.cancel();
-    if (widget.displayDate != null) return;
+    if (widget.displayDate != null || widget.clockFrozen) return;
     final instant = now().toUtc();
     final today = CalendarDate.inJapan(instant);
     var next = today.addDays(1).startInJapanUtc;

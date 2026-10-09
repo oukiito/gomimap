@@ -12,8 +12,13 @@ import android.os.Bundle
 
 class MainActivity : FlutterActivity() {
     private var widgetChannel: MethodChannel? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        RuntimeClock.consume(this, intent)
+        super.onCreate(savedInstanceState)
+    }
     override fun configureFlutterEngine(engine: FlutterEngine) {
         super.configureFlutterEngine(engine)
+        RuntimeClock.attach(this, engine)
         widgetChannel = MethodChannel(engine.dartExecutor.binaryMessenger, "dev.gomimap.gomimap/home_widget")
         widgetChannel!!.setMethodCallHandler { call, result ->
             val manager = AppWidgetManager.getInstance(this)
@@ -49,6 +54,10 @@ class MainActivity : FlutterActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        if (RuntimeClock.consume(this, intent)) {
+            RuntimeClock.notifyChanged(this)
+            GarbageWidgetProvider.updateAll(this)
+        }
         if (intent.getBooleanExtra(GarbageWidgetProvider.OPEN, false)) {
             widgetChannel?.invokeMethod("openToday", null)
             intent.removeExtra(GarbageWidgetProvider.OPEN)

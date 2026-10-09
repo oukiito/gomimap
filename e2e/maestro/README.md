@@ -38,6 +38,8 @@ flutter test --no-pub tool/maestro_expectation_test.dart --dart-define=GOMIMAP_M
 
 テストは本体とネイティブの実画面の日付・地区・種類、ウィジェットの締切を同じ期待値と比較する。FlutterのKeyとは別のSemantics IDを使い、画像は本体カードと自作ウィジェットへ絞る。PNGは`.tooling/maestro-results/<RUN_ID>/A01-app.png`・`A02-widget.png`・`A03-returned-app.png`に保存する。現在の時計を使うSmokeで、仮の試験時計による締切／0時再現を実装したものではない。
 
+締切・0時の固定時計試験は別のQA APKと`clock-step.yaml`を使う。[QAの手順](../../docs/qa-clock.md)と[独立したケース期待値](clock-cases.json)を参照。通常SmokeとQAを同じapplication IDにしない。複数締切は本文をスワイプして追加PNGへ保存する。
+
 Flowは`clearState: false`・`stopApp: false`で地区と配置を保持する。権限の`all: deny`は専用エミュレータ限定の条件で、個人端末へそのまま実行しない。OSの確認文言は端末ごとに再検査する。
 
 Maestroの結果・画像・ログは`.tooling/`、`build/`、`.maestro/`などGit対象外に置く。クラウド・追加AI解析は有効にしない。秘密や私物画面の画像を公開PRへ送らない。
