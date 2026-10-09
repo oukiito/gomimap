@@ -51,12 +51,14 @@ class AndroidNotificationsBridge implements NotificationsBridge {
   Future<void> openSettings() => channel.invokeMethod<void>('openSettings');
   @override
   Future<Map<String, dynamic>?> consumeLaunch() async {
+    if (!available) return null;
     final result = await channel.invokeMethod<Map>('consumeLaunch');
     return result == null ? null : Map<String, dynamic>.from(result);
   }
 
   @override
   void onOpen(void Function(Map<String, dynamic>) handler) {
+    if (!available) return;
     channel.setMethodCallHandler((call) async {
       if (call.method == 'open' && call.arguments is Map) {
         handler(Map<String, dynamic>.from(call.arguments));

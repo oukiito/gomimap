@@ -74,6 +74,15 @@ class RejectNotificationStore extends NotificationStateStore {
 }
 
 void main() {
+  test(
+    'unsupported notification platforms do not call the launch channel',
+    () async {
+      final bridge = AndroidNotificationsBridge();
+      bridge.onOpen((_) => fail('Unavailable bridge emitted a launch'));
+      expect(bridge.available, isFalse);
+      expect(await bridge.consumeLaunch(), isNull);
+    },
+  );
   for (final code in languageNames.keys) {
     testWidgets('notification settings $code stay usable at 200% text', (
       tester,
