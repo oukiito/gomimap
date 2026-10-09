@@ -28,4 +28,6 @@
 
 | 2026-10-09 | Android通知の初回・設定・許可・予約／取消・QAのOS通知と対象日タップ | [通知の記録](2026-10-09-android-notifications.md) | [#49](https://github.com/oukiito/gomimap/issues/49)、G05・G06 |
 
+| 2026-10-09 | Android実予約からの配送、再起動・Doze、期限／取消・QA計測と新しいMCP接続 | [実配送の記録](2026-10-09-android-notification-delivery.md) | [#51](https://github.com/oukiito/gomimap/issues/51)、G06 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

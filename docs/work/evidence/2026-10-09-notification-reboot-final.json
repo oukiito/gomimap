@@ -1,0 +1,47 @@
+{
+  "case": {
+    "case": "reboot",
+    "preparedAt": 1791533063345,
+    "due": 1791533153345,
+    "expires": 1791536753345,
+    "date": "2026-10-09"
+  },
+  "events": [
+    {
+      "event": "receiver:android.intent.action.BOOT_COMPLETED",
+      "id": 0,
+      "due": 0,
+      "at": 1791533079145,
+      "elapsed": 12703,
+      "idle": false,
+      "generation": 62
+    },
+    {
+      "event": "receiver:gomimap.collection.deliver",
+      "id": 1,
+      "due": 0,
+      "at": 1791533207464,
+      "elapsed": 141023,
+      "idle": false,
+      "generation": 62
+    },
+    {
+      "event": "posted",
+      "id": 30001,
+      "due": 1791533153345,
+      "at": 1791533207482,
+      "elapsed": 141040,
+      "idle": false,
+      "generation": 62,
+      "osPostTime": 1791533207479
+    }
+  ],
+  "delivered": true,
+  "lagsMs": [
+    54137
+  ],
+  "osLagsMs": [
+    54134
+  ],
+  "observedAt": "2026-10-09T08:07:33.677125+00:00"
+}

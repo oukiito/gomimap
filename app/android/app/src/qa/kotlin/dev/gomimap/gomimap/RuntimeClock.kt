@@ -56,4 +56,29 @@ object RuntimeClock {
         }
     }
     fun notifyChanged(context: Context) { channel?.invokeMethod("changed", state(context)) }
+
+    /** QA-only evidence. No payloads, device IDs, location or network access. */
+    @Synchronized fun notificationEvent(context: Context, event: String, id: Int = 0, due: Long = 0) {
+        if (context.packageName != PACKAGE) return
+        try {
+            val file = java.io.File(context.filesDir, "qa-delivery/events.json")
+            val events = if (file.exists()) org.json.JSONArray(file.readText()) else org.json.JSONArray()
+            val row = JSONObject().put("event", event).put("id", id).put("due", due)
+                .put("at", System.currentTimeMillis()).put("elapsed", android.os.SystemClock.elapsedRealtime())
+                .put("idle", context.getSystemService(android.os.PowerManager::class.java).isDeviceIdleMode)
+                .put("generation", CollectionNotifications.read(context)?.optLong("generation") ?: 0)
+            if (event == "posted" || event == "manual") {
+                val active = context.getSystemService(android.app.NotificationManager::class.java).activeNotifications
+                    .firstOrNull { it.tag == CollectionNotifications.TAG && it.id == id }
+                row.put("osPostTime", active?.postTime ?: 0)
+            }
+            events.put(row)
+            val bounded = org.json.JSONArray()
+            for (i in maxOf(0, events.length() - 32) until events.length()) bounded.put(events.getJSONObject(i))
+            file.parentFile!!.mkdirs()
+            val pending = java.io.File(file.parentFile, "events.pending")
+            java.io.FileOutputStream(pending).use { it.write(bounded.toString().toByteArray()); it.fd.sync() }
+            android.system.Os.rename(pending.path, file.path)
+        } catch (_: Exception) { /* Evidence must never change notification delivery. */ }
+    }
 }

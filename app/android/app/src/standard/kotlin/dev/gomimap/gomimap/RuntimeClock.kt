@@ -14,4 +14,5 @@ object RuntimeClock {
     fun consume(context: Context, intent: Intent): Boolean = false
     fun attach(context: Context, engine: FlutterEngine) {}
     fun notifyChanged(context: Context) {}
+    fun notificationEvent(context: Context, event: String, id: Int = 0, due: Long = 0) {}
 }

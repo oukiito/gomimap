@@ -15,12 +15,19 @@ import java.util.Locale
 /** SDK-only native checks; never edits real settings, snapshot or OS clock. */
 class WidgetChecksInstrumentation : Instrumentation() {
     private var verifyLive = false
+    private var deliveryArguments: Bundle? = null
     override fun onCreate(arguments: Bundle?) {
         super.onCreate(arguments)
         verifyLive = arguments?.getString("verifyLive") == "true"
+        deliveryArguments = arguments?.takeIf { it.containsKey("deliveryAction") }
         start()
     }
     override fun onStart() {
+        deliveryArguments?.let {
+            val report = NotificationDeliveryChecks.run(targetContext, it)
+            finish(if (report.getString("result") == "FAIL") Activity.RESULT_CANCELED else Activity.RESULT_OK, report)
+            return
+        }
         val result = Bundle()
         try {
             val text = context.assets.open("widget_projection.json").bufferedReader().use { it.readText() }
