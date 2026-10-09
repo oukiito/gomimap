@@ -59,3 +59,11 @@ flutter test --no-pub tool/maestro_expectation_test.dart \
 | QT04 | ウィジェット一覧を上へ戻し、複数締切を読める位置へ操作 | 前のケースのスクロールで次の種類を見落とさない。日付タップで今日へ復帰し、重要PNGは自作ウィジェットに限定 |
 
 QA定義はiOS／Webの時計制御ではない。通常のWebビルド、解析、190件のFlutter試験、両APKのSDK54項目、release拒否、通常APKのDEXにQAのチャネル／引数がないことを確認した。正確な0時到達、Doze、全言語の拡大、iOS、実データ、通知は引き続き別の受け入れ条件とする。
+
+## 通知試験の実時計モード（#49）
+
+QA起動引数`gomimap.qa.real: "true"`を明示すると、専用QAの本体・ウィジェット・通知だけがOSの実時計を読む。既定と`"false"`は従来の固定時計。normal／tomorrow／multiの試験データとrevisionは保持し、通常版やOS時計は変更しない。固定時計の通知はプレビューに限定し、実時計モードで未来分だけAlarmManagerへ登録する。
+
+`flows/notification-smoke.yaml`は専用QAのサンプルA・日本語で実行する。launchAppの`all: unset`は許可を保持する指定ではなく、QAの許可状態を未決定へ戻す。保存操作の後に現れる実際のOS許可ダイアログを操作する。通常アプリや個人端末の権限は操作しない。予約が正数→OFF保存で0件になり、QAテストボタンが消えることをassertする。
+
+予約の照合と手動テスト通知は、指定時刻・Dozeでの配送成功を意味しない。[通知の検証記録](work/2026-10-09-android-notifications.md)。固定時計の9ケースへ戻す場合は`gomimap.qa.real: "false"`を明示する。

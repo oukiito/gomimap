@@ -92,7 +92,7 @@
   "pointConditions": "स्वीकार गर्ने समय र सर्त: दर्ता गरिएको छैन।\nयो वास्तविक बुझाउने स्थल होइन। बाटोको निर्देशन उपलब्ध छैन।",
   "mapTitle": "सङ्कलन स्थलको नक्सा",
   "mapUnavailable": "नक्सा अझै जोडिएको छैन।\nतलको सूचीबाट नमुना प्रयोग गर्न सक्नुहुन्छ।",
-  "aboutBody": "तालिका, क्षेत्र र सङ्कलन स्थल काल्पनिक हुन् र २०२६ अक्टोबर ५ मा आधारित छन्। वास्तविक फोहोर फाल्न प्रयोग नगर्नुहोस्।\n\nसूचना, विजेट र स्थानसम्बन्धी सेटिङ अझै बनेका छैनन्। यो नमुनाले सूचना पठाउँदैन।\n\nछानिएको नमुना क्षेत्र र भाषा मात्र सुरक्षित गरिन्छ। फोटो वा स्थानको जानकारी सङ्कलन गरिँदैन।",
+  "aboutBody": "यो विकास नमुनामा काल्पनिक तालिका, क्षेत्र र सङ्कलन स्थान छन्। वास्तविक फोहोर फाल्न प्रयोग नगर्नुहोस्।\n\nक्षेत्र, भाषा र सूचना सेटिङ उपकरणमा सेभ हुन्छन्। फोटो वा स्थान जानकारी सङ्कलन गरिँदैन।",
   "dryBattery": "सुक्खा ब्याट्री",
   "rechargeable": "रिचार्जेबल ब्याट्री",
   "appliance": "साना विद्युतीय उपकरण",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "होम स्क्रिनमा लामो थिच्नुहोस्, विजेट छान्नुहोस् र Gomimap थप्नुहोस्।",
   "widgetFailure": "थप्न अनुरोध गर्न सकिएन। फेरि प्रयास गर्नुहोस् वा होम स्क्रिनबाट थप्नुहोस्।",
   "widgetSaveError": "छनोट सुरक्षित गर्न सकिएन। फेरि प्रयास गर्नुहोस्।",
-  "disposalDeadlinePassed": "फोहोर निकाल्ने समयसीमा सकिएको छ"
+  "disposalDeadlinePassed": "फोहोर निकाल्ने समयसीमा सकिएको छ",
+  "notifications": "फोहोर सङ्कलन सूचना",
+  "notificationIntro": "सङ्कलन हुने बिहान सूचना पाउनुहोस्।",
+  "notificationEnabled": "बिहानको सूचना",
+  "notificationEvening": "अघिल्लो साँझ पनि सूचना",
+  "notificationSave": "सेभ गर्नुहोस्",
+  "notificationLater": "पछि",
+  "notificationPermission": "यस उपकरणमा सूचना अनुमति छैन",
+  "notificationOsSettings": "उपकरणको सूचना सेटिङ खोल्नुहोस्",
+  "notificationNone": "सूचना तय गर्न मिल्ने सङ्कलन दिन छैन",
+  "notificationFixture": "सामान्य एपले नमुना सूचना तय गर्दैन",
+  "notificationReserved": "तय गरिएका: {count}",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "परीक्षण घडी: {count} सूचनाको पूर्वावलोकन",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "अर्को सूचना: {when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "सेभ वा लागू गर्न सकिएन। सेटिङ र तय गरिएका सूचना जाँच्नुहोस्।",
+  "notificationRetry": "फेरि प्रयास",
+  "notificationTest": "परीक्षण सूचना देखाउनुहोस्",
+  "notificationMorningTitle": "आज {date} को फोहोर",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "भोलि {date} को तयारी",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "परीक्षण: {title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "यो सूचना अर्को क्षेत्रको हो। हालको क्षेत्र देखाइँदै छ।",
+  "notificationUpdated": "यो सूचनापछि तालिका परिवर्तन भएको छ।",
+  "notificationOfferTitle": "सङ्कलन दिनमा सूचना दिनुहोस्"
 }

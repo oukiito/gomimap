@@ -26,4 +26,6 @@
 | 2026-10-09 | 通知・位置・iOS・分別地図・更新復旧・運用の設計と受け入れ試験 | [残る設計の記録](2026-10-09-remaining-design.md) | [#45](https://github.com/oukiito/gomimap/issues/45)、G03・G05〜G12 |
 | 2026-10-09 | Android隔離QA時計・締切／0時／複数締切等9ケースの実画面確認 | [QA時計の記録](2026-10-09-android-clock-qa.md) | [#47](https://github.com/oukiito/gomimap/issues/47)、G03・G05・G07 |
 
+| 2026-10-09 | Android通知の初回・設定・許可・予約／取消・QAのOS通知と対象日タップ | [通知の記録](2026-10-09-android-notifications.md) | [#49](https://github.com/oukiito/gomimap/issues/49)、G05・G06 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

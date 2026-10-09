@@ -92,7 +92,7 @@
   "pointConditions": "收受時間與條件：未登錄。\n此處並非實際回收點，不提供路線導引。",
   "mapTitle": "回收點地圖",
   "mapUnavailable": "地圖尚未連接。\n可透過下方清單試用。",
-  "aboutBody": "本原型使用以2026年10月5日為基準的虛構日程、地區及回收點。請勿用於實際丟棄垃圾。\n\n通知、小工具及位置設定尚未實作。本原型不會發送通知。\n\n僅儲存所選範例地區及語言。不收集照片或位置資訊。",
+  "aboutBody": "此開發範例使用虛構的日程、地區與回收點。請勿用於實際垃圾投放。\n\n地區、語言與提醒設定儲存在裝置上。不取得照片或位置資訊。",
   "dryBattery": "乾電池",
   "rechargeable": "充電電池",
   "appliance": "小型家電",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "長按主畫面，選擇「小工具」，再加入「Gomimap」。",
   "widgetFailure": "無法提出加入要求。請重試或從主畫面加入。",
   "widgetSaveError": "無法儲存選擇。請重試。",
-  "disposalDeadlinePassed": "已過垃圾投放截止時間"
+  "disposalDeadlinePassed": "已過垃圾投放截止時間",
+  "notifications": "垃圾收集提醒",
+  "notificationIntro": "在收集日早晨提醒您。",
+  "notificationEnabled": "早晨提醒",
+  "notificationEvening": "也在前一天晚上提醒",
+  "notificationSave": "儲存",
+  "notificationLater": "稍後",
+  "notificationPermission": "此裝置未允許通知",
+  "notificationOsSettings": "開啟裝置通知設定",
+  "notificationNone": "沒有可預約的收集日期",
+  "notificationFixture": "一般版不會預約範例提醒",
+  "notificationReserved": "已預約：{count}則",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "測試時鐘：預覽{count}則提醒",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "下次提醒：{when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "無法儲存或套用變更。請檢查設定及提醒預約。",
+  "notificationRetry": "重試",
+  "notificationTest": "顯示測試通知",
+  "notificationMorningTitle": "今天{date}的垃圾",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "為明天{date}做準備",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "測試：{title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "此提醒屬於其他收集地區。顯示目前地區。",
+  "notificationUpdated": "此提醒之後日程已更新。",
+  "notificationOfferTitle": "在收集日提醒我"
 }

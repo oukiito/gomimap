@@ -99,3 +99,9 @@ GPL採用だけでApp Store公開が確約されるわけではない。GPL第10
 公式cli-2.11.0のarchive SHA-256を`5384593cb4e7a106489e75a821d157dd43f4e438df6bc308b72e82c685e1283a`へ固定した。[版の原文LICENSE](https://github.com/mobile-dev-inc/Maestro/blob/cli-2.11.0/LICENSE)はApache-2.0で、ローカル配布物へ保持。ホスト側195 JARのハッシュとnotice／licenseファイルの場所、内包するmaestro-app.apk・maestro-server.apkを専用のGit対象外inventoryへ記録した。32 JARでnotice等を検出したが、全推移条件・対応ソースの配布監査を完了した意味ではない。
 
 Maestroはローカルの独立した試験プロセスとして使い、アプリのpub・Maven依存へ追加・組み込みしていない。配布archive・JAR・試験driver APKは公開リポジトリや製品APKへ再配布せず、原文を保持する。製品アプリの既存棚卸しは86件のまま。ホストtoolの使用と、製品バイナリのGPL配布監査を区別する。クラウド契約・追加AI解析を有効にせず、初回は既存Macのローカル試験を使用する。[準備記録](work/2026-10-09-maestro-preparation.md)。
+
+## Android通知（2026-10-09、#49）
+
+既存Flutter MethodChannelとAndroid標準NotificationManager・NotificationChannel・AlarmManager・PendingIntentを使う自作実装。pubspec／lockfile・Gradle依存宣言は変更せず、86パッケージの既存集合を維持する。候補のflutter_local_notifications／timezoneは未導入。独自コード・翻訳・通知用bin vectorはGPL-3.0-or-later。通知のための外部API呼出し・追加SDK利用料金はない。
+
+Android標準API／既存SDK・Flutterエンジンの利用条件や第三者表示は従来のまま。これをOS全体のGPLへの再ライセンスや完成バイナリ監査完了とは扱わない。通常／QA profileビルドを確認し、ストア配布時のネイティブ成果物・全NOTICEの照合は継続する。

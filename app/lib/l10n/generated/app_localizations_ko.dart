@@ -175,7 +175,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      '2026년 10월 5일 기준의 가상 일정·지역·회수 장소입니다. 실제 쓰레기 배출에 사용하지 마세요.\n\n알림·위젯·위치 설정은 아직 구현되지 않았습니다. 이 시제품은 알림을 보내지 않습니다.\n\n선택한 샘플 지역과 언어만 저장합니다. 사진이나 위치 정보는 수집하지 않습니다.';
+      '가상의 일정, 지역, 회수 장소를 사용하는 개발용 예시입니다. 실제 쓰레기 배출에는 사용하지 마세요.\n\n지역, 언어, 알림 설정은 기기에 저장됩니다. 사진이나 위치 정보는 수집하지 않습니다.';
 
   @override
   String get dryBattery => '건전지';
@@ -333,4 +333,82 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => '쓰레기 배출 마감 시간이 지났습니다';
+
+  @override
+  String get notifications => '쓰레기 수거 알림';
+
+  @override
+  String get notificationIntro => '수거일 아침에 알려드립니다.';
+
+  @override
+  String get notificationEnabled => '아침 알림';
+
+  @override
+  String get notificationEvening => '전날 저녁에도 알림';
+
+  @override
+  String get notificationSave => '저장';
+
+  @override
+  String get notificationLater => '나중에';
+
+  @override
+  String get notificationPermission => '이 기기에서 알림이 허용되지 않았습니다';
+
+  @override
+  String get notificationOsSettings => '기기 알림 설정 열기';
+
+  @override
+  String get notificationNone => '예약할 수 있는 수거 일정이 없습니다';
+
+  @override
+  String get notificationFixture => '일반 앱은 예시 알림을 예약하지 않습니다';
+
+  @override
+  String notificationReserved(int count) {
+    return '예약됨: $count개';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return '시험 시계: 알림 $count개 미리보기';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return '다음 알림: $when';
+  }
+
+  @override
+  String get notificationError => '저장하거나 적용하지 못했습니다. 설정과 알림 예약을 확인하세요.';
+
+  @override
+  String get notificationRetry => '다시 시도';
+
+  @override
+  String get notificationTest => '시험 알림 표시';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return '오늘 $date의 쓰레기';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return '내일 $date 준비';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return '시험: $title';
+  }
+
+  @override
+  String get notificationChangedArea => '다른 수거 지역의 알림입니다. 현재 지역을 표시합니다.';
+
+  @override
+  String get notificationUpdated => '이 알림 이후 일정이 변경되었습니다.';
+
+  @override
+  String get notificationOfferTitle => '수거일에 알림 받기';
 }

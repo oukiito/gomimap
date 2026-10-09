@@ -157,11 +157,11 @@ flowchart TD
 | 拠点詳細は架空情報、一覧が地図の下に常設 | 受付可否や時間を判断できない。地図中心・ピンの補助カード・代替一覧にし、試験データで条件を実装 | [#9](https://github.com/oukiito/gomimap/issues/9) |
 | #23で検索経由の地図に元の品物へ戻る操作とOS戻るを追加。検索語・元の回答と地図側の別品目を分離 | 用件の復元を自動回帰とブラウザで確認。人による発見・データ版変更時の再評価・実機は後続 | [#23](https://github.com/oukiito/gomimap/issues/23)・[#8](https://github.com/oukiito/gomimap/issues/8)・[#9](https://github.com/oukiito/gomimap/issues/9) |
 | #23で品物・拠点・設定の詳細に見える閉じるを追加し、文字拡大と全言語の回帰を確認 | 人による操作発見と読み上げ・実機のフォーカス復帰は未検証 | [#23](https://github.com/oukiito/gomimap/issues/23)・[#5](https://github.com/oukiito/gomimap/issues/5) |
-| 設定にAndroidウィジェット追加を実装。Android初回案内と締切後の次回表示は[W01〜W17](ux-android-widget.md)。通知・iOSは未実装 | 通知の設定見直しは後続。Androidの実データとiOSの表示・追加を後続で確認 | [#5](https://github.com/oukiito/gomimap/issues/5)・[#6](https://github.com/oukiito/gomimap/issues/6)・[#7](https://github.com/oukiito/gomimap/issues/7) |
+| 設定にAndroidウィジェット追加を実装。Android初回案内と締切後の次回表示は[W01〜W17](ux-android-widget.md)。Android通知は[NT](ux-notifications.md)に部分実装。iOSは未実装 | 通知の設定見直しは後続。Androidの実データとiOSの表示・追加を後続で確認 | [#5](https://github.com/oukiito/gomimap/issues/5)・[#6](https://github.com/oukiito/gomimap/issues/6)・[#7](https://github.com/oukiito/gomimap/issues/7) |
 
 UI実装の順は、今日と初期設定、分別の出し方、条件に合う回収地図。通知・ウィジェットは同じ日程データから実装する。データの権利確認やネイティブPoCの依存は[開発計画](roadmap.md)に従い、先に進められる画面・ルールは架空データで検証する。
 
-締切後の主表示・今日の補助表示・2×2と操作の理由は[Androidウィジェット W13〜W17](ux-android-widget.md)。試作のタップ先は本体の「今日」タブで同じ現在時刻を再評価し、対象日詳細S05は未実装。検索の入力と確定地区を保持する。
+締切後の主表示・今日の補助表示・2×2と操作の理由は[Androidウィジェット W13〜W17](ux-android-widget.md)。試作のタップ先は本体の「今日」タブで同じ現在時刻を再評価し、対象日詳細S05の通知動線は[NT11〜12](ux-notifications.md)に部分実装。Androidウィジェットのタップ先は引き続き今日。検索の入力と確定地区を保持する。
 
 ## 利用者試験
 

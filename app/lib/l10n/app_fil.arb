@@ -92,7 +92,7 @@
   "pointConditions": "Oras at kondisyon: hindi pa nakarehistro.\nHindi ito aktuwal na lugar ng pagtanggap. Walang direksyon papunta rito.",
   "mapTitle": "Mapa ng koleksyon",
   "mapUnavailable": "Hindi pa nakakonekta ang mapa.\nSubukan ang listahan sa ibaba.",
-  "aboutBody": "Kathang-isip ang mga iskedyul, lugar at koleksyon, batay sa Oktubre 5, 2026. Huwag gamitin sa aktuwal na pagtatapon.\n\nHindi pa gumagana ang mga abiso, widget at setting ng lokasyon. Hindi nagpapadala ng abiso ang prototype na ito.\n\nAng napiling halimbawang lugar at wika lang ang sine-save. Hindi kinokolekta ang mga larawan o lokasyon.",
+  "aboutBody": "Gumagamit ang development sample ng kathang-isip na iskedyul, lugar at koleksiyon. Huwag gamitin sa aktuwal na pagtatapon ng basura.\n\nNasa device ang lugar, wika at setting ng paalala. Hindi kinokolekta ang mga larawan o lokasyon.",
   "dryBattery": "Mga dry-cell na baterya",
   "rechargeable": "Mga rechargeable na baterya",
   "appliance": "Maliliit na elektroniko",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "Pindutin nang matagal ang home screen, piliin ang Widgets, at idagdag ang Gomimap.",
   "widgetFailure": "Hindi nahiling ang pagdagdag. Subukan muli o idagdag mula sa home screen.",
   "widgetSaveError": "Hindi na-save ang pinili. Subukan muli.",
-  "disposalDeadlinePassed": "Lumipas na ang oras ng pagtatapon"
+  "disposalDeadlinePassed": "Lumipas na ang oras ng pagtatapon",
+  "notifications": "Mga paalala sa koleksiyon",
+  "notificationIntro": "Magpaalala sa umagang may koleksiyon.",
+  "notificationEnabled": "Paalala sa umaga",
+  "notificationEvening": "Magpaalala rin sa gabi bago nito",
+  "notificationSave": "I-save",
+  "notificationLater": "Mamaya",
+  "notificationPermission": "Hindi pinapayagan ang mga notification sa device",
+  "notificationOsSettings": "Buksan ang mga setting ng notification",
+  "notificationNone": "Walang araw ng koleksiyon na maaaring iiskedyul",
+  "notificationFixture": "Hindi nag-iiskedyul ng halimbawang paalala ang normal na app",
+  "notificationReserved": "Naka-iskedyul: {count}",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "Orasan ng pagsubok: preview ng {count} paalala",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "Susunod na paalala: {when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "Hindi na-save o na-apply. Suriin ang mga setting at paalala.",
+  "notificationRetry": "Subukang muli",
+  "notificationTest": "Ipakita ang test notification",
+  "notificationMorningTitle": "Basura ngayong {date}",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "Paghahanda para bukas, {date}",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "Pagsubok: {title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "Para sa ibang lugar ang paalalang ito. Ipinapakita ang kasalukuyang lugar.",
+  "notificationUpdated": "Nagbago ang iskedyul matapos ang paalalang ito.",
+  "notificationOfferTitle": "Ipaalala sa akin ang mga araw ng koleksiyon"
 }

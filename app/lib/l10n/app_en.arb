@@ -92,7 +92,7 @@
   "pointConditions": "Hours and conditions: not registered.\nThis is not a real drop-off location. Directions are unavailable.",
   "mapTitle": "Collection map",
   "mapUnavailable": "The map is not connected yet.\nUse the list below to try the prototype.",
-  "aboutBody": "Schedules, areas and locations are fictional, based on October 5, 2026. Do not use them for actual waste disposal.\n\nNotifications, widgets and location settings are not implemented. This prototype sends no notifications.\n\nOnly your sample area and language are saved. Photos and location data are not collected.",
+  "aboutBody": "This development sample uses fictional schedules, areas and collection sites. Do not use it for actual waste disposal.\n\nArea, language and reminder settings are stored on your device. Photos and location are not collected.",
   "dryBattery": "Dry-cell batteries",
   "rechargeable": "Rechargeable batteries",
   "appliance": "Small electronics",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "Touch and hold the home screen, select Widgets, then add Gomimap.",
   "widgetFailure": "Could not request the widget. Retry or add it from the home screen.",
   "widgetSaveError": "Could not save your choice. Please retry.",
-  "disposalDeadlinePassed": "The disposal deadline has passed"
+  "disposalDeadlinePassed": "The disposal deadline has passed",
+  "notifications": "Waste reminders",
+  "notificationIntro": "Get a reminder on collection mornings.",
+  "notificationEnabled": "Morning reminder",
+  "notificationEvening": "Also remind the evening before",
+  "notificationSave": "Save",
+  "notificationLater": "Later",
+  "notificationPermission": "Notifications are not allowed on this device",
+  "notificationOsSettings": "Open device notification settings",
+  "notificationNone": "No collection dates can be scheduled",
+  "notificationFixture": "The normal app does not schedule sample reminders",
+  "notificationReserved": "Scheduled: {count}",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "Test clock: {count} preview reminders",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "Next reminder: {when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "Could not save or apply changes. Check settings and scheduled reminders.",
+  "notificationRetry": "Retry",
+  "notificationTest": "Show test notification",
+  "notificationMorningTitle": "Waste today, {date}",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "Prepare for tomorrow, {date}",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "Test: {title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "This reminder is for a different area. Showing your current area.",
+  "notificationUpdated": "The schedule has changed since this reminder.",
+  "notificationOfferTitle": "Remind me on collection days"
 }

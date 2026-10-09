@@ -92,7 +92,7 @@
   "pointConditions": "Horarios y condiciones: sin registrar.\nNo es un punto de entrega real. No se ofrecen rutas.",
   "mapTitle": "Mapa de recogida",
   "mapUnavailable": "El mapa aún no está conectado.\nPuedes probar el prototipo con la lista de abajo.",
-  "aboutBody": "Los calendarios, zonas y lugares son ficticios y se basan en el 5 de octubre de 2026. No los uses para tirar basura real.\n\nLas notificaciones, widgets y ajustes de ubicación aún no están implementados. Este prototipo no envía notificaciones.\n\nSolo se guardan la zona de ejemplo y el idioma elegidos. No se recopilan fotos ni datos de ubicación.",
+  "aboutBody": "Esta muestra de desarrollo usa calendarios, zonas y puntos de recogida ficticios. No la uses para sacar basura de verdad.\n\nLa zona, el idioma y los ajustes de avisos se guardan en el dispositivo. No se recopilan fotos ni ubicación.",
   "dryBattery": "Pilas secas",
   "rechargeable": "Baterías recargables",
   "appliance": "Aparatos pequeños",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "Mantén pulsada la pantalla de inicio, elige Widgets y añade Gomimap.",
   "widgetFailure": "No se pudo solicitar. Reintenta o añádelo desde la pantalla de inicio.",
   "widgetSaveError": "No se pudo guardar la elección. Reintenta.",
-  "disposalDeadlinePassed": "El plazo para sacar la basura ha pasado"
+  "disposalDeadlinePassed": "El plazo para sacar la basura ha pasado",
+  "notifications": "Recordatorios de recogida",
+  "notificationIntro": "Recibe un aviso las mañanas de recogida.",
+  "notificationEnabled": "Aviso por la mañana",
+  "notificationEvening": "Avisar también la noche anterior",
+  "notificationSave": "Guardar",
+  "notificationLater": "Más tarde",
+  "notificationPermission": "Este dispositivo no permite las notificaciones",
+  "notificationOsSettings": "Abrir los ajustes de notificaciones",
+  "notificationNone": "No hay fechas de recogida para programar",
+  "notificationFixture": "La aplicación normal no programa avisos de ejemplo",
+  "notificationReserved": "Programados: {count}",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "Reloj de prueba: vista previa de {count} avisos",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "Próximo aviso: {when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "No se pudo guardar o aplicar. Revisa los ajustes y los avisos programados.",
+  "notificationRetry": "Reintentar",
+  "notificationTest": "Mostrar notificación de prueba",
+  "notificationMorningTitle": "Basura de hoy, {date}",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "Preparar para mañana, {date}",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "Prueba: {title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "Este aviso es de otra zona. Se muestra la zona actual.",
+  "notificationUpdated": "El calendario cambió después de este aviso.",
+  "notificationOfferTitle": "Avisarme los días de recogida"
 }

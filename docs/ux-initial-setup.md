@@ -1,6 +1,6 @@
 # 初回設定・収集地区表示・ウィジェット追加の設計図
 
-状態：2026-10-08。関連：[Issue #18](https://github.com/oukiito/gomimap/issues/18)・[Issue #20](https://github.com/oukiito/gomimap/issues/20)。地区の常時表示・変更、初回の手動選択・確認・保存・途中復帰は架空地区の試作に実装。Androidウィジェット・初回案内は[W01〜W17](ux-android-widget.md)に実装。GPS・住所解決、iOSウィジェット、通知案内は未実装。全画面の理由一覧は[UI設計](ux-design.md)、対象利用者は[ペルソナ](personas.md)を参照。
+状態：2026-10-08。関連：[Issue #18](https://github.com/oukiito/gomimap/issues/18)・[Issue #20](https://github.com/oukiito/gomimap/issues/20)。地区の常時表示・変更、初回の手動選択・確認・保存・途中復帰は架空地区の試作に実装。Androidウィジェット・初回案内は[W01〜W17](ux-android-widget.md)に実装。Androidの任意通知案内・回答保存は[NT](ux-notifications.md)に実装。GPS・住所解決、iOSウィジェットは未実装。全画面の理由一覧は[UI設計](ux-design.md)、対象利用者は[ペルソナ](personas.md)を参照。
 
 ## 初回の流れ
 

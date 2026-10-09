@@ -92,7 +92,7 @@
   "pointConditions": "受付時間・利用条件：未登録\n実際の持ち込み先ではありません。経路案内は提供していません。",
   "mapTitle": "ここに回収場所の地図を表示",
   "mapUnavailable": "地図はまだ接続していません。\n下の一覧で画面の動きを試せます。",
-  "aboutBody": "2026年10月5日を基準にした架空の日程・地域・回収場所です。実際のごみ出しには使えません。\n\n通知・ウィジェット・位置情報の設定は、今後追加します。この試作から通知は届きません。\n\n保存するのは選んだサンプル地域と言語のみ。写真や位置情報は取得しません。",
+  "aboutBody": "架空の日程・地域・回収場所を使う開発用サンプルです。実際のごみ出しには使えません。\n\n地区・言語・通知の設定は端末に保存します。写真や位置情報は取得しません。",
   "dryBattery": "乾電池",
   "rechargeable": "充電池",
   "appliance": "小型家電",
@@ -185,5 +185,69 @@
   "widgetUnsupported": "ホーム画面を長押しし、「ウィジェット」から「ごみまっぷ」を追加できます。",
   "widgetFailure": "追加要求ができませんでした。もう一度試すか、ホーム画面から追加してください。",
   "widgetSaveError": "選択を保存できませんでした。もう一度試してください。",
-  "disposalDeadlinePassed": "ごみ出しの締切を過ぎています"
+  "disposalDeadlinePassed": "ごみ出しの締切を過ぎています",
+  "notifications": "ごみの日の通知",
+  "notificationIntro": "収集がある朝に通知します。",
+  "notificationEnabled": "朝の通知",
+  "notificationEvening": "前夜にも通知",
+  "notificationSave": "保存",
+  "notificationLater": "あとで",
+  "notificationPermission": "端末で通知が許可されていません",
+  "notificationOsSettings": "端末の通知設定を開く",
+  "notificationNone": "予約できる収集予定がありません",
+  "notificationFixture": "通常版ではサンプルの通知を予約しません",
+  "notificationReserved": "予約済み：{count}件",
+  "@notificationReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationPreview": "試験時計：予約プレビュー{count}件",
+  "@notificationPreview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationNext": "次の予定：{when}",
+  "@notificationNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationError": "保存または反映に失敗しました。設定と予約状況を確認してください。",
+  "notificationRetry": "再試行",
+  "notificationTest": "テスト通知を表示",
+  "notificationMorningTitle": "今日{date}のごみ",
+  "@notificationMorningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationEveningTitle": "明日{date}の準備",
+  "@notificationEveningTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationTestTitle": "テスト：{title}",
+  "@notificationTestTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationChangedArea": "別の収集地区の通知です。現在の地区を表示します。",
+  "notificationUpdated": "通知後に予定が更新されています。",
+  "notificationOfferTitle": "ごみの日を通知"
 }

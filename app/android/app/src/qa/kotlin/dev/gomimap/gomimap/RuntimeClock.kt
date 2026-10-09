@@ -22,20 +22,23 @@ object RuntimeClock {
             val revision = value.getLong("revision")
             val scenario = value.getString("scenario")
             require(millis in 0..MAX_MILLIS && revision >= 0 && scenario in scenarios)
-            return mapOf("millis" to millis, "revision" to revision, "scenario" to scenario, "package" to PACKAGE)
+            val real=value.optBoolean("real",false)
+            return mapOf("millis" to if(real)System.currentTimeMillis() else millis, "revision" to revision, "scenario" to scenario, "package" to PACKAGE,"frozen" to !real)
         } catch (_: Exception) {
-            return mapOf("millis" to 1791154799000L, "revision" to 0L, "scenario" to "normal", "package" to PACKAGE)
+            return mapOf("millis" to 1791154799000L, "revision" to 0L, "scenario" to "normal", "package" to PACKAGE,"frozen" to true)
         }
     }
     fun now(context: Context): Long = state(context)["millis"] as Long
-    fun frozen(context: Context): Boolean = context.packageName == PACKAGE
+    fun frozen(context: Context): Boolean = state(context)["frozen"] as Boolean
     fun bundledVersion(context: Context): String = "toshima-clock-qa-${state(context)["scenario"]}-v1"
     fun candidate(context: Context, intent: Intent): Map<String, Any>? {
         if (context.packageName != PACKAGE) return null
         val millis = intent.getStringExtra("gomimap.qa.clock_ms")?.toLongOrNull() ?: return null
         val scenario = intent.getStringExtra("gomimap.qa.scenario") ?: return null
         if (millis !in 0..MAX_MILLIS || scenario !in scenarios) return null
-        return mapOf("millis" to millis, "scenario" to scenario)
+        val real=intent.getStringExtra("gomimap.qa.real")?:"false"
+        if(real !in setOf("true","false"))return null
+        return mapOf("millis" to millis, "scenario" to scenario,"real" to (real=="true"))
     }
     fun consume(context: Context, intent: Intent): Boolean {
         val value = candidate(context, intent) ?: return false

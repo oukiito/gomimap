@@ -184,7 +184,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Calendários, áreas e locais são fictícios, com base em 5 de outubro de 2026. Não use para descartar lixo de verdade.\n\nNotificações, widgets e configurações de localização ainda não foram implementados. Este protótipo não envia notificações.\n\nSomente a área de exemplo e o idioma escolhidos são salvos. Não coletamos fotos nem localização.';
+      'Esta amostra de desenvolvimento usa calendários, áreas e pontos de coleta fictícios. Não a use para descartar lixo de verdade.\n\nÁrea, idioma e configurações de lembretes são salvos no dispositivo. Fotos e localização não são coletadas.';
 
   @override
   String get dryBattery => 'Pilhas secas';
@@ -359,4 +359,86 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => 'O prazo para colocar o lixo terminou';
+
+  @override
+  String get notifications => 'Lembretes de coleta';
+
+  @override
+  String get notificationIntro => 'Receba um lembrete nas manhãs de coleta.';
+
+  @override
+  String get notificationEnabled => 'Lembrete de manhã';
+
+  @override
+  String get notificationEvening => 'Lembrar também na noite anterior';
+
+  @override
+  String get notificationSave => 'Salvar';
+
+  @override
+  String get notificationLater => 'Depois';
+
+  @override
+  String get notificationPermission =>
+      'As notificações não estão permitidas neste dispositivo';
+
+  @override
+  String get notificationOsSettings => 'Abrir as configurações de notificações';
+
+  @override
+  String get notificationNone => 'Não há datas de coleta para agendar';
+
+  @override
+  String get notificationFixture =>
+      'O aplicativo normal não agenda lembretes de exemplo';
+
+  @override
+  String notificationReserved(int count) {
+    return 'Agendados: $count';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return 'Relógio de teste: prévia de $count lembretes';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return 'Próximo lembrete: $when';
+  }
+
+  @override
+  String get notificationError =>
+      'Não foi possível salvar ou aplicar. Confira as configurações e os lembretes.';
+
+  @override
+  String get notificationRetry => 'Tentar novamente';
+
+  @override
+  String get notificationTest => 'Mostrar notificação de teste';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return 'Lixo de hoje, $date';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return 'Preparar para amanhã, $date';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return 'Teste: $title';
+  }
+
+  @override
+  String get notificationChangedArea =>
+      'Este lembrete é de outra área. Exibindo a área atual.';
+
+  @override
+  String get notificationUpdated => 'O calendário mudou após este lembrete.';
+
+  @override
+  String get notificationOfferTitle => 'Lembrar nos dias de coleta';
 }

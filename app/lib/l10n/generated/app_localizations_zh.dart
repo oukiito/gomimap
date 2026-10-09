@@ -173,7 +173,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      '本原型使用以2026年10月5日为基准的虚构日程、地区和回收点。请勿用于实际投放垃圾。\n\n通知、小组件和位置设置尚未实现。本原型不会发送通知。\n\n仅保存所选示例地区和语言。不收集照片或位置信息。';
+      '本开发示例使用虚构的日程、地区和回收点。请勿用于实际垃圾投放。\n\n地区、语言和提醒设置保存在设备上。不获取照片或位置信息。';
 
   @override
   String get dryBattery => '干电池';
@@ -330,6 +330,84 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get disposalDeadlinePassed => '已过垃圾投放截止时间';
+
+  @override
+  String get notifications => '垃圾收集提醒';
+
+  @override
+  String get notificationIntro => '在收集日早晨提醒您。';
+
+  @override
+  String get notificationEnabled => '早晨提醒';
+
+  @override
+  String get notificationEvening => '也在前一天晚上提醒';
+
+  @override
+  String get notificationSave => '保存';
+
+  @override
+  String get notificationLater => '稍后';
+
+  @override
+  String get notificationPermission => '此设备未允许通知';
+
+  @override
+  String get notificationOsSettings => '打开设备通知设置';
+
+  @override
+  String get notificationNone => '没有可预约的收集日期';
+
+  @override
+  String get notificationFixture => '普通版不会预约示例提醒';
+
+  @override
+  String notificationReserved(int count) {
+    return '已预约：$count条';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return '测试时钟：预览$count条提醒';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return '下次提醒：$when';
+  }
+
+  @override
+  String get notificationError => '无法保存或应用更改。请检查设置和提醒预约。';
+
+  @override
+  String get notificationRetry => '重试';
+
+  @override
+  String get notificationTest => '显示测试通知';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return '今天$date的垃圾';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return '为明天$date做准备';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return '测试：$title';
+  }
+
+  @override
+  String get notificationChangedArea => '此提醒属于其他收集地区。显示当前地区。';
+
+  @override
+  String get notificationUpdated => '此提醒之后日程已更新。';
+
+  @override
+  String get notificationOfferTitle => '在收集日提醒我';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -500,7 +578,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get aboutBody =>
-      '本原型使用以2026年10月5日为基准的虚构日程、地区和回收点。请勿用于实际投放垃圾。\n\n通知、小组件和位置设置尚未实现。本原型不会发送通知。\n\n仅保存所选示例地区和语言。不收集照片或位置信息。';
+      '本开发示例使用虚构的日程、地区和回收点。请勿用于实际垃圾投放。\n\n地区、语言和提醒设置保存在设备上。不获取照片或位置信息。';
 
   @override
   String get dryBattery => '干电池';
@@ -657,6 +735,84 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get disposalDeadlinePassed => '已过垃圾投放截止时间';
+
+  @override
+  String get notifications => '垃圾收集提醒';
+
+  @override
+  String get notificationIntro => '在收集日早晨提醒您。';
+
+  @override
+  String get notificationEnabled => '早晨提醒';
+
+  @override
+  String get notificationEvening => '也在前一天晚上提醒';
+
+  @override
+  String get notificationSave => '保存';
+
+  @override
+  String get notificationLater => '稍后';
+
+  @override
+  String get notificationPermission => '此设备未允许通知';
+
+  @override
+  String get notificationOsSettings => '打开设备通知设置';
+
+  @override
+  String get notificationNone => '没有可预约的收集日期';
+
+  @override
+  String get notificationFixture => '普通版不会预约示例提醒';
+
+  @override
+  String notificationReserved(int count) {
+    return '已预约：$count条';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return '测试时钟：预览$count条提醒';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return '下次提醒：$when';
+  }
+
+  @override
+  String get notificationError => '无法保存或应用更改。请检查设置和提醒预约。';
+
+  @override
+  String get notificationRetry => '重试';
+
+  @override
+  String get notificationTest => '显示测试通知';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return '今天$date的垃圾';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return '为明天$date做准备';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return '测试：$title';
+  }
+
+  @override
+  String get notificationChangedArea => '此提醒属于其他收集地区。显示当前地区。';
+
+  @override
+  String get notificationUpdated => '此提醒之后日程已更新。';
+
+  @override
+  String get notificationOfferTitle => '在收集日提醒我';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -827,7 +983,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get aboutBody =>
-      '本原型使用以2026年10月5日為基準的虛構日程、地區及回收點。請勿用於實際丟棄垃圾。\n\n通知、小工具及位置設定尚未實作。本原型不會發送通知。\n\n僅儲存所選範例地區及語言。不收集照片或位置資訊。';
+      '此開發範例使用虛構的日程、地區與回收點。請勿用於實際垃圾投放。\n\n地區、語言與提醒設定儲存在裝置上。不取得照片或位置資訊。';
 
   @override
   String get dryBattery => '乾電池';
@@ -984,4 +1140,82 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get disposalDeadlinePassed => '已過垃圾投放截止時間';
+
+  @override
+  String get notifications => '垃圾收集提醒';
+
+  @override
+  String get notificationIntro => '在收集日早晨提醒您。';
+
+  @override
+  String get notificationEnabled => '早晨提醒';
+
+  @override
+  String get notificationEvening => '也在前一天晚上提醒';
+
+  @override
+  String get notificationSave => '儲存';
+
+  @override
+  String get notificationLater => '稍後';
+
+  @override
+  String get notificationPermission => '此裝置未允許通知';
+
+  @override
+  String get notificationOsSettings => '開啟裝置通知設定';
+
+  @override
+  String get notificationNone => '沒有可預約的收集日期';
+
+  @override
+  String get notificationFixture => '一般版不會預約範例提醒';
+
+  @override
+  String notificationReserved(int count) {
+    return '已預約：$count則';
+  }
+
+  @override
+  String notificationPreview(int count) {
+    return '測試時鐘：預覽$count則提醒';
+  }
+
+  @override
+  String notificationNext(String when) {
+    return '下次提醒：$when';
+  }
+
+  @override
+  String get notificationError => '無法儲存或套用變更。請檢查設定及提醒預約。';
+
+  @override
+  String get notificationRetry => '重試';
+
+  @override
+  String get notificationTest => '顯示測試通知';
+
+  @override
+  String notificationMorningTitle(String date) {
+    return '今天$date的垃圾';
+  }
+
+  @override
+  String notificationEveningTitle(String date) {
+    return '為明天$date做準備';
+  }
+
+  @override
+  String notificationTestTitle(String title) {
+    return '測試：$title';
+  }
+
+  @override
+  String get notificationChangedArea => '此提醒屬於其他收集地區。顯示目前地區。';
+
+  @override
+  String get notificationUpdated => '此提醒之後日程已更新。';
+
+  @override
+  String get notificationOfferTitle => '在收集日提醒我';
 }
