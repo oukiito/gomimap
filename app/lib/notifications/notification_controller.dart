@@ -64,7 +64,12 @@ class NotificationController extends ChangeNotifier {
   }
 
   Future<void> _refresh() async {
-    if (!bridge.available) return;
+    if (!bridge.available) {
+      failed = false;
+      state = {};
+      changed();
+      return;
+    }
     try {
       failed = !await bridge.apply(plan(store.settings));
       state = await bridge.status();

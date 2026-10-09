@@ -12,6 +12,7 @@ import 'package:gomimap/data/demo_dataset_repository.dart';
 import 'package:gomimap/main.dart';
 import 'package:gomimap/notifications/notification_state.dart';
 import 'package:gomimap/notifications/notification_controller.dart';
+import 'package:gomimap/notifications/notification_bridge.dart';
 
 import 'support/dataset_fixture.dart';
 import 'notification_flow_test.dart' show FakeNotifications;
@@ -22,6 +23,35 @@ import 'update_coordinator_test.dart' show selection;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test(
+    'storage retry can recover on Web with no native notification bridge',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final controller = NotificationController(
+        store: NotificationStateStore(
+          await SharedPreferences.getInstance(),
+          legacyDistrictSaved: true,
+        ),
+        bridge: const UnavailableNotificationsBridge(),
+        plan: (_) => {'entries': []},
+      );
+      final journal = MemoryUpdateJournal()..value = 'corrupt';
+      final updates = UpdateCoordinator(
+        journal: journal,
+        readState: selection,
+        stop: controller.pause,
+        reflect: controller.reflectNow,
+      );
+      controller.coordinator = updates;
+      addTearDown(controller.dispose);
+      addTearDown(updates.dispose);
+      await controller.refresh();
+      expect(controller.failed, isTrue);
+      journal.value = null; // Test-only restoration of the damaged cache.
+      await controller.refresh();
+      expect(controller.failed, isFalse);
+    },
+  );
   test('notification save uses committed state before native reflect without queue deadlock', () async {
     SharedPreferences.setMockInitialValues({});
     final store = NotificationStateStore(
