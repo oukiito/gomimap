@@ -23,7 +23,7 @@ CSVの取得はUser-Agent、20秒timeout、最大3試行、2MiB上限、redirect
 
 source-monitor.ymlに週次月曜03:17日本時間／手動起動を設定した。contents:read／issues:write、同時実行を直列化、失敗と変更はbotの1つのIssueに集約。同じfingerprintや正常時はIssueを書き換えない。通知文は未確認原文やremote errorを貼らず、runのリンクへ誘導する。失敗は最終job outcomeにも残す。
 
-この記録の作成時はローカル取得・模擬APIの検証が完了した段階。取り込み後にGitHubで手動workflowを実行し、active／run／外部health結果を[Issue #58](https://github.com/oukiito/gomimap/issues/58)に追記する。初回定時実行の到達・実障害の通知到達を設定だけで合格にしない。
+2026-10-10 03:18日本時間に[初回の手動実行](https://github.com/oukiito/gomimap/actions/runs/37972368307)がmain `8ec317b`で成功。CSV2件 unchanged、changed=0、failed=0、対象外12件。正常時の通知はquiet。外部health probeでactive・直近成功を確認し、healthy=true／within_weekly_contractとなった。初回定時実行の到達・実障害の通知到達・常設の独立監視は未確認。
 
 Python73件PASS。新規21件で304・同本文／異ヘッダー、空／不正／構造変化、許可撤回・消失・未レビュー列、破損cache、失敗時に直近成功保持、候補の旧hash／許可、通知の非反復／remote error非表示、外部healthの無効／失敗／期限／無関係branchを確認。破損JSONがlistの場合の初期例外は型検査を加えて再確認した。原資料・キー・正確な位置を公開していない。
 
