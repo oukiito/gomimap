@@ -468,4 +468,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get addressDataChanged => '情報が変わりました。もう一度地区を選んでください';
+
+  @override
+  String get updateEffectsError => '通知・ウィジェットの反映を確認できません。';
 }

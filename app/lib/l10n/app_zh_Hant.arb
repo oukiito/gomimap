@@ -269,5 +269,6 @@
   "addressUnsupported": "找不到支援的收集地區",
   "addressConflict": "無法確定唯一的收集地區",
   "addressNeedsConfirmation": "需要確認收集地區",
-  "addressDataChanged": "資訊已變更，請重新選擇地區"
+  "addressDataChanged": "資訊已變更，請重新選擇地區",
+  "updateEffectsError": "無法確認通知或小工具已更新。"
 }

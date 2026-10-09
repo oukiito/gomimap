@@ -269,5 +269,6 @@
   "addressUnsupported": "No se encontró un distrito de recogida compatible",
   "addressConflict": "No se puede identificar un único distrito",
   "addressNeedsConfirmation": "Hay que confirmar el distrito de recogida",
-  "addressDataChanged": "La información cambió. Elige el distrito de nuevo"
+  "addressDataChanged": "La información cambió. Elige el distrito de nuevo",
+  "updateEffectsError": "No se pudo confirmar la actualización de notificaciones o widgets."
 }

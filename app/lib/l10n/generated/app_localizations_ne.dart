@@ -498,4 +498,8 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get addressDataChanged =>
       'जानकारी परिवर्तन भयो। क्षेत्र फेरि छान्नुहोस्';
+
+  @override
+  String get updateEffectsError =>
+      'सूचना वा विजेट अद्यावधिक भएको पुष्टि गर्न सकिएन।';
 }

@@ -959,6 +959,12 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'情報が変わりました。もう一度地区を選んでください'**
   String get addressDataChanged;
+
+  /// No description provided for @updateEffectsError.
+  ///
+  /// In ja, this message translates to:
+  /// **'通知・ウィジェットの反映を確認できません。'**
+  String get updateEffectsError;
 }
 
 class _AppLocalizationsDelegate

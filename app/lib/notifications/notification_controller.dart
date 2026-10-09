@@ -3,6 +3,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../data/demo_setup_store.dart';
+import '../data/update_coordinator.dart';
 import 'notification_bridge.dart';
 import 'notification_state.dart';
 
@@ -12,6 +13,7 @@ class NotificationController extends ChangeNotifier {
     required this.bridge,
     required this.plan,
   });
+  UpdateCoordinator? coordinator;
   final NotificationStateStore store;
   final NotificationsBridge bridge;
   final Map<String, Object?> Function(NotificationSettings) plan;
@@ -44,7 +46,23 @@ class NotificationController extends ChangeNotifier {
     }
   }
 
-  Future<void> refresh() => serial(_refresh);
+  Future<void> refresh() async {
+    final updates = coordinator;
+    if (updates != null) {
+      await updates.reconcile();
+      failed = updates.failed;
+      changed();
+    } else {
+      await serial(_refresh);
+    }
+  }
+
+  /// Only called inside the update coordinator's serial operation.
+  Future<bool> reflectNow() async {
+    await _refresh();
+    return !failed;
+  }
+
   Future<void> _refresh() async {
     if (!bridge.available) return;
     try {
@@ -57,28 +75,49 @@ class NotificationController extends ChangeNotifier {
     changed();
   }
 
-  Future<bool> save(NotificationSettings desired, {required bool answer}) =>
-      serial(() async {
-        busy = true;
-        failed = false;
+  Future<bool> save(
+    NotificationSettings desired, {
+    required bool answer,
+  }) async {
+    final updates = coordinator;
+    if (updates != null) {
+      busy = true;
+      changed();
+      try {
+        final committed = await updates.change('notifications', {
+          'notifications': desired.toJson(),
+          'notificationAnswered': answer,
+        }, () => store.save(desired, answer: answer));
+        failed = updates.failed;
+        return committed;
+      } finally {
+        busy = false;
         changed();
-        try {
-          if (!await pause()) {
-            failed = true;
-            return false;
-          }
-          if (!await store.save(desired, answer: answer)) {
-            await _refresh();
-            failed = true;
-            return false;
-          }
-          await _refresh();
-          return true; // Desired save and OS reflection are distinct.
-        } finally {
-          busy = false;
-          changed();
+      }
+    }
+    return serial(() async {
+      busy = true;
+      failed = false;
+      changed();
+      try {
+        if (!await pause()) {
+          failed = true;
+          return false;
         }
-      });
+        if (!await store.save(desired, answer: answer)) {
+          await _refresh();
+          failed = true;
+          return false;
+        }
+        await _refresh();
+        return true; // Desired save and OS reflection are distinct.
+      } finally {
+        busy = false;
+        changed();
+      }
+    });
+  }
+
   Future<bool> skip() => save(const NotificationSettings(), answer: true);
 }
 
@@ -91,17 +130,29 @@ class NotificationSetupStore implements DemoSetupStore {
   @override
   DemoSetupSnapshot read() => delegate.read();
   @override
-  Future<bool> save(DemoSetupSnapshot snapshot) =>
-      notifications.serial(() async {
-        if (snapshot.phase != DemoSetupPhase.districtSaved) {
+  Future<bool> save(DemoSetupSnapshot snapshot) {
+    final updates = notifications.coordinator;
+    if (updates != null && snapshot.phase == DemoSetupPhase.districtSaved) {
+      return updates.change(
+        'district',
+        {'areaId': snapshot.area!.name},
+        () async {
+          if (!await notifications.store.ensurePending()) return false;
           return delegate.save(snapshot);
-        }
-        if (!await notifications.store.ensurePending() ||
-            !await notifications.pause()) {
-          return false;
-        }
-        final result = await delegate.save(snapshot);
-        if (!result) await notifications._refresh();
-        return result;
-      });
+        },
+      );
+    }
+    return notifications.serial(() async {
+      if (snapshot.phase != DemoSetupPhase.districtSaved) {
+        return delegate.save(snapshot);
+      }
+      if (!await notifications.store.ensurePending() ||
+          !await notifications.pause()) {
+        return false;
+      }
+      final result = await delegate.save(snapshot);
+      if (!result) await notifications._refresh();
+      return result;
+    });
+  }
 }

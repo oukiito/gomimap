@@ -14,6 +14,7 @@ import 'dataset_cache_web.dart'
     as platform;
 import 'dataset_download.dart';
 import 'dataset_snapshot.dart';
+import 'update_coordinator.dart';
 
 const demoDataOrigin = 'https://gomimap-data-dev.ouki-ito.workers.dev';
 const maxDatasetBytes = 2 * 1024 * 1024;
@@ -154,6 +155,7 @@ class DemoDatasetRepository extends ChangeNotifier {
       throw const FormatException('Expected HTTPS origin');
     }
   }
+  UpdateCoordinator? coordinator;
   final DatasetCache cache;
   final DatasetDownload download;
   final Uri origin;
@@ -248,18 +250,29 @@ class DemoDatasetRepository extends ChangeNotifier {
       final candidate = _candidate(content, entry.version);
       if (candidate == null || _disposed) return DatasetRefreshResult.failed;
       final record = _Record(entry, bytes, now);
-      if (!await cache.save(
-        record.encode(),
-        previous: _content != content ? _record?.encode() : null,
-      )) {
-        return DatasetRefreshResult.failed;
-      }
-      if (_disposed) return DatasetRefreshResult.skipped;
       final changed = _content != content;
-      _record = record;
-      _content = content;
-      _current = candidate;
-      if (changed) notifyListeners();
+      Future<bool> commit() async {
+        if (!await cache.save(
+          record.encode(),
+          previous: changed ? _record?.encode() : null,
+        )) {
+          return false;
+        }
+        _record = record;
+        _content = content;
+        _current = candidate;
+        if (changed && !_disposed) notifyListeners();
+        return true;
+      }
+
+      final updates = coordinator;
+      final committed = changed && updates != null
+          ? await updates.change('dataset', {
+              'datasetVersion': candidate.version,
+              'municipalityId': candidate.municipality.id,
+            }, commit)
+          : await commit();
+      if (!committed) return DatasetRefreshResult.failed;
       return changed
           ? DatasetRefreshResult.updated
           : DatasetRefreshResult.unchanged;

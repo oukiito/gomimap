@@ -471,4 +471,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get addressDataChanged => '정보가 변경되었습니다. 구역을 다시 선택하세요';
+
+  @override
+  String get updateEffectsError => '알림 또는 위젯 업데이트를 확인할 수 없습니다.';
 }

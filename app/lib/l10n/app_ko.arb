@@ -269,5 +269,6 @@
   "addressUnsupported": "지원되는 수거 구역을 찾을 수 없습니다",
   "addressConflict": "수거 구역을 하나로 특정할 수 없습니다",
   "addressNeedsConfirmation": "수거 구역을 확인해야 합니다",
-  "addressDataChanged": "정보가 변경되었습니다. 구역을 다시 선택하세요"
+  "addressDataChanged": "정보가 변경되었습니다. 구역을 다시 선택하세요",
+  "updateEffectsError": "알림 또는 위젯 업데이트를 확인할 수 없습니다."
 }

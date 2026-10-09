@@ -468,6 +468,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get addressDataChanged => '信息已变更，请重新选择地区';
+
+  @override
+  String get updateEffectsError => '无法确认通知或小组件已更新。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -933,6 +936,9 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get addressDataChanged => '信息已变更，请重新选择地区';
+
+  @override
+  String get updateEffectsError => '无法确认通知或小组件已更新。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -1398,4 +1404,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get addressDataChanged => '資訊已變更，請重新選擇地區';
+
+  @override
+  String get updateEffectsError => '無法確認通知或小工具已更新。';
 }

@@ -505,4 +505,8 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get addressDataChanged =>
       'As informações mudaram. Escolha o distrito novamente';
+
+  @override
+  String get updateEffectsError =>
+      'Não foi possível confirmar a atualização das notificações ou widgets.';
 }
