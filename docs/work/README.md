@@ -38,4 +38,6 @@
 
 | 2026-10-10 | 地区・言語・日程版・通知設定の直列更新、journal復旧・失敗再試行 | [更新復旧の記録](2026-10-10-update-coordination.md) | [#60](https://github.com/oukiito/gomimap/issues/60)、G11 |
 
+| 2026-10-10 | 開発履歴・未完了・サービス観測・再開条件とAGENTS更新 | [開発の保存記録](2026-10-10-development-checkpoint.md) | [#63](https://github.com/oukiito/gomimap/issues/63)、[#53](https://github.com/oukiito/gomimap/issues/53) |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
