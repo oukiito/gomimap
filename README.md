@@ -28,6 +28,8 @@ Flutter **3.47.6**／Dart **3.13.5**を使用しています。地図描画は`f
 
 ローカル環境での実行・テスト、iOS／Androidの環境構築、地図設定は[開発手順](docs/development.md)にまとめています。Web版は画面確認用です。
 
+未実装機能の状態・UIの理由・実装条件と試験は[残る機能の設計](docs/remaining-design.md)にまとめています。通知・位置・iOSウィジェット・分別地図・更新復旧の具体化であり、機能の完成記録ではありません。
+
 日程は[data/datasets](data/datasets/README.md)のJSONから読み込みます。自作fixtureを[Cloudflareで公開・照合](docs/cloudflare-data.md)済みです。アプリは保存済み／同梱JSONで開き、表示後に更新を確認します。取得・保存は開発用fixture限定で、端末DB・実自治体データ・自動配信は未実装です。[スキーマ1](docs/data-schema-v1.md)、[保存・配信の設計](docs/data-storage.md)、[検証記録](docs/work/2026-10-08-dataset-client.md)を参照してください。
 
 ## ドキュメント・参加方法

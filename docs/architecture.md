@@ -9,9 +9,9 @@
 | 部分 | 推奨案 | 理由・検証する点 |
 | --- | --- | --- |
 | アプリ | Flutter / Dart | 両OSの画面・分別ルール・予定計算を共有。地図・通知・読み上げ・文字拡大を実機検証 |
-| 端末データ | drift＋shared_preferences | 有効な予定・品目・拠点を通信なしで読める。具体的ライブラリはPoC後に固定 |
-| iOSウィジェット | SwiftUI / WidgetKit | 共有データからTimelineを作る。Flutterとの連携にhome_widgetを候補とする |
-| Androidウィジェット | KotlinのApp Widget / Glance | OS固有の表示・更新を担当。日程判定は本体で生成した表示データを共有 |
+| 端末データ | 既存のファイル保存＋shared_preferencesを継続 | DBは初版の必須条件にしない。検索量・更新の必要が出た段階でdriftの実配布条件を検討 |
+| iOSウィジェット | SwiftUI / WidgetKit＋OSブリッジを第一案 | 共有投影からTimelineを作る。home_widgetは導入必須にせず、署名・App GroupをPoCで確認。[IW](ux-ios-widget.md) |
+| Androidウィジェット | 実装済みのKotlin App Widget / RemoteViews | OS固有の表示・更新を担当。共通投影の時間帯選択だけを行う。Glanceは未導入 |
 | 地図 | flutter_mapへ移行済み | GPL指定によりGoogle製SDKを保留。タイル配信は別契約。2026-10-06にGoogle依存とキー設定を除去。配信元は未設定 |
 | 通知 | flutter_local_notifications＋timezone | サーバーから全利用者へ毎朝配信せず、取得済み予定を端末で予約 |
 | 自治体取得・検証 | Pythonの小さなバッチ | HTML／CSV／PDFの扱い、差分、スキーマ検証をまとめる。取得元ごとのアダプター |
@@ -39,6 +39,8 @@ PoCはFlutter 3.47.6／Dart 3.13.5、iOS 15／Android API 24を設定下限と�
 地図SDKはiOS／Androidでキーを分け、各アプリ識別子と対象APIを制限する。モバイルSDKのキーは抽出可能な識別情報として管理し、秘密のLLMキーと同じ防御を期待しない。公開リポジトリには実キーを置かない。
 
 ## ウィジェットと通知の境界
+
+2026-10-09の通知・iOS共有・地区変更の途中失敗の実装条件は[残る設計](remaining-design.md)を参照する。設計が追加されても通知・iOS共有を実装済みと扱わない。
 
 本体は同じルールエンジンから、対象日・区分・締切・状態・有効期限を持つ表示データを作る。ウィジェット側で自治体固有の日程ロジックを重複実装しない。
 
