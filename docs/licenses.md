@@ -105,3 +105,5 @@ Maestroはローカルの独立した試験プロセスとして使い、アプ�
 既存Flutter MethodChannelとAndroid標準NotificationManager・NotificationChannel・AlarmManager・PendingIntentを使う自作実装。pubspec／lockfile・Gradle依存宣言は変更せず、86パッケージの既存集合を維持する。候補のflutter_local_notifications／timezoneは未導入。独自コード・翻訳・通知用bin vectorはGPL-3.0-or-later。通知のための外部API呼出し・追加SDK利用料金はない。
 
 Android標準API／既存SDK・Flutterエンジンの利用条件や第三者表示は従来のまま。これをOS全体のGPLへの再ライセンスや完成バイナリ監査完了とは扱わない。通常／QA profileビルドを確認し、ストア配布時のネイティブ成果物・全NOTICEの照合は継続する。
+
+#51の配送試験もAndroid SDK標準Instrumentation・NotificationManagerとPython標準ライブラリだけを使う。新しいpub／Maven／Python配布依存は追加しない。QA専用の計測・試験runner・CLIは自作GPL-3.0-or-laterで、完成バイナリのライセンス監査完了とは別。通常APKへ試験runnerを含めず、QA専用ファイルパスがないことをDEXで確認した。

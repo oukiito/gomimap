@@ -1,0 +1,14 @@
+{
+  "case": {
+    "case": "cancel",
+    "preparedAt": 1791532790973,
+    "due": 1791532820973,
+    "expires": 1791536420973,
+    "date": "2026-10-09"
+  },
+  "events": [],
+  "delivered": false,
+  "lagsMs": [],
+  "osLagsMs": [],
+  "observedAt": "2026-10-09T08:01:56.929103+00:00"
+}

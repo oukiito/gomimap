@@ -67,3 +67,9 @@ QA起動引数`gomimap.qa.real: "true"`を明示すると、専用QAの本体・
 `flows/notification-smoke.yaml`は専用QAのサンプルA・日本語で実行する。launchAppの`all: unset`は許可を保持する指定ではなく、QAの許可状態を未決定へ戻す。保存操作の後に現れる実際のOS許可ダイアログを操作する。通常アプリや個人端末の権限は操作しない。予約が正数→OFF保存で0件になり、QAテストボタンが消えることをassertする。
 
 予約の照合と手動テスト通知は、指定時刻・Dozeでの配送成功を意味しない。[通知の検証記録](work/2026-10-09-android-notifications.md)。固定時計の9ケースへ戻す場合は`gomimap.qa.real: "false"`を明示する。
+
+## 短い実予約・再起動・Doze（#51）
+
+[隔離配送試験](android-notification-delivery.md)はQA専用のSDK Instrumentationで未来の1件を準備し、予約後すぐ終了する。QAのReceiver起動とOS投稿時刻を専用の最大32件の記録で照合する。通常版のイベント処理はno-opでファイルを作らず、通常APKのDEXにQA記録パス・試験runnerがないことを確認する。
+
+QT05／NT13の試験通知は「テスト」「架空」「実際のごみ出しには使えない」を明示する。GUI起動を使わず待機し、到達後にMCPで自作通知カードだけを撮影する。既存のQA希望設定は変更せず、backupとcleanupで元のplanへ戻す。省電力の強制状態も解除する。

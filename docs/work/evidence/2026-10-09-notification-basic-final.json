@@ -1,0 +1,38 @@
+{
+  "case": {
+    "case": "basic",
+    "preparedAt": 1791533603440,
+    "due": 1791533633440,
+    "expires": 1791537233440,
+    "date": "2026-10-09"
+  },
+  "events": [
+    {
+      "event": "receiver:gomimap.collection.deliver",
+      "id": 1,
+      "due": 0,
+      "at": 1791533656121,
+      "elapsed": 589679,
+      "idle": false,
+      "generation": 64
+    },
+    {
+      "event": "posted",
+      "id": 30001,
+      "due": 1791533633440,
+      "at": 1791533656138,
+      "elapsed": 589696,
+      "idle": false,
+      "generation": 64,
+      "osPostTime": 1791533656137
+    }
+  ],
+  "delivered": true,
+  "lagsMs": [
+    22698
+  ],
+  "osLagsMs": [
+    22697
+  ],
+  "observedAt": "2026-10-09T08:15:23.050900+00:00"
+}

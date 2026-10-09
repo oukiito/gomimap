@@ -1,0 +1,24 @@
+{
+  "case": {
+    "case": "expiry",
+    "preparedAt": 1791532563773,
+    "due": 1791532608773,
+    "expires": 1791532608774,
+    "date": "2026-10-09"
+  },
+  "events": [
+    {
+      "event": "receiver:gomimap.collection.deliver",
+      "id": 1,
+      "due": 0,
+      "at": 1791532642706,
+      "elapsed": 890262,
+      "idle": false,
+      "generation": 58
+    }
+  ],
+  "delivered": false,
+  "lagsMs": [],
+  "osLagsMs": [],
+  "observedAt": "2026-10-09T07:59:49.659916+00:00"
+}

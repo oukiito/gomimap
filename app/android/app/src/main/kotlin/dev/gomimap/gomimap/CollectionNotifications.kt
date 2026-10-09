@@ -156,13 +156,15 @@ object CollectionNotifications {
         val notification=builder.setSmallIcon(R.drawable.notification_small).setContentTitle(title).setContentText(body)
             .setStyle(Notification.BigTextStyle().bigText(body)).setContentIntent(click).setAutoCancel(true).build()
         manager(context).notify(TAG,if(test)TEST_ID else 30000+e.getInt("id"),notification)
+        RuntimeClock.notificationEvent(context, if(test)"manual" else "posted", if(test)TEST_ID else 30000+e.getInt("id"), e.getLong("due"))
     }
 }
 
 class CollectionNotificationReceiver:BroadcastReceiver() {
     override fun onReceive(context:Context,intent:Intent) {
         val result=goAsync();GarbageWidgetProvider.executor.execute {
-            try {if(intent.action=="gomimap.collection.deliver")CollectionNotifications.deliver(context,intent.getLongExtra("generation",-1),intent.getIntExtra("id",-1))
+            try {RuntimeClock.notificationEvent(context, "receiver:${intent.action}", intent.getIntExtra("id",0))
+                if(intent.action=="gomimap.collection.deliver")CollectionNotifications.deliver(context,intent.getLongExtra("generation",-1),intent.getIntExtra("id",-1))
                 else CollectionNotifications.restore(context)
             } finally {result.finish()}
         }
