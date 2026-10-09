@@ -252,5 +252,22 @@
   "notificationOfferTitle": "ごみの日を通知",
   "mapLoadError": "地図を読み込めません",
   "mapRetry": "再試行",
-  "mapShowList": "一覧を見る"
+  "mapShowList": "一覧を見る",
+  "addressChoose": "住所から選ぶ",
+  "addressTown": "町名",
+  "addressChome": "丁目",
+  "addressBlock": "番地",
+  "addressStreet": "架空通り沿いですか？",
+  "addressSelect": "選択してください",
+  "addressYes": "はい",
+  "addressNo": "いいえ",
+  "addressAlong": "通り沿い",
+  "addressAway": "通り沿いではない",
+  "addressFictionalTown": "架空町",
+  "addressFind": "この地区を確認する",
+  "addressUnknown": "わからない",
+  "addressUnsupported": "対応する収集地区が見つかりません",
+  "addressConflict": "収集地区を一つに特定できません",
+  "addressNeedsConfirmation": "収集地区の確認が必要",
+  "addressDataChanged": "情報が変わりました。もう一度地区を選んでください"
 }

@@ -252,5 +252,22 @@
   "notificationOfferTitle": "सङ्कलन दिनमा सूचना दिनुहोस्",
   "mapLoadError": "नक्सा लोड गर्न सकिएन",
   "mapRetry": "फेरि प्रयास गर्नुहोस्",
-  "mapShowList": "सूची हेर्नुहोस्"
+  "mapShowList": "सूची हेर्नुहोस्",
+  "addressChoose": "ठेगानाबाट छान्नुहोस्",
+  "addressTown": "टोलको नाम",
+  "addressChome": "चोमे",
+  "addressBlock": "ब्लक नम्बर",
+  "addressStreet": "काल्पनिक सडकको छेउमा हो?",
+  "addressSelect": "विकल्प छान्नुहोस्",
+  "addressYes": "हो",
+  "addressNo": "होइन",
+  "addressAlong": "सडकको छेउमा",
+  "addressAway": "सडकको छेउमा होइन",
+  "addressFictionalTown": "काल्पनिक टोल",
+  "addressFind": "यो क्षेत्र जाँच गर्नुहोस्",
+  "addressUnknown": "थाहा छैन",
+  "addressUnsupported": "समर्थित सङ्कलन क्षेत्र भेटिएन",
+  "addressConflict": "एउटा सङ्कलन क्षेत्र पहिचान गर्न सकिएन",
+  "addressNeedsConfirmation": "सङ्कलन क्षेत्र पुष्टि गर्न आवश्यक छ",
+  "addressDataChanged": "जानकारी परिवर्तन भयो। क्षेत्र फेरि छान्नुहोस्"
 }

@@ -252,5 +252,22 @@
   "notificationOfferTitle": "Ipaalala sa akin ang mga araw ng koleksiyon",
   "mapLoadError": "Hindi ma-load ang mapa",
   "mapRetry": "Subukan muli",
-  "mapShowList": "Tingnan ang listahan"
+  "mapShowList": "Tingnan ang listahan",
+  "addressChoose": "Pumili ayon sa address",
+  "addressTown": "Pangalan ng lugar",
+  "addressChome": "Chome",
+  "addressBlock": "Numero ng bloke",
+  "addressStreet": "Tabi ba ng kathang-isip na kalye?",
+  "addressSelect": "Pumili ng opsyon",
+  "addressYes": "Oo",
+  "addressNo": "Hindi",
+  "addressAlong": "Tabi ng kalye",
+  "addressAway": "Hindi tabi ng kalye",
+  "addressFictionalTown": "Kathang-isip na lugar",
+  "addressFind": "Suriin ang distritong ito",
+  "addressUnknown": "Hindi sigurado",
+  "addressUnsupported": "Walang nahanap na sinusuportahang distrito",
+  "addressConflict": "Hindi matukoy ang iisang distrito",
+  "addressNeedsConfirmation": "Kailangang kumpirmahin ang distrito",
+  "addressDataChanged": "Nagbago ang impormasyon. Piliin muli ang distrito"
 }

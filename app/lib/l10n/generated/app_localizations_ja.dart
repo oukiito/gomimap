@@ -417,4 +417,55 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get mapShowList => '一覧を見る';
+
+  @override
+  String get addressChoose => '住所から選ぶ';
+
+  @override
+  String get addressTown => '町名';
+
+  @override
+  String get addressChome => '丁目';
+
+  @override
+  String get addressBlock => '番地';
+
+  @override
+  String get addressStreet => '架空通り沿いですか？';
+
+  @override
+  String get addressSelect => '選択してください';
+
+  @override
+  String get addressYes => 'はい';
+
+  @override
+  String get addressNo => 'いいえ';
+
+  @override
+  String get addressAlong => '通り沿い';
+
+  @override
+  String get addressAway => '通り沿いではない';
+
+  @override
+  String get addressFictionalTown => '架空町';
+
+  @override
+  String get addressFind => 'この地区を確認する';
+
+  @override
+  String get addressUnknown => 'わからない';
+
+  @override
+  String get addressUnsupported => '対応する収集地区が見つかりません';
+
+  @override
+  String get addressConflict => '収集地区を一つに特定できません';
+
+  @override
+  String get addressNeedsConfirmation => '収集地区の確認が必要';
+
+  @override
+  String get addressDataChanged => '情報が変わりました。もう一度地区を選んでください';
 }

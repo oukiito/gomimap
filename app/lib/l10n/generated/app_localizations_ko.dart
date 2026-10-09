@@ -420,4 +420,55 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get mapShowList => '목록 보기';
+
+  @override
+  String get addressChoose => '주소로 선택';
+
+  @override
+  String get addressTown => '동네 이름';
+
+  @override
+  String get addressChome => '초메';
+
+  @override
+  String get addressBlock => '번지';
+
+  @override
+  String get addressStreet => '가상 도로변인가요?';
+
+  @override
+  String get addressSelect => '선택하세요';
+
+  @override
+  String get addressYes => '예';
+
+  @override
+  String get addressNo => '아니요';
+
+  @override
+  String get addressAlong => '도로변';
+
+  @override
+  String get addressAway => '도로변 아님';
+
+  @override
+  String get addressFictionalTown => '가상 마을';
+
+  @override
+  String get addressFind => '이 구역 확인';
+
+  @override
+  String get addressUnknown => '모르겠어요';
+
+  @override
+  String get addressUnsupported => '지원되는 수거 구역을 찾을 수 없습니다';
+
+  @override
+  String get addressConflict => '수거 구역을 하나로 특정할 수 없습니다';
+
+  @override
+  String get addressNeedsConfirmation => '수거 구역을 확인해야 합니다';
+
+  @override
+  String get addressDataChanged => '정보가 변경되었습니다. 구역을 다시 선택하세요';
 }

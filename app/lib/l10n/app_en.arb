@@ -252,5 +252,22 @@
   "notificationOfferTitle": "Remind me on collection days",
   "mapLoadError": "The map could not be loaded",
   "mapRetry": "Retry",
-  "mapShowList": "View list"
+  "mapShowList": "View list",
+  "addressChoose": "Choose by address",
+  "addressTown": "Town",
+  "addressChome": "Chome",
+  "addressBlock": "Block number",
+  "addressStreet": "Along Fictional Street?",
+  "addressSelect": "Choose an option",
+  "addressYes": "Yes",
+  "addressNo": "No",
+  "addressAlong": "Along the street",
+  "addressAway": "Not along the street",
+  "addressFictionalTown": "Fictional town",
+  "addressFind": "Review this district",
+  "addressUnknown": "Not sure",
+  "addressUnsupported": "No supported collection district was found",
+  "addressConflict": "More than one collection district matches",
+  "addressNeedsConfirmation": "Check the collection district",
+  "addressDataChanged": "The information changed. Choose the district again"
 }

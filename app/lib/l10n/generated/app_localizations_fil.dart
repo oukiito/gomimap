@@ -453,4 +453,56 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get mapShowList => 'Tingnan ang listahan';
+
+  @override
+  String get addressChoose => 'Pumili ayon sa address';
+
+  @override
+  String get addressTown => 'Pangalan ng lugar';
+
+  @override
+  String get addressChome => 'Chome';
+
+  @override
+  String get addressBlock => 'Numero ng bloke';
+
+  @override
+  String get addressStreet => 'Tabi ba ng kathang-isip na kalye?';
+
+  @override
+  String get addressSelect => 'Pumili ng opsyon';
+
+  @override
+  String get addressYes => 'Oo';
+
+  @override
+  String get addressNo => 'Hindi';
+
+  @override
+  String get addressAlong => 'Tabi ng kalye';
+
+  @override
+  String get addressAway => 'Hindi tabi ng kalye';
+
+  @override
+  String get addressFictionalTown => 'Kathang-isip na lugar';
+
+  @override
+  String get addressFind => 'Suriin ang distritong ito';
+
+  @override
+  String get addressUnknown => 'Hindi sigurado';
+
+  @override
+  String get addressUnsupported => 'Walang nahanap na sinusuportahang distrito';
+
+  @override
+  String get addressConflict => 'Hindi matukoy ang iisang distrito';
+
+  @override
+  String get addressNeedsConfirmation => 'Kailangang kumpirmahin ang distrito';
+
+  @override
+  String get addressDataChanged =>
+      'Nagbago ang impormasyon. Piliin muli ang distrito';
 }

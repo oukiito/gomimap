@@ -32,4 +32,6 @@
 
 | 2026-10-09 | GSIタイル接続・地図のpan／タブ復帰保持・失敗と一覧 | [地図接続の記録](2026-10-09-gsi-map.md) | [#54](https://github.com/oukiito/gomimap/issues/54)、G09 |
 
+| 2026-10-10 | 住所条件→候補→既存確認、取消・回答非保存とミニマル方針 | [住所選択の記録](2026-10-10-address-selection.md) | [#56](https://github.com/oukiito/gomimap/issues/56)、G05 |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
