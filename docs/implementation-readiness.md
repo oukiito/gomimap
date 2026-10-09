@@ -2,6 +2,8 @@
 
 2026-10-10。[Issue #65](https://github.com/oukiito/gomimap/issues/65)、親[#53](https://github.com/oukiito/gomimap/issues/53)。基準はmain `b216dfe`。以下は次の実装で満たす設計で、実装・配信・検証済みの宣言ではない。既存の[残る設計](remaining-design.md)と各詳細設計の追加契約とする。
 
+[全国向けの対応設計](national-collection-matching.md)（#69）で、単一areaId・朝の同日締切を製品の共通前提にできないことを確認した。D1のcalendar、D4の区域参照、D5のselectionは同書の複数binding／持ち出し時間を前提に修正する。Calendar v2とHomeCollectionProfileのcodec・合成試験が済むまで、製品loader／DeviceState／GPS照合の実装ゲートは未完了。
+
 ## 難易度と優先する理由
 
 | 残作業 | 技術的難度 | 不確実性・難しい部分 | 実装前に必要な結論 |
@@ -30,15 +32,15 @@
 | フィールド | 契約 |
 | --- | --- |
 | bundleSchemaVersion | 2。未知版を拒否 |
-| kind／channel | kindはfixture／verifiedでbundle・calendar・manifest一致。channelはdevelopment／productionでbundle・manifest一致。calendarにchannelを追加せず、productionならcalendar.kind=verifiedと出典登録簿の公開検査が必須 |
+| kind／channel | kindはfixture／verifiedでbundle・calendar・manifest一致。channelはdevelopment／productionでbundle・manifest一致。productionならcalendar.kind=verifiedと出典登録簿の公開検査が必須 |
 | municipalityId／releaseId／releaseNumber | 自治体の固定ID・不変版ID・自治体内の単調増加整数。番号は1〜2^53−1。番号の順序を公開日時から推測しない |
 | publishedAt／validPeriod | UTC公開日時、日本日付の有効期間。開始を含み終了を含まない |
-| calendar | schema1の検証済みpayload。外側の自治体・版・期間と照合 |
+| calendar | 製品はCalendar v2の別契約。stream・区域・対応規則・日程・coverageを持ち、外側の自治体・版・期間と照合。現在のschema1はfixture用に維持 |
 | sorting | SortingRules v1。calendarのitem・category・sourceのIDへ参照 |
 | geo | GeoPack v1またはnull。nullならGPSの区域解決を提供しない |
 | provenance／approval | 元資料hash・原文位置・条件の確認記録・審査PR／採用commit。文字列があるだけで人の照合を省略しない |
 
-初版のbundleはUTF-8で2MiB以下（圧縮後だけの上限にしない）。超える実資料は勝手に省略・境界簡略化せず、上限・分割方式を別の設計変更として扱う。schema1内部の版IDはreleaseIdと一致させ、geo／sortingは必ず同じreleaseIdを参照する。各内部形式も版・参照・期間・根拠を検証する。
+初版のbundleはUTF-8で2MiB以下（圧縮後だけの上限にしない）。超える実資料は勝手に省略・境界簡略化せず、上限・分割方式を別の設計変更として扱う。製品Calendar v2内部の版IDはreleaseIdと一致させ、geo／sortingは必ず同じreleaseIdを参照する。各内部形式も版・参照・期間・根拠を検証する。
 
 manifest v2はbundleの不変HTTPSパス、sha256、bytes、releaseNumber、自治体・kind／channel・採用sourceCommitを指定する。同じreleaseId／番号の異内容を拒否する。番号の比較基準は確定済みの検証済みreleaseであり、取得に失敗した高番号のmanifestだけで更新を確定しない。サーバー側は全体検証→不変bundle配置→manifest切替の順。端末では不変bundleの検証・保存は準備だけで、参照版の変更はD5のDeviceState.selectionの原子的確定のみとする。別の端末current版ポインタを先に書き換えない。更新中の読者はDeviceStateが示す一つの版だけを見る。現在と直前の検証済みbundleを保持するが、欠落・破損した新しい版へ旧版の一部を混ぜない。manifestとbundleが一時的に一致しなければ有効な旧版を保持して再試行する。
 
@@ -85,15 +87,15 @@ SortingRules v1は`version, municipalityId, releaseId, validPeriod, questions, r
 
 LocationSampleは座標・水平精度・測位の経過時間・要求IDをメモリにだけ持つ。15秒で待ちを終了し、60秒を超える古い測位・精度不明／100m超・負値／非有限値を単一候補の根拠にしない。概略許可でも得られた精度で同じ検査。取消・背景移行・新要求後の古いcallbackは要求IDで捨てる。[Android位置権限](https://developer.android.com/develop/sensors-and-location/location/permissions)を2026-10-10に確認。
 
-GeoPack v1は自治体・releaseId・EPSG:4326・Polygon／MultiPolygon・area ID・公開根拠・期間を必須とする。空・自己交差・穴の不正・非有限座標・別CRS・未知ID・版不一致を拒否。区域全体が完全に覆われているかも確認する。行政界を収集区域へ代用しない。
+GeoPack v1は自治体・releaseId・EPSG:4326・Polygon／MultiPolygon・area IDと対応stream・公開根拠・期間を必須とする。空・自己交差・穴の不正・非有限座標・別CRS・未知ID・版不一致を拒否。streamごとの公表対応範囲と欠落を確認し、全市・全方式を常に覆うとは仮定しない。行政界を収集区域へ代用しない。
 
-精度円に交差・接触する区域は候補として全て残す。境界接触、重なり、穴、隣接自治体、精度円が対応範囲外にも広がる場合は単一確定しない。候補1件でも本人の自宅確認が必要。全て外側なら未対応、精度不足／根拠不足なら住所選択へ。保存するのは地区IDと必要な条件の意味IDで、座標・数値住所を保存しない。
+精度円に交差・接触する区域はstreamごとに候補として全て残す。同一stream内の境界接触・重なり・穴・隣接自治体・対応範囲外への広がりは単一確定しない。異なるstreamの正当な重なりは曖昧さと扱わない。候補1件でも本人の自宅確認が必要。全て外側でもGPS方式で特定不可という結果であり、住所照合も未対応とは断定しない。精度不足／根拠不足を含め住所選択へ進み、製品のunsupportedと根拠付きnotApplicableを区別する。保存するのは地区IDと必要な条件の意味IDで、座標・数値住所を保存しない。
 
 円とポリゴンの演算には未監査のライブラリや独自の近似を直ちに採用しない。境界・穴・投影誤差・小区域のPoCと依存／ネイティブのライセンス確認を完了するまでGeoPack照合は着手不可。単発OSブリッジはfake応答で独立に検証可能だが、その成功をGPS地区設定成功とは扱わない。
 
 ## D5 製品の確定状態と破損復旧
 
-現在のPR #61はfixtureの複数保存をjournalで調整する部分実装。製品では**一つのDeviceState v2**を正とする。確定state（selection：自治体・地区・releaseId／番号・言語・通知希望・初回案内回答・必要な条件ID、generation：epochId＋sequence）、pending（世代付きstateのprevious／target・reason・phase・retryReason）を同じ原子的なファイルへ保存する。schema2のウィジェット投影とAndroid通知journalは派生状態として残す。初回はconfigured=false、自治体／地区／releaseはnull、通知OFF、案内は未回答。未設定を既定の自治体・地区へ変換しない。
+現在のPR #61はfixtureの複数保存をjournalで調整する部分実装。製品では**一つのDeviceState v2**を正とする。確定state（selection：自治体・HomeCollectionProfile全体・releaseId／番号・言語・通知希望・初回案内回答、generation：epochId＋sequence）、pending（世代付きstateのprevious／target・reason・phase・retryReason）を同じ原子的なファイルへ保存する。現在のschema2投影とAndroid通知journalを直接製品へ流用せず、複数binding・部分確定・日跨ぎを持つ派生状態の版を定義する。初回はconfigured=false、自治体／profile／releaseはnull、通知OFF、案内は未回答。未設定を既定の自治体・地区へ変換しない。
 
 pending.previous／targetはselectionだけでなくgenerationも持つ。通常の変更ではpreviousのsequence+1をtargetにし、同じselectionを再保存する場合も世代を区別する。単なる再照合は世代を増やさない。初回の状態をsequence=0とし、新epochは復旧の確認保存時だけ発行する。
 
@@ -107,7 +109,7 @@ pending.previous／targetはselectionだけでなくgenerationも持つ。通常
 
 確定stateをtargetへ変える書込みとpending.phase=committedは同じ原子的書込みにする。v2のstopped＋targetの組合せは不正とし、推測で進めない。#61の別ファイル方式でstoppedなのに新selectionが保存済みになるv1とは異なる契約である。準備したbundleやcurrentキャッシュの存在を確定の根拠にしない。
 
-sequenceはepoch内で単調増加し、通常更新でepochを変えない。UI・通知・投影は同じ世代・地区・releaseIdを持つ。Androidの配送直前とウィジェット生成時に確定DeviceStateへ照合し、古い世代は配送せず／確認必要へ。ネイティブ側の予約generationはOS内部管理として区別する。整合性検査を読めなければ通知0件ではなく失敗として停止・復旧対象にする。
+sequenceはepoch内で単調増加し、通常更新でepochを変えない。UI・通知・投影は同じprofile世代・releaseIdと対象binding／calendarを持つ。Androidの配送直前とウィジェット生成時に確定DeviceStateへ照合し、古い世代は配送せず／確認必要へ。ネイティブ側の予約generationはOS内部管理として区別する。整合性検査を読めなければ通知0件ではなく失敗として停止・復旧対象にする。
 
 準備記録→旧通知停止→新selection確定→投影→通知登録→pending解消を直列化。再開時は世代付きstateとphase表に従い、確定stateがpreviousなら旧状態、targetなら新状態を反映する。同じselectionでも世代を省略して比較しない。参照するbundleが欠落／破損なら取得再試行・確認必要にし、旧ファイルの内容を新しいIDに見せない。timeoutで遅いOS呼出が消えるとは扱わず、完了まで後続の保存を進めない。
 
@@ -174,6 +176,6 @@ GitHub scheduleには遅延・欠落や無効化条件があるため、登録�
 
 Android通常のウィジェット更新は現行10分windowで試す。省電力なし・端末起動中はwindow終了＋計測猶予2分を観測期限案とし、未到達は要調査。Doze／画面OFF／強制停止は同じ期限で合格にせず、制約・復帰後の再予約／再描画を観察する。手動更新して自動更新成功としない。日本0時と締切の判定は固定時計の論理試験でも別に確認する。正確な06:00配送・08:00切替の保証はしない。[Android AlarmManager公式](https://developer.android.com/develop/background-work/services/alarms)（2026-10-10確認）。通知の実到達は通知APIに応じた既存試験と別に記録する。
 
-実装開始ゲートは、各変更の型／保存・状態遷移／UI理由／失敗時の復帰／具体的な期待値が揃い、レビューで重大な未解決がないこと。**まずG2の純粋な分別判定とfixture検証から実装する。** 次にG1のbundle検証・G5の製品保存と復旧、G3の画面接続を進める。G4は幾何PoC後、G6の実ジョブは外部条件後。実機G7と権利確認は並行する。Android先行を維持し、iOS／ストア／写真AIへ範囲を広げない。
+実装開始ゲートは、各変更の型／保存・状態遷移／UI理由／失敗時の復帰／具体的な期待値が揃い、レビューで重大な未解決がないこと。**G2の純粋な分別判定核は#67で部分実装済み。** 次に全国方式のN01〜08の表現とCalendar v2／profile codecを先に固定してから、G1のbundle検証・G5の製品保存と復旧、G3の画面接続を進める。G4は幾何PoC後、G6の実ジョブは外部条件後。実機G7と権利確認は並行する。Android先行を維持し、iOS／ストア／写真AIへ範囲を広げない。
 
 未解決は、実資料12件の条件・対応区域、幾何演算の選定／監査、外部の監視通知先と契約、LLMモデル／料金と送信許可、電源断保存PoC、Pixel接続・観測。これらの未解決を含む製品／外部部分を実装可能・公開可能と扱わない。fixtureの設計合格が、実データの合格を意味することもない。

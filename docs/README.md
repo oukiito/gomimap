@@ -7,6 +7,7 @@
 | 知りたいこと | 文書 |
 | --- | --- |
 | 環境構築・起動・ローカル設定 | [開発手順](development.md) |
+| 全国で異なる住所・収集単位、方式別の対応付けと部分確定 | [全国向けの対応設計](national-collection-matching.md) |
 | 残作業の難易度、公開単位・判定・破損復旧と実装の開始ゲート | [実装前の契約](implementation-readiness.md) |
 | 残る機能の具体的な設計・着手条件・実装順 | [残る機能の設計](remaining-design.md) |
 | 朝／前夜の通知、許可・予約・取消・遅延 | [通知の設計](ux-notifications.md) |

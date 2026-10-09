@@ -4,6 +4,8 @@
 
 2026-10-10に[難易度・実装前の契約](implementation-readiness.md)で公開単位、分類優先、位置候補、製品保存／破損復旧、独立監視と具体的な合格条件を追加した。方針だけで着手せず、対象の開始ゲートを満たす。
 
+全国展開のため、[住所と回収方式の対応／N01〜08](national-collection-matching.md)を追加した。単一areaId前提の製品loader・保存・GPS照合へ進む前に、複数bindingと日跨ぎのCalendar v2／HomeCollectionProfileを固定する。
+
 ## 実装へ渡す設計
 
 | 設計 | 対象・参照ID | 引き継ぐIssueと着手条件 |
@@ -49,7 +51,7 @@
 最初のAndroid共通試験時計は[QA実装](qa-clock.md)と[実行記録](work/2026-10-09-android-clock-qa.md)に進んだ。固定時刻の境界・実画面は確認済み。文字200%・全言語・取消／再追加・OSの更新遅延・iOSは引き続き残る。
 
 1. G2の分別判定を純粋関数とfixtureで実装。条件の境界・未知・例外優先・矛盾を先に固定する。
-2. G1の自治体bundle検証とG5の製品DeviceState／破損復旧を実装。現在のfixture版を保ち、実地区へ推測移行しない。
+2. 先にN01〜08の全国方式を自作fixtureで表現し、Calendar v2／HomeCollectionProfileのcodecと日程合成を固定。その後、G1の自治体bundle検証とG5の製品DeviceState／破損復旧を実装。現在のfixture版を保ち、実地区へ推測移行しない。
 3. G3の分別・回収サービスを画面へ接続し、質問・往復・状態保持を試す。
 4. OS単発測位を独立に検証。G4の幾何PoC・ライセンス・公開可能な実区域が揃ってからGPS候補へ接続する。
 5. G6の候補審査・承認後配信と独立監視を構築。外部権限・契約・送信条件・通知先が未確認のjobは有効化しない。
