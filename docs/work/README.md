@@ -40,4 +40,6 @@
 
 | 2026-10-10 | 開発履歴・未完了・サービス観測・再開条件とAGENTS更新 | [開発の保存記録](2026-10-10-development-checkpoint.md) | [#63](https://github.com/oukiito/gomimap/issues/63)、[#53](https://github.com/oukiito/gomimap/issues/53) |
 
+| 2026-10-10 | 難易度・公開／判定／復旧／運用の追加契約と実装開始ゲート | [着手設計の記録](2026-10-10-implementation-readiness.md) | [#65](https://github.com/oukiito/gomimap/issues/65)、[#53](https://github.com/oukiito/gomimap/issues/53) |
+
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。
