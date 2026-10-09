@@ -12,7 +12,7 @@
 | 端末データ | 既存のファイル保存＋shared_preferencesを継続 | DBは初版の必須条件にしない。検索量・更新の必要が出た段階でdriftの実配布条件を検討 |
 | iOSウィジェット | SwiftUI / WidgetKit＋OSブリッジを第一案 | 共有投影からTimelineを作る。home_widgetは導入必須にせず、署名・App GroupをPoCで確認。[IW](ux-ios-widget.md) |
 | Androidウィジェット | 実装済みのKotlin App Widget / RemoteViews | OS固有の表示・更新を担当。共通投影の時間帯選択だけを行う。Glanceは未導入 |
-| 地図 | flutter_mapへ移行済み | GPL指定によりGoogle製SDKを保留。タイル配信は別契約。2026-10-06にGoogle依存とキー設定を除去。配信元は未設定 |
+| 地図 | flutter_mapへ移行済み | GPL指定によりGoogle製SDKを保留。2026-10-06にGoogle依存とキー設定を除去。2026-10-09にGSI paleのリアルタイム表示を採用。出典・範囲・キャッシュ条件はライセンス記録を参照 |
 | 通知 | flutter_local_notifications＋timezone | サーバーから全利用者へ毎朝配信せず、取得済み予定を端末で予約 |
 | 自治体取得・検証 | Pythonの小さなバッチ | HTML／CSV／PDFの扱い、差分、スキーマ検証をまとめる。取得元ごとのアダプター |
 | 配信 | Cloudflare R2 Standard＋独自ドメインを第一候補に、版付きJSONをHTTPSで静的配信 | GitHubで承認・履歴、Cloudflareで配信、端末でオフライン利用。契約・配信設定・利用量別費用は未確定 |
