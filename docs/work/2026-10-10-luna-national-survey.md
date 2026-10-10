@@ -1,6 +1,6 @@
 # GPT-6 Luna highによる日本全自治体の調査試験
 
-2026-10-10。[Issue #75](https://github.com/oukiito/gomimap/issues/75)、関連#53・#14。基準commit `aa1fbfa`、ブランチ `codex/75-national-luna-survey`。
+2026-10-10。[Issue #75](https://github.com/oukiito/gomimap/issues/75)、[ドラフトPR #76](https://github.com/oukiito/gomimap/pull/76)、関連#53・#14。基準commit `aa1fbfa`、ブランチ `codex/75-national-luna-survey`。
 
 ## 対象と実行設定
 
@@ -18,6 +18,7 @@
 
 - [全国台帳と状態の定義](../../data/research/nationwide-survey/README.md)。入口の発見、本文の部分読取、全区域網羅、MR01〜09完了を分ける。
 - [担当1](../municipal-research/luna-shard-1.md)、[担当2](../municipal-research/luna-shard-2.md)、[担当3](../municipal-research/luna-shard-3.md)に根拠・区域単位・例外・未解決を記録。
+- 初回保存commit `b5fa57a`の必須CI `app`が成功。CIは記帳・既存アプリの回帰検査で、全区域の正確性の承認ではない。
 - 台帳の検証スクリプトを追加。全国候補の欠落・重複・人口順位の書換え、モデル指定違い、本文未読での読取済み扱い、母数なしの全域完了宣言を検出する。CIにも追加。
 - Python回帰90件成功（今回9件追加）、出典登録簿14件valid／再配布未承認12件は維持。
 - 本体の住宅照合・fixture・実データ配信・デプロイ・端末状態は変更していない。アプリの動作試験ではなく資料調査と記帳の試験。
