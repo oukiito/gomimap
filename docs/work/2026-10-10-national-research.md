@@ -1,6 +1,6 @@
 # 全国候補人口集計と住宅照合の追加調査
 
-2026-10-10。[Issue #73](https://github.com/oukiito/gomimap/issues/73)、親[#53](https://github.com/oukiito/gomimap/issues/53)。基準 `fba6e43`、ブランチ `codex/73-national-municipality-research`。
+2026-10-10。[Issue #73](https://github.com/oukiito/gomimap/issues/73)、[PR #74](https://github.com/oukiito/gomimap/pull/74)、親[#53](https://github.com/oukiito/gomimap/issues/53)。基準 `fba6e43`、ブランチ `codex/73-national-municipality-research`。
 
 ## 実施内容
 
