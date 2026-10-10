@@ -2,7 +2,7 @@
 
 状態：公開リポジトリでG01〜G12をIssueとして管理し、Flutter CIとmainの保護を設定済み。G02で[豊島区の出典登録簿](sources/toshima.md)と利用条件の検査を実装。一般Web資料の再利用条件の未確認部分は[Issue #14](https://github.com/oukiito/gomimap/issues/14)で追跡する。G03のローカル画面・ルールPoCと地図ライブラリ移行は実施済み（[作業記録](work/README.md)）、実機PoCは未完了。G番号は元のローカル作業IDであり、以下に実際のIssueへのリンクを記録する。期限の合意はない。
 
-2026-10-10の利用者指定により、[人口／外国籍住民数による導入順位と詳細調査条件](municipality-rollout.md)を追加した。住宅照合の実装には自治体別MR01〜09の調査済み・設計確認済みが必要。総人口優先が確定し、[全国一覧と上位自治体の調査](municipal-research/README.md)を追加した。豊島区を含めMR完了の自治体はまだない。
+2026-10-10の利用者指定により、[人口／外国籍住民数による導入順位と詳細調査条件](municipality-rollout.md)を追加した。住宅照合の実装には自治体別MR01〜09の調査済み・設計確認済みが必要。日本全自治体を対象にGPT-6 Luna／highの[調査試験](../data/research/nationwide-survey/README.md)を#75で開始した。総人口優先が確定し、[全国一覧と上位自治体の調査](municipal-research/README.md)を追加した。豊島区を含めMR完了の自治体はまだない。
 
 ## 作業順序
 
