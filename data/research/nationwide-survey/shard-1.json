@@ -4390,39 +4390,39 @@
         "url": "https://www.city.inzai.lg.jp/0000001685.html",
         "title": "資源物とごみの分け方・出し方",
         "access": "read",
-        "locator": "町内会等の地区別曜日表・集積所利用注意",
-        "notes": "集積所は当該地区住民のみ、地区・住所で曜日が異なると案内。"
+        "locator": "資源・ごみ曜日表、集積所管理、町内会集団回収",
+        "notes": "更新2026年頃。地区によって住所と曜日が異なる場合あり。"
       },
       {
         "url": "https://www.city.inzai.lg.jp/0000006906.html",
-        "title": "ごみ分別アプリ",
+        "title": "ごみの出し方アプリ",
         "access": "read",
-        "locator": "地域設定で地区別カレンダーを見る操作",
-        "notes": "地区名または町内会名から設定。"
+        "locator": "都道府県→市町村→地区・町内会の初期設定",
+        "notes": "全国共通アプリで地区を選択。"
       }
     ],
     "assignment_units": [
-      "町内会・地区名から品目別カレンダーへ",
-      "住所と異なる曜日を持つ地区例外",
-      "集積所管理と地域住民のみの利用",
-      "有価物の町内会独自集団回収"
+      "町内会等の地区名から品目別曜日表へ",
+      "同じ町字でも自治会で曜日が異なる場合",
+      "地域住民が清掃管理する集積所",
+      "地区の有価物集団回収と市の資源収集"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "町内会名・地区別収集日対応",
-      "count_basis": "公式表に複数地区・町内会を列挙するが、全団体・区域数を総計していない（https://www.city.inzai.lg.jp/0000001685.html）。"
+      "unit": "町内会名・地区別の品目収集日と集積所利用地域",
+      "count_basis": "公式ページは町内会等別の曜日表を掲載するが、全団体・住所行を地域数へ換算していない（https://www.city.inzai.lg.jp/0000001685.html）。"
     },
     "findings": [
-      "市の説明は収集が町内会等の地区単位で、地区によっては住所と異なる曜日があると注意（https://www.city.inzai.lg.jp/0000001685.html）。",
-      "ごみ集積所は地域住民が清掃管理し、その地域に住まない人の利用を控えるよう要請。近い場所への住所マッチだけでは所属を証明しない。",
-      "アプリ設定は千葉県→印西市→地区名または町内会名を選ぶ。町内会資源回収は地区によって市の資源日程とは別になる。"
+      "収集は町内会等の地区単位で、地区により住所と異なる曜日があり得ると注意（https://www.city.inzai.lg.jp/0000001685.html）。",
+      "ごみ集積所は地域の利用者が管理し、当該地区外の利用を控えるよう案内。近い位置だけでは利用資格にならない。",
+      "アプリは千葉県→印西市→地区または町内会を設定する。地域団体による有価物回収は市の曜日表と別扱い。"
     ],
     "unresolved": [
-      "最新年度の町内会名・地区表・品目曜日を全行未照合",
-      "住所と町内会・集積所利用資格の相違、転居後確認を未整理",
-      "有価物集団回収と市収集の責任・対象品目・曜日を未確認",
+      "R8町内会・地区別曜日表の全行と住所外例外を未照合",
+      "自治会所属・集積所の実利用資格・集合住宅管理者条件を未確認",
+      "有価物回収団体の日・場所と市収集の重複・空白を未確認",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4441,39 +4441,39 @@
         "url": "https://www.city.kazo.lg.jp/kurashi_bosai/gomi_recycle/1/31966.html",
         "title": "加須地域 令和8年度ごみカレンダー",
         "access": "read",
-        "locator": "自治会別カレンダー・特例の★不動岡二丁目",
-        "notes": "更新2026-03-10。加須地域R8。"
+        "locator": "地区・自治会別PDF、同じ旧大字の例外指示",
+        "notes": "更新2026-03-10。"
       },
       {
         "url": "https://www.city.kazo.lg.jp/lifescene/hikkoshi_sumai/1/1/index.html",
         "title": "ごみカレンダー",
         "access": "search_only",
-        "locator": "加須以外の地域別カレンダーへの導線",
-        "notes": "合併地域の別ページ（騎西・北川辺・大利根等）の全本文未確認。"
+        "locator": "騎西・北川辺・大利根等の地域別案内",
+        "notes": "加須地域以外の現行表は未読。"
       }
     ],
     "assignment_units": [
-      "旧加須地域の町内会・地区別カレンダー",
-      "町名から自治会・地域コードへの住所表",
-      "旧大字内で町内会所属により別PDFとなる例",
-      "合併前地域ごとの別カレンダー"
+      "合併前地域（加須・騎西・北川辺・大利根）別のR8カレンダー",
+      "町内会・自治会別の町丁目／地区コードPDF",
+      "旧大字名と現町丁目内の特定自治会例外",
+      "通常ごみ・粗大・資源回収の別方法"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "自治会・町内会から収集日PDFへの割当",
-      "count_basis": "加須地域の住所・自治会別PDF例を確認したが、旧4地域の全対象区分数を集計していない（https://www.city.kazo.lg.jp/kurashi_bosai/gomi_recycle/1/31966.html）。"
+      "unit": "自治会・町内会別の収集カレンダー選択",
+      "count_basis": "加須地域のPDF一覧と特例を確認。市内4地域全体のカレンダー区分数・住所行は未集計（https://www.city.kazo.lg.jp/kurashi_bosai/gomi_recycle/1/31966.html）。"
     },
     "findings": [
-      "R8加須地区は町丁目・自治会単位の個別PDFを提供。旧大字不動岡でも不動岡二丁目町内会員は「★」別カレンダーを見るよう指示（https://www.city.kazo.lg.jp/kurashi_bosai/gomi_recycle/1/31966.html）。",
-      "地区別PDFは旧加須地域で確認。市は加須、騎西、北川辺、大利根を別エリアのカレンダー入口に分ける。",
-      "町会所属に基づく予定と住所だけの割当を混同できない。粗大・拠点回収と平時収集を別確認する。"
+      "加須R8ページは個々の町丁目・自治会PDFを掲載。旧大字不動岡でも不動岡二丁目町内会に属す場合は★版を見るよう注記（https://www.city.kazo.lg.jp/kurashi_bosai/gomi_recycle/1/31966.html）。",
+      "別の旧行政地域を含む市内全域では、各地区向けページと日程の適用地域を対応づける必要がある。",
+      "地名だけでなく自治会所属が優先される場合がある。"
     ],
     "unresolved": [
-      "旧4地域のR8資料すべて、自治会・団地・番地全行を未確認",
-      "特例カレンダー対象・同町内区分、地域と自治会の定義を未整理",
-      "年末年始・祝日・粗大と資源の方式別例外を未照合",
+      "4地域それぞれの自治会・住所・町丁目対応表を全件未確認",
+      "特例PDFの適用住所・同町内分割・集積所管理者を未確認",
+      "年度例外・祝日・年末年始・品目別資源回収を未照合",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4492,46 +4492,45 @@
         "url": "https://www.city.hofu.yamaguchi.jp/soshiki/16/calendar-.html",
         "title": "令和8年度家庭ごみ分別収集カレンダー",
         "access": "read",
-        "locator": "地域・自治会別、全収集日版／自主搬入等対応版",
-        "notes": "更新2026-04-01。地域差・祝休日・年末年始を掲載。"
+        "locator": "自治会別全収集日掲載版／自主搬入等対応版",
+        "notes": "更新2026-04-01。"
       },
       {
         "url": "https://www.city.hofu.yamaguchi.jp/soshiki/16/gomi-wakekatadashikata.html",
         "title": "ごみの分け方・出し方",
         "access": "read",
-        "locator": "自治会によって月1回資源・危険・燃えないごみの日／場所が違う",
+        "locator": "自治会による月1品目の場所・日、祝日・年末年始",
         "notes": "更新2026-08-01。"
       },
       {
         "url": "https://www.city.hofu.yamaguchi.jp/soshiki/16/application.html",
-        "title": "ごみ分別アプリ「さんあ～る」",
+        "title": "ごみ分別アプリ「さんあ〜る」",
         "access": "search_only",
-        "locator": "地区別カレンダーと収集通知機能",
-        "notes": "公式検索結果。"
+        "locator": "地区別カレンダー・通知機能",
+        "notes": "検索結果確認。"
       }
     ],
     "assignment_units": [
-      "地域・自治会ごとの全収集日掲載版カレンダー",
-      "資源等の自主搬入等対応版（表示範囲が異なる）",
-      "自治会単位の月1回資源・危険・不燃日と場所",
-      "野島など自治会へ直接確認する地区"
+      "地域・自治会別カレンダー2版",
+      "通常収集と自主搬入等対応版の範囲",
+      "自治会ごとの月1回資源・不燃・危険ごみ",
+      "排出日・場所を自治会に確認する地区"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "地域・自治会別全日程／自主搬入版区分",
-      "count_basis": "R8ページは多地域・複数自治会と版差を示すが、自治会区分・利用者行の総数は未集計（https://www.city.hofu.yamaguchi.jp/soshiki/16/calendar-.html）。"
+      "unit": "自治会別の全収集日掲載版／自主搬入等対応版",
+      "count_basis": "R8ページは地域・自治会別に複数版を示すが、自治会別地域の全件・全収集区分を集計していない（https://www.city.hofu.yamaguchi.jp/soshiki/16/calendar-.html）。"
     },
     "findings": [
-      "令和8年度は地域別に通常の全収集日掲載版と「自主搬入等対応版」を用意し、同一校区内でも自治会で表の版が分かれる（https://www.city.hofu.yamaguchi.jp/soshiki/16/calendar-.html）。",
-      "新天地・野島等は排出日を自治会に確認するよう記載。住所の地域名だけで全部決まらない。",
-      "自治会ごとに月1回資源・危険・燃えないごみの日や場所が異なり、祝日・年末年始も収集しない日と例外祝日を明示（https://www.city.hofu.yamaguchi.jp/soshiki/16/gomi-wakekatadashikata.html）。"
+      "R8版は同じ地域でも自治会で全日程掲載版と自主搬入等対応版を分け、新天地など自治会へ照会する地域を示す（https://www.city.hofu.yamaguchi.jp/soshiki/16/calendar-.html）。",
+      "月1回の資源・危険・燃やせないごみの日や場所は自治会ルールが異なる。祝休日・年末年始に収集しない日と例外を別に確認する（https://www.city.hofu.yamaguchi.jp/soshiki/16/gomi-wakekatadashidashikata.html）。"
     ],
     "unresolved": [
-      "自治会別区域と表の全版、建物・自主管理条件を未照合",
-      "自主搬入等対応版の意味・住所適用範囲と通常版との差を未確認",
-      "複数主体、集積所の所属・更新通知・個別祝日例外を未整理",
+      "自治会別の住所・建物対応、版選択ルール、対象除外を未照合",
+      "自主搬入等対応版が持つ代替方法・資源品目対象を未確認",
+      "集積所・地域資源団体・建物管理者の利用資格を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4550,39 +4549,39 @@
         "url": "https://www.city.nagahama.lg.jp/0000016566.html",
         "title": "令和8（2026）年度ごみ収集カレンダー",
         "access": "read",
-        "locator": "連合自治会別・番号カレンダー群",
-        "notes": "R8地域ごとにカレンダーPDF。"
+        "locator": "長浜地域の連合自治会別番号カレンダー・地域区分",
+        "notes": "各町内会グループのR8PDFを掲載。"
       },
       {
         "url": "https://www.city.nagahama.lg.jp/faq/faq_detail.php?co=ser&frmId=1084",
         "title": "ごみはいつ出せばいいですか",
         "access": "search_only",
-        "locator": "朝8:30排出の案内",
-        "notes": "FAQ更新2018。現行は個別R8カレンダー優先。"
+        "locator": "朝8:30の家庭排出案内",
+        "notes": "FAQは2018年更新。現行の地区別PDFを優先。"
       }
     ],
     "assignment_units": [
-      "長浜地域の第1〜9連合・六荘連合等、自治会番号別カレンダー",
-      "合併支所地域の別PDF（中之島・浅井・びわ・虎姫・湖北・高月・木之本・余呉・西浅井）",
-      "町内会名・団地・地域から番号へ",
-      "古紙古布等品目別日程"
+      "長浜地域連合自治会内の番号別カレンダー",
+      "旧支所地域・町内会グループ別カレンダー",
+      "可燃・不燃・資源・古紙古布の日の違い",
+      "年末年始の別表"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "連合自治会・町内会の番号付きカレンダー行",
-      "count_basis": "長浜地域等の自治会番号をPDFで掲載するが、市内全カレンダー・対応区域数を集計していない（https://www.city.nagahama.lg.jp/0000016566.html）。"
+      "unit": "町内会連合・番号別カレンダー対象",
+      "count_basis": "長浜地域の複数連合・番号群と別地域カレンダーを確認したが、市内全対象地区・町内会数は未集計（https://www.city.nagahama.lg.jp/0000016566.html）。"
     },
     "findings": [
-      "R8ページは長浜地域の連合自治会内を番号付き（例：第6連合19・20、第7連合21〜26）で分け、地域ごとのPDFに案内（https://www.city.nagahama.lg.jp/0000016566.html）。",
-      "同じページから市内支所地域の複数カレンダーへ分岐するため、都市中心部の番号や周期を郊外・旧町村へ一般化できない。",
-      "年末年始日程・古紙古布などの回収日はR8版を参照し、FAQの朝8:30を全地域共通として採用しない。"
+      "R8版は長浜地域の連合自治会内を複数番号へ細分し、番号別に町名・組合せを掲載。市内の合併前地域の別カレンダーもある（https://www.city.nagahama.lg.jp/0000016566.html）。",
+      "同じ連合自治会でも番号割当が分かれるため、町名や自治会単位だけで日程確定しない。",
+      "広報・旧FAQと現年度カレンダーの適用期間を混ぜない。"
     ],
     "unresolved": [
-      "地域・自治会別カレンダー全件と地区コード対応、旧区域の版を未確認",
-      "町内会・集合住宅・実ステーションの利用資格を未照合",
-      "年度周期・年末年始・地域資源回収の方式と主体を未整理",
+      "全地域・全連合の住所や町内会対応表・番号全行を未照合",
+      "実排出場所、ステーション利用資格、集合住宅の例外を未確認",
+      "年末年始・品目別・古紙古布の集団回収と市収集の分離を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4601,39 +4600,39 @@
         "url": "https://www.city.marugame.lg.jp/site/gomi-calendar/",
         "title": "ごみ収集カレンダー",
         "access": "read",
-        "locator": "旧丸亀地区・綾歌／飯山・島しょ地域の別カレンダー",
-        "notes": "R8年度。"
+        "locator": "旧丸亀地区、綾歌町・飯山町、島しょ地域のページ分離",
+        "notes": "令和8年度。"
       },
       {
         "url": "https://www.city.marugame.lg.jp/garbage-item/search/garbage_day.php",
         "title": "ごみの持ち出し日検索",
         "access": "read",
-        "locator": "地区を選ぶ日検索ページ",
-        "notes": "町丁詳細はカレンダーとの対応確認が必要。"
+        "locator": "3つの地域群ごみカレンダー検索",
+        "notes": "詳細地域単位はリンク先カレンダーで確認する。"
       }
     ],
     "assignment_units": [
-      "旧丸亀市、綾歌町・飯山町、本島・広島・手島の別区域カレンダー",
-      "島ごとの交通・回収条件",
-      "地区別の日程・品目",
-      "粗大ごみ予約と通常カレンダー"
+      "旧丸亀地区",
+      "綾歌町・飯山町",
+      "本島町・広島町・手島町の島しょ別カレンダー",
+      "島便・気象・粗大ごみ等の特例"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "旧地域・島しょ地区別の収集カレンダー",
-      "count_basis": "公式ページは3つの大区分カレンダーを案内するが、各区分内の地区・集積所対応行は未集計（https://www.city.marugame.lg.jp/site/gomi-calendar/）。"
+      "unit": "旧地域・島しょ別カレンダー",
+      "count_basis": "R8ページは大区分3群の入口を示すが、各群内の自治会・地区・ステーション区分数を網羅集計していない（https://www.city.marugame.lg.jp/site/gomi-calendar/）。"
     },
     "findings": [
-      "R8版入口は旧丸亀地区、綾歌町・飯山町、本島町・広島町・手島町を別カレンダー群にする（https://www.city.marugame.lg.jp/site/gomi-calendar/）。",
-      "島しょ地区は陸地のコースに単純統合できない。市は地区を選ぶ検索ページも提供する。",
-      "各地区の町丁・曜日・船便・荒天例外を全PDFで確認していない。"
+      "R8カレンダーを旧丸亀地区、綾歌町・飯山町、本島・広島・手島の3入口群へ分ける（https://www.city.marugame.lg.jp/site/gomi-calendar/）。",
+      "検索ページも区分ごとにカレンダーへ案内。島しょは船便・天候等の臨時条件を別確認する必要。",
+      "自治会・集積所の具体的所属と粗大ごみ予約は本日の範囲では未確認。"
     ],
     "unresolved": [
-      "R8地域カレンダーの町名・島内自治会・ステーション全行を未照合",
-      "船便・気象・行事時の収集変更連絡方法を未確認",
-      "品目別・粗大予約・資源方式と実排出場所を未整理",
+      "3群内の町名・自治会・区域別全行・適用日を未照合",
+      "本島・広島・手島の収集主体・船便や荒天時日程を未確認",
+      "品目別周期・粗大予約・持込回収を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4652,53 +4651,53 @@
         "url": "https://www.city.kitami.lg.jp/administration/life/detail.php?content=7726",
         "title": "北見自治区ごみカレンダー",
         "access": "read",
-        "locator": "北見自治区カレンダー・窓口配布",
-        "notes": "北見地域専用。"
-      },
-      {
-        "url": "https://www.city.kitami.lg.jp/administration/life/detail.php?content=10034",
-        "title": "端野自治区ごみカレンダー",
-        "access": "read",
-        "locator": "端野自治区の別カレンダー",
-        "notes": "自治区ごとに別PDF。"
+        "locator": "北見地域カレンダーとアプリ導線",
+        "notes": "北見自治区。"
       },
       {
         "url": "https://www.city.kitami.lg.jp/administration/life/detail.php?content=6773",
         "title": "常呂自治区ごみカレンダー",
         "access": "read",
-        "locator": "常呂自治区の別カレンダー",
-        "notes": "自治区ごとに別PDF。"
+        "locator": "常呂地域カレンダー",
+        "notes": "自治区別。"
+      },
+      {
+        "url": "https://www.city.kitami.lg.jp/administration/life/detail.php?content=10034",
+        "title": "端野自治区ごみカレンダー",
+        "access": "read",
+        "locator": "端野地域カレンダー",
+        "notes": "自治区別。"
       },
       {
         "url": "https://www.city.kitami.lg.jp/administration/life/detail.php?content=6001",
         "title": "留辺蘂自治区ごみカレンダー",
         "access": "search_only",
-        "locator": "町内会・ブロック別カレンダーの検索結果",
-        "notes": "Aブロック1〜3、Bブロック1〜2に分けるが本文未読。"
+        "locator": "A/Bブロックと町内名",
+        "notes": "検索結果で地域内ブロック区分を確認、詳細本文未精読。"
       }
     ],
     "assignment_units": [
       "北見・端野・常呂・留辺蘂の自治区別カレンダー",
-      "留辺蘂のブロック・町内会群からカレンダーへ",
-      "ステーション地域・収集時間",
-      "拠点回収・粗大等の別経路"
+      "留辺蘂A/Bブロック内自治会単位",
+      "ごみと資源の品目別ステーション",
+      "自治区別大型ごみ・資源拠点運用"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "自治区別カレンダーと自治区内ブロック割当",
-      "count_basis": "北見・端野・常呂の3公式ページを確認し、留辺蘂は検索結果のみ。自治区内の全町内会・ブロック区分総数を同一単位で集計していない（https://www.city.kitami.lg.jp/administration/life/detail.php?content=7726）。"
+      "unit": "自治自治区カレンダーと自治区内ブロック地区",
+      "count_basis": "北見・端野・常呂・留辺蘂自治区の入口を確認したが、自治区内の町内会割当数・地区番号を計上していない（https://www.city.kitami.lg.jp/administration/life/detail.php?content=7726）。"
     },
     "findings": [
-      "北見市は合併前の北見・端野・常呂・留辺蘂自治区ごとにクリーンカレンダーを分ける（https://www.city.kitami.lg.jp/administration/life/detail.php?content=7726）。",
-      "留辺蘂は地区の地域別にA/Bブロックを分ける検索結果があり、地区内の町名で選ぶ必要がある。",
-      "資源ごみ・粗大・収集日について自治区で取扱い・窓口が異なる可能性があり、市全体の1カレンダーに統合しない。"
+      "北見市は合併自治区ごと（北見・端野・常呂・留辺蘂）にカレンダーを分ける。各自治区の窓口・アプリが確認先（https://www.city.kitami.lg.jp/administration/life/detail.php?content=7726）。",
+      "留辺蘂ではA/Bブロック内にさらに町内会地域を列挙している検索結果があり、自治区名だけで予定を決められない（https://www.city.kitami.lg.jp/administration/life/detail.php?content=6001）。",
+      "資源物や粗大・拠点回収の方式は自治区で異なる可能性があるため区分別確認を要する。"
     ],
     "unresolved": [
-      "各自治区R8カレンダー本文・町内会・住所対応を未照合",
-      "自治区と旧町字、収集事業者・住所境界の関係を未確認",
-      "品目別収集時刻・祝日・災害時・年末年始を未整理",
+      "4自治区内カレンダー・町内会・ステーションの全対応を未調査",
+      "町名から自治会やごみステーションを確認する方法と区域精度を未確認",
+      "資源・大型ごみ・地域拠点・祝日・年末年始の現行差を未照合",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4717,39 +4716,39 @@
         "url": "https://www.city.oshu.iwate.jp/faq/1/7/7730.html",
         "title": "ごみ・リサイクルの出し方、収集日程",
         "access": "read",
-        "locator": "R8カレンダー（5地域）・祝日／連休等の別日程",
+        "locator": "R8の地域別カレンダー5種・臨時期間別表",
         "notes": "更新2026-03-10。"
       },
       {
-        "url": "https://www.city.oshu.iwate.jp/material/files/group/52/R7Esashi.pdf",
-        "title": "江刺 R7カレンダー",
-        "access": "search_only",
-        "locator": "旧年度資料の日程例",
-        "notes": "2025年度版は現行日程として採用しない。"
+        "url": "https://www.city.oshu.iwate.jp/kurashi_tetsuzuki/gomi_recycle/1/6881.html",
+        "title": "ごみ・リサイクルの品目毎分別一覧",
+        "access": "read",
+        "locator": "市の一般ルール・収集主体",
+        "notes": "更新2025-03-31。"
       }
     ],
     "assignment_units": [
-      "水沢・江刺・前沢・胆沢・衣川の別年度カレンダー",
-      "水沢の連休・盆・年末年始臨時表",
-      "地域ごとの収集場所・指定袋",
-      "平日／日曜リサイクルなど品目別日程"
+      "水沢・江刺・前沢・胆沢・衣川地域別カレンダー",
+      "水沢地域のGW／盆／年末年始別日程",
+      "燃える・燃えない・平日／日曜リサイクルの日程",
+      "自治区ごとの集積場所と時間"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": 5,
       "examined_subareas": 0,
-      "unit": "公式R8カレンダー地域版",
-      "count_basis": "市はR8年度を旧地域5版（水沢・江刺・前沢・胆沢・衣川）で掲載。これは地域カレンダー区分数で、町内・住所対応を全件確認した数ではない（https://www.city.oshu.iwate.jp/faq/1/7/7730.html）。"
+      "unit": "旧市町地域ごとの収集カレンダー",
+      "count_basis": "公式R8一覧に水沢・江刺・前沢・胆沢・衣川の5版、加えて水沢特別日程が示される。住所対応行数ではない（https://www.city.oshu.iwate.jp/faq/1/7/7730.html）。"
     },
     "findings": [
-      "R8カレンダーを水沢・江刺・前沢・胆沢・衣川の5版に分け、水沢はGW・盆・年末年始の別日程を用意（https://www.city.oshu.iwate.jp/faq/1/7/7730.html）。",
-      "燃える・燃えない・リサイクルの出す時間が地域ごとに決まるとの公式案内。町名から実際のステーションまでの判定は未確認。",
-      "旧年度の江刺カレンダーでは祝日と品目による例外が見えるが、R8版に転用していない。"
+      "奥州市R8版は5地域ごとにカレンダーを分け、水沢にGW・盆・年末年始の別日程を設ける（https://www.city.oshu.iwate.jp/faq/1/7/7730.html）。",
+      "家庭ごみを地域ごとの日程・時間で出す案内。自治会等の排出場所と別に、広域処理主体・市許可業者・自己搬入を区別する。",
+      "旧R7個別カレンダー内容は現行の曜日として採用していない。"
     ],
     "unresolved": [
-      "5地域内の町内会・ごみステーション対応、地区境界を未確認",
-      "R8各PDFの品目別日程、祝休日・一時変更を未照合",
-      "行政実施と地域回収、集積所利用者・建物管理条件を未整理",
+      "5地域の町内・自治会から個別日程・ステーションへの対応全行を未確認",
+      "地区ごとの排出時間、祝日・複数回の臨時日程を未照合",
+      "拠点回収、平日/日曜リサイクル、許可業者の対象境界を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4768,46 +4767,39 @@
         "url": "https://www.city.tondabayashi.lg.jp/soshiki/17/1995.html",
         "title": "ごみの分け方・出し方",
         "access": "read",
-        "locator": "ステーション制・品目周期・集団回収への案内",
+        "locator": "地区団体確認・ステーション制・品目頻度・集団回収",
         "notes": "更新2026-06-17。"
-      },
-      {
-        "url": "https://www.city.tondabayashi.lg.jp/soshiki/17/1995.html",
-        "title": "ごみ収集日程表",
-        "access": "read",
-        "locator": "PDFリンクへの入口",
-        "notes": "日程表PDF本文は未精読。"
       },
       {
         "url": "https://www.city.tondabayashi.lg.jp/soshiki/17/31148.html",
         "title": "ふれあい収集",
         "access": "search_only",
-        "locator": "居住地区別の要支援者戸別支援日程の検索結果",
-        "notes": "対象確認と利用者条件の本文未精読。"
+        "locator": "居住地区別の対象者支援日程",
+        "notes": "検索結果のみ。"
       }
     ],
     "assignment_units": [
-      "通常ごみステーション制と地域団体が確認する曜日・資源",
-      "可燃ごみの居住地区別曜日",
-      "不燃・資源・粗大の予約制・月内日",
-      "対象者のふれあい収集"
+      "近隣共同ステーション制",
+      "地域団体が確認する品目別収集日",
+      "自治会・子供会による古紙・古布集団回収",
+      "予約が必要な粗大・臨時収集"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "地域団体別の排出場所と品目別回収日",
-      "count_basis": "公式案内は収集日程PDFと最寄り団体への確認を示すが、地域別対応表の全行を読んでいない（https://www.city.tondabayashi.lg.jp/soshiki/17/1995.html）。"
+      "unit": "地域団体と共同ステーションによる品目別予定",
+      "count_basis": "公式一般ルールは分別・周期・最寄り団体確認を説明するが、地区別収集日程PDF全行は未取得（https://www.city.tondabayashi.lg.jp/soshiki/17/1995.html）。"
     },
     "findings": [
-      "市は各家庭の戸別排出ではなく近隣共同のごみステーション制を推奨し、集積場所・収集日は地域団体へ確認するよう案内（https://www.city.tondabayashi.lg.jp/soshiki/17/1995.html）。",
-      "可燃は週2回、資源の一部・粗大は月1回、粗大は申込制。紙・布等は地域団体の集団回収を優先する別方式。",
-      "ごみステーション情報や地区別回収表に加え、ふれあい収集等の支援制度があるが、通常収集予定に混ぜない。"
+      "市は戸別出しではなく近隣共同のごみステーション制を案内する（https://www.city.tondabayashi.lg.jp/soshiki/17/1995.html）。",
+      "可燃は週2回、資源の缶びん・ペット・プラ・紙容器等は各月2回、粗大は月1回。集団回収の古紙・古布は地域団体が日・資源種類を決める別方式。",
+      "LINE通知は前日19時と当日6:30に設定できるが、自治体予定データの地区対応を示す根拠ではない。"
     ],
     "unresolved": [
-      "日程表PDFの地区名・町内会・住所条件を未確認",
-      "収集曜日、時間、集団回収の利用資格と場所を未照合",
-      "粗大予約・ふれあい収集の対象・時刻・住所確認を未整理",
+      "公式日程PDF全行の住所・町会・曜日対応を未読",
+      "ステーションの利用資格、自治会・建物例外を未確認",
+      "集団回収、粗大、ふれあい支援の方式別対象を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4826,46 +4818,46 @@
         "url": "https://www.city.onojo.fukuoka.jp/kiji0036348/index.html",
         "title": "ごみ出し地区一覧",
         "access": "read",
-        "locator": "A〜Kの地区コードと町丁目・同地区別カレンダー",
-        "notes": "R8 2026-04〜2027-03の地区別PDFリンク。"
+        "locator": "A〜Kの地区別R8カレンダーと町名・丁目行",
+        "notes": "地区別PDFは2026-04〜2027-03。"
       },
       {
         "url": "https://www.city.onojo.fukuoka.jp/kiji0038435/index.html",
         "title": "ごみの正しい出し方（令和8年度版）",
         "access": "read",
-        "locator": "年度版配布・収集日休み・年単位カレンダー",
+        "locator": "配布版・収集休み・分別案内",
         "notes": "更新2026-04-01。"
       },
       {
         "url": "https://www.city.onojo.fukuoka.jp/kiji0036313/index.html",
         "title": "町丁名別ごみ出し日一覧（あ行）",
         "access": "search_only",
-        "locator": "町丁とごみ収集業者コードの例",
-        "notes": "地区と収集業者の組合せを含むが全五十音表は未読。"
+        "locator": "町丁→地区と収集業者の検索結果",
+        "notes": "一部町名例のみ確認。"
       }
     ],
     "assignment_units": [
-      "町丁目・大字から地区A〜Kへ割当",
-      "同じ丁目内の一部区域と集積所別カレンダー",
-      "地区コード別の家庭収集日・収集業者",
-      "特別回収・事業系ごみの分離"
+      "町丁・大字からA〜Kの収集カレンダーへ",
+      "自治会・地区名と収集業者の地区割",
+      "大字の一部だけ別地区となる例外",
+      "家庭収集・事業ごみ・拠点回収の分離"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": 11,
       "examined_subareas": 0,
-      "unit": "公式のA〜K地区コード",
-      "count_basis": "地区一覧はAからKまでの11地区カレンダーを列挙。これはカレンダー番号数で住所対応行の確認数ではない（https://www.city.onojo.fukuoka.jp/kiji0036348/index.html）。"
+      "unit": "公式R8カレンダー地区ID",
+      "count_basis": "公式一覧はA〜Kの11カレンダー区分を明示。これは地区IDの数で町丁／番地対応を検証した数ではない（https://www.city.onojo.fukuoka.jp/kiji0036348/index.html）。"
     },
     "findings": [
-      "R8の地区別カレンダーはA〜Kの11区分、町丁・丁目群が地区へ対応する一覧を公開（https://www.city.onojo.fukuoka.jp/kiji0036348/index.html）。",
-      "大字上大利の一部はG地区と明示。町名一致でなく地区コード・範囲を使う必要がある。",
-      "同一市内に複数収集業者が存在する町丁目一覧例があるため、曜日や問い合わせ先の確認も必要（https://www.city.onojo.fukuoka.jp/kiji0036313/index.html）。"
+      "大野城市のR8カレンダーはA〜Kの11区分に町丁目を対応させ、PDFを年度別に提供（https://www.city.onojo.fukuoka.jp/kiji0036348/index.html）。",
+      "大字上大利の一部（上大利区）など、地名の「一部」と自治会区分が条件になる区域がある。",
+      "収集業者を町丁名別に確認する資料もあり、曜日と実施主体は一つの地区IDだけでは不明（https://www.city.onojo.fukuoka.jp/kiji0036313/index.html）。"
     ],
     "unresolved": [
-      "町丁目・大字・番地分岐全行、一覧が範囲を網羅する条件を未確認",
-      "収集業者区域と地区コード、建物・ステーション所属の関係を未照合",
-      "年度日程・品目別周期・臨時回収を全地区で未確認",
+      "A〜K一覧の残り全町丁・一部区域・番地条件を未確認",
+      "町丁別収集業者とカレンダー地区IDの完全対応を未照合",
+      "R8の品目別・祝日・年末年始・建物例外を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -4881,42 +4873,49 @@
     "status": "partial",
     "sources": [
       {
-        "url": "https://www.city.kounosu.saitama.jp/page/1174.html",
-        "title": "ごみ分別収集日程表・分別マニュアル",
+        "url": "https://www.city.fujimi.saitama.jp/kurashi_tetsuzuki/gomi_recycle/gomi/dashikata/gominobunbtunituite.html",
+        "title": "ごみの分別・収集について",
         "access": "read",
-        "locator": "R8地域・路線別コース、誤植の訂正",
-        "notes": "更新2026-03-13。町内別日程表。"
+        "locator": "当日8:30・地区ごとの収集時刻",
+        "notes": "更新2026-09-03。回収時刻は交通・天候で変わり、回収後の再収集なし。"
       },
       {
-        "url": "https://www.city.kounosu.saitama.jp/page/1219.html",
-        "title": "ごみ・リサイクルのよくある質問",
+        "url": "https://www.city.fujimi.saitama.jp/kurashi_tetsuzuki/gomi_recycle/gomi/syusekijo/gomisyusekijo.html",
+        "title": "ごみ集積所について（管理、新規設置、移設等）",
+        "access": "read",
+        "locator": "町会長同意・届出・既設所廃止時同意",
+        "notes": "開始希望10日前までに届出。町会長同意と利用世帯代表者が必要。"
+      },
+      {
+        "url": "https://www.city.fujimi.saitama.jp/kurashi_tetsuzuki/gomi_recycle/gomi/dashikata/gominobunbtunituite.files/R7_pamphlet.pdf",
+        "title": "家庭ごみと資源の出し方（令和7年度版）",
         "access": "search_only",
-        "locator": "集積所・自治会利用者への周知",
-        "notes": "公式検索結果のみ。"
+        "locator": "住所からコースを調べる案内",
+        "notes": "旧年度例。R8曜日へ採用しない。"
       }
     ],
     "assignment_units": [
-      "鴻巣・吹上・川里の地域別収集コース",
-      "高崎線の東西・南北によるコース境界",
-      "町内会・地域別の月間カレンダー",
-      "品目別排出期限（一般8:30／資源8:00）"
+      "居住地域の収集曜日を確認するアプリ／パンフレット",
+      "地域ごとに異なる収集日の共同ステーション",
+      "集積所の新設・移設・廃止と町会承認",
+      "一部地区で違う回収ルート時刻"
     ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
       "examined_subareas": 0,
-      "unit": "町内・地域から路線側別収集コースへの対応",
-      "count_basis": "R8案内は線路東西・北南コースと町内一覧を示すが、全割当行は未集計（https://www.city.kounosu.saitama.jp/page/1174.html）。"
+      "unit": "町会・地域別のカレンダー区域と集積所の所属",
+      "count_basis": "2026案内はアプリと「家庭ごみと資源の出し方」へ誘導するが、現行の町丁目曜日表・区域数は未取得（https://www.city.fujimi.saitama.jp/kurashi_tetsuzuki/gomi_recycle/gomi/dashikata/gominobunbtunituite.html）。"
     },
     "findings": [
-      "2026-2027の日程は鴻巣・吹上・川里地域別に早見表とカレンダーを分け、同じ町名を高崎線東西・北南で分ける（https://www.city.kounosu.saitama.jp/page/1174.html）。",
-      "鴻巣・川里の一般ごみは8:30、資源類は8:00まで。時間を全品目で固定しない。",
-      "川里では配布済みカレンダーの12/29可燃印刷が誤りで実際は収集なしと市が訂正。版管理と告知照合が必要。"
+      "収集日の朝8:30から開始するが、天候・道路でルート時刻が変わる。収集後の再回収はしない（https://www.city.fujimi.saitama.jp/kurashi_tetsuzuki/gomi_recycle/gomi/dashikata/gominobunbtunituite.html）。",
+      "新設・移設は町会長の同意を得て、利用者代表が開始希望10日前までに届出。町会が定めた集積所所属は、住所・GPSだけから決められない（https://www.city.fujimi.saitama.jp/kurashi_tetsuzuki/gomi_recycle/gomi/syusekijo/gomisyusekijo.html）。",
+      "市アプリは地域設定で種類別日程を表示するが、住所から地域を判定する公式根拠表は未確認。"
     ],
     "unresolved": [
-      "地区別・線路・町名・自治会の全行と境界表を未照合",
-      "日付指定と曜日指定、資源/可燃/粗大の差、訂正周知の範囲を未確認",
-      "集積所所属・自治会回収・年末年始の他地域対応を未整理",
+      "現行町名・丁目・番地から日程コースまでのR8全行を未取得",
+      "利用できる集積所・自治会・集合住宅管理者の所属条件を未確認",
+      "品目別周期・祝日・年末年始・臨時収集を未整理",
       "自治体別MR01〜09、独立した全行正解・境界反例、利用条件・人の確認が未完了"
     ],
     "model": "gpt-6-luna",
@@ -5372,21 +5371,58 @@
     "municipality": "酒田市",
     "rank_total": 301,
     "population_total": 92129,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.sakata.lg.jp/kurashi/gomi/gomical/gomi_calender.html",
+        "title": "令和8年度ごみカレンダー（住所から検索）",
+        "access": "read",
+        "locator": "収集町名の五十音一覧、個別町名からカレンダーへ進むリンク、※印の注意",
+        "notes": "市公式。2026-03-31更新。全てのリンク先のカレンダーや※注記の適用条件は未精読。"
+      },
+      {
+        "url": "https://www.city.sakata.lg.jp/kurashi/gomi/gomical/kensaku/index.html",
+        "title": "ごみカレンダー検索",
+        "access": "read",
+        "locator": "地区番号1〜20、飛島地区へのリンク一覧",
+        "notes": "公式索引であることを確認。番号ごとの対象町と表内容は未照合。"
+      },
+      {
+        "url": "https://www.city.sakata.lg.jp/kurashi/gomi/gomical/kensaku/gomi_cl_s01.files/2026gomi1.pdf",
+        "title": "2026酒田市ごみルールカレンダー 地区番号1",
+        "access": "search_only",
+        "locator": "検索表示のPDFテキスト",
+        "notes": "特定例のみ。地区番号1の一部を全市へ一般化しない。"
+      }
+    ],
+    "assignment_units": [
+      "住所町名・丁目から地区別カレンダーへのリンク",
+      "カレンダーの地区番号と対象町名",
+      "家庭ごみステーションの利用所属・場所",
+      "※印の町名に付く個別注意"
+    ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
-      "examined_subareas": 0
+      "examined_subareas": 0,
+      "unit": "町名・地区番号による収集カレンダー割当",
+      "count_basis": "公式の番号索引と町名一覧は見たが町名・丁目・番地の全割当行は集計していない。行政区・地区番号の数を収集区分総数へ読み替えない（https://www.city.sakata.lg.jp/kurashi/gomi/gomical/gomi_calender.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "公式2026年度ページは町名・丁目・地区名別の選択リンクを掲示し、※印の町名には追加確認を促す（https://www.city.sakata.lg.jp/kurashi/gomi/gomical/gomi_calender.html）。",
+      "別索引には酒田地区番号1〜15、八幡16〜17、松山18、平田19〜20、飛島地区の入口がある（https://www.city.sakata.lg.jp/kurashi/gomi/gomical/kensaku/index.html）。番号は住所候補入力の後に確認する必要があり、番号一覧だけで住所所属は決まらない。",
+      "地区番号1の例は当日朝8時までの排出や自分の町以外のステーションを使わない注意を載せる（https://www.city.sakata.lg.jp/kurashi/gomi/gomical/kensaku/gomi_cl_s01.files/2026gomi1.pdf）。全番号の規則・例外は未確認。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "町名リンクと地区番号全件・適用カレンダーの照合",
+      "※町名の個別条件、番地例外、飛島を含む全域網羅",
+      "実際に利用可能なステーションと住宅・集合住宅の所属",
+      "家庭収集以外・資源回収の方式、曜日・期限・期間の照合",
+      "MR01〜09、独立した期待値・境界例、原文の再利用条件・人の確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "152064",
@@ -5394,21 +5430,58 @@
     "municipality": "新発田市",
     "rank_total": 304,
     "population_total": 90615,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/1015349.html",
+        "title": "令和8年度 家庭ごみステーション収集日程表（旧新発田地区）",
+        "access": "read",
+        "locator": "区分・地区名・燃えるごみ日程表の全行と出す時刻",
+        "notes": "新発田市公式、2026-03-02更新。番地や実ステーション指定は未確認。"
+      },
+      {
+        "url": "https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/1015351.html",
+        "title": "令和8年度 家庭ごみステーション収集日程表（豊浦・加治川・紫雲寺地区）",
+        "access": "read",
+        "locator": "番号・地区名・行政区・燃えるごみ日程表の全行",
+        "notes": "新発田市公式、2026-03-03更新。ページ掲載表は全行読取。詳細分別は別の市ガイドブック。"
+      },
+      {
+        "url": "https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/index.html",
+        "title": "ごみ収集日程",
+        "access": "read",
+        "locator": "収集日程の索引と2つの日程表への分岐",
+        "notes": "他の現行方式・建物例外はこの索引だけでは確認できない。"
+      }
+    ],
+    "assignment_units": [
+      "旧新発田地区の区分番号から行政区・町丁目への割当",
+      "豊浦・加治川・紫雲寺の区分番号から行政区への割当",
+      "家庭ごみステーションの利用所属",
+      "燃えるごみ以外の品目別ルール・収集日"
+    ],
     "coverage": {
       "whole_municipality": false,
-      "known_subareas": null,
-      "examined_subareas": 0
+      "known_subareas": 20,
+      "examined_subareas": 20,
+      "unit": "公式日程表の地区区分コード（住所町丁目・行政区へ割り当てるコード）",
+      "count_basis": "公式の2ページに記載された旧新発田13区分と豊浦・加治川・紫雲寺7区分を各行確認（https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/1015349.html 、https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/1015351.html）。20区分の全住所境界を検証したという意味ではない。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "旧新発田地区の表にはA-1〜H-12-2の13区分があり、丁目内の番・自治会除外など細かな限定が含まれる（https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/1015349.html）。",
+      "豊浦・加治川・紫雲寺地区にはT-13,T-14,K-15,K-16,K-16-2,S-17,S-18の7区分が掲載され、下金塚など専用区分がある（https://www.city.shibata.lg.jp/kurashi/gomi/gomi/nittei/1015351.html）。",
+      "両日程表は収集日の午前8時30分までに家庭ごみステーションへ出すと案内する。時刻は収集目安ではなく記載上の排出時刻だが、ステーション所属の照合は未完。",
+      "確認した区分は計20の日程表区分（旧13＋3地区7）。品目ごとの全日程・例外・実際の排出場所の利用資格をまだ突合していない。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "行政区名・番地境界、自治会除外・一部区域の全条件",
+      "家庭ごみステーションへの所属確認方法と集合住宅例外",
+      "燃えるごみ以外の方式・曜日、祝日・年末年始・適用版",
+      "MR01〜09、独立した期待値・境界例、原文の再利用条件・人の確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "162116",
@@ -5416,21 +5489,58 @@
     "municipality": "射水市",
     "rank_total": 307,
     "population_total": 89377,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://opendata.city.imizu.toyama.jp/dataset/household_waste_collection_calendar",
+        "title": "射水市ごみ収集カレンダー",
+        "access": "read",
+        "locator": "令和8年度地区別PDFリソース一覧14件",
+        "notes": "射水市公式オープンデータ。ライセンス表示はCC BY 4.0。資料の個別利用条件と派生データ公開条件は別途審査が必要。"
+      },
+      {
+        "url": "https://www.city.imizu.toyama.jp/guide/svguidedtl.aspx?servno=46225",
+        "title": "射水市ごみ収集カレンダー・資源集団回収スケジュール（黒河地区・池多地区・大江地区）",
+        "access": "read",
+        "locator": "地区別収集日が異なる説明、資源集団回収予定の注記、多言語対訳表の案内",
+        "notes": "個別地区ページの例のみ。団体による予定変更があり、未掲載の場合も団体配布チラシ参照と記載。"
+      },
+      {
+        "url": "https://opendata.city.imizu.toyama.jp/dataset/2842674d-6a87-4d55-a33a-ee6edb715f7f/resource/4a3af4ef-c201-4260-8e4b-0f65064f27cb/download/162116_household_waste_collection_calendar_hibari_r8.pdf?preview=1",
+        "title": "令和8年度 射水市ごみ収集カレンダー（戸破地区）",
+        "access": "search_only",
+        "locator": "公式PDF抽出の収集地区・排出時刻・地区例",
+        "notes": "当該PDFに記載された地区例。全PDFではなく他地域へ一般化しない。"
+      }
+    ],
+    "assignment_units": [
+      "14の地区別カレンダー資源から地区内町名への割当",
+      "曜日・頻度・品目ごとの地域差",
+      "家庭用集積場の所属",
+      "資源集団回収の地区・活動団体別日程"
+    ],
     "coverage": {
       "whole_municipality": false,
-      "known_subareas": null,
-      "examined_subareas": 0
+      "known_subareas": 14,
+      "examined_subareas": 1,
+      "unit": "市の公開する令和8年度地区別カレンダーPDF区分",
+      "count_basis": "公式オープンデータのresourcesにある14件を数え、うち戸破地区PDFの地区例を確認。他13PDFの町名境界や全内容は未読（https://opendata.city.imizu.toyama.jp/dataset/household_waste_collection_calendar）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "公式オープンデータの令和8年度資源一覧には、新湊、放生津①②、作道等、戸破、大門北部・南部、大島①②など14地区別PDFが掲載される（https://opendata.city.imizu.toyama.jp/dataset/household_waste_collection_calendar）。",
+      "市の地区ページは地区ごとに回収日が異なり、資源集団回収の日程は活動団体による変更やカレンダー未掲載があり得ると案内する（https://www.city.imizu.toyama.jp/guide/svguidedtl.aspx?servno=46225）。",
+      "戸破地区PDFの例は指定集積場への排出を案内し、地区内の町名や丁目・除外の指定を含む（https://opendata.city.imizu.toyama.jp/dataset/2842674d-6a87-4d55-a33a-ee6edb715f7f/resource/4a3af4ef-c201-4260-8e4b-0f65064f27cb/download/162116_household_waste_collection_calendar_hibari_r8.pdf?preview=1）。当該例を市全域へ広げない。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "14資料すべての住所・町名・丁目境界とカレンダーとの照合",
+      "各集積場への住宅・世帯の所属判定",
+      "資源集団回収における団体加入・変更・不掲載分の確認",
+      "全方式・品目・祝日・適用期間の突合",
+      "MR01〜09、独立した期待値・境界例、原文の再利用条件・人の確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "232378",
@@ -5438,21 +5548,57 @@
     "municipality": "あま市",
     "rank_total": 310,
     "population_total": 87817,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.ama.aichi.jp/kurashi/recycle/gomi/1002376.html",
+        "title": "ごみの分別と出し方のルール（家庭ごみ50音別分別早見表）",
+        "access": "read",
+        "locator": "令和8年度ルールPDF、家庭ごみの収集日PDF、家庭ごみ収集日カレンダーPDFへの公式リンク。収集時間指定不可、年末年始変更の案内",
+        "notes": "あま市公式、2026-09-30更新。リンク先PDFをすべて読み通せていない。"
+      },
+      {
+        "url": "https://www.city.ama.aichi.jp/_res/projects/default_project/_page_/001/002/376/juuichigatu.pdf",
+        "title": "家庭ごみの収集日",
+        "access": "read",
+        "locator": "公式ページから開いた1ページPDF",
+        "notes": "PDF文字抽出が崩れた箇所があり、全区域名の抽出・照合は未実施。"
+      },
+      {
+        "url": "https://www.city.ama.aichi.jp/_res/projects/default_project/_page_/001/002/376/juuichigatuura.pdf",
+        "title": "家庭ごみの収集日カレンダー",
+        "access": "read",
+        "locator": "公式ページから開いた1ページPDF",
+        "notes": "全地区の区域境界・収集方式の網羅読取は未実施。"
+      }
+    ],
+    "assignment_units": [
+      "家庭ごみ収集日カレンダー区分と地区名",
+      "地区ごとの品目収集日・収集時間",
+      "資源ごみ等の出し先と指定場所",
+      "年末年始等の変更と臨時周知"
+    ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
-      "examined_subareas": 0
+      "examined_subareas": 0,
+      "unit": "町丁目・地区別の家庭収集カレンダー区分",
+      "count_basis": "公式ページから現行PDFへの導線と2PDFを開いたが、地区名・収集区分を判読して全数を確定できていない（https://www.city.ama.aichi.jp/kurashi/recycle/gomi/1002376.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "市の現行ルール入口は、分別ルールと家庭ごみ収集日・カレンダーの別PDFを案内し、収集時間は指定できず、年末年始等の変更は広報確認とする（https://www.city.ama.aichi.jp/kurashi/recycle/gomi/1002376.html）。",
+      "PDFリンク先は開いたが文字認識が崩れており、カレンダー掲載地区の名称・全件・境界条件を確実に転記できていない（https://www.city.ama.aichi.jp/_res/projects/default_project/_page_/001/002/376/juuichigatu.pdf 、https://www.city.ama.aichi.jp/_res/projects/default_project/_page_/001/002/376/juuichigatuura.pdf）。",
+      "指定場所への排出を求める一般案内は確認したが、住所からの区域決定と集積所所属は未解決。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "PDFの判読可能な本文・2026年度適用期間と全地区名",
+      "地区の住居住所境界と品目別収集日との割当",
+      "指定集積所・集合住宅・自治会等の利用資格",
+      "臨時変更の確認経路、MR01〜09、独立期待値・境界例、人による確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "252093",
@@ -5460,21 +5606,57 @@
     "municipality": "甲賀市",
     "rank_total": 313,
     "population_total": 86848,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.koka.lg.jp/26284.htm",
+        "title": "令和8年度ごみカレンダー",
+        "access": "read",
+        "locator": "令和8年度版一覧。水口・土山・甲賀・甲南・信楽の各町版、各版4〜9月と10〜3月",
+        "notes": "甲賀市公式。町版リンクは確認したが個々の全地区表・注記は未読。"
+      },
+      {
+        "url": "https://www.city.koka.lg.jp/26708.htm",
+        "title": "令和8年度ごみカレンダー（多言語版）",
+        "access": "read",
+        "locator": "英語版など各町別カレンダー・分け方資料へのリンク一覧",
+        "notes": "多言語資料の入口確認のみ。翻訳内容の日本語版との全行比較は未実施。"
+      },
+      {
+        "url": "https://www.city.koka.lg.jp/secure/42697/2026Koka1.pdf",
+        "title": "2026年度ごみカレンダー（甲賀町版、4〜9月）",
+        "access": "search_only",
+        "locator": "公式PDFの例、電池等の資源回収先に関する抽出表示",
+        "notes": "甲賀町の前期例であり、他の町や後期を代表しない。"
+      }
+    ],
+    "assignment_units": [
+      "町版カレンダーから町内収集地区への割当",
+      "5町ごとの前期・後期カレンダー適用区分",
+      "ごみ集積所への所属",
+      "分別・持込・収集方式の町別差"
+    ],
     "coverage": {
       "whole_municipality": false,
-      "known_subareas": null,
-      "examined_subareas": 0
+      "known_subareas": 5,
+      "examined_subareas": 5,
+      "unit": "令和8年度カレンダーの町版区分（水口・土山・甲賀・甲南・信楽）",
+      "count_basis": "市公式現行一覧で5つの町版名を数えた。町内の個別収集区域数・全住所対応数は未確認（https://www.city.koka.lg.jp/26284.htm）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "公式の令和8年度ページは水口・土山・甲賀・甲南・信楽の5町版を前期・後期に分けて掲載する（https://www.city.koka.lg.jp/26284.htm）。",
+      "多言語版にも町別カレンダーと分別資料への入口がある。翻訳版ごとの対象範囲と原版との差分は照合していない（https://www.city.koka.lg.jp/26708.htm）。",
+      "甲賀町の前期PDFの検索抽出には小型充電式電池の集積所排出を禁じ、指定公共施設等へ持込むよう案内がある（https://www.city.koka.lg.jp/secure/42697/2026Koka1.pdf）。単品目の例で、市の全回収経路を意味しない。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "各町の地区・行政区・丁目ごとの境界とカレンダー選択",
+      "前期・後期版の各品目・例外・祝日振替の照合",
+      "集積所への住宅・世帯の所属確認",
+      "MR01〜09、独立期待値・境界例、利用条件・人による確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "232343",
@@ -5482,21 +5664,50 @@
     "municipality": "北名古屋市",
     "rank_total": 316,
     "population_total": 86100,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.kitanagoya.lg.jp/kurashi/gomi/1006476/1006479/1006097.html",
+        "title": "ごみ収集日検索",
+        "access": "read",
+        "locator": "検索ページの地区名別表。町丁目名・ごみ地区番号・品目曜日と資源地区番号・ステーション住所の行",
+        "notes": "北名古屋市公式、2026-08-17更新。全掲載行を自治体内で照合したとはしていない。"
+      },
+      {
+        "url": "https://www.city.kitanagoya.lg.jp/kurashi/gomi/1006476/1006479/1006097.html",
+        "title": "ごみ収集日検索（ごみ地区・資源地区の表）",
+        "access": "read",
+        "locator": "同一地区名に資源番号・排出場所が複数記載される例",
+        "notes": "同一町名でも住所と実利用ステーションが一対一とは限らない例を確認。"
+      }
+    ],
+    "assignment_units": [
+      "地区名からごみ収集地区番号への割当",
+      "地区名から資源ステーション番号・具体的所在地への割当",
+      "品目別収集日と第1・3等の月内日",
+      "複数の候補ステーションから実際の所属を確認"
+    ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
-      "examined_subareas": 0
+      "examined_subareas": 0,
+      "unit": "住所由来の地区名→ごみ番号／資源ステーション番号割当",
+      "count_basis": "公式ページの町名・複数番号の実例を読んだが、住所行の全掲載区分数は集計していない（https://www.city.kitanagoya.lg.jp/kurashi/gomi/1006476/1006479/1006097.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "公式検索は町内の地区名を検索する構成で、ごみ地区番号と品目別曜日、資源地区番号・所在地・資源の回収日を別欄で掲載する（https://www.city.kitanagoya.lg.jp/kurashi/gomi/1006476/1006479/1006097.html）。",
+      "閲覧した行では、同じ地区名の異なる住所に複数資源地区番号／ステーションがあり、集合場所も別々だった。町丁目や最寄りだけで所属を確定できない（同URL）。",
+      "このページは住所検索の入口だが、各家庭が実際に利用できるステーションを選ぶ基準・建物例外は別途確認が要る。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "町丁目・番地から地区番号への全行対応、未検索町名",
+      "実際に使える資源ステーション・家庭用ごみ集積所と住宅の所属関係",
+      "建物・集合住宅の例外、選択に迷う場合の公式確認先",
+      "曜日・排出期限・期間とMR01〜09、独立期待値・境界例、人による確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "262064",
@@ -5504,21 +5715,51 @@
     "municipality": "亀岡市",
     "rank_total": 319,
     "population_total": 85597,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.kameoka.kyoto.jp/soshiki/22/84626.html",
+        "title": "令和8年度ごみ出しカレンダーを掲載します",
+        "access": "read",
+        "locator": "2026年度カレンダー一覧、町名リンク、亀岡地区と篠町の特別表、期間と変更注記",
+        "notes": "亀岡市公式、2026-03-01更新。全リンク先PDFとページ末尾の全町一覧を完全には突合していない。"
+      },
+      {
+        "url": "https://www.city.kameoka.kyoto.jp/uploaded/attachment/45132.pdf",
+        "title": "亀岡地区西部版 ごみ出しカレンダー",
+        "access": "search_only",
+        "locator": "検索抽出の2026年度カレンダー例",
+        "notes": "地区の一例のみで市内の全域へ一般化しない。"
+      }
+    ],
+    "assignment_units": [
+      "町名または亀岡地区・篠町の分類から年度カレンダー選択",
+      "番地境界・河川等の地理条件による亀岡地区・篠町区分",
+      "年末年始・災害・行事による日程変更",
+      "家庭用カレンダーと実排出場所の所属"
+    ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
-      "examined_subareas": 0
+      "examined_subareas": 0,
+      "unit": "町名・特別地区区分による年度カレンダー選択",
+      "count_basis": "公式一覧に多数の町別リンクがあるが、全対象リンクと区域単位は集計・検証していない（https://www.city.kameoka.kyoto.jp/soshiki/22/84626.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "2026年度の家庭用カレンダーは町名別リンクで選び、亀岡地区と篠町は特別表の地域境界を参照する構成（https://www.city.kameoka.kyoto.jp/soshiki/22/84626.html）。",
+      "篠町Ⅰ・Ⅱは柏原で西川の東西に分けるなど、町名だけでなく地理的境界が選択条件に含まれる（同URL）。",
+      "災害・行事による変更と、年末年始の日程変更の可能性が明記され、別途市HP・広報で確認するよう案内する（同URL）。",
+      "亀岡地区西部のカレンダーは品目別の例示にすぎず、他区域の周期・排出条件に流用できない（https://www.city.kameoka.kyoto.jp/uploaded/attachment/45132.pdf）。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "全町リンク・区域別PDFの境界と全記載事項",
+      "亀岡地区と篠町の地理境界で自宅を判定する方法",
+      "カレンダーに示すごみ集積所と利用資格・集合住宅例外",
+      "年末年始・臨時変更の公式追跡、MR01〜09・独立期待値・境界例・人の確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "112291",
@@ -5526,21 +5767,58 @@
     "municipality": "和光市",
     "rank_total": 322,
     "population_total": 84917,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.wako.lg.jp/kurashi/gomi/1002742/1010170/1002746.html",
+        "title": "資源・ごみ収集地区と曜日一覧",
+        "access": "read",
+        "locator": "地区表15行、地域選択アプリへの案内、集積所を利用者が管理する説明",
+        "notes": "和光市公式、2024-04-30更新。静的曜日表は現行アプリの全日程を保証しない。"
+      },
+      {
+        "url": "https://www.city.wako.lg.jp/kurashi/gomi/1011333/1009752.html",
+        "title": "和光市版ごみ分別アプリ",
+        "access": "read",
+        "locator": "地域登録によりカレンダーに収集日を表示する説明",
+        "notes": "公式WEB版アプリの案内。地域候補表の完全性・登録の境界は未確認。"
+      },
+      {
+        "url": "https://www.city.wako.lg.jp/kurashi/gomi/1002742/1002792.html",
+        "title": "収集日当日のごみ出しにご協力ください",
+        "access": "read",
+        "locator": "収集日当日朝8時30分までの案内",
+        "notes": "日付の目安であり、所属する集積所の証明ではない。"
+      }
+    ],
+    "assignment_units": [
+      "町丁目・団地名から品目別曜日表またはアプリ地域への割当",
+      "収集品目別の区域・日程",
+      "利用者・自治会・建物管理者による集積所所属確認",
+      "アプリ登録地域と住所表・建物例外の対応"
+    ],
     "coverage": {
       "whole_municipality": false,
-      "known_subareas": null,
-      "examined_subareas": 0
+      "known_subareas": 15,
+      "examined_subareas": 15,
+      "unit": "2024公式静的表の町丁目・団地名行",
+      "count_basis": "静的公式曜日表の15行を確認。表の更新日は2024-04-30であり、現行アプリの全地域カレンダー母数や最新性を示す件数ではない（https://www.city.wako.lg.jp/kurashi/gomi/1002742/1010170/1002746.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "静的公式表は15の町丁目・団地行に品目別曜日を載せるが、同ページは最新の各地域カレンダーをWEB版ごみ分別アプリで選ぶよう案内する（https://www.city.wako.lg.jp/kurashi/gomi/1002742/1010170/1002746.html）。",
+      "同表は集積所を使う人が管理すると説明し、新たに出す場合は管理者・近隣・自治会長等へ確認するよう案内する（同URL）。住所で候補日が分かっても、排出場所の所属は別の確認事項。",
+      "公式アプリ案内は地域を登録して日程カレンダーを表示する機能を示す（https://www.city.wako.lg.jp/kurashi/gomi/1011333/1009752.html）。登録候補の対応範囲は独立検証していない。",
+      "ごみは収集日当日朝8時30分までに出し、収集地域で回収時刻が違い午後の場合もある（https://www.city.wako.lg.jp/kurashi/gomi/1002742/1002792.html）。午後の到着目安を排出期限へ変換しない。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "2024静的表と現行アプリの差分・日程有効期間",
+      "住所・番地からアプリ地域を選ぶ全対応と未掲載例",
+      "実際の集積所・集合住宅・自治会の利用資格",
+      "祝日・変更・全品目の期限、MR01〜09、独立期待値・境界例、人による確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "242161",
@@ -5548,21 +5826,60 @@
     "municipality": "伊賀市",
     "rank_total": 325,
     "population_total": 83351,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.iga.lg.jp/0000012865.html",
+        "title": "4月からの資源・ごみ収集カレンダー 令和8年度版",
+        "access": "read",
+        "locator": "2026年度版の上野A〜F、伊賀、島ヶ原、阿山、大山田、青山地区へのリンクと一部包含地名",
+        "notes": "伊賀市公式、2026-09-03公開・更新。上野F等の包含町名全文と全PDFの境界条件は未照合。"
+      },
+      {
+        "url": "https://www.city.iga.lg.jp/0000011039.html",
+        "title": "伊賀市ごみ分別アプリ",
+        "access": "search_only",
+        "locator": "地区選択で収集カレンダーを設定できる旨の公式検索結果",
+        "notes": "操作導線の検索結果。アプリの地区一覧・根拠・利用条件は未確認。"
+      },
+      {
+        "url": "https://www.city.iga.lg.jp/0000013917.html",
+        "title": "2026年度ごみしゅうしゅうカレンダー（がいこくごばん）",
+        "access": "search_only",
+        "locator": "外国語版の地域別PDF案内の公式検索結果",
+        "notes": "一部更新案内のみ。言語間の内容同等性は未確認。"
+      }
+    ],
+    "assignment_units": [
+      "支所・地区ごとの版から町内地区・大字への割当",
+      "上野A〜Fや伊賀・島ヶ原・阿山・大山田・青山の別カレンダー",
+      "青山地区の前期・後期の期間別表",
+      "集積所への実際の所属と住所住所境界",
+      "アプリの地区設定・通知"
+    ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
-      "examined_subareas": 0
+      "examined_subareas": 0,
+      "unit": "支所管内・地区別カレンダーグループと町字割当",
+      "count_basis": "ページには複数カレンダー群があるが、掲載地区を完全に列挙・数えたものではない。支所や行政区域の数から収集区分総数を推定しない（https://www.city.iga.lg.jp/0000012865.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "公式令和8年度ページはお住まいの地域・地区で収集日が異なるとし、上野A〜F、伊賀、島ヶ原、阿山、大山田、青山の地区別資料を掲載する（https://www.city.iga.lg.jp/0000012865.html）。",
+      "掲載例では地区は大字や団地名の列挙で構成され、青山は4〜9月と10〜3月の別資料で案内される（同URL）。個別リストの全区域・表の注記は未突合。",
+      "公式アプリ案内は、地区選択でカレンダー地区を設定する旨を示すが、住所から選ぶ全基準は別途確認が必要（https://www.city.iga.lg.jp/0000011039.html）。",
+      "市ページは2026年度外国語カレンダー入口を案内する。日本語との地区・品目・期限の一致は未確認（https://www.city.iga.lg.jp/0000013917.html）。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "全地区の町字・番地リストと各カレンダーの完全な境界",
+      "北部と青山（南部広域組合）の実施主体・方式境界",
+      "集積所所属・集合住宅例外の照合",
+      "対象期間・祝日・夜間/排出時刻・臨時変更",
+      "多言語版と日本語版の行同等性、MR01〜09・独立期待値・人の確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "222151",
@@ -5570,21 +5887,58 @@
     "municipality": "御殿場市",
     "rank_total": 328,
     "population_total": 83034,
-    "status": "unresearched",
-    "sources": [],
-    "assignment_units": [],
+    "status": "partial",
+    "sources": [
+      {
+        "url": "https://www.city.gotemba.lg.jp/kurashi/b-4/b-4-2/2783.html",
+        "title": "ごみの収集日と種類一覧表",
+        "access": "read",
+        "locator": "本文が「地域別家庭ごみの収集日一覧表」と説明しPDF2件へ案内",
+        "notes": "御殿場市公式。HTML入口は読取。"
+      },
+      {
+        "url": "https://www.city.gotemba.lg.jp/kurashi/kanri/assets/uploads/2016/02/shuushuubi.pdf",
+        "title": "地区別家庭ごみの収集日一覧表",
+        "access": "failed",
+        "locator": "公式リンク先PDFの取得を試行",
+        "notes": "2026-10-10時点のweb閲覧でタイムアウト。PDFの対象年度、区域、日程は読めていない。URLは市の現行ページ上のリンク先から取得。"
+      },
+      {
+        "url": "https://www.city.gotemba.lg.jp/kurashi/",
+        "title": "くらし",
+        "access": "search_only",
+        "locator": "御殿場市公式のごみ総合案内索引",
+        "notes": "「ごみ分別アプリ さんあ〜る」「ごみの種類と出し方」等を掲載する公式ナビゲーション。地域別カレンダーの代替資料ではない。"
+      }
+    ],
+    "assignment_units": [
+      "公式地域別家庭ごみ収集日一覧表の地区・日程",
+      "現行版の適用期間と地区の住所割当",
+      "ごみ収集日以外の出し方、排出時間、ステーション所属",
+      "公式ごみ分別アプリの地域設定と住宅住所"
+    ],
     "coverage": {
       "whole_municipality": false,
       "known_subareas": null,
-      "examined_subareas": 0
+      "examined_subareas": 0,
+      "unit": "公式地区別家庭ごみ収集日一覧の地域区分",
+      "count_basis": "HTMLはPDF提供を案内するが、リンク先PDFを取得できず、地域区分数も資料本文も未確認（https://www.city.gotemba.lg.jp/kurashi/b-4/b-4-2/2783.html）。"
     },
-    "findings": [],
-    "unresolved": [
-      "公式資料・収集区分と自宅設定の対応を未調査"
+    "findings": [
+      "市の現行「収集日と種類一覧表」ページは、地域別の家庭ごみ収集日一覧表をPDFで提供すると明示し、地区別一覧と分け方PDFへリンクする（https://www.city.gotemba.lg.jp/kurashi/b-4/b-4-2/2783.html）。",
+      "地区別一覧PDFの取得はタイムアウトし、掲載内容・対象年度・区域と曜日は実読できなかった（https://www.city.gotemba.lg.jp/kurashi/kanri/assets/uploads/2016/02/shuushuubi.pdf）。PDF名だけから現行性や地区を推測しない。",
+      "市の生活案内には「さんあ〜る」アプリの入口があるが、居住住所と選択地域の対応基準は未確認（https://www.city.gotemba.lg.jp/kurashi/）。"
     ],
-    "model": null,
-    "effort": null,
-    "checked_on": null
+    "unresolved": [
+      "PDF再取得可能性、版・発行日と現行適用期間",
+      "全地区・行政区・字の住所対応表、実際の集積所所属",
+      "品目別曜日・排出期限・収集時刻と変更手続",
+      "アプリ内の区分定義、建物例外",
+      "MR01〜09、独立期待値・境界例、利用条件と人の確認"
+    ],
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "checked_on": "2026-10-10"
   },
   {
     "municipality_code": "262099",
