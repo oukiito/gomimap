@@ -7,6 +7,7 @@
 | 知りたいこと | 文書 |
 | --- | --- |
 | 環境構築・起動・ローカル設定 | [開発手順](development.md) |
+| 人口／外国籍住民数による導入順位、住宅照合の実装前調査 | [導入順位と調査条件](municipality-rollout.md)、[自治体調査票](municipal-research/TEMPLATE.md)、[豊島区の調査状態](municipal-research/toshima.md) |
 | 全国で異なる住所・収集単位、方式別の対応付けと部分確定 | [全国向けの対応設計](national-collection-matching.md) |
 | 残作業の難易度、公開単位・判定・破損復旧と実装の開始ゲート | [実装前の契約](implementation-readiness.md) |
 | 残る機能の具体的な設計・着手条件・実装順 | [残る機能の設計](remaining-design.md) |
