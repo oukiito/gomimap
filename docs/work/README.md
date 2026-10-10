@@ -34,5 +34,6 @@
 | 2026-10-10 | 設計D2に基づく分別の優先順位・不明・矛盾の判定核 | [分別判定の記録](2026-10-10-sorting-decision.md) | [#67](https://github.com/oukiito/gomimap/issues/67)、G08 |
 | 2026-10-10 | 全国の住所・品目別区域・地域回収・夜間への対応設計を見直し | [全国対応の記録](2026-10-10-national-collection-matching.md) | [#69](https://github.com/oukiito/gomimap/issues/69)、G04・G05 |
 | 2026-10-10 | 人口／外国籍住民数の順位方式、MR詳細調査と豊島区の未完了台帳 | [導入・調査条件の記録](2026-10-10-rollout-research-gate.md) | [#71](https://github.com/oukiito/gomimap/issues/71)、G04・G05 |
+| 2026-10-10 | 総人口順位の全国一覧、上位自治体と住宅照合の瑕疵点検 | [全国調査の記録](2026-10-10-national-research.md) | [#73](https://github.com/oukiito/gomimap/issues/73)、G04・G05 |
 
 画面証跡は`screenshots/`にあります。Web、ネイティブ、エミュレータ、実機、本人観察を各記録で区別します。架空データの画像を実データの正確性の証拠として扱いません。リリースの変更点は[CHANGELOG](../../CHANGELOG.md)へまとめます。

@@ -1,0 +1,23 @@
+{
+  "population_total": 123767642,
+  "population_foreign": 4031159,
+  "ranked_records": 1747,
+  "administrative_wards_excluded": 171,
+  "city_ward_rollups": 20,
+  "prefecture_rollups": 47,
+  "aggregate_rows_excluded": 355,
+  "types": {
+    "city": 792,
+    "special_ward": 23,
+    "town": 743,
+    "village": 189
+  },
+  "zero_population_records": [
+    "016951",
+    "016969",
+    "016977",
+    "016985",
+    "016993",
+    "017001"
+  ]
+}
